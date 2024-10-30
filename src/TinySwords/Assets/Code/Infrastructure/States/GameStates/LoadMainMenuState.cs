@@ -1,19 +1,31 @@
 using Code.Gameplay.Common.Curtain;
+using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
 
 namespace Code.Infrastructure.States.GameStates
 {
   public class LoadMainMenuState : SimpleState
   {
+    private const string MainMenuScene = "MainMenu";
+    
     private readonly ICurtain _curtain;
+    private readonly ISceneLoader _sceneLoader;
+    private readonly IGameStateMachine _gameStateMachine;
 
-    public LoadMainMenuState(ICurtain curtain) =>
+    public LoadMainMenuState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine)
+    {
       _curtain = curtain;
+      _sceneLoader = sceneLoader;
+      _gameStateMachine = gameStateMachine;
+    }
 
     public override void Enter() =>
-      _curtain.Show(OnShowed);
+      _curtain.Show(() => _sceneLoader.LoadScene(MainMenuScene, OnLoaded));
 
-    private void OnShowed() =>
-      _curtain.Hide();
+    private void OnLoaded()
+    {
+      _gameStateMachine.Enter<MainMenuState>();
+    }
   }
 }
