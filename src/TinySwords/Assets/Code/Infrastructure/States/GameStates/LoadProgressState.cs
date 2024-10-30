@@ -11,6 +11,6 @@ namespace Code.Infrastructure.States.GameStates
       _gameStateMachine = gameStateMachine;
 
     public override void Enter() =>
-      _gameStateMachine.Enter<LoadMainMenuState>();
+      _gameStateMachine.Enter<LoadingMainMenuState>();
   }
 }

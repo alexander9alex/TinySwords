@@ -5,7 +5,7 @@ using Code.Infrastructure.States.StateMachine;
 
 namespace Code.Infrastructure.States.GameStates
 {
-  public class LoadMainMenuState : SimpleState
+  public class LoadingMainMenuState : SimpleState
   {
     private const string MainMenuScene = "MainMenu";
     
@@ -13,7 +13,7 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ISceneLoader _sceneLoader;
     private readonly IGameStateMachine _gameStateMachine;
 
-    public LoadMainMenuState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine)
+    public LoadingMainMenuState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
@@ -23,9 +23,7 @@ namespace Code.Infrastructure.States.GameStates
     public override void Enter() =>
       _curtain.Show(() => _sceneLoader.LoadScene(MainMenuScene, OnLoaded));
 
-    private void OnLoaded()
-    {
+    private void OnLoaded() =>
       _gameStateMachine.Enter<MainMenuState>();
-    }
   }
 }

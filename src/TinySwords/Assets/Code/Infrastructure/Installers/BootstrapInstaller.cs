@@ -34,7 +34,7 @@ namespace Code.Infrastructure.Installers
     {
       Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle();
       Container.BindInterfacesAndSelfTo<LoadProgressState>().AsSingle();
-      Container.BindInterfacesAndSelfTo<LoadMainMenuState>().AsSingle();
+      Container.BindInterfacesAndSelfTo<LoadingMainMenuState>().AsSingle();
       Container.BindInterfacesAndSelfTo<MainMenuState>().AsSingle();
       Container.BindInterfacesAndSelfTo<LoadGameState>().AsSingle();
       Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
