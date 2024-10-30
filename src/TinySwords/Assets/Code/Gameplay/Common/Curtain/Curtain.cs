@@ -41,7 +41,7 @@ namespace Code.Gameplay.Common.Curtain
         CurtainImage.color = NextColor(startColor, endColor, timer);
         yield return null;
       }
-
+      
       onEnded?.Invoke();
     }
 
