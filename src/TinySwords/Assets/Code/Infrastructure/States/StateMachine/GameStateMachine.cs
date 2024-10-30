@@ -6,8 +6,13 @@ namespace Code.Infrastructure.States.StateMachine
 {
   public class GameStateMachine : IGameStateMachine
   {
-    private IStateFactory _stateFactory;
+    private readonly IStateFactory _stateFactory;
     private IExitableState _activeState;
+
+    public GameStateMachine(IStateFactory stateFactory)
+    {
+      _stateFactory = stateFactory;
+    }
 
     public void Enter<TState>() where TState : class, IState =>
       RequestEnter<TState>()
