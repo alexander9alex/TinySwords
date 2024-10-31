@@ -12,16 +12,20 @@ public static class GameComponentsLookup {
     public const int View = 1;
     public const int ViewPrefab = 2;
     public const int Id = 3;
-    public const int Transform = 4;
-    public const int WorldPosition = 5;
+    public const int Selected = 4;
+    public const int SelectingAnimator = 5;
+    public const int Transform = 6;
+    public const int WorldPosition = 7;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 8;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "View",
         "ViewPrefab",
         "Id",
+        "Selected",
+        "SelectingAnimator",
         "Transform",
         "WorldPosition"
     };
@@ -31,6 +35,8 @@ public static class GameComponentsLookup {
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Gameplay.Features.Animations.Selected),
+        typeof(Code.Gameplay.Features.Animations.SelectingAnimator),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.WorldPosition)
     };

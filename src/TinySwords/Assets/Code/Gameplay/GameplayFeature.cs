@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.Move;
+﻿using Code.Gameplay.Features.Animations;
+using Code.Gameplay.Features.Move;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -12,7 +13,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<MoveFeature>());
       
-      
+      Add(systems.Create<AnimationFeature>());
     }
   }
 }
