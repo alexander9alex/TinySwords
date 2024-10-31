@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Code.Infrastructure.Views.Factory;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Infrastructure.Views.Systems
 {

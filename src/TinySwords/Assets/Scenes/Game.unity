@@ -384,9 +384,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308441111822339379, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_SortingOrder
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 2621223623811270200, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
       propertyPath: m_Name
       value: LevelMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724725667089465383, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997835000720559714, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_SortingOrder
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383578250933072504, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_SortingOrder
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 7569251294727063068, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
       propertyPath: m_LocalPosition.x

@@ -25,6 +25,7 @@ namespace Code.Gameplay.Features.Units.Factory
       CreateEntity.Empty()
         .AddId(_identifiers.Next())
         .AddViewPrefab(unitConfig.UnitPrefab)
+        .AddWorldPosition(pos)
         ;
     }
   }
