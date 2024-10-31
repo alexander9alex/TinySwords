@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Infrastructure.Views;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherView;
@@ -34,10 +37,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Common.View view { get { return (Code.Common.View)GetComponent(GameComponentsLookup.View); } }
-    public Code.Common.Views.IEntityView View { get { return view.Value; } }
+    public IEntityView View { get { return view.Value; } }
     public bool hasView { get { return HasComponent(GameComponentsLookup.View); } }
 
-    public GameEntity AddView(Code.Common.Views.IEntityView newValue) {
+    public GameEntity AddView(IEntityView newValue) {
         var index = GameComponentsLookup.View;
         var component = (Code.Common.View)CreateComponent(index, typeof(Code.Common.View));
         component.Value = newValue;
@@ -45,7 +48,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceView(Code.Common.Views.IEntityView newValue) {
+    public GameEntity ReplaceView(IEntityView newValue) {
         var index = GameComponentsLookup.View;
         var component = (Code.Common.View)CreateComponent(index, typeof(Code.Common.View));
         component.Value = newValue;

@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Common.Registrars;
 using UnityEngine;
 
-namespace Code.Common.Views
+namespace Code.Infrastructure.Views
 {
   public class EntityBehaviour : MonoBehaviour, IEntityView
   {

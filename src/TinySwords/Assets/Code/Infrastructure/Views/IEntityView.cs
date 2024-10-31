@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.Common.Views
+namespace Code.Infrastructure.Views
 {
   public interface IEntityView
   {
