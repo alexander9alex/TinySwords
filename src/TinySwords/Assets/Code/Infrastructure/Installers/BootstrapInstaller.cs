@@ -1,4 +1,6 @@
 ﻿using Code.Gameplay.Common.Curtain;
+using Code.Gameplay.Feature.Units.Factory;
+using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.Factory;
@@ -16,6 +18,7 @@ namespace Code.Infrastructure.Installers
     {
       BindInfrastructureServices();
       BindGameplayServices();
+      BindGameplayFactories();
       BindStateFactory();
       BindGameStates();
       BindStateMachine();
@@ -27,8 +30,16 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
     }
 
-    private void BindGameplayServices() =>
+    private void BindGameplayServices()
+    {
       Container.Bind<ICurtain>().FromInstance(Curtain).AsSingle();
+      Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+    }
+
+    private void BindGameplayFactories()
+    {
+      Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
+    }
 
     private void BindGameStates()
     {
