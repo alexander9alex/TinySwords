@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Common.Curtain;
+using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -7,6 +8,7 @@ using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.Views.Factory;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -18,6 +20,9 @@ namespace Code.Infrastructure.Installers
     public override void InstallBindings()
     {
       BindInfrastructureServices();
+      BindInfrastructureFactories();
+      BindCommonServices();
+      BindContexts();
       BindGameplayServices();
       BindGameplayFactories();
       BindSystemFactory();
@@ -30,6 +35,23 @@ namespace Code.Infrastructure.Installers
     {
       Container.BindInterfacesAndSelfTo<BootstrapInstaller>().FromInstance(this).AsSingle();
       Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+    }
+
+    private void BindInfrastructureFactories()
+    {
+      Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
+    }
+
+    private void BindCommonServices()
+    {
+      Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+    }
+
+    private void BindContexts()
+    {
+      Container.Bind<Contexts>().FromInstance(Contexts.sharedInstance).AsSingle();
+      
+      Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
     }
 
     private void BindGameplayServices()
@@ -60,7 +82,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
 
     private void BindStateMachine() =>
-      Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
+      Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
 
     public void Initialize() =>
       Container.Resolve<IGameStateMachine>().Enter<BootstrapState>();

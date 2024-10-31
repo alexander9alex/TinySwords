@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherView;
+    static Entitas.IMatcher<GameEntity> _matcherId;
 
-    public static Entitas.IMatcher<GameEntity> View {
+    public static Entitas.IMatcher<GameEntity> Id {
         get {
-            if (_matcherView == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.View);
+            if (_matcherId == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Id);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherView = matcher;
+                _matcherId = matcher;
             }
 
-            return _matcherView;
+            return _matcherId;
         }
     }
 }
@@ -33,28 +33,28 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Common.View view { get { return (Code.Common.View)GetComponent(GameComponentsLookup.View); } }
-    public Code.Infrastructure.Views.IEntityView View { get { return view.Value; } }
-    public bool hasView { get { return HasComponent(GameComponentsLookup.View); } }
+    public Code.Gameplay.Common.Id id { get { return (Code.Gameplay.Common.Id)GetComponent(GameComponentsLookup.Id); } }
+    public int Id { get { return id.Value; } }
+    public bool hasId { get { return HasComponent(GameComponentsLookup.Id); } }
 
-    public GameEntity AddView(Code.Infrastructure.Views.IEntityView newValue) {
-        var index = GameComponentsLookup.View;
-        var component = (Code.Common.View)CreateComponent(index, typeof(Code.Common.View));
+    public GameEntity AddId(int newValue) {
+        var index = GameComponentsLookup.Id;
+        var component = (Code.Gameplay.Common.Id)CreateComponent(index, typeof(Code.Gameplay.Common.Id));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceView(Code.Infrastructure.Views.IEntityView newValue) {
-        var index = GameComponentsLookup.View;
-        var component = (Code.Common.View)CreateComponent(index, typeof(Code.Common.View));
+    public GameEntity ReplaceId(int newValue) {
+        var index = GameComponentsLookup.Id;
+        var component = (Code.Gameplay.Common.Id)CreateComponent(index, typeof(Code.Gameplay.Common.Id));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
     }
 
-    public GameEntity RemoveView() {
-        RemoveComponent(GameComponentsLookup.View);
+    public GameEntity RemoveId() {
+        RemoveComponent(GameComponentsLookup.Id);
         return this;
     }
 }

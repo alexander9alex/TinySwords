@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Units.Data;
+using Code.Infrastructure.Views;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Configs
@@ -10,7 +11,7 @@ namespace Code.Gameplay.Features.Units.Configs
     public UnitColor Color;
 
     [Header("Unit Setup")]
-    public GameObject UnitPrefab;
+    public EntityBehaviour UnitPrefab;
     [Space]
     public float Hp;
     public float Damage;
