@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
+using Code.Infrastructure.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStates;
@@ -19,6 +20,7 @@ namespace Code.Infrastructure.Installers
       BindInfrastructureServices();
       BindGameplayServices();
       BindGameplayFactories();
+      BindSystemFactory();
       BindStateFactory();
       BindGameStates();
       BindStateMachine();
@@ -50,6 +52,9 @@ namespace Code.Infrastructure.Installers
       Container.BindInterfacesAndSelfTo<LoadingGameState>().AsSingle();
       Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
     }
+
+    private void BindSystemFactory() =>
+      Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
 
     private void BindStateFactory() =>
       Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
