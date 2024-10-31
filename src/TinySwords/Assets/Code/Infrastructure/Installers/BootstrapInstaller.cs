@@ -3,6 +3,7 @@ using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -51,6 +52,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
       Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
       Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
+      Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
     }
 
     private void BindContexts()

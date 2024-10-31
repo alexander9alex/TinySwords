@@ -12,7 +12,8 @@ namespace Code.Gameplay.Features.Selecting.Systems
 
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
-    private readonly IGroup<GameEntity> _clicks;
+    private readonly IGroup<GameEntity> _interactions;
+    private readonly IGroup<GameEntity> _mousePositions;
 
     private readonly int _layerMask = 1 << LayerMask.NameToLayer("Unit");
 
@@ -21,17 +22,16 @@ namespace Code.Gameplay.Features.Selecting.Systems
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
 
-      _clicks = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Click,
-          GameMatcher.MousePosition));
+      _interactions = game.GetGroup(GameMatcher.MakeInteraction);
+      _mousePositions = game.GetGroup(GameMatcher.MousePosition);
     }
 
     public void Execute()
     {
-      foreach (GameEntity click in _clicks)
+      foreach (GameEntity _ in _interactions)
+      foreach (GameEntity mousePosition in _mousePositions)
       {
-        GameEntity entity = GetSelectableEntityFromPosition(click.MousePosition);
+        GameEntity entity = GetSelectableEntityFromPosition(mousePosition.MousePosition);
 
         if (entity != null && entity.isSelectable)
           entity.isSelected = true;

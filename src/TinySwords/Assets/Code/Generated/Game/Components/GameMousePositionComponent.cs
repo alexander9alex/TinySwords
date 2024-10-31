@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition mousePosition { get { return (Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition)GetComponent(GameComponentsLookup.MousePosition); } }
+    public Code.Gameplay.Features.Input.MousePosition mousePosition { get { return (Code.Gameplay.Features.Input.MousePosition)GetComponent(GameComponentsLookup.MousePosition); } }
     public UnityEngine.Vector2 MousePosition { get { return mousePosition.Value; } }
     public bool hasMousePosition { get { return HasComponent(GameComponentsLookup.MousePosition); } }
 
     public GameEntity AddMousePosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.MousePosition;
-        var component = (Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition)CreateComponent(index, typeof(Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition));
+        var component = (Code.Gameplay.Features.Input.MousePosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.MousePosition));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceMousePosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.MousePosition;
-        var component = (Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition)CreateComponent(index, typeof(Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition));
+        var component = (Code.Gameplay.Features.Input.MousePosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.MousePosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

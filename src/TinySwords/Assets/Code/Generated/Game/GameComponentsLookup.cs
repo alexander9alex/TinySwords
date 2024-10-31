@@ -13,10 +13,10 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 2;
     public const int Id = 3;
     public const int SelectingAnimator = 4;
-    public const int Transform = 5;
-    public const int WorldPosition = 6;
-    public const int Click = 7;
-    public const int MousePosition = 8;
+    public const int MakeInteraction = 5;
+    public const int MousePosition = 6;
+    public const int Transform = 7;
+    public const int WorldPosition = 8;
     public const int Selectable = 9;
     public const int Selected = 10;
     public const int TargetId = 11;
@@ -30,10 +30,10 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "Id",
         "SelectingAnimator",
+        "MakeInteraction",
+        "MousePosition",
         "Transform",
         "WorldPosition",
-        "Click",
-        "MousePosition",
         "Selectable",
         "Selected",
         "TargetId",
@@ -46,10 +46,10 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Gameplay.Features.Animations.SelectingAnimator),
+        typeof(Code.Gameplay.Features.Input.MakeInteraction),
+        typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Click),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.MousePosition),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selectable),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selected),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.TargetId),

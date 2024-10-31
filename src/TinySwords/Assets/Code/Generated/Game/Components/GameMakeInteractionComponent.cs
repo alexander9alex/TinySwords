@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherClick;
+    static Entitas.IMatcher<GameEntity> _matcherMakeInteraction;
 
-    public static Entitas.IMatcher<GameEntity> Click {
+    public static Entitas.IMatcher<GameEntity> MakeInteraction {
         get {
-            if (_matcherClick == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Click);
+            if (_matcherMakeInteraction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MakeInteraction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherClick = matcher;
+                _matcherMakeInteraction = matcher;
             }
 
-            return _matcherClick;
+            return _matcherMakeInteraction;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Click clickComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Click();
+    static readonly Code.Gameplay.Features.Input.MakeInteraction makeInteractionComponent = new Code.Gameplay.Features.Input.MakeInteraction();
 
-    public bool isClick {
-        get { return HasComponent(GameComponentsLookup.Click); }
+    public bool isMakeInteraction {
+        get { return HasComponent(GameComponentsLookup.MakeInteraction); }
         set {
-            if (value != isClick) {
-                var index = GameComponentsLookup.Click;
+            if (value != isMakeInteraction) {
+                var index = GameComponentsLookup.MakeInteraction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : clickComponent;
+                            : makeInteractionComponent;
 
                     AddComponent(index, component);
                 } else {

@@ -1,4 +1,6 @@
 ﻿using Code.Gameplay.Features.Animations;
+using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.Selecting;
 using Code.Infrastructure.Factory;
@@ -12,11 +14,13 @@ namespace Code.Gameplay
     {
       Add(systems.Create<BindViewFeature>());
       
+      Add(systems.Create<InputFeature>());
       Add(systems.Create<SelectingFeature>());
       
       Add(systems.Create<MoveFeature>());
-      
       Add(systems.Create<AnimationFeature>());
+      
+      Add(systems.Create<DestructFeature>());
     }
   }
 }

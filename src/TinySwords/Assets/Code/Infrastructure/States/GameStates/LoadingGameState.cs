@@ -1,5 +1,7 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Input.Data;
+using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Infrastructure.Loading;
@@ -18,15 +20,17 @@ namespace Code.Infrastructure.States.GameStates
     private readonly IGameStateMachine _gameStateMachine;
     private readonly IUnitFactory _unitFactory;
     private readonly ICameraProvider _cameraProvider;
+    private readonly IInputService _inputService;
 
     public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, IUnitFactory unitFactory,
-      ICameraProvider cameraProvider)
+      ICameraProvider cameraProvider, IInputService inputService)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
       _gameStateMachine = gameStateMachine;
       _unitFactory = unitFactory;
       _cameraProvider = cameraProvider;
+      _inputService = inputService;
     }
 
     public override void Enter() =>
@@ -35,7 +39,8 @@ namespace Code.Infrastructure.States.GameStates
     private void OnLoaded()
     {
       _cameraProvider.SetMainCamera(Camera.main);
-      
+      _inputService.ChangeInputMap(InputMap.Game);
+        
       _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(0, 0));
 
       _gameStateMachine.Enter<GameLoopState>();
