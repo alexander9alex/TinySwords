@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSelected;
+    static Entitas.IMatcher<GameEntity> _matcherSelectable;
 
-    public static Entitas.IMatcher<GameEntity> Selected {
+    public static Entitas.IMatcher<GameEntity> Selectable {
         get {
-            if (_matcherSelected == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Selected);
+            if (_matcherSelectable == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Selectable);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSelected = matcher;
+                _matcherSelectable = matcher;
             }
 
-            return _matcherSelected;
+            return _matcherSelectable;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Selected selectedComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Selected();
+    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Selectable selectableComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Selectable();
 
-    public bool isSelected {
-        get { return HasComponent(GameComponentsLookup.Selected); }
+    public bool isSelectable {
+        get { return HasComponent(GameComponentsLookup.Selectable); }
         set {
-            if (value != isSelected) {
-                var index = GameComponentsLookup.Selected;
+            if (value != isSelectable) {
+                var index = GameComponentsLookup.Selectable;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : selectedComponent;
+                            : selectableComponent;
 
                     AddComponent(index, component);
                 } else {

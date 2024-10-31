@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3166313809156903375}
   - component: {fileID: 8479543155201816621}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SelectingCircle_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,8 @@ GameObject:
   - component: {fileID: 2810683365945737114}
   - component: {fileID: 9178764250356365506}
   - component: {fileID: 4847912186616274848}
-  m_Layer: 0
+  - component: {fileID: 8752529674717942869}
+  m_Layer: 10
   m_Name: BlueKnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +179,43 @@ MonoBehaviour:
   Animator: {fileID: 4549486574946373586}
   SpriteRenderer: {fileID: 6763967789457780471}
   SelectingCircle: {fileID: 1033911137456614486}
+--- !u!70 &8752529674717942869
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062871423326038689}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.8, y: 1}
+  m_Direction: 0
 --- !u!1 &6602827645550739253
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8588830129350029450}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}

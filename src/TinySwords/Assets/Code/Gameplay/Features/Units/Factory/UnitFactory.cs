@@ -1,5 +1,6 @@
 using Code.Common.Entities;
-using Code.Gameplay.Common.Services;
+using Code.Common.Extensions;
+using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Services;
@@ -26,6 +27,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddId(_identifiers.Next())
         .AddViewPrefab(unitConfig.UnitPrefab)
         .AddWorldPosition(pos)
+        .With(x => x.isSelectable = true)
         ;
     }
   }

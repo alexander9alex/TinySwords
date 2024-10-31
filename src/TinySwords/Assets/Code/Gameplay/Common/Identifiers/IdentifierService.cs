@@ -1,4 +1,4 @@
-namespace Code.Gameplay.Common.Services
+namespace Code.Gameplay.Common.Identifiers
 {
   class IdentifierService : IIdentifierService
   {

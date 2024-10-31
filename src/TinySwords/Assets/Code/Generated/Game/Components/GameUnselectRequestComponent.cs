@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSelected;
+    static Entitas.IMatcher<GameEntity> _matcherUnselectRequest;
 
-    public static Entitas.IMatcher<GameEntity> Selected {
+    public static Entitas.IMatcher<GameEntity> UnselectRequest {
         get {
-            if (_matcherSelected == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Selected);
+            if (_matcherUnselectRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UnselectRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSelected = matcher;
+                _matcherUnselectRequest = matcher;
             }
 
-            return _matcherSelected;
+            return _matcherUnselectRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Selected selectedComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Selected();
+    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.UnselectRequest unselectRequestComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.UnselectRequest();
 
-    public bool isSelected {
-        get { return HasComponent(GameComponentsLookup.Selected); }
+    public bool isUnselectRequest {
+        get { return HasComponent(GameComponentsLookup.UnselectRequest); }
         set {
-            if (value != isSelected) {
-                var index = GameComponentsLookup.Selected;
+            if (value != isUnselectRequest) {
+                var index = GameComponentsLookup.UnselectRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : selectedComponent;
+                            : unselectRequestComponent;
 
                     AddComponent(index, component);
                 } else {

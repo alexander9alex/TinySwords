@@ -1,5 +1,7 @@
-﻿using Code.Gameplay.Common.Registrars;
+﻿using Code.Gameplay.Common.Collisions;
+using Code.Gameplay.Common.Registrars;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Infrastructure.Views
 {
@@ -7,6 +9,12 @@ namespace Code.Infrastructure.Views
   {
     public GameEntity Entity => _entity;
     private GameEntity _entity;
+    
+    private ICollisionRegistry _collisionRegistry;
+
+    [Inject]
+    private void Construct(ICollisionRegistry collisionRegistry) =>
+      _collisionRegistry = collisionRegistry;
 
     public void SetEntity(GameEntity entity)
     {
@@ -16,6 +24,9 @@ namespace Code.Infrastructure.Views
 
       foreach (IEntityComponentRegistrar registrar in GetComponentsInChildren<IEntityComponentRegistrar>())
         registrar.RegisterComponents();
+
+      foreach (Collider2D collider in GetComponentsInChildren<Collider2D>(includeInactive: true))
+        _collisionRegistry.Register(collider.GetInstanceID(), _entity);
     }
 
     public void ReleaseEntity()
@@ -23,6 +34,9 @@ namespace Code.Infrastructure.Views
       foreach (IEntityComponentRegistrar registrar in GetComponentsInChildren<IEntityComponentRegistrar>())
         registrar.RegisterComponents();
 
+      foreach (Collider2D collider in GetComponentsInChildren<Collider2D>(includeInactive: true))
+        _collisionRegistry.Unregister(collider.GetInstanceID());
+      
       _entity.Release(this);
       _entity = null;
     }

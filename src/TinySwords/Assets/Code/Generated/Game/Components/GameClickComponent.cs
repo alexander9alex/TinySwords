@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSelected;
+    static Entitas.IMatcher<GameEntity> _matcherClick;
 
-    public static Entitas.IMatcher<GameEntity> Selected {
+    public static Entitas.IMatcher<GameEntity> Click {
         get {
-            if (_matcherSelected == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Selected);
+            if (_matcherClick == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Click);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSelected = matcher;
+                _matcherClick = matcher;
             }
 
-            return _matcherSelected;
+            return _matcherClick;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Selected selectedComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Selected();
+    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.Click clickComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.Click();
 
-    public bool isSelected {
-        get { return HasComponent(GameComponentsLookup.Selected); }
+    public bool isClick {
+        get { return HasComponent(GameComponentsLookup.Click); }
         set {
-            if (value != isSelected) {
-                var index = GameComponentsLookup.Selected;
+            if (value != isClick) {
+                var index = GameComponentsLookup.Click;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : selectedComponent;
+                            : clickComponent;
 
                     AddComponent(index, component);
                 } else {

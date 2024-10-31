@@ -1,5 +1,8 @@
-﻿using Code.Gameplay.Common.Curtain;
-using Code.Gameplay.Common.Services;
+﻿using Code.Gameplay.Common.Collisions;
+using Code.Gameplay.Common.Curtain;
+using Code.Gameplay.Common.Identifiers;
+using Code.Gameplay.Common.Physics;
+using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -45,6 +48,9 @@ namespace Code.Infrastructure.Installers
     private void BindCommonServices()
     {
       Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+      Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
+      Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
+      Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
     }
 
     private void BindContexts()

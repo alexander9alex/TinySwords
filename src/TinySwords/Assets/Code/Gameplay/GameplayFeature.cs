@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features.Animations;
 using Code.Gameplay.Features.Move;
+using Code.Gameplay.Features.Selecting;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -10,6 +11,8 @@ namespace Code.Gameplay
     public GameplayFeature(ISystemFactory systems)
     {
       Add(systems.Create<BindViewFeature>());
+      
+      Add(systems.Create<SelectingFeature>());
       
       Add(systems.Create<MoveFeature>());
       
