@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Feature.Units.Data
+﻿namespace Code.Gameplay.Features.Units.Data
 {
   public enum UnitTypeId
   {

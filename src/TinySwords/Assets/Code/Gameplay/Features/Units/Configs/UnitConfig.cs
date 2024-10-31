@@ -1,7 +1,7 @@
-﻿using Code.Gameplay.Feature.Units.Data;
+﻿using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
-namespace Code.Gameplay.Feature.Units.Configs
+namespace Code.Gameplay.Features.Units.Configs
 {
   [CreateAssetMenu(menuName = "Static Data/Unit Config", fileName = "UnitConfig", order = 0)]
   public class UnitConfig : ScriptableObject

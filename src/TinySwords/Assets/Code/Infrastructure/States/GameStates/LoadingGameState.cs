@@ -1,6 +1,6 @@
 using Code.Gameplay.Common.Curtain;
-using Code.Gameplay.Feature.Units.Data;
-using Code.Gameplay.Feature.Units.Factory;
+using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Features.Units.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;

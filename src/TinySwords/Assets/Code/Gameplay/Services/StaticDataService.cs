@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Feature.Units.Configs;
-using Code.Gameplay.Feature.Units.Data;
+using Code.Gameplay.Features.Units.Configs;
+using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Services

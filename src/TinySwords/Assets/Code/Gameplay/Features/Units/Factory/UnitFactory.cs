@@ -1,10 +1,9 @@
-using Code.Gameplay.Feature.Units.Configs;
-using Code.Gameplay.Feature.Units.Data;
+using Code.Gameplay.Features.Units.Configs;
+using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Services;
-using Code.Infrastructure.States.GameStates;
 using UnityEngine;
 
-namespace Code.Gameplay.Feature.Units.Factory
+namespace Code.Gameplay.Features.Units.Factory
 {
   class UnitFactory : IUnitFactory
   {

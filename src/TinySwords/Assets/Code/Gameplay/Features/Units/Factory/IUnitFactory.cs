@@ -1,7 +1,7 @@
-﻿using Code.Gameplay.Feature.Units.Data;
+﻿using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
-namespace Code.Gameplay.Feature.Units.Factory
+namespace Code.Gameplay.Features.Units.Factory
 {
   public interface IUnitFactory
   {

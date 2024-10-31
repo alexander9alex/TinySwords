@@ -1,5 +1,5 @@
 ﻿using Code.Gameplay.Common.Curtain;
-using Code.Gameplay.Feature.Units.Factory;
+using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Loading;
