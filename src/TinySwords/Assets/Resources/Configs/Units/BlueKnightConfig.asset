@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeId: 2
   Color: 1
-  UnitPrefab: {fileID: 2536290212458194708, guid: fe346475afb852e498efe38bf999f759, type: 3}
+  UnitPrefab: {fileID: 4031696372157677748, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
   Hp: 0
   Damage: 0
   AttackRadius: 0

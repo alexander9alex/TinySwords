@@ -11,6 +11,8 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<MoveFeature>());
+      
+      
     }
   }
 }
