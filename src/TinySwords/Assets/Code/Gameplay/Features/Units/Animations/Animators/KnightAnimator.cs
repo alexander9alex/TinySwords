@@ -12,9 +12,17 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
     public void AnimateIdle() =>
       Animator.Play(KnightAnimations.Idle);
 
-    public void AnimateWalk(Vector2 dir) =>
+    public void AnimateWalk(Vector2 dir)
+    {
+      SpriteRenderer.flipX = dir.x < 0;
       Animator.Play(KnightAnimations.Walk);
-    public void AnimateAttack(Vector2 dir) {}
+    }
+
+    public void AnimateAttack(Vector2 dir)
+    {
+      SpriteRenderer.flipX = false;
+      
+    }
 
     public void AnimateSelecting() =>
       SelectingCircle.SetActive(true);
