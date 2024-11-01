@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Animations.Animators
 {
-  public class KnightAnimator : MonoBehaviour, ISelectingAnimator
+  public class KnightAnimator : MonoBehaviour, ISelectingAnimator, IMoveAnimator
   {
     public Animator Animator;
     public SpriteRenderer SpriteRenderer;

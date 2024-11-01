@@ -4,5 +4,5 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
   {
     void AnimateSelecting();
     void AnimateUnselecting();
-  }
+    }
 }

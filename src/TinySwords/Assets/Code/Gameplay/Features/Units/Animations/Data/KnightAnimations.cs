@@ -2,7 +2,7 @@ namespace Code.Gameplay.Features.Units.Animations.Data
 {
   public static class KnightAnimations
   {
-    public const string Idle = "Knight_Idle";
-    public const string Walk = "Knight_Walk";
+    public const string Idle = "Idle_Right";
+    public const string Walk = "Walk_Right";
   }
 }

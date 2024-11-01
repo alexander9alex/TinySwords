@@ -25,20 +25,25 @@ public static class GameComponentsLookup {
     public const int MousePosition = 14;
     public const int MousePositionInput = 15;
     public const int RightClick = 16;
-    public const int NavMeshAgent = 17;
-    public const int PositionUpdated = 18;
-    public const int Transform = 19;
-    public const int UpdatePositionAfterSpawning = 20;
-    public const int WorldPosition = 21;
-    public const int Selectable = 22;
-    public const int Selected = 23;
-    public const int SelectedNow = 24;
-    public const int SelectingAnimator = 25;
-    public const int TargetId = 26;
-    public const int Unselected = 27;
-    public const int UnselectPreviouslySelectedRequest = 28;
+    public const int Idle = 17;
+    public const int Move = 18;
+    public const int MoveDirection = 19;
+    public const int NavMeshAgent = 20;
+    public const int PositionUpdated = 21;
+    public const int Transform = 22;
+    public const int UpdatePositionAfterSpawning = 23;
+    public const int WorldPosition = 24;
+    public const int Selectable = 25;
+    public const int Selected = 26;
+    public const int SelectedNow = 27;
+    public const int SelectingAnimator = 28;
+    public const int TargetId = 29;
+    public const int Unselected = 30;
+    public const int UnselectPreviouslySelectedRequest = 31;
+    public const int MoveAnimator = 32;
+    public const int Unit = 33;
 
-    public const int TotalComponents = 29;
+    public const int TotalComponents = 34;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -58,6 +63,9 @@ public static class GameComponentsLookup {
         "MousePosition",
         "MousePositionInput",
         "RightClick",
+        "Idle",
+        "Move",
+        "MoveDirection",
         "NavMeshAgent",
         "PositionUpdated",
         "Transform",
@@ -69,7 +77,9 @@ public static class GameComponentsLookup {
         "SelectingAnimator",
         "TargetId",
         "Unselected",
-        "UnselectPreviouslySelectedRequest"
+        "UnselectPreviouslySelectedRequest",
+        "MoveAnimator",
+        "Unit"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -90,6 +100,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Input.MousePositionInput),
         typeof(Code.Gameplay.Features.Input.RightClick),
+        typeof(Code.Gameplay.Features.Move.Idle),
+        typeof(Code.Gameplay.Features.Move.Move),
+        typeof(Code.Gameplay.Features.Move.MoveDirection),
         typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent),
         typeof(Code.Gameplay.Features.Move.PositionUpdated),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
@@ -101,6 +114,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator),
         typeof(Code.Gameplay.Features.Select.SelectComponents.TargetId),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
-        typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest)
+        typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
+        typeof(Code.Gameplay.Features.Units.MoveAnimator),
+        typeof(Code.Gameplay.Features.Units.Unit)
     };
 }
