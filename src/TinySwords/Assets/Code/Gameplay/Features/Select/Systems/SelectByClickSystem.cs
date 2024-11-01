@@ -7,7 +7,7 @@ using Code.Gameplay.Common.Providers;
 using Entitas;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Selecting.Systems
+namespace Code.Gameplay.Features.Select.Systems
 {
   public class SelectByClickSystem : IExecuteSystem
   {

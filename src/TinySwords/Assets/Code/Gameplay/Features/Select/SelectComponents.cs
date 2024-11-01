@@ -1,9 +1,9 @@
 ﻿using Code.Gameplay.Features.Units.Animations.Animators;
 using Entitas;
 
-namespace Code.Gameplay.Features.Selecting
+namespace Code.Gameplay.Features.Select
 {
-  public class SelectingComponents
+  public class SelectComponents
   {
     [Game] public class Selected : IComponent { }
     [Game] public class Unselected : IComponent { }

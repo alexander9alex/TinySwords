@@ -56,12 +56,12 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selectable),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selected),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectedNow),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.TargetId),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Unselected),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.UnselectPreviouslySelectedRequest)
+        typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedNow),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.TargetId),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest)
     };
 }

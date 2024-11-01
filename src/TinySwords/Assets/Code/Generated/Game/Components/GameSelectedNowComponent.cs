@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.SelectedNow selectedNowComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.SelectedNow();
+    static readonly Code.Gameplay.Features.Select.SelectComponents.SelectedNow selectedNowComponent = new Code.Gameplay.Features.Select.SelectComponents.SelectedNow();
 
     public bool isSelectedNow {
         get { return HasComponent(GameComponentsLookup.SelectedNow); }

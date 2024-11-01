@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
-using Code.Gameplay.Features.Selecting;
+using Code.Gameplay.Features.Select;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -14,7 +14,7 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      Add(systems.Create<SelectingFeature>());
+      Add(systems.Create<SelectFeature>());
       
       Add(systems.Create<MoveFeature>());
       

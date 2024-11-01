@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Code.Gameplay.Features.Selecting.Systems
+namespace Code.Gameplay.Features.Select.Systems
 {
   public class AnimateSelectingSystem : IExecuteSystem
   {

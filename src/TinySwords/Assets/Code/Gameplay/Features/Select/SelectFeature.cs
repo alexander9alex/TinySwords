@@ -1,11 +1,11 @@
-﻿using Code.Gameplay.Features.Selecting.Systems;
+﻿using Code.Gameplay.Features.Select.Systems;
 using Code.Infrastructure.Factory;
 
-namespace Code.Gameplay.Features.Selecting
+namespace Code.Gameplay.Features.Select
 {
-  public sealed class SelectingFeature : Feature
+  public sealed class SelectFeature : Feature
   {
-    public SelectingFeature(ISystemFactory systems)
+    public SelectFeature(ISystemFactory systems)
     {
       Add(systems.Create<SelectByClickSystem>());
       
