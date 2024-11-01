@@ -5,17 +5,17 @@ namespace Code.Gameplay.Features.Input.Systems
 {
   public class CleanupMousePositionSystem : ICleanupSystem
   {
-    private readonly IGroup<GameEntity> _mousePositions;
+    private readonly IGroup<GameEntity> _mousePositionInputs;
     private readonly List<GameEntity> _buffer = new(1);
 
     public CleanupMousePositionSystem(GameContext game)
     {
-      _mousePositions = game.GetGroup(GameMatcher.AllOf(GameMatcher.MousePosition));
+      _mousePositionInputs = game.GetGroup(GameMatcher.AllOf(GameMatcher.MousePositionInput));
     }
 
     public void Cleanup()
     {
-      foreach (GameEntity mousePosition in _mousePositions.GetEntities(_buffer))
+      foreach (GameEntity mousePosition in _mousePositionInputs.GetEntities(_buffer))
       {
         mousePosition.isDestructed = true;
       }

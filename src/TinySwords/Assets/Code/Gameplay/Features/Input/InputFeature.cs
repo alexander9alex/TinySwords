@@ -7,7 +7,10 @@ namespace Code.Gameplay.Features.Input
   {
     public InputFeature(ISystemFactory systems)
     {
+      Add(systems.Create<CreateLeftClickSystem>());
+      
       Add(systems.Create<CleanupLeftClickSystem>());
+      Add(systems.Create<CleanupLeftClickInputsSystem>());
       Add(systems.Create<CleanupMousePositionSystem>());
     }
   }

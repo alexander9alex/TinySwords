@@ -14,18 +14,21 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 3;
     public const int Id = 4;
     public const int LeftClick = 5;
-    public const int MousePosition = 6;
-    public const int Transform = 7;
-    public const int WorldPosition = 8;
-    public const int Selectable = 9;
-    public const int Selected = 10;
-    public const int SelectedNow = 11;
-    public const int SelectingAnimator = 12;
-    public const int TargetId = 13;
-    public const int Unselected = 14;
-    public const int UnselectPreviouslySelectedRequest = 15;
+    public const int LeftClickEnded = 6;
+    public const int LeftClickStarted = 7;
+    public const int MousePosition = 8;
+    public const int MousePositionInput = 9;
+    public const int Transform = 10;
+    public const int WorldPosition = 11;
+    public const int Selectable = 12;
+    public const int Selected = 13;
+    public const int SelectedNow = 14;
+    public const int SelectingAnimator = 15;
+    public const int TargetId = 16;
+    public const int Unselected = 17;
+    public const int UnselectPreviouslySelectedRequest = 18;
 
-    public const int TotalComponents = 16;
+    public const int TotalComponents = 19;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -34,7 +37,10 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "Id",
         "LeftClick",
+        "LeftClickEnded",
+        "LeftClickStarted",
         "MousePosition",
+        "MousePositionInput",
         "Transform",
         "WorldPosition",
         "Selectable",
@@ -53,7 +59,10 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Gameplay.Features.Input.LeftClick),
+        typeof(Code.Gameplay.Features.Input.LeftClickEnded),
+        typeof(Code.Gameplay.Features.Input.LeftClickStarted),
         typeof(Code.Gameplay.Features.Input.MousePosition),
+        typeof(Code.Gameplay.Features.Input.MousePositionInput),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),

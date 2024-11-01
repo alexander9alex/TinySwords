@@ -5,19 +5,19 @@ namespace Code.Gameplay.Features.Input.Systems
 {
   public class CleanupLeftClickSystem : ICleanupSystem
   {
-    private readonly IGroup<GameEntity> _interactions;
-    private readonly List<GameEntity> _buffer = new(1);
+    private readonly IGroup<GameEntity> _leftClicks;
+    private readonly List<GameEntity> _clicksBuffer = new(1);
 
     public CleanupLeftClickSystem(GameContext game)
     {
-      _interactions = game.GetGroup(GameMatcher.AllOf(GameMatcher.LeftClick));
+      _leftClicks = game.GetGroup(GameMatcher.AllOf(GameMatcher.LeftClick));
     }
 
     public void Cleanup()
     {
-      foreach (GameEntity interaction in _interactions.GetEntities(_buffer))
+      foreach (GameEntity click in _leftClicks.GetEntities(_clicksBuffer))
       {
-        interaction.isDestructed = true;
+        click.isDestructed = true;
       }
     }
   }

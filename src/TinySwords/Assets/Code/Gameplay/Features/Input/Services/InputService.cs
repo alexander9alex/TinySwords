@@ -11,11 +11,13 @@ namespace Code.Gameplay.Features.Input.Services
   public class InputService : IInputService, ITickable
   {
     private readonly InputSystem _inputSystem = new();
+    private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
 
     public InputService()
     {
-      _inputSystem.Game.LeftClick.started += OnLeftClick;
+      _inputSystem.Game.LeftClick.started += LeftClickStarted;
+      _inputSystem.Game.LeftClick.canceled += LeftClickCanceled;
       
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
@@ -26,7 +28,7 @@ namespace Code.Gameplay.Features.Input.Services
 
     public void Tick()
     {
-      if (_inputSystem.Game.enabled)
+      if (GameInputMapEnabled)
         CreateMousePositionInput();
     }
 
@@ -50,15 +52,22 @@ namespace Code.Gameplay.Features.Input.Services
     private void CreateMousePositionInput()
     {
       CreateEntity.Empty()
-        .AddMousePosition(_mousePos);
+        .AddMousePosition(_mousePos)
+        .With(x => x.isMousePositionInput = true);
     }
 
-    private void OnLeftClick(InputAction.CallbackContext context)
+    private void LeftClickStarted(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isLeftClick = true);
+        .With(x => x.isLeftClickStarted = true)
+        .AddMousePosition(_mousePos);
     }
-
+    private void LeftClickCanceled(InputAction.CallbackContext context)
+    {
+      CreateEntity.Empty()
+        .With(x => x.isLeftClickEnded = true)
+        .AddMousePosition(_mousePos);
+    }
     private void ChangeMousePosition(InputAction.CallbackContext context) =>
       _mousePos = context.ReadValue<Vector2>();
   }
