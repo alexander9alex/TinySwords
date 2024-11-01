@@ -1,7 +1,7 @@
-﻿using Code.Gameplay.Features.Animations.Data;
+﻿using Code.Gameplay.Features.Units.Animations.Data;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Animations.Animators
+namespace Code.Gameplay.Features.Units.Animations.Animators
 {
   public class KnightAnimator : MonoBehaviour, ISelectingAnimator
   {

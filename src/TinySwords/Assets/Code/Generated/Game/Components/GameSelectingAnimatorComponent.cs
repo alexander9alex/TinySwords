@@ -33,21 +33,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.SelectingAnimator selectingAnimator { get { return (Code.Gameplay.Features.Animations.SelectingAnimator)GetComponent(GameComponentsLookup.SelectingAnimator); } }
-    public Code.Gameplay.Features.Animations.Animators.ISelectingAnimator SelectingAnimator { get { return selectingAnimator.Value; } }
+    public Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator selectingAnimator { get { return (Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator)GetComponent(GameComponentsLookup.SelectingAnimator); } }
+    public Code.Gameplay.Features.Units.Animations.Animators.ISelectingAnimator SelectingAnimator { get { return selectingAnimator.Value; } }
     public bool hasSelectingAnimator { get { return HasComponent(GameComponentsLookup.SelectingAnimator); } }
 
-    public GameEntity AddSelectingAnimator(Code.Gameplay.Features.Animations.Animators.ISelectingAnimator newValue) {
+    public GameEntity AddSelectingAnimator(Code.Gameplay.Features.Units.Animations.Animators.ISelectingAnimator newValue) {
         var index = GameComponentsLookup.SelectingAnimator;
-        var component = (Code.Gameplay.Features.Animations.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.SelectingAnimator));
+        var component = (Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceSelectingAnimator(Code.Gameplay.Features.Animations.Animators.ISelectingAnimator newValue) {
+    public GameEntity ReplaceSelectingAnimator(Code.Gameplay.Features.Units.Animations.Animators.ISelectingAnimator newValue) {
         var index = GameComponentsLookup.SelectingAnimator;
-        var component = (Code.Gameplay.Features.Animations.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.SelectingAnimator));
+        var component = (Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

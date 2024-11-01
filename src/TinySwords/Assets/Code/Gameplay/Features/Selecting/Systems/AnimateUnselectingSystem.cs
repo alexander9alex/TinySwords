@@ -1,12 +1,12 @@
 ﻿using Entitas;
 
-namespace Code.Gameplay.Features.Animations.Systems
+namespace Code.Gameplay.Features.Selecting.Systems
 {
-  public class UnselectAnimationSystem : IExecuteSystem
+  public class AnimateUnselectingSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _unselected;
 
-    public UnselectAnimationSystem(GameContext game)
+    public AnimateUnselectingSystem(GameContext game)
     {
       _unselected = game.GetGroup(GameMatcher
         .AllOf(

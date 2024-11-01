@@ -1,4 +1,4 @@
-namespace Code.Gameplay.Features.Animations.Data
+namespace Code.Gameplay.Features.Units.Animations.Data
 {
   public static class KnightAnimations
   {

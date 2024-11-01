@@ -12,6 +12,9 @@ namespace Code.Gameplay.Features.Selecting
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
       Add(systems.Create<DeselectIfClickNotProcessedSystem>());
 
+      Add(systems.Create<AnimateSelectingSystem>());
+      Add(systems.Create<AnimateUnselectingSystem>());
+      
       Add(systems.Create<CleanupSelectedNowSystem>());
       Add(systems.Create<CleanupUnselectRequestSystem>());
     }

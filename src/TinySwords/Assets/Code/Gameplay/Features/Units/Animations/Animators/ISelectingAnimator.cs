@@ -1,4 +1,4 @@
-namespace Code.Gameplay.Features.Animations.Animators
+namespace Code.Gameplay.Features.Units.Animations.Animators
 {
   public interface ISelectingAnimator
   {

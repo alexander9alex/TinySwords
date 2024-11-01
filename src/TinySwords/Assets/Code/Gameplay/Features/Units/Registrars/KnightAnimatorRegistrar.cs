@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Common.Registrars;
-using Code.Gameplay.Features.Animations.Animators;
+using Code.Gameplay.Features.Units.Animations.Animators;
 
-namespace Code.Gameplay.Features.Animations.Registrars
+namespace Code.Gameplay.Features.Units.Registrars
 {
   public class KnightAnimatorRegistrar : EntityComponentRegistrar
   {

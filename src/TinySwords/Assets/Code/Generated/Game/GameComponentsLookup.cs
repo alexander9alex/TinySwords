@@ -13,14 +13,14 @@ public static class GameComponentsLookup {
     public const int View = 2;
     public const int ViewPrefab = 3;
     public const int Id = 4;
-    public const int SelectingAnimator = 5;
-    public const int LeftClick = 6;
-    public const int MousePosition = 7;
-    public const int Transform = 8;
-    public const int WorldPosition = 9;
-    public const int Selectable = 10;
-    public const int Selected = 11;
-    public const int SelectedNow = 12;
+    public const int LeftClick = 5;
+    public const int MousePosition = 6;
+    public const int Transform = 7;
+    public const int WorldPosition = 8;
+    public const int Selectable = 9;
+    public const int Selected = 10;
+    public const int SelectedNow = 11;
+    public const int SelectingAnimator = 12;
     public const int TargetId = 13;
     public const int Unselected = 14;
     public const int UnselectPreviouslySelectedRequest = 15;
@@ -33,7 +33,6 @@ public static class GameComponentsLookup {
         "View",
         "ViewPrefab",
         "Id",
-        "SelectingAnimator",
         "LeftClick",
         "MousePosition",
         "Transform",
@@ -41,6 +40,7 @@ public static class GameComponentsLookup {
         "Selectable",
         "Selected",
         "SelectedNow",
+        "SelectingAnimator",
         "TargetId",
         "Unselected",
         "UnselectPreviouslySelectedRequest"
@@ -52,7 +52,6 @@ public static class GameComponentsLookup {
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
-        typeof(Code.Gameplay.Features.Animations.SelectingAnimator),
         typeof(Code.Gameplay.Features.Input.LeftClick),
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
@@ -60,6 +59,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selectable),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selected),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectedNow),
+        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectingAnimator),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.TargetId),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Unselected),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.UnselectPreviouslySelectedRequest)
