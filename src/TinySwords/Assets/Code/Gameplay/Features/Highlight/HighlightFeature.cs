@@ -10,6 +10,8 @@ namespace Code.Gameplay.Features.Highlight
       Add(systems.Create<CreateHighlightSystem>());
       Add(systems.Create<CalculateHighlightViewLocationSystem>());
       Add(systems.Create<ChangeHighlightViewLocationSystem>());
+      
+      Add(systems.Create<CleanupHighlightSystem>());
     }
   }
 }
