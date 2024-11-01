@@ -13,22 +13,26 @@ public static class GameComponentsLookup {
     public const int View = 2;
     public const int ViewPrefab = 3;
     public const int Id = 4;
-    public const int LeftClick = 5;
-    public const int LeftClickEnded = 6;
-    public const int LeftClickStarted = 7;
-    public const int MousePosition = 8;
-    public const int MousePositionInput = 9;
-    public const int Transform = 10;
-    public const int WorldPosition = 11;
-    public const int Selectable = 12;
-    public const int Selected = 13;
-    public const int SelectedNow = 14;
-    public const int SelectingAnimator = 15;
-    public const int TargetId = 16;
-    public const int Unselected = 17;
-    public const int UnselectPreviouslySelectedRequest = 18;
+    public const int EndPosition = 5;
+    public const int Highlight = 6;
+    public const int RectTransform = 7;
+    public const int StartPosition = 8;
+    public const int LeftClick = 9;
+    public const int LeftClickEnded = 10;
+    public const int LeftClickStarted = 11;
+    public const int MousePosition = 12;
+    public const int MousePositionInput = 13;
+    public const int Transform = 14;
+    public const int WorldPosition = 15;
+    public const int Selectable = 16;
+    public const int Selected = 17;
+    public const int SelectedNow = 18;
+    public const int SelectingAnimator = 19;
+    public const int TargetId = 20;
+    public const int Unselected = 21;
+    public const int UnselectPreviouslySelectedRequest = 22;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 23;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -36,6 +40,10 @@ public static class GameComponentsLookup {
         "View",
         "ViewPrefab",
         "Id",
+        "EndPosition",
+        "Highlight",
+        "RectTransform",
+        "StartPosition",
         "LeftClick",
         "LeftClickEnded",
         "LeftClickStarted",
@@ -58,6 +66,10 @@ public static class GameComponentsLookup {
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Gameplay.Features.Highlight.EndPosition),
+        typeof(Code.Gameplay.Features.Highlight.Highlight),
+        typeof(Code.Gameplay.Features.Highlight.RectTransformComponent),
+        typeof(Code.Gameplay.Features.Highlight.StartPosition),
         typeof(Code.Gameplay.Features.Input.LeftClick),
         typeof(Code.Gameplay.Features.Input.LeftClickEnded),
         typeof(Code.Gameplay.Features.Input.LeftClickStarted),

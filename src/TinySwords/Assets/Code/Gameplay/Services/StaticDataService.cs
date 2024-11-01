@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
+using Code.Infrastructure.Views;
 using UnityEngine;
 
 namespace Code.Gameplay.Services
@@ -17,6 +18,10 @@ namespace Code.Gameplay.Services
 
     public UnitConfig GetUnitConfig(UnitTypeId type, UnitColor color) =>
       _unitConfigByTypeAndColor[(type, color)];
+
+
+    public EntityBehaviour GetHighlightViewPrefab() =>
+      Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
 
     private void LoadUnitConfigs()
     {

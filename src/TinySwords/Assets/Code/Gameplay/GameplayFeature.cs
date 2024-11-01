@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.Select;
@@ -15,6 +16,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<InputFeature>());
       Add(systems.Create<SelectFeature>());
+      Add(systems.Create<HighlightFeature>());
       
       Add(systems.Create<MoveFeature>());
       

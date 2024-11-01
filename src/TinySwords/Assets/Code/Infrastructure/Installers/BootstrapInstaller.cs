@@ -3,6 +3,7 @@ using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
@@ -27,6 +28,7 @@ namespace Code.Infrastructure.Installers
       BindInfrastructureFactories();
       BindCommonServices();
       BindContexts();
+      BindUIFactories();
       BindGameplayServices();
       BindGameplayFactories();
       BindSystemFactory();
@@ -60,6 +62,11 @@ namespace Code.Infrastructure.Installers
       Container.Bind<Contexts>().FromInstance(Contexts.sharedInstance).AsSingle();
       
       Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
+    }
+
+    private void BindUIFactories()
+    {
+      Container.Bind<IHighlightFactory>().To<HighlightFactory>().AsSingle();
     }
 
     private void BindGameplayServices()
