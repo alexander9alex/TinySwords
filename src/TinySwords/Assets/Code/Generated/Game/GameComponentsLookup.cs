@@ -24,17 +24,21 @@ public static class GameComponentsLookup {
     public const int LeftClickStarted = 13;
     public const int MousePosition = 14;
     public const int MousePositionInput = 15;
-    public const int Transform = 16;
-    public const int WorldPosition = 17;
-    public const int Selectable = 18;
-    public const int Selected = 19;
-    public const int SelectedNow = 20;
-    public const int SelectingAnimator = 21;
-    public const int TargetId = 22;
-    public const int Unselected = 23;
-    public const int UnselectPreviouslySelectedRequest = 24;
+    public const int RightClick = 16;
+    public const int NavMeshAgent = 17;
+    public const int PositionUpdated = 18;
+    public const int Transform = 19;
+    public const int UpdatePositionAfterSpawning = 20;
+    public const int WorldPosition = 21;
+    public const int Selectable = 22;
+    public const int Selected = 23;
+    public const int SelectedNow = 24;
+    public const int SelectingAnimator = 25;
+    public const int TargetId = 26;
+    public const int Unselected = 27;
+    public const int UnselectPreviouslySelectedRequest = 28;
 
-    public const int TotalComponents = 25;
+    public const int TotalComponents = 29;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -53,7 +57,11 @@ public static class GameComponentsLookup {
         "LeftClickStarted",
         "MousePosition",
         "MousePositionInput",
+        "RightClick",
+        "NavMeshAgent",
+        "PositionUpdated",
         "Transform",
+        "UpdatePositionAfterSpawning",
         "WorldPosition",
         "Selectable",
         "Selected",
@@ -81,7 +89,11 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.LeftClickStarted),
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Input.MousePositionInput),
+        typeof(Code.Gameplay.Features.Input.RightClick),
+        typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent),
+        typeof(Code.Gameplay.Features.Move.PositionUpdated),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
+        typeof(Code.Gameplay.Features.Move.UpdatePositionAfterSpawning),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),

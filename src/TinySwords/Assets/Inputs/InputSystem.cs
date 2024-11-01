@@ -553,6 +553,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""45f37cc1-bee5-4fed-90db-15d01b4af231"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""MousePosition"",
                     ""type"": ""Value"",
                     ""id"": ""726757ba-4f8f-4bda-a685-05728b39cbf9"",
@@ -571,6 +580,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f02e1138-7739-4656-bbe0-3c77dc63e154"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -666,6 +686,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_LeftClick = m_Game.FindAction("LeftClick", throwIfNotFound: true);
+        m_Game_RightClick = m_Game.FindAction("RightClick", throwIfNotFound: true);
         m_Game_MousePosition = m_Game.FindAction("MousePosition", throwIfNotFound: true);
     }
 
@@ -853,12 +874,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
     private readonly InputAction m_Game_LeftClick;
+    private readonly InputAction m_Game_RightClick;
     private readonly InputAction m_Game_MousePosition;
     public struct GameActions
     {
         private @InputSystem m_Wrapper;
         public GameActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftClick => m_Wrapper.m_Game_LeftClick;
+        public InputAction @RightClick => m_Wrapper.m_Game_RightClick;
         public InputAction @MousePosition => m_Wrapper.m_Game_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
@@ -872,6 +895,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
@@ -882,6 +908,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
@@ -963,6 +992,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IGameActions
     {
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
     }
 }

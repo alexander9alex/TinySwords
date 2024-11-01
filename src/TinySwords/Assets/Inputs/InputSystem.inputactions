@@ -531,6 +531,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "45f37cc1-bee5-4fed-90db-15d01b4af231",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MousePosition",
                     "type": "Value",
                     "id": "726757ba-4f8f-4bda-a685-05728b39cbf9",
@@ -549,6 +558,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f02e1138-7739-4656-bbe0-3c77dc63e154",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

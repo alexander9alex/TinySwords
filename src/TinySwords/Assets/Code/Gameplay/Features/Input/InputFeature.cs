@@ -11,6 +11,9 @@ namespace Code.Gameplay.Features.Input
       
       Add(systems.Create<CleanupLeftClickSystem>());
       Add(systems.Create<CleanupLeftClickInputsSystem>());
+      
+      Add(systems.Create<CleanupRightClickSystem>());
+      
       Add(systems.Create<CleanupMousePositionSystem>());
     }
   }

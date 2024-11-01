@@ -18,6 +18,8 @@ namespace Code.Gameplay.Features.Input.Services
     {
       _inputSystem.Game.LeftClick.started += LeftClickStarted;
       _inputSystem.Game.LeftClick.canceled += LeftClickCanceled;
+
+      _inputSystem.Game.RightClick.canceled += RightClickCanceled;
       
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
@@ -54,6 +56,13 @@ namespace Code.Gameplay.Features.Input.Services
       CreateEntity.Empty()
         .AddMousePosition(_mousePos)
         .With(x => x.isMousePositionInput = true);
+    }
+
+    private void RightClickCanceled(InputAction.CallbackContext context)
+    {
+      CreateEntity.Empty()
+        .With(x => x.isRightClick = true)
+        .AddMousePosition(_mousePos);
     }
 
     private void LeftClickStarted(InputAction.CallbackContext context)

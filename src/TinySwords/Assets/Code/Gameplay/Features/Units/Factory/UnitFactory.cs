@@ -29,6 +29,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddWorldPosition(pos)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
+        .With(x => x.isUpdatePositionAfterSpawning = true)
         ;
     }
   }
