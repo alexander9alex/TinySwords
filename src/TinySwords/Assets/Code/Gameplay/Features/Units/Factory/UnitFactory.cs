@@ -28,6 +28,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(unitConfig.UnitPrefab)
         .AddWorldPosition(pos)
         .With(x => x.isSelectable = true)
+        .With(x => x.isUnselected = true)
         ;
     }
   }

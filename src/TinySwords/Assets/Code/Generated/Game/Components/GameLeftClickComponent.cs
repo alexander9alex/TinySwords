@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMakeInteraction;
+    static Entitas.IMatcher<GameEntity> _matcherLeftClick;
 
-    public static Entitas.IMatcher<GameEntity> MakeInteraction {
+    public static Entitas.IMatcher<GameEntity> LeftClick {
         get {
-            if (_matcherMakeInteraction == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MakeInteraction);
+            if (_matcherLeftClick == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.LeftClick);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMakeInteraction = matcher;
+                _matcherLeftClick = matcher;
             }
 
-            return _matcherMakeInteraction;
+            return _matcherLeftClick;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.MakeInteraction makeInteractionComponent = new Code.Gameplay.Features.Input.MakeInteraction();
+    static readonly Code.Gameplay.Features.Input.LeftClick leftClickComponent = new Code.Gameplay.Features.Input.LeftClick();
 
-    public bool isMakeInteraction {
-        get { return HasComponent(GameComponentsLookup.MakeInteraction); }
+    public bool isLeftClick {
+        get { return HasComponent(GameComponentsLookup.LeftClick); }
         set {
-            if (value != isMakeInteraction) {
-                var index = GameComponentsLookup.MakeInteraction;
+            if (value != isLeftClick) {
+                var index = GameComponentsLookup.LeftClick;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : makeInteractionComponent;
+                            : leftClickComponent;
 
                     AddComponent(index, component);
                 } else {

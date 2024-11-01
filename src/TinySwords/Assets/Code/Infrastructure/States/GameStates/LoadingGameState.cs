@@ -41,7 +41,9 @@ namespace Code.Infrastructure.States.GameStates
       _cameraProvider.SetMainCamera(Camera.main);
       _inputService.ChangeInputMap(InputMap.Game);
         
-      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(0, 0));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(-1, 0));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(1, 0));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(0, 1));
 
       _gameStateMachine.Enter<GameLoopState>();
     }

@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Animations.Animators
     public void AnimateSelecting() =>
       SelectingCircle.SetActive(true);
 
-    public void AnimateDeselecting() =>
+    public void AnimateUnselecting() =>
       SelectingCircle.SetActive(false);
   }
 }

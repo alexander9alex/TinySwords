@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Input.Systems
 
     public CleanupLeftClickSystem(GameContext game)
     {
-      _interactions = game.GetGroup(GameMatcher.AllOf(GameMatcher.MakeInteraction));
+      _interactions = game.GetGroup(GameMatcher.AllOf(GameMatcher.LeftClick));
     }
 
     public void Cleanup()

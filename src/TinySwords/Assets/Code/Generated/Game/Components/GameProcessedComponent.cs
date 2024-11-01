@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherUnselectRequest;
+    static Entitas.IMatcher<GameEntity> _matcherProcessed;
 
-    public static Entitas.IMatcher<GameEntity> UnselectRequest {
+    public static Entitas.IMatcher<GameEntity> Processed {
         get {
-            if (_matcherUnselectRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UnselectRequest);
+            if (_matcherProcessed == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Processed);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherUnselectRequest = matcher;
+                _matcherProcessed = matcher;
             }
 
-            return _matcherUnselectRequest;
+            return _matcherProcessed;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Selecting.SelectingComponents.UnselectRequest unselectRequestComponent = new Code.Gameplay.Features.Selecting.SelectingComponents.UnselectRequest();
+    static readonly Code.Common.Processed processedComponent = new Code.Common.Processed();
 
-    public bool isUnselectRequest {
-        get { return HasComponent(GameComponentsLookup.UnselectRequest); }
+    public bool isProcessed {
+        get { return HasComponent(GameComponentsLookup.Processed); }
         set {
-            if (value != isUnselectRequest) {
-                var index = GameComponentsLookup.UnselectRequest;
+            if (value != isProcessed) {
+                var index = GameComponentsLookup.Processed;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : unselectRequestComponent;
+                            : processedComponent;
 
                     AddComponent(index, component);
                 } else {

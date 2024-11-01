@@ -56,7 +56,7 @@ namespace Code.Gameplay.Features.Input.Services
     private void OnLeftClick(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isMakeInteraction = true);
+        .With(x => x.isLeftClick = true);
     }
 
     private void ChangeMousePosition(InputAction.CallbackContext context) =>

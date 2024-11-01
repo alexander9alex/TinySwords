@@ -8,6 +8,12 @@ namespace Code.Gameplay.Features.Selecting
     public SelectingFeature(ISystemFactory systems)
     {
       Add(systems.Create<SelectByClickSystem>());
+      
+      Add(systems.Create<UnselectPreviouslySelectedSystem>());
+      Add(systems.Create<DeselectIfClickNotProcessedSystem>());
+
+      Add(systems.Create<CleanupSelectedNowSystem>());
+      Add(systems.Create<CleanupUnselectRequestSystem>());
     }
   }
 }

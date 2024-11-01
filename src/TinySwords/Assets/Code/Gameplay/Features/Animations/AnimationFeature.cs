@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.Animations
     public AnimationFeature(ISystemFactory systems)
     {
       Add(systems.Create<SelectAnimationSystem>());
+      Add(systems.Create<UnselectAnimationSystem>());
     }
   }
 }

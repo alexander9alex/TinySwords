@@ -9,50 +9,59 @@
 public static class GameComponentsLookup {
 
     public const int Destructed = 0;
-    public const int View = 1;
-    public const int ViewPrefab = 2;
-    public const int Id = 3;
-    public const int SelectingAnimator = 4;
-    public const int MakeInteraction = 5;
-    public const int MousePosition = 6;
-    public const int Transform = 7;
-    public const int WorldPosition = 8;
-    public const int Selectable = 9;
-    public const int Selected = 10;
-    public const int TargetId = 11;
-    public const int UnselectRequest = 12;
+    public const int Processed = 1;
+    public const int View = 2;
+    public const int ViewPrefab = 3;
+    public const int Id = 4;
+    public const int SelectingAnimator = 5;
+    public const int LeftClick = 6;
+    public const int MousePosition = 7;
+    public const int Transform = 8;
+    public const int WorldPosition = 9;
+    public const int Selectable = 10;
+    public const int Selected = 11;
+    public const int SelectedNow = 12;
+    public const int TargetId = 13;
+    public const int Unselected = 14;
+    public const int UnselectPreviouslySelectedRequest = 15;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 16;
 
     public static readonly string[] componentNames = {
         "Destructed",
+        "Processed",
         "View",
         "ViewPrefab",
         "Id",
         "SelectingAnimator",
-        "MakeInteraction",
+        "LeftClick",
         "MousePosition",
         "Transform",
         "WorldPosition",
         "Selectable",
         "Selected",
+        "SelectedNow",
         "TargetId",
-        "UnselectRequest"
+        "Unselected",
+        "UnselectPreviouslySelectedRequest"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Common.Destructed),
+        typeof(Code.Common.Processed),
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Gameplay.Features.Animations.SelectingAnimator),
-        typeof(Code.Gameplay.Features.Input.MakeInteraction),
+        typeof(Code.Gameplay.Features.Input.LeftClick),
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selectable),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Selected),
+        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.SelectedNow),
         typeof(Code.Gameplay.Features.Selecting.SelectingComponents.TargetId),
-        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.UnselectRequest)
+        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.Unselected),
+        typeof(Code.Gameplay.Features.Selecting.SelectingComponents.UnselectPreviouslySelectedRequest)
     };
 }
