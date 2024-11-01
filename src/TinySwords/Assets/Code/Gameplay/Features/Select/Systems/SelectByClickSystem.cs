@@ -29,7 +29,7 @@ namespace Code.Gameplay.Features.Select.Systems
       _clicks = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.LeftClick)
         .NoneOf(GameMatcher.Processed));
-      
+
       _mousePositions = game.GetGroup(GameMatcher.MousePosition);
     }
 
@@ -45,7 +45,7 @@ namespace Code.Gameplay.Features.Select.Systems
           entity.isUnselected = false;
           entity.isSelected = true;
           entity.isSelectedNow = true;
-          
+
           click.isProcessed = true;
 
           CreateEntity.Empty()

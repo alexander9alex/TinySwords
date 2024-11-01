@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Destruct.Systems
 {
-  public class DestructGameEntityViewSystem : ICleanupSystem
+  public class CleanupDestructedViewSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _entities;
     private readonly List<GameEntity> _buffer = new(128);
 
-    public DestructGameEntityViewSystem(GameContext game)
+    public CleanupDestructedViewSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
         .AllOf(
@@ -21,6 +21,7 @@ namespace Code.Gameplay.Features.Destruct.Systems
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
+        entity.View.ReleaseEntity();
         Object.Destroy(entity.View.gameObject);
       }
     }

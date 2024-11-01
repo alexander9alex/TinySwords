@@ -15,12 +15,12 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      Add(systems.Create<SelectFeature>());
       Add(systems.Create<HighlightFeature>());
-      
+      Add(systems.Create<SelectFeature>());
+
       Add(systems.Create<MoveFeature>());
       
-      Add(systems.Create<DestructFeature>());
+      Add(systems.Create<ProcessDestructedFeature>());
     }
   }
 }

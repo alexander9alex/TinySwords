@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.Select
     public SelectFeature(ISystemFactory systems)
     {
       Add(systems.Create<SelectByClickSystem>());
+      Add(systems.Create<SelectHighlightedSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
       Add(systems.Create<DeselectIfClickNotProcessedSystem>());

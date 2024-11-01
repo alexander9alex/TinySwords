@@ -32,7 +32,7 @@ namespace Code.Infrastructure.Views
     public void ReleaseEntity()
     {
       foreach (IEntityComponentRegistrar registrar in GetComponentsInChildren<IEntityComponentRegistrar>())
-        registrar.RegisterComponents();
+        registrar.UnregisterComponents();
 
       foreach (Collider2D collider in GetComponentsInChildren<Collider2D>(includeInactive: true))
         _collisionRegistry.Unregister(collider.GetInstanceID());

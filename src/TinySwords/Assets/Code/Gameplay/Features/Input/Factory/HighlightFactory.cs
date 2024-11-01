@@ -13,14 +13,14 @@ namespace Code.Gameplay.Features.Input.Factory
     public HighlightFactory(IStaticDataService staticData) =>
       _staticData = staticData;
 
-    public GameEntity CreateHighlight(Vector2 start, Vector2 end)
+    public GameEntity CreateHighlight()
     {
       EntityBehaviour highlightViewPrefab = _staticData.GetHighlightViewPrefab();
 
       return CreateEntity.Empty()
         .AddViewPrefab(highlightViewPrefab)
-        .AddStartPosition(start)
-        .AddEndPosition(end)
+        .AddCenterPosition(Vector2.zero)
+        .AddSize(Vector2.zero)
         .With(x => x.isHighlight = true);
     }
   }

@@ -1,4 +1,5 @@
 ﻿using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Highlight.Systems
 {
@@ -11,7 +12,7 @@ namespace Code.Gameplay.Features.Highlight.Systems
     public CalculateHighlightViewLocationSystem(GameContext game)
     {
       _highlights = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Highlight, GameMatcher.StartPosition, GameMatcher.EndPosition));
+        .AllOf(GameMatcher.Highlight, GameMatcher.CenterPosition, GameMatcher.Size));
 
       _clickStarted = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.LeftClickStarted, GameMatcher.MousePosition));
@@ -24,11 +25,22 @@ namespace Code.Gameplay.Features.Highlight.Systems
     {
       foreach (GameEntity highlight in _highlights)
       foreach (GameEntity started in _clickStarted)
-      foreach (GameEntity mousePosition in _mousePositionInputs)
+      foreach (GameEntity ended in _mousePositionInputs)
       {
-        highlight.ReplaceStartPosition(started.MousePosition);
-        highlight.ReplaceEndPosition(mousePosition.MousePosition);
+        Vector2 pos = (started.MousePosition + ended.MousePosition) / 2;
+        highlight.ReplaceCenterPosition(pos);
+        
+        Vector2 size = GetSize(started.MousePosition, ended.MousePosition);
+        highlight.ReplaceSize(size);
       }
+    }
+    
+    private static Vector2 GetSize(Vector2 start, Vector2 end)
+    {
+      Vector2 min = Vector2.Min(start, end);
+      Vector2 max = Vector2.Max(start, end);
+      
+      return max - min;
     }
   }
 }

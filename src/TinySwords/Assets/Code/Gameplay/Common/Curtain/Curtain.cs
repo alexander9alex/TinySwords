@@ -21,11 +21,17 @@ namespace Code.Gameplay.Common.Curtain
     private void Construct(ICoroutineRunner coroutineRunner) =>
       _coroutineRunner = coroutineRunner;
 
-    public void Show(Action onEnded = null) =>
+    public void Show(Action onEnded = null)
+    {
+      CurtainImage.raycastTarget = true;
       _coroutineRunner.StartCoroutine(ChangeCurtainFade(Visible, onEnded));
+    }
 
-    public void Hide(Action onEnded = null) =>
+    public void Hide(Action onEnded = null)
+    {
+      onEnded += () => CurtainImage.raycastTarget = false;
       _coroutineRunner.StartCoroutine(ChangeCurtainFade(Invisible, onEnded));
+    }
 
     private IEnumerator ChangeCurtainFade(int endFade, Action onEnded)
     {
