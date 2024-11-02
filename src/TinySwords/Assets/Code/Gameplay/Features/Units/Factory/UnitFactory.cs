@@ -22,15 +22,17 @@ namespace Code.Gameplay.Features.Units.Factory
     public void CreateUnit(UnitTypeId type, UnitColor color, Vector3 pos)
     {
       UnitConfig unitConfig = _staticDataService.GetUnitConfig(type, color);
-
       CreateEntity.Empty()
         .AddId(_identifiers.Next())
         .AddViewPrefab(unitConfig.UnitPrefab)
         .AddWorldPosition(pos)
+        .AddMoveDirection(Vector2.zero)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
+        .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)
         ;
+
     }
   }
 }

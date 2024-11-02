@@ -12,4 +12,9 @@ namespace Code.Gameplay.Features.Move
   [Game] public class Idle : IComponent { }
   [Game] public class Move : IComponent { }
   [Game] public class MoveDirection : IComponent { public Vector2 Value; }
+  [Game] public class Destination : IComponent { public Vector2 Value; }
+  
+  [Game] public class IdleAvoidancePriority : IComponent { public int Value; }
+  [Game] public class MoveAvoidancePriority : IComponent { public int Value; }
+  [Game] public class CurrentAvoidancePriority : IComponent { public int Value; }
 }

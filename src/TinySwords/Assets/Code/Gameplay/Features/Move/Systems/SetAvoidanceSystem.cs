@@ -2,21 +2,21 @@
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class AnimateWalkSystem : IExecuteSystem
+  public class SetAvoidanceSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _entities;
 
-    public AnimateWalkSystem(GameContext game)
+    public SetAvoidanceSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Move, GameMatcher.MoveAnimator, GameMatcher.MoveDirection));
+        .AllOf(GameMatcher.NavMeshAgent, GameMatcher.CurrentAvoidancePriority));
     }
 
     public void Execute()
     {
       foreach (GameEntity entity in _entities)
       {
-        entity.MoveAnimator.AnimateWalk(entity.MoveDirection);
+        entity.NavMeshAgent.avoidancePriority = entity.CurrentAvoidancePriority;
       }
     }
   }

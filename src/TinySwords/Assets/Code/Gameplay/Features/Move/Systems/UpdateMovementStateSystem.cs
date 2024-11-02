@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using Entitas;
-using UnityEngine;
-using UnityEngine.AI;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
@@ -13,14 +12,14 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateMovementStateSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.NavMeshAgent));
+        .AllOf(GameMatcher.MoveDirection));
     }
 
     public void Execute()
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
-        if (entity.NavMeshAgent.hasPath)
+        if (entity.MoveDirection.magnitude > float.Epsilon)
         {
           entity.isMove = true;
           entity.isIdle = false;

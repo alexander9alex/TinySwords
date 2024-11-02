@@ -463,6 +463,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1700720886859043897, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.016666668
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700720886859043897, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 346508002cd8fa845a4ccd79b65a587d, type: 2}
     - target: {fileID: 2621223623811270200, guid: 44327a5fb4f5d44408efe9cf55aedce9, type: 3}
       propertyPath: m_Name
       value: LevelMap

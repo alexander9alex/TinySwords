@@ -4,7 +4,7 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class SetMovePositionByClickSystem : IExecuteSystem
+  public class SetDestinationByClickSystem : IExecuteSystem
   {
     private readonly ICameraProvider _cameraProvider;
     
@@ -12,15 +12,16 @@ namespace Code.Gameplay.Features.Move.Systems
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public SetMovePositionByClickSystem(GameContext game, ICameraProvider cameraProvider)
+    public SetDestinationByClickSystem(GameContext game, ICameraProvider cameraProvider)
     {
       _cameraProvider = cameraProvider;
+      
       _rightClicks = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.RightClick, GameMatcher.MousePosition)
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected, GameMatcher.NavMeshAgent));
+        .AllOf(GameMatcher.Selected));
     }
 
     public void Execute()
@@ -28,8 +29,8 @@ namespace Code.Gameplay.Features.Move.Systems
       foreach (GameEntity click in _rightClicks.GetEntities(_buffer))
       foreach (GameEntity selected in _selected)
       {
-        selected.NavMeshAgent.SetDestination(_cameraProvider.MainCamera.ScreenToWorldPoint(click.MousePosition));
-        
+        selected.ReplaceDestination(_cameraProvider.MainCamera.ScreenToWorldPoint(click.MousePosition));
+          
         click.isProcessed = true;
       }
     }

@@ -25,25 +25,29 @@ public static class GameComponentsLookup {
     public const int MousePosition = 14;
     public const int MousePositionInput = 15;
     public const int RightClick = 16;
-    public const int Idle = 17;
-    public const int Move = 18;
-    public const int MoveDirection = 19;
-    public const int NavMeshAgent = 20;
-    public const int PositionUpdated = 21;
-    public const int Transform = 22;
-    public const int UpdatePositionAfterSpawning = 23;
-    public const int WorldPosition = 24;
-    public const int Selectable = 25;
-    public const int Selected = 26;
-    public const int SelectedNow = 27;
-    public const int SelectingAnimator = 28;
-    public const int TargetId = 29;
-    public const int Unselected = 30;
-    public const int UnselectPreviouslySelectedRequest = 31;
-    public const int MoveAnimator = 32;
-    public const int Unit = 33;
+    public const int CurrentAvoidancePriority = 17;
+    public const int Destination = 18;
+    public const int Idle = 19;
+    public const int IdleAvoidancePriority = 20;
+    public const int Move = 21;
+    public const int MoveAvoidancePriority = 22;
+    public const int MoveDirection = 23;
+    public const int NavMeshAgent = 24;
+    public const int PositionUpdated = 25;
+    public const int Transform = 26;
+    public const int UpdatePositionAfterSpawning = 27;
+    public const int WorldPosition = 28;
+    public const int Selectable = 29;
+    public const int Selected = 30;
+    public const int SelectedNow = 31;
+    public const int SelectingAnimator = 32;
+    public const int TargetId = 33;
+    public const int Unselected = 34;
+    public const int UnselectPreviouslySelectedRequest = 35;
+    public const int MoveAnimator = 36;
+    public const int Unit = 37;
 
-    public const int TotalComponents = 34;
+    public const int TotalComponents = 38;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -63,8 +67,12 @@ public static class GameComponentsLookup {
         "MousePosition",
         "MousePositionInput",
         "RightClick",
+        "CurrentAvoidancePriority",
+        "Destination",
         "Idle",
+        "IdleAvoidancePriority",
         "Move",
+        "MoveAvoidancePriority",
         "MoveDirection",
         "NavMeshAgent",
         "PositionUpdated",
@@ -100,8 +108,12 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.MousePosition),
         typeof(Code.Gameplay.Features.Input.MousePositionInput),
         typeof(Code.Gameplay.Features.Input.RightClick),
+        typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority),
+        typeof(Code.Gameplay.Features.Move.Destination),
         typeof(Code.Gameplay.Features.Move.Idle),
+        typeof(Code.Gameplay.Features.Move.IdleAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.Move),
+        typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
         typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent),
         typeof(Code.Gameplay.Features.Move.PositionUpdated),

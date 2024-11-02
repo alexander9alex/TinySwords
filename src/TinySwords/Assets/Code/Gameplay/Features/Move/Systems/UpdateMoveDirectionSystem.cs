@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
@@ -11,36 +12,15 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateMoveDirectionSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.NavMeshAgent, GameMatcher.Move));
+        .AllOf(GameMatcher.NavMeshAgent, GameMatcher.MoveDirection));
     }
 
     public void Execute()
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
-        entity.ReplaceMoveDirection(entity.NavMeshAgent.velocity);
+        entity.ReplaceMoveDirection(entity.NavMeshAgent.velocity.normalized);
       }
     }
   }
-
-  public class UpdateWorldPositionSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _entity;
-
-    public UpdateWorldPositionSystem(GameContext game)
-    {
-      _entity = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.WorldPosition, GameMatcher.Transform)
-        .NoneOf(GameMatcher.UpdatePositionAfterSpawning));
-    }
-
-    public void Execute()
-    {
-      foreach (GameEntity entity in _entity)
-      {
-        entity.ReplaceWorldPosition(entity.Transform.position);
-      }
-    }
-  }
-
 }

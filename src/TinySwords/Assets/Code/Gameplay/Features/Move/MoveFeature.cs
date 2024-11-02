@@ -9,18 +9,23 @@ namespace Code.Gameplay.Features.Move
     {
       Add(systems.Create<UpdateTransformAfterSpawningSystem>());
       Add(systems.Create<TurnOnNavMeshAgentAfterTransformUpdatingSystem>());
-      
-      Add(systems.Create<SetMovePositionByClickSystem>());
 
-      Add(systems.Create<UpdateMovementStateSystem>());
+      Add(systems.Create<SetDestinationByClickSystem>());
+      Add(systems.Create<MoveToDestinationSystem>());
+
       Add(systems.Create<UpdateMoveDirectionSystem>());
-      
+      Add(systems.Create<UpdateMovementStateSystem>());
+
+      Add(systems.Create<UpdateMoveAvoidanceSystem>());
+      Add(systems.Create<UpdateIdleAvoidanceSystem>());
+      Add(systems.Create<SetAvoidanceSystem>());
+
       Add(systems.Create<UpdateWorldPositionSystem>());
-      
+
       Add(systems.Create<AnimateIdleSystem>());
-      Add(systems.Create<AnimateWalkSystem>());
-      
-      
+      Add(systems.Create<AnimateMoveSystem>());
+
+      Add(systems.Create<CleanupDestinationSystem>());
       Add(systems.Create<CleanupPositionUpdatedComponentSystem>());
     }
   }

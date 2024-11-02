@@ -5,6 +5,7 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
 {
   public class KnightAnimator : MonoBehaviour, ISelectingAnimator, IMoveAnimator
   {
+    private const float FlipXMinValue = 0.05f;
     public Animator Animator;
     public SpriteRenderer SpriteRenderer;
     public GameObject SelectingCircle;
@@ -14,8 +15,14 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
 
     public void AnimateWalk(Vector2 dir)
     {
-      SpriteRenderer.flipX = dir.x < 0;
+      TurnToMoveDir(dir);
       Animator.Play(KnightAnimations.Walk);
+    }
+
+    private void TurnToMoveDir(Vector2 dir)
+    {
+      if (Mathf.Abs(dir.x) > FlipXMinValue)
+        SpriteRenderer.flipX = dir.x < 0;
     }
 
     public void AnimateAttack(Vector2 dir)
