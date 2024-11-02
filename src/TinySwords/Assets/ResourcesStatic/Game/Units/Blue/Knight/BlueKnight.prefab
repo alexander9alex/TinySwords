@@ -162,7 +162,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.45}
+  m_Offset: {x: 0, y: 0.2}
   m_Size: {x: 0.6, y: 0.95}
   m_Direction: 0
 --- !u!195 &-7218152853136370546
@@ -174,7 +174,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2062871423326038689}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 2
   m_Acceleration: 2000
   avoidancePriority: 50
@@ -320,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 6602827645550739253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
