@@ -37,8 +37,8 @@ namespace Code.Gameplay.Features.Move.Systems
 
         foreach (GameEntity selected in _selected)
         {
-          selected.ReplaceDestination(destinations.Last());
-          destinations.RemoveAt(destinations.Count - 1);
+          selected.ReplaceDestination(destinations.First());
+          destinations.RemoveAt(0);
         }
 
         click.isProcessed = true;
@@ -48,28 +48,28 @@ namespace Code.Gameplay.Features.Move.Systems
     private List<Vector2> GetDestinations(GameEntity click)
     {
       Vector3 clickWorldPos = _cameraProvider.MainCamera.ScreenToWorldPoint(click.MousePosition);
-      
+
       float sqrt = Mathf.Ceil(Mathf.Sqrt(_selected.count));
-      Vector3 leftBottomClickWorldPos = GetLeftBottomClickWorldPos(clickWorldPos, sqrt);
+      Vector3 leftUpClickWorldPos = GetLeftUpClickWorldPos(clickWorldPos, sqrt);
 
       List<Vector2> destinations = new();
 
       for (int y = 0; y < sqrt; y++)
       for (int x = 0; x < sqrt; x++)
       {
-        destinations.Add(leftBottomClickWorldPos + new Vector3(x, y));
+        destinations.Add(leftUpClickWorldPos + new Vector3(x, -y));
       }
 
       return destinations;
     }
 
-    private static Vector3 GetLeftBottomClickWorldPos(Vector3 clickWorldPos, float sqrt)
+    private static Vector3 GetLeftUpClickWorldPos(Vector3 clickWorldPos, float sqrt)
     {
       if (sqrt % 2 == 0)
-        return GetLeftBottomClickWorldPos(clickWorldPos, sqrt + 1) + new Vector3(0.5f, 0.5f);
+        return GetLeftUpClickWorldPos(clickWorldPos, sqrt + 1) + new Vector3(0.5f, -0.5f);
 
       int offsetCoef = (int)(sqrt / 2);
-      return clickWorldPos - new Vector3(offsetCoef, offsetCoef, 0);
+      return clickWorldPos + new Vector3(-offsetCoef, offsetCoef, 0);
     }
   }
 }
