@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Select.Systems
 {
   public class ProcessSingleSelectionSystem : IExecuteSystem
   {
-    private const float ClickRadius = 0.25f;
+    private const float ClickRadius = 0.01f;
 
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
@@ -67,6 +67,8 @@ namespace Code.Gameplay.Features.Select.Systems
           ClickRadius,
           _layerMask)
         .Where(entity => entity.isSelectable)
+        .Where(entity => entity.hasTransform)
+        .OrderBy(entity => entity.Transform.position.y)
         .ToList();
     }
   }
