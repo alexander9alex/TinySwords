@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherRightClick;
+    static Entitas.IMatcher<GameEntity> _matcherSingleSelectionRequest;
 
-    public static Entitas.IMatcher<GameEntity> RightClick {
+    public static Entitas.IMatcher<GameEntity> SingleSelectionRequest {
         get {
-            if (_matcherRightClick == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.RightClick);
+            if (_matcherSingleSelectionRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SingleSelectionRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherRightClick = matcher;
+                _matcherSingleSelectionRequest = matcher;
             }
 
-            return _matcherRightClick;
+            return _matcherSingleSelectionRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.RightClick rightClickComponent = new Code.Gameplay.Features.Input.RightClick();
+    static readonly Code.Gameplay.Features.Input.SingleSelectionRequest singleSelectionRequestComponent = new Code.Gameplay.Features.Input.SingleSelectionRequest();
 
-    public bool isRightClick {
-        get { return HasComponent(GameComponentsLookup.RightClick); }
+    public bool isSingleSelectionRequest {
+        get { return HasComponent(GameComponentsLookup.SingleSelectionRequest); }
         set {
-            if (value != isRightClick) {
-                var index = GameComponentsLookup.RightClick;
+            if (value != isSingleSelectionRequest) {
+                var index = GameComponentsLookup.SingleSelectionRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : rightClickComponent;
+                            : singleSelectionRequestComponent;
 
                     AddComponent(index, component);
                 } else {

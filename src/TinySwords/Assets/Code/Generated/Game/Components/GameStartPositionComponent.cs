@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Highlight.StartPosition startPosition { get { return (Code.Gameplay.Features.Highlight.StartPosition)GetComponent(GameComponentsLookup.StartPosition); } }
+    public Code.Gameplay.Features.Input.StartPosition startPosition { get { return (Code.Gameplay.Features.Input.StartPosition)GetComponent(GameComponentsLookup.StartPosition); } }
     public UnityEngine.Vector2 StartPosition { get { return startPosition.Value; } }
     public bool hasStartPosition { get { return HasComponent(GameComponentsLookup.StartPosition); } }
 
     public GameEntity AddStartPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.StartPosition;
-        var component = (Code.Gameplay.Features.Highlight.StartPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.StartPosition));
+        var component = (Code.Gameplay.Features.Input.StartPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.StartPosition));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceStartPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.StartPosition;
-        var component = (Code.Gameplay.Features.Highlight.StartPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.StartPosition));
+        var component = (Code.Gameplay.Features.Input.StartPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.StartPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

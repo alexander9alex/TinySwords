@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Highlight.EndPosition endPosition { get { return (Code.Gameplay.Features.Highlight.EndPosition)GetComponent(GameComponentsLookup.EndPosition); } }
+    public Code.Gameplay.Features.Input.EndPosition endPosition { get { return (Code.Gameplay.Features.Input.EndPosition)GetComponent(GameComponentsLookup.EndPosition); } }
     public UnityEngine.Vector2 EndPosition { get { return endPosition.Value; } }
     public bool hasEndPosition { get { return HasComponent(GameComponentsLookup.EndPosition); } }
 
     public GameEntity AddEndPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.EndPosition;
-        var component = (Code.Gameplay.Features.Highlight.EndPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.EndPosition));
+        var component = (Code.Gameplay.Features.Input.EndPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.EndPosition));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceEndPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.EndPosition;
-        var component = (Code.Gameplay.Features.Highlight.EndPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.EndPosition));
+        var component = (Code.Gameplay.Features.Input.EndPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Input.EndPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

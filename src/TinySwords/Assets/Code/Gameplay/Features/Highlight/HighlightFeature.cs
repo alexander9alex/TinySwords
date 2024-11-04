@@ -8,10 +8,11 @@ namespace Code.Gameplay.Features.Highlight
     public HighlightFeature(ISystemFactory systems)
     {
       Add(systems.Create<CreateHighlightSystem>());
-      Add(systems.Create<CalculateHighlightViewLocationSystem>());
-      Add(systems.Create<ChangeHighlightViewLocationSystem>());
       
-      Add(systems.Create<CleanupHighlightSystem>());
+      Add(systems.Create<CalculateHighlightLocationSystem>());
+      Add(systems.Create<UpdateHighlightLocationSystem>());
+      
+      Add(systems.Create<DestroyHighlightSystem>());
     }
   }
 }

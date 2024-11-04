@@ -3,21 +3,21 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Highlight.Systems
 {
-  public class CleanupHighlightSystem : ICleanupSystem
+  public class DestroyHighlightSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _highlights;
-    private readonly IGroup<GameEntity> _clickEnded;
+    private readonly IGroup<GameEntity> _selectionEnded;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public CleanupHighlightSystem(GameContext game)
+    public DestroyHighlightSystem(GameContext game)
     {
       _highlights = game.GetGroup(GameMatcher.AllOf(GameMatcher.Highlight));
-      _clickEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.LeftClickEnded));
+      _selectionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.SelectionEnded));
     }
 
     public void Cleanup()
     {
-      foreach (GameEntity _ in _clickEnded)
+      foreach (GameEntity _ in _selectionEnded)
       foreach (GameEntity highlight in _highlights.GetEntities(_buffer))
       {
         highlight.isDestructed = true;

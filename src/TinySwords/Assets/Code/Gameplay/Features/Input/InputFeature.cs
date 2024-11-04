@@ -7,14 +7,18 @@ namespace Code.Gameplay.Features.Input
   {
     public InputFeature(ISystemFactory systems)
     {
-      Add(systems.Create<CreateLeftClickSystem>());
+      Add(systems.Create<CreateSingleSelectionRequestSystem>());
+      Add(systems.Create<CreateMultipleSelectionRequestSystem>());
       
-      Add(systems.Create<CleanupLeftClickSystem>());
-      Add(systems.Create<CleanupLeftClickInputsSystem>());
+      Add(systems.Create<CreateMoveRequestSystem>());
       
-      Add(systems.Create<CleanupRightClickSystem>());
-      
+      Add(systems.Create<CleanupInteractRequestSystem>());
+
       Add(systems.Create<CleanupMousePositionSystem>());
+
+      Add(systems.Create<CleanupSingleSelectionRequestSystem>());
+      Add(systems.Create<CleanupMultipleSelectionRequestSystem>());
+      Add(systems.Create<CleanupSelectionInputSystem>());
     }
   }
 }

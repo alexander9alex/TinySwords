@@ -2,7 +2,6 @@
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Input.Factory;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Highlight.Systems
 {
@@ -10,19 +9,15 @@ namespace Code.Gameplay.Features.Highlight.Systems
   {
     private readonly IHighlightFactory _highlightFactory;
 
-    private readonly IGroup<GameEntity> _clickStarted;
-    private readonly IGroup<GameEntity> _mousePositionInputs;
+    private readonly IGroup<GameEntity> _multipleSelectionRequests;
     private readonly IGroup<GameEntity> _highlights;
 
     public CreateHighlightSystem(GameContext game, IHighlightFactory highlightFactory)
     {
       _highlightFactory = highlightFactory;
 
-      _clickStarted = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.LeftClickStarted, GameMatcher.MousePosition));
-
-      _mousePositionInputs = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MousePositionInput, GameMatcher.MousePosition));
+      _multipleSelectionRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.MultipleSelectionRequest, GameMatcher.StartPosition));
 
       _highlights = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Highlight));
@@ -30,20 +25,19 @@ namespace Code.Gameplay.Features.Highlight.Systems
 
     public void Execute()
     {
-      foreach (GameEntity started in _clickStarted)
-      foreach (GameEntity ended in _mousePositionInputs)
+      foreach (GameEntity _ in _multipleSelectionRequests)
       {
-        if (_highlights.count > 0)
-          return;
-
-        if (Vector2.Distance(started.MousePosition, ended.MousePosition) >= float.Epsilon)
-        {
-          _highlightFactory.CreateHighlight();
-
-          CreateEntity.Empty()
-            .With(x => x.isUnselectPreviouslySelectedRequest = true);
-        }
+        if (_highlights.count == 0)
+          CreateHighlight();
       }
+    }
+
+    private void CreateHighlight()
+    {
+      _highlightFactory.CreateHighlight();
+
+      CreateEntity.Empty()
+        .With(x => x.isUnselectPreviouslySelectedRequest = true);
     }
   }
 }

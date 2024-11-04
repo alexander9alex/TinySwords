@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<UpdateTransformAfterSpawningSystem>());
       Add(systems.Create<TurnOnNavMeshAgentAfterTransformUpdatingSystem>());
 
-      Add(systems.Create<SetDestinationByClickSystem>());
+      Add(systems.Create<ProcessMoveRequestSystem>());
       Add(systems.Create<MoveToDestinationSystem>());
 
       Add(systems.Create<UpdateMoveDirectionSystem>());

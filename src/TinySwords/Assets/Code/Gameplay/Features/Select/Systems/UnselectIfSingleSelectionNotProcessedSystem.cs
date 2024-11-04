@@ -3,16 +3,16 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Select.Systems
 {
-  public class DeselectIfClickNotProcessedSystem : IExecuteSystem
+  public class UnselectIfSingleSelectionNotProcessedSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _clicks;
+    private readonly IGroup<GameEntity> _singleSelectionRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _entitiesBuffer = new(64);
 
-    public DeselectIfClickNotProcessedSystem(GameContext game)
+    public UnselectIfSingleSelectionNotProcessedSystem(GameContext game)
     {
-      _clicks = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.LeftClick)
+      _singleSelectionRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.SingleSelectionRequest)
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher
@@ -21,7 +21,7 @@ namespace Code.Gameplay.Features.Select.Systems
 
     public void Execute()
     {
-      foreach (GameEntity _ in _clicks)
+      foreach (GameEntity _ in _singleSelectionRequests)
       foreach (GameEntity entity in _selected.GetEntities(_entitiesBuffer))
       {
         entity.isSelected = false;

@@ -16,10 +16,10 @@ namespace Code.Gameplay.Features.Input.Services
 
     public InputService()
     {
-      _inputSystem.Game.LeftClick.started += LeftClickStarted;
-      _inputSystem.Game.LeftClick.canceled += LeftClickCanceled;
+      _inputSystem.Game.Select.started += SelectionStarted;
+      _inputSystem.Game.Select.canceled += SelectionEnded;
 
-      _inputSystem.Game.RightClick.canceled += RightClickCanceled;
+      _inputSystem.Game.Interact.canceled += OnInteracted;
       
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
@@ -54,28 +54,27 @@ namespace Code.Gameplay.Features.Input.Services
     private void CreateMousePositionInput()
     {
       CreateEntity.Empty()
-        .AddMousePosition(_mousePos)
-        .With(x => x.isMousePositionInput = true);
+        .AddMousePositionOnScreen(_mousePos);
     }
 
-    private void RightClickCanceled(InputAction.CallbackContext context)
+    private void OnInteracted(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isRightClick = true)
-        .AddMousePosition(_mousePos);
+        .With(x => x.isInteractionRequest = true)
+        .AddPositionOnScreen(_mousePos);
     }
 
-    private void LeftClickStarted(InputAction.CallbackContext context)
+    private void SelectionStarted(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isLeftClickStarted = true)
-        .AddMousePosition(_mousePos);
+        .With(x => x.isSelectionStarted = true)
+        .AddPositionOnScreen(_mousePos);
     }
-    private void LeftClickCanceled(InputAction.CallbackContext context)
+    private void SelectionEnded(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isLeftClickEnded = true)
-        .AddMousePosition(_mousePos);
+        .With(x => x.isSelectionEnded = true)
+        .AddPositionOnScreen(_mousePos);
     }
     private void ChangeMousePosition(InputAction.CallbackContext context) =>
       _mousePos = context.ReadValue<Vector2>();

@@ -17,4 +17,6 @@ namespace Code.Gameplay.Features.Move
   [Game] public class IdleAvoidancePriority : IComponent { public int Value; }
   [Game] public class MoveAvoidancePriority : IComponent { public int Value; }
   [Game] public class CurrentAvoidancePriority : IComponent { public int Value; }
+  
+  [Game] public class MoveRequest : IComponent { }
 }

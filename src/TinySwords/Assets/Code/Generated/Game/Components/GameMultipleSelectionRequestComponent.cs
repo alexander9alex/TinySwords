@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherLeftClick;
+    static Entitas.IMatcher<GameEntity> _matcherMultipleSelectionRequest;
 
-    public static Entitas.IMatcher<GameEntity> LeftClick {
+    public static Entitas.IMatcher<GameEntity> MultipleSelectionRequest {
         get {
-            if (_matcherLeftClick == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.LeftClick);
+            if (_matcherMultipleSelectionRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MultipleSelectionRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherLeftClick = matcher;
+                _matcherMultipleSelectionRequest = matcher;
             }
 
-            return _matcherLeftClick;
+            return _matcherMultipleSelectionRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.LeftClick leftClickComponent = new Code.Gameplay.Features.Input.LeftClick();
+    static readonly Code.Gameplay.Features.Input.MultipleSelectionRequest multipleSelectionRequestComponent = new Code.Gameplay.Features.Input.MultipleSelectionRequest();
 
-    public bool isLeftClick {
-        get { return HasComponent(GameComponentsLookup.LeftClick); }
+    public bool isMultipleSelectionRequest {
+        get { return HasComponent(GameComponentsLookup.MultipleSelectionRequest); }
         set {
-            if (value != isLeftClick) {
-                var index = GameComponentsLookup.LeftClick;
+            if (value != isMultipleSelectionRequest) {
+                var index = GameComponentsLookup.MultipleSelectionRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : leftClickComponent;
+                            : multipleSelectionRequestComponent;
 
                     AddComponent(index, component);
                 } else {

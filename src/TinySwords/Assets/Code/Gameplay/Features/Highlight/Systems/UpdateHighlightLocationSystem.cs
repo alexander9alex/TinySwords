@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Highlight.Systems
 {
-  public class ChangeHighlightViewLocationSystem : IExecuteSystem
+  public class UpdateHighlightLocationSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _highlights;
 
-    public ChangeHighlightViewLocationSystem(GameContext game)
+    public UpdateHighlightLocationSystem(GameContext game)
     {
       _highlights = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Highlight, GameMatcher.RectTransform, GameMatcher.CenterPosition, GameMatcher.Size));

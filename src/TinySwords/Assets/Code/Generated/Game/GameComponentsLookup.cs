@@ -14,40 +14,42 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 3;
     public const int Id = 4;
     public const int CenterPosition = 5;
-    public const int EndPosition = 6;
-    public const int Highlight = 7;
-    public const int RectTransform = 8;
-    public const int Size = 9;
-    public const int StartPosition = 10;
-    public const int LeftClick = 11;
-    public const int LeftClickEnded = 12;
-    public const int LeftClickStarted = 13;
-    public const int MousePosition = 14;
-    public const int MousePositionInput = 15;
-    public const int RightClick = 16;
-    public const int CurrentAvoidancePriority = 17;
-    public const int Destination = 18;
-    public const int Idle = 19;
-    public const int IdleAvoidancePriority = 20;
-    public const int Move = 21;
-    public const int MoveAvoidancePriority = 22;
-    public const int MoveDirection = 23;
-    public const int NavMeshAgent = 24;
-    public const int PositionUpdated = 25;
-    public const int Transform = 26;
-    public const int UpdatePositionAfterSpawning = 27;
-    public const int WorldPosition = 28;
-    public const int Selectable = 29;
-    public const int Selected = 30;
-    public const int SelectedNow = 31;
-    public const int SelectingAnimator = 32;
-    public const int TargetId = 33;
-    public const int Unselected = 34;
-    public const int UnselectPreviouslySelectedRequest = 35;
-    public const int MoveAnimator = 36;
-    public const int Unit = 37;
+    public const int Highlight = 6;
+    public const int RectTransform = 7;
+    public const int Size = 8;
+    public const int EndPosition = 9;
+    public const int InteractionRequest = 10;
+    public const int MousePositionOnScreen = 11;
+    public const int MultipleSelectionRequest = 12;
+    public const int PositionOnScreen = 13;
+    public const int SelectionEnded = 14;
+    public const int SelectionStarted = 15;
+    public const int SingleSelectionRequest = 16;
+    public const int StartPosition = 17;
+    public const int CurrentAvoidancePriority = 18;
+    public const int Destination = 19;
+    public const int Idle = 20;
+    public const int IdleAvoidancePriority = 21;
+    public const int Move = 22;
+    public const int MoveAvoidancePriority = 23;
+    public const int MoveDirection = 24;
+    public const int MoveRequest = 25;
+    public const int NavMeshAgent = 26;
+    public const int PositionUpdated = 27;
+    public const int Transform = 28;
+    public const int UpdatePositionAfterSpawning = 29;
+    public const int WorldPosition = 30;
+    public const int Selectable = 31;
+    public const int Selected = 32;
+    public const int SelectedNow = 33;
+    public const int SelectingAnimator = 34;
+    public const int TargetId = 35;
+    public const int Unselected = 36;
+    public const int UnselectPreviouslySelectedRequest = 37;
+    public const int MoveAnimator = 38;
+    public const int Unit = 39;
 
-    public const int TotalComponents = 38;
+    public const int TotalComponents = 40;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -56,17 +58,18 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "Id",
         "CenterPosition",
-        "EndPosition",
         "Highlight",
         "RectTransform",
         "Size",
+        "EndPosition",
+        "InteractionRequest",
+        "MousePositionOnScreen",
+        "MultipleSelectionRequest",
+        "PositionOnScreen",
+        "SelectionEnded",
+        "SelectionStarted",
+        "SingleSelectionRequest",
         "StartPosition",
-        "LeftClick",
-        "LeftClickEnded",
-        "LeftClickStarted",
-        "MousePosition",
-        "MousePositionInput",
-        "RightClick",
         "CurrentAvoidancePriority",
         "Destination",
         "Idle",
@@ -74,6 +77,7 @@ public static class GameComponentsLookup {
         "Move",
         "MoveAvoidancePriority",
         "MoveDirection",
+        "MoveRequest",
         "NavMeshAgent",
         "PositionUpdated",
         "Transform",
@@ -97,17 +101,18 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
         typeof(Code.Gameplay.Features.Highlight.CenterPosition),
-        typeof(Code.Gameplay.Features.Highlight.EndPosition),
         typeof(Code.Gameplay.Features.Highlight.Highlight),
         typeof(Code.Gameplay.Features.Highlight.RectTransformComponent),
         typeof(Code.Gameplay.Features.Highlight.Size),
-        typeof(Code.Gameplay.Features.Highlight.StartPosition),
-        typeof(Code.Gameplay.Features.Input.LeftClick),
-        typeof(Code.Gameplay.Features.Input.LeftClickEnded),
-        typeof(Code.Gameplay.Features.Input.LeftClickStarted),
-        typeof(Code.Gameplay.Features.Input.MousePosition),
-        typeof(Code.Gameplay.Features.Input.MousePositionInput),
-        typeof(Code.Gameplay.Features.Input.RightClick),
+        typeof(Code.Gameplay.Features.Input.EndPosition),
+        typeof(Code.Gameplay.Features.Input.InteractionRequest),
+        typeof(Code.Gameplay.Features.Input.MousePositionOnScreen),
+        typeof(Code.Gameplay.Features.Input.MultipleSelectionRequest),
+        typeof(Code.Gameplay.Features.Input.PositionOnScreen),
+        typeof(Code.Gameplay.Features.Input.SelectionEnded),
+        typeof(Code.Gameplay.Features.Input.SelectionStarted),
+        typeof(Code.Gameplay.Features.Input.SingleSelectionRequest),
+        typeof(Code.Gameplay.Features.Input.StartPosition),
         typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.Destination),
         typeof(Code.Gameplay.Features.Move.Idle),
@@ -115,6 +120,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.Move),
         typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
+        typeof(Code.Gameplay.Features.Move.MoveRequest),
         typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent),
         typeof(Code.Gameplay.Features.Move.PositionUpdated),
         typeof(Code.Gameplay.Features.Move.TransformComponent),

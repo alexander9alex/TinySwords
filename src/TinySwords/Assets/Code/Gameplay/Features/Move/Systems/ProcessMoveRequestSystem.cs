@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class SetDestinationByClickSystem : IExecuteSystem
+  public class ProcessMoveRequestSystem : IExecuteSystem
   {
     private readonly ICameraProvider _cameraProvider;
 
-    private readonly IGroup<GameEntity> _rightClicks;
+    private readonly IGroup<GameEntity> _moveRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public SetDestinationByClickSystem(GameContext game, ICameraProvider cameraProvider)
+    public ProcessMoveRequestSystem(GameContext game, ICameraProvider cameraProvider)
     {
       _cameraProvider = cameraProvider;
 
-      _rightClicks = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.RightClick, GameMatcher.MousePosition)
+      _moveRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.MoveRequest, GameMatcher.PositionOnScreen)
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher
@@ -28,12 +28,12 @@ namespace Code.Gameplay.Features.Move.Systems
 
     public void Execute()
     {
-      foreach (GameEntity click in _rightClicks.GetEntities(_buffer))
+      foreach (GameEntity request in _moveRequests.GetEntities(_buffer))
       {
         if (_selected.count == 0)
           return;
 
-        List<Vector2> destinations = GetDestinations(click);
+        List<Vector2> destinations = GetDestinations(request, _selected.count);
 
         foreach (GameEntity selected in _selected)
         {
@@ -41,15 +41,15 @@ namespace Code.Gameplay.Features.Move.Systems
           destinations.RemoveAt(0);
         }
 
-        click.isProcessed = true;
+        request.isProcessed = true;
       }
     }
 
-    private List<Vector2> GetDestinations(GameEntity click)
+    private List<Vector2> GetDestinations(GameEntity click, int countOfSelected)
     {
-      Vector3 clickWorldPos = _cameraProvider.MainCamera.ScreenToWorldPoint(click.MousePosition);
+      Vector3 clickWorldPos = _cameraProvider.MainCamera.ScreenToWorldPoint(click.PositionOnScreen);
 
-      float sqrt = Mathf.Ceil(Mathf.Sqrt(_selected.count));
+      float sqrt = Mathf.Ceil(Mathf.Sqrt(countOfSelected));
       Vector3 leftUpClickWorldPos = GetLeftUpClickWorldPos(clickWorldPos, sqrt);
 
       List<Vector2> destinations = new();

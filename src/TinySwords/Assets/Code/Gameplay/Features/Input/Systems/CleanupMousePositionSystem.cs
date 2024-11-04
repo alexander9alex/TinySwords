@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Input.Systems
 
     public CleanupMousePositionSystem(GameContext game)
     {
-      _mousePositionInputs = game.GetGroup(GameMatcher.AllOf(GameMatcher.MousePositionInput));
+      _mousePositionInputs = game.GetGroup(GameMatcher.MousePositionOnScreen);
     }
 
     public void Cleanup()

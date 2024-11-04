@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherLeftClickStarted;
+    static Entitas.IMatcher<GameEntity> _matcherMoveRequest;
 
-    public static Entitas.IMatcher<GameEntity> LeftClickStarted {
+    public static Entitas.IMatcher<GameEntity> MoveRequest {
         get {
-            if (_matcherLeftClickStarted == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.LeftClickStarted);
+            if (_matcherMoveRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherLeftClickStarted = matcher;
+                _matcherMoveRequest = matcher;
             }
 
-            return _matcherLeftClickStarted;
+            return _matcherMoveRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.LeftClickStarted leftClickStartedComponent = new Code.Gameplay.Features.Input.LeftClickStarted();
+    static readonly Code.Gameplay.Features.Move.MoveRequest moveRequestComponent = new Code.Gameplay.Features.Move.MoveRequest();
 
-    public bool isLeftClickStarted {
-        get { return HasComponent(GameComponentsLookup.LeftClickStarted); }
+    public bool isMoveRequest {
+        get { return HasComponent(GameComponentsLookup.MoveRequest); }
         set {
-            if (value != isLeftClickStarted) {
-                var index = GameComponentsLookup.LeftClickStarted;
+            if (value != isMoveRequest) {
+                var index = GameComponentsLookup.MoveRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : leftClickStartedComponent;
+                            : moveRequestComponent;
 
                     AddComponent(index, component);
                 } else {

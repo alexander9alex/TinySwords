@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Select.Systems
     public void Execute()
     {
       foreach (GameEntity highlight in _highlights)
-      foreach (GameEntity entity in GetHighlighted(highlight))
+      foreach (GameEntity entity in GetHighlightedEntities(highlight))
       {
         if (entity.isSelectable)
         {
@@ -39,7 +39,7 @@ namespace Code.Gameplay.Features.Select.Systems
       }
     }
 
-    private IEnumerable<GameEntity> GetHighlighted(GameEntity highlight)
+    private IEnumerable<GameEntity> GetHighlightedEntities(GameEntity highlight)
     {
       return _physicsService.BoxCast(
         _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),

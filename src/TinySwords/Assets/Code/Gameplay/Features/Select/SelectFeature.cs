@@ -7,11 +7,11 @@ namespace Code.Gameplay.Features.Select
   {
     public SelectFeature(ISystemFactory systems)
     {
-      Add(systems.Create<SelectByClickSystem>());
+      Add(systems.Create<ProcessSingleSelectionSystem>());
       Add(systems.Create<SelectHighlightedSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
-      Add(systems.Create<DeselectIfClickNotProcessedSystem>());
+      Add(systems.Create<UnselectIfSingleSelectionNotProcessedSystem>());
 
       Add(systems.Create<AnimateSelectingSystem>());
       Add(systems.Create<AnimateUnselectingSystem>());

@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMousePositionInput;
+    static Entitas.IMatcher<GameEntity> _matcherSelectionEnded;
 
-    public static Entitas.IMatcher<GameEntity> MousePositionInput {
+    public static Entitas.IMatcher<GameEntity> SelectionEnded {
         get {
-            if (_matcherMousePositionInput == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MousePositionInput);
+            if (_matcherSelectionEnded == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SelectionEnded);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMousePositionInput = matcher;
+                _matcherSelectionEnded = matcher;
             }
 
-            return _matcherMousePositionInput;
+            return _matcherSelectionEnded;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.MousePositionInput mousePositionInputComponent = new Code.Gameplay.Features.Input.MousePositionInput();
+    static readonly Code.Gameplay.Features.Input.SelectionEnded selectionEndedComponent = new Code.Gameplay.Features.Input.SelectionEnded();
 
-    public bool isMousePositionInput {
-        get { return HasComponent(GameComponentsLookup.MousePositionInput); }
+    public bool isSelectionEnded {
+        get { return HasComponent(GameComponentsLookup.SelectionEnded); }
         set {
-            if (value != isMousePositionInput) {
-                var index = GameComponentsLookup.MousePositionInput;
+            if (value != isSelectionEnded) {
+                var index = GameComponentsLookup.SelectionEnded;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : mousePositionInputComponent;
+                            : selectionEndedComponent;
 
                     AddComponent(index, component);
                 } else {

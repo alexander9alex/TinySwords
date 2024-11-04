@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherLeftClickEnded;
+    static Entitas.IMatcher<GameEntity> _matcherInteractionRequest;
 
-    public static Entitas.IMatcher<GameEntity> LeftClickEnded {
+    public static Entitas.IMatcher<GameEntity> InteractionRequest {
         get {
-            if (_matcherLeftClickEnded == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.LeftClickEnded);
+            if (_matcherInteractionRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.InteractionRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherLeftClickEnded = matcher;
+                _matcherInteractionRequest = matcher;
             }
 
-            return _matcherLeftClickEnded;
+            return _matcherInteractionRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.LeftClickEnded leftClickEndedComponent = new Code.Gameplay.Features.Input.LeftClickEnded();
+    static readonly Code.Gameplay.Features.Input.InteractionRequest interactionRequestComponent = new Code.Gameplay.Features.Input.InteractionRequest();
 
-    public bool isLeftClickEnded {
-        get { return HasComponent(GameComponentsLookup.LeftClickEnded); }
+    public bool isInteractionRequest {
+        get { return HasComponent(GameComponentsLookup.InteractionRequest); }
         set {
-            if (value != isLeftClickEnded) {
-                var index = GameComponentsLookup.LeftClickEnded;
+            if (value != isInteractionRequest) {
+                var index = GameComponentsLookup.InteractionRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : leftClickEndedComponent;
+                            : interactionRequestComponent;
 
                     AddComponent(index, component);
                 } else {
