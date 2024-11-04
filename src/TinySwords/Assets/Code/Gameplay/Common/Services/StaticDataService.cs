@@ -19,9 +19,11 @@ namespace Code.Gameplay.Services
     public UnitConfig GetUnitConfig(UnitTypeId type, UnitColor color) =>
       _unitConfigByTypeAndColor[(type, color)];
 
-
     public EntityBehaviour GetHighlightViewPrefab() =>
       Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
+
+    public EntityBehaviour GetMoveIndicatorPrefab() =>
+      Resources.Load<EntityBehaviour>("Game/MoveIndicator/MoveIndicator");
 
     private void LoadUnitConfigs()
     {

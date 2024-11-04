@@ -3,12 +3,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class CleanupPositionUpdatedComponentSystem : ICleanupSystem
+  public class CleanupPositionUpdatedSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _positionUpdatedEntities;
     private readonly List<GameEntity> _buffer = new(64);
 
-    public CleanupPositionUpdatedComponentSystem(GameContext game)
+    public CleanupPositionUpdatedSystem(GameContext game)
     {
       _positionUpdatedEntities = game.GetGroup(GameMatcher.AllOf(GameMatcher.PositionUpdated));
     }

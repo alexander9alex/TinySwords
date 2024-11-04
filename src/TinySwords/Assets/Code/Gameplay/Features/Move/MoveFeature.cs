@@ -13,6 +13,9 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<ProcessMoveRequestSystem>());
       Add(systems.Create<MoveToDestinationSystem>());
 
+      Add(systems.Create<CreateMoveClickIndicatorSystem>());
+      Add(systems.Create<DestructOldClickIndicatorSystem>());
+      
       Add(systems.Create<UpdateMoveDirectionSystem>());
       Add(systems.Create<UpdateMovementStateSystem>());
 
@@ -26,7 +29,10 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<AnimateMoveSystem>());
 
       Add(systems.Create<CleanupDestinationSystem>());
-      Add(systems.Create<CleanupPositionUpdatedComponentSystem>());
+      Add(systems.Create<CleanupMoveRequestSystem>());
+      Add(systems.Create<CleanupCreatedNowSystem>());
+      Add(systems.Create<CleanupPositionUpdatedSystem>());
+      Add(systems.Create<CleanupDestructOldClickIndicatorRequestSystem>());
     }
   }
 }

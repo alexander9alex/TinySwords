@@ -10,50 +10,55 @@ public static class GameComponentsLookup {
 
     public const int Destructed = 0;
     public const int Processed = 1;
-    public const int View = 2;
-    public const int ViewPrefab = 3;
-    public const int Id = 4;
-    public const int CenterPosition = 5;
-    public const int Highlight = 6;
-    public const int RectTransform = 7;
-    public const int Size = 8;
-    public const int EndPosition = 9;
-    public const int InteractionRequest = 10;
-    public const int MousePositionOnScreen = 11;
-    public const int MultipleSelectionRequest = 12;
-    public const int PositionOnScreen = 13;
-    public const int SelectionEnded = 14;
-    public const int SelectionStarted = 15;
-    public const int SingleSelectionRequest = 16;
-    public const int StartPosition = 17;
-    public const int CurrentAvoidancePriority = 18;
-    public const int Destination = 19;
-    public const int Idle = 20;
-    public const int IdleAvoidancePriority = 21;
-    public const int Move = 22;
-    public const int MoveAvoidancePriority = 23;
-    public const int MoveDirection = 24;
-    public const int MoveRequest = 25;
-    public const int NavMeshAgent = 26;
-    public const int PositionUpdated = 27;
-    public const int Transform = 28;
-    public const int UpdatePositionAfterSpawning = 29;
-    public const int WorldPosition = 30;
-    public const int Selectable = 31;
-    public const int Selected = 32;
-    public const int SelectedNow = 33;
-    public const int SelectingAnimator = 34;
-    public const int TargetId = 35;
-    public const int Unselected = 36;
-    public const int UnselectPreviouslySelectedRequest = 37;
-    public const int MoveAnimator = 38;
-    public const int Unit = 39;
+    public const int SelfDestructTimer = 2;
+    public const int View = 3;
+    public const int ViewPrefab = 4;
+    public const int Id = 5;
+    public const int CenterPosition = 6;
+    public const int Highlight = 7;
+    public const int RectTransform = 8;
+    public const int Size = 9;
+    public const int EndPosition = 10;
+    public const int InteractionRequest = 11;
+    public const int MousePositionOnScreen = 12;
+    public const int MultipleSelectionRequest = 13;
+    public const int PositionOnScreen = 14;
+    public const int SelectionEnded = 15;
+    public const int SelectionStarted = 16;
+    public const int SingleSelectionRequest = 17;
+    public const int StartPosition = 18;
+    public const int CreatedNow = 19;
+    public const int CurrentAvoidancePriority = 20;
+    public const int Destination = 21;
+    public const int DestructOldMoveIndicatorRequest = 22;
+    public const int Idle = 23;
+    public const int IdleAvoidancePriority = 24;
+    public const int Move = 25;
+    public const int MoveAvoidancePriority = 26;
+    public const int MoveClickIndicator = 27;
+    public const int MoveDirection = 28;
+    public const int MoveRequest = 29;
+    public const int NavMeshAgent = 30;
+    public const int PositionUpdated = 31;
+    public const int Transform = 32;
+    public const int UpdatePositionAfterSpawning = 33;
+    public const int WorldPosition = 34;
+    public const int Selectable = 35;
+    public const int Selected = 36;
+    public const int SelectedNow = 37;
+    public const int SelectingAnimator = 38;
+    public const int TargetId = 39;
+    public const int Unselected = 40;
+    public const int UnselectPreviouslySelectedRequest = 41;
+    public const int MoveAnimator = 42;
+    public const int Unit = 43;
 
-    public const int TotalComponents = 40;
+    public const int TotalComponents = 44;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Processed",
+        "SelfDestructTimer",
         "View",
         "ViewPrefab",
         "Id",
@@ -70,12 +75,15 @@ public static class GameComponentsLookup {
         "SelectionStarted",
         "SingleSelectionRequest",
         "StartPosition",
+        "CreatedNow",
         "CurrentAvoidancePriority",
         "Destination",
+        "DestructOldMoveIndicatorRequest",
         "Idle",
         "IdleAvoidancePriority",
         "Move",
         "MoveAvoidancePriority",
+        "MoveClickIndicator",
         "MoveDirection",
         "MoveRequest",
         "NavMeshAgent",
@@ -97,6 +105,7 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Common.Destructed),
         typeof(Code.Common.Processed),
+        typeof(Code.Common.SelfDestructTimer),
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
@@ -113,12 +122,15 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.SelectionStarted),
         typeof(Code.Gameplay.Features.Input.SingleSelectionRequest),
         typeof(Code.Gameplay.Features.Input.StartPosition),
+        typeof(Code.Gameplay.Features.Move.CreatedNow),
         typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.Destination),
+        typeof(Code.Gameplay.Features.Move.DestructOldMoveIndicatorRequest),
         typeof(Code.Gameplay.Features.Move.Idle),
         typeof(Code.Gameplay.Features.Move.IdleAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.Move),
         typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority),
+        typeof(Code.Gameplay.Features.Move.MoveClickIndicator),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
         typeof(Code.Gameplay.Features.Move.MoveRequest),
         typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent),

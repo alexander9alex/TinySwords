@@ -7,6 +7,8 @@ namespace Code.Gameplay.Features.Destruct
   {
     public ProcessDestructedFeature(ISystemFactory systems)
     {
+      Add(systems.Create<DestructAfterTimeSystem>());
+      
       Add(systems.Create<CleanupDestructedViewSystem>());
       Add(systems.Create<CleanupDestructedSystem>());
     }

@@ -5,6 +5,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Features.Move.Factory;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -73,11 +74,13 @@ namespace Code.Infrastructure.Installers
     {
       Container.Bind<ICurtain>().FromInstance(Curtain).AsSingle();
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
     }
 
     private void BindGameplayFactories()
     {
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
+      Container.Bind<IMoveClickIndicatorFactory>().To<MoveClickIndicatorFactory>().AsSingle();
     }
 
     private void BindGameStates()

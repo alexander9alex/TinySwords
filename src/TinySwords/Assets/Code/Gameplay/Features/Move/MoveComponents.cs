@@ -19,4 +19,8 @@ namespace Code.Gameplay.Features.Move
   [Game] public class CurrentAvoidancePriority : IComponent { public int Value; }
   
   [Game] public class MoveRequest : IComponent { }
+  [Game] public class MoveClickIndicator : IComponent { }
+  [Game] public class CreatedNow : IComponent { }
+  [Game] public class DestructOldMoveIndicatorRequest : IComponent { }
+  
 }
