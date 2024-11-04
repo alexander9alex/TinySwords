@@ -1,5 +1,6 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Code.Gameplay.Features.Input.Systems
         .AllOf(
           GameMatcher.SelectionStarted,
           GameMatcher.PositionOnScreen));
-      
+
       _selectionEnded = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.SelectionEnded,
@@ -28,7 +29,7 @@ namespace Code.Gameplay.Features.Input.Systems
       foreach (GameEntity ended in _selectionEnded)
       foreach (GameEntity started in _selectionStarted)
       {
-        if (Vector2.Distance(started.PositionOnScreen, ended.PositionOnScreen) < float.Epsilon)
+        if (Vector2.Distance(started.PositionOnScreen, ended.PositionOnScreen) < GameConstants.SelectionClickDelta)
         {
           CreateEntity.Empty()
             .With(x => x.isSingleSelectionRequest = true)
