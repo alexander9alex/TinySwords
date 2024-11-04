@@ -28,8 +28,6 @@ namespace Code.Gameplay.Features.Input.Systems
       {
         if (Vector2.Distance(started.PositionOnScreen, mousePos.MousePositionOnScreen) >= GameConstants.SelectionClickDelta)
         {
-          Debug.Log(Vector2.Distance(started.PositionOnScreen, mousePos.MousePositionOnScreen));
-          
           CreateEntity.Empty()
             .With(x => x.isMultipleSelectionRequest = true)
             .AddStartPosition(started.PositionOnScreen)
