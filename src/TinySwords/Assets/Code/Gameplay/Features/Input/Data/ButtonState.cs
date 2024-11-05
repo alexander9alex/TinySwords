@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Features.Input.Services
+﻿namespace Code.Gameplay.Features.Input.Data
 {
   public enum ButtonState
   {
