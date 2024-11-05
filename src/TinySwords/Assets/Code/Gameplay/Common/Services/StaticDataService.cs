@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
 
-namespace Code.Gameplay.Services
+namespace Code.Gameplay.Common.Services
 {
   class StaticDataService : IStaticDataService
   {
@@ -22,8 +23,8 @@ namespace Code.Gameplay.Services
     public EntityBehaviour GetHighlightViewPrefab() =>
       Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
 
-    public EntityBehaviour GetMoveIndicatorPrefab() =>
-      Resources.Load<EntityBehaviour>("Game/MoveIndicator/MoveIndicator");
+    public MoveClickIndicatorConfig GetMoveClickIndicatorConfig() =>
+      Resources.Load<MoveClickIndicatorConfig>("Configs/MoveClickIndicator/MoveClickIndicatorConfig");
 
     private void LoadUnitConfigs()
     {

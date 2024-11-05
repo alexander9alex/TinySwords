@@ -1,7 +1,8 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Services;
-using Code.Infrastructure.Views;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Move.Factory
@@ -15,11 +16,12 @@ namespace Code.Gameplay.Features.Move.Factory
 
     public GameEntity CreateMoveIndicator(Vector3 pos)
     {
-      EntityBehaviour moveIndicatorPrefab = _staticData.GetMoveIndicatorPrefab();
+      MoveClickIndicatorConfig config = _staticData.GetMoveClickIndicatorConfig();
 
       return CreateEntity.Empty()
-        .AddViewPrefab(moveIndicatorPrefab)
+        .AddViewPrefab(config.IndicatorPrefab)
         .AddWorldPosition(pos.RemoveZ())
+        .AddSelfDestructTimer(config.IndicatorShowTime)
         .With(x => x.isMoveClickIndicator = true)
         .With(x => x.isUpdatePositionAfterSpawning = true);
     }

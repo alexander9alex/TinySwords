@@ -31,7 +31,6 @@ namespace Code.Gameplay.Features.Move.Systems
         GameEntity moveIndicator = _moveClickIndicatorFactory.CreateMoveIndicator(_cameraProvider.MainCamera.ScreenToWorldPoint(request.PositionOnScreen));
         
         moveIndicator
-            .AddSelfDestructTimer(IndicatorShowTime)
             .isCreatedNow = true;
 
         CreateEntity.Empty()
