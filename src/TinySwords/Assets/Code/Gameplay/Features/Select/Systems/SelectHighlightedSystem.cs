@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Select.Data;
 using Entitas;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ namespace Code.Gameplay.Features.Select.Systems
     private readonly ICameraProvider _cameraProvider;
 
     private readonly IGroup<GameEntity> _highlights;
-    private readonly int _layerMask = 1 << LayerMask.NameToLayer("Unit");
 
     public SelectHighlightedSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
@@ -44,7 +44,7 @@ namespace Code.Gameplay.Features.Select.Systems
       return _physicsService.BoxCast(
         _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),
         highlight.Size / PixelsPerUnit,
-        _layerMask);
+        SelectionData.SelectionLayerMask);
     }
   }
 }

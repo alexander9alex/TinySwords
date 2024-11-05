@@ -4,6 +4,7 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Select.Data;
 using Entitas;
 using UnityEngine;
 
@@ -19,9 +20,7 @@ namespace Code.Gameplay.Features.Select.Systems
     private readonly IGroup<GameEntity> _singleSelectionRequests;
     private readonly IGroup<GameEntity> _mousePositions;
     private readonly List<GameEntity> _buffer = new(1);
-
-    private readonly int _layerMask = 1 << LayerMask.NameToLayer("Unit");
-
+    
     public ProcessSingleSelectionSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
       _physicsService = physicsService;
@@ -39,11 +38,11 @@ namespace Code.Gameplay.Features.Select.Systems
       foreach (GameEntity request in _singleSelectionRequests.GetEntities(_buffer))
       foreach (GameEntity mousePosition in _mousePositions)
       {
-        List<GameEntity> selectalbeEntities = GetSelectableEntitiesFromPosition(mousePosition.MousePositionOnScreen);
+        List<GameEntity> selectableEntities = GetSelectableEntitiesFromPosition(mousePosition.MousePositionOnScreen);
 
-        if (selectalbeEntities.Count > 0)
+        if (selectableEntities.Count > 0)
         {
-          SelectEntity(selectalbeEntities.First());
+          SelectEntity(selectableEntities.First());
 
           request.isProcessed = true;
         }
@@ -64,8 +63,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       return _physicsService.CircleCast(
           _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
-          ClickRadius,
-          _layerMask)
+          ClickRadius, SelectionData.SelectionLayerMask)
         .Where(entity => entity.isSelectable)
         .Where(entity => entity.hasTransform)
         .OrderBy(entity => entity.Transform.position.y)
