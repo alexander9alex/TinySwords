@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Move.Systems
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected));
+        .AllOf(GameMatcher.Selected, GameMatcher.Movable));
     }
 
     public void Execute()

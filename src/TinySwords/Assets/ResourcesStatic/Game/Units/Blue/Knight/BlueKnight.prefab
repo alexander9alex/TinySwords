@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 4549486574946373586}
   SpriteRenderer: {fileID: 6763967789457780471}
-  SelectingCircle: {fileID: 0}
+  SelectingCircle: {fileID: 6087336141347869145}
 --- !u!114 &143435494583332122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +386,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}
+--- !u!1 &6087336141347869145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3521203067313371829, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}
+  m_PrefabInstance: {fileID: 7252867427385830252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8201827767557434432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1546391194742245164, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}

@@ -4,7 +4,7 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
-using Code.Gameplay.Features.Select.Data;
+using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
@@ -12,8 +12,6 @@ namespace Code.Gameplay.Features.Select.Systems
 {
   public class ProcessSingleSelectionSystem : IExecuteSystem
   {
-    private const float ClickRadius = 0.01f;
-
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
 
@@ -63,7 +61,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       return _physicsService.CircleCast(
           _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
-          ClickRadius, SelectionData.SelectionLayerMask)
+          GameConstants.ClickRadius, GameConstants.SelectionLayerMask)
         .Where(entity => entity.isSelectable)
         .Where(entity => entity.hasTransform)
         .OrderBy(entity => entity.Transform.position.y)

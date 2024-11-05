@@ -29,33 +29,38 @@ public static class GameComponentsLookup {
     public const int SelectionStarted = 18;
     public const int SingleSelectionRequest = 19;
     public const int StartPosition = 20;
-    public const int CreatedNow = 21;
-    public const int CurrentAvoidancePriority = 22;
-    public const int Destination = 23;
-    public const int DestructOldMoveIndicatorRequest = 24;
-    public const int Idle = 25;
-    public const int IdleAvoidancePriority = 26;
-    public const int Move = 27;
-    public const int MoveAvoidancePriority = 28;
-    public const int MoveClickIndicator = 29;
-    public const int MoveDirection = 30;
-    public const int MoveRequest = 31;
-    public const int NavMeshAgent = 32;
-    public const int PositionUpdated = 33;
-    public const int Transform = 34;
-    public const int UpdatePositionAfterSpawning = 35;
-    public const int WorldPosition = 36;
-    public const int Selectable = 37;
-    public const int Selected = 38;
-    public const int SelectedNow = 39;
-    public const int SelectingAnimator = 40;
-    public const int TargetId = 41;
-    public const int Unselected = 42;
-    public const int UnselectPreviouslySelectedRequest = 43;
-    public const int MoveAnimator = 44;
-    public const int Unit = 45;
+    public const int Interactable = 21;
+    public const int InteractWithBuildingRequest = 22;
+    public const int InteractWithUnitRequest = 23;
+    public const int PickedForInteraction = 24;
+    public const int TargetId = 25;
+    public const int CreatedNow = 26;
+    public const int CurrentAvoidancePriority = 27;
+    public const int Destination = 28;
+    public const int DestructOldMoveIndicatorRequest = 29;
+    public const int Idle = 30;
+    public const int IdleAvoidancePriority = 31;
+    public const int Movable = 32;
+    public const int Move = 33;
+    public const int MoveAvoidancePriority = 34;
+    public const int MoveClickIndicator = 35;
+    public const int MoveDirection = 36;
+    public const int MoveRequest = 37;
+    public const int NavMeshAgent = 38;
+    public const int PositionUpdated = 39;
+    public const int Transform = 40;
+    public const int UpdatePositionAfterSpawning = 41;
+    public const int WorldPosition = 42;
+    public const int Selectable = 43;
+    public const int Selected = 44;
+    public const int SelectedNow = 45;
+    public const int SelectingAnimator = 46;
+    public const int Unselected = 47;
+    public const int UnselectPreviouslySelectedRequest = 48;
+    public const int MoveAnimator = 49;
+    public const int Unit = 50;
 
-    public const int TotalComponents = 46;
+    public const int TotalComponents = 51;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -79,12 +84,18 @@ public static class GameComponentsLookup {
         "SelectionStarted",
         "SingleSelectionRequest",
         "StartPosition",
+        "Interactable",
+        "InteractWithBuildingRequest",
+        "InteractWithUnitRequest",
+        "PickedForInteraction",
+        "TargetId",
         "CreatedNow",
         "CurrentAvoidancePriority",
         "Destination",
         "DestructOldMoveIndicatorRequest",
         "Idle",
         "IdleAvoidancePriority",
+        "Movable",
         "Move",
         "MoveAvoidancePriority",
         "MoveClickIndicator",
@@ -99,7 +110,6 @@ public static class GameComponentsLookup {
         "Selected",
         "SelectedNow",
         "SelectingAnimator",
-        "TargetId",
         "Unselected",
         "UnselectPreviouslySelectedRequest",
         "MoveAnimator",
@@ -128,12 +138,18 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.SelectionStarted),
         typeof(Code.Gameplay.Features.Input.SingleSelectionRequest),
         typeof(Code.Gameplay.Features.Input.StartPosition),
+        typeof(Code.Gameplay.Features.Interact.Interactable),
+        typeof(Code.Gameplay.Features.Interact.InteractWithBuildingRequest),
+        typeof(Code.Gameplay.Features.Interact.InteractWithUnitRequest),
+        typeof(Code.Gameplay.Features.Interact.PickedForInteraction),
+        typeof(Code.Gameplay.Features.Interact.TargetId),
         typeof(Code.Gameplay.Features.Move.CreatedNow),
         typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.Destination),
         typeof(Code.Gameplay.Features.Move.DestructOldMoveIndicatorRequest),
         typeof(Code.Gameplay.Features.Move.Idle),
         typeof(Code.Gameplay.Features.Move.IdleAvoidancePriority),
+        typeof(Code.Gameplay.Features.Move.Movable),
         typeof(Code.Gameplay.Features.Move.Move),
         typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority),
         typeof(Code.Gameplay.Features.Move.MoveClickIndicator),
@@ -148,7 +164,6 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedNow),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator),
-        typeof(Code.Gameplay.Features.Select.SelectComponents.TargetId),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
         typeof(Code.Gameplay.Features.Units.MoveAnimator),

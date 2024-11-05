@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Features.Units.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -22,9 +23,10 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ICameraProvider _cameraProvider;
     private readonly IInputService _inputService;
     private readonly IBuildingFactory _buildingFactory;
+    private readonly IUnitFactory _unitFactory;
 
     public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
-      IInputService inputService, IBuildingFactory buildingFactory)
+      IInputService inputService, IBuildingFactory buildingFactory, IUnitFactory unitFactory)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
@@ -32,6 +34,7 @@ namespace Code.Infrastructure.States.GameStates
       _cameraProvider = cameraProvider;
       _inputService = inputService;
       _buildingFactory = buildingFactory;
+      _unitFactory = unitFactory;
     }
 
     public override void Enter() =>
@@ -43,6 +46,11 @@ namespace Code.Infrastructure.States.GameStates
       _inputService.ChangeInputMap(InputMap.Game);
 
       _buildingFactory.CreateBuilding(BuildingTypeId.Castle, TeamColor.Blue, new Vector3(0, 0));
+
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, 2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, 2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, -2));
 
       _gameStateMachine.Enter<GameLoopState>();
     }

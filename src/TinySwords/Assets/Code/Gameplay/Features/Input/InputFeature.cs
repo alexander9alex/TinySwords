@@ -10,10 +10,6 @@ namespace Code.Gameplay.Features.Input
       Add(systems.Create<CreateSingleSelectionRequestSystem>());
       Add(systems.Create<CreateMultipleSelectionRequestSystem>());
       
-      Add(systems.Create<CreateMoveRequestSystem>());
-      
-      Add(systems.Create<CleanupInteractRequestSystem>());
-
       Add(systems.Create<CleanupMousePositionSystem>());
 
       Add(systems.Create<CleanupSingleSelectionRequestSystem>());

@@ -10,7 +10,6 @@ namespace Code.Gameplay.Features.Select
     [Game] public class SelectedNow : IComponent { }
     [Game] public class Selectable : IComponent { }
     [Game] public class UnselectPreviouslySelectedRequest : IComponent { }
-    [Game] public class TargetId : IComponent { public int Value; }
     [Game] public class SelectingAnimator : IComponent { public ISelectingAnimator Value; }
   }
 }

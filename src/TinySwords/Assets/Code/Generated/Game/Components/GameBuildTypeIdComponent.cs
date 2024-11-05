@@ -34,7 +34,7 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.Build.BuildTypeIdComponent buildTypeId { get { return (Code.Gameplay.Features.Build.BuildTypeIdComponent)GetComponent(GameComponentsLookup.BuildTypeId); } }
-    public Code.Gameplay.Features.Build.Data.BuildingTypeId BuildingTypeId { get { return buildTypeId.Value; } }
+    public Code.Gameplay.Features.Build.Data.BuildingTypeId BuildTypeId { get { return buildTypeId.Value; } }
     public bool hasBuildTypeId { get { return HasComponent(GameComponentsLookup.BuildTypeId); } }
 
     public GameEntity AddBuildTypeId(Code.Gameplay.Features.Build.Data.BuildingTypeId newValue) {

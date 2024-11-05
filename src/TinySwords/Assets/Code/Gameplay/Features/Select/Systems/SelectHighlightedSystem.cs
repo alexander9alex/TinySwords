@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
-using Code.Gameplay.Features.Select.Data;
+using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
@@ -44,7 +44,7 @@ namespace Code.Gameplay.Features.Select.Systems
       return _physicsService.BoxCast(
         _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),
         highlight.Size / PixelsPerUnit,
-        SelectionData.SelectionLayerMask);
+        GameConstants.SelectionLayerMask);
     }
   }
 }

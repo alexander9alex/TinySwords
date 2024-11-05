@@ -30,8 +30,10 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddMoveDirection(Vector2.zero)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
+        .With(x => x.isInteractable = true)
         .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)
+        .With(x => x.isMovable = true)
         ;
     }
   }
