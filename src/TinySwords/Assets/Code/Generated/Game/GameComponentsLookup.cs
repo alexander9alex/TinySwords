@@ -14,46 +14,48 @@ public static class GameComponentsLookup {
     public const int View = 3;
     public const int ViewPrefab = 4;
     public const int Id = 5;
-    public const int CenterPosition = 6;
-    public const int Highlight = 7;
-    public const int RectTransform = 8;
-    public const int Size = 9;
-    public const int EndPosition = 10;
-    public const int InteractionRequest = 11;
-    public const int MousePositionOnScreen = 12;
-    public const int MultipleSelectionRequest = 13;
-    public const int PositionOnScreen = 14;
-    public const int SelectionEnded = 15;
-    public const int SelectionStarted = 16;
-    public const int SingleSelectionRequest = 17;
-    public const int StartPosition = 18;
-    public const int CreatedNow = 19;
-    public const int CurrentAvoidancePriority = 20;
-    public const int Destination = 21;
-    public const int DestructOldMoveIndicatorRequest = 22;
-    public const int Idle = 23;
-    public const int IdleAvoidancePriority = 24;
-    public const int Move = 25;
-    public const int MoveAvoidancePriority = 26;
-    public const int MoveClickIndicator = 27;
-    public const int MoveDirection = 28;
-    public const int MoveRequest = 29;
-    public const int NavMeshAgent = 30;
-    public const int PositionUpdated = 31;
-    public const int Transform = 32;
-    public const int UpdatePositionAfterSpawning = 33;
-    public const int WorldPosition = 34;
-    public const int Selectable = 35;
-    public const int Selected = 36;
-    public const int SelectedNow = 37;
-    public const int SelectingAnimator = 38;
-    public const int TargetId = 39;
-    public const int Unselected = 40;
-    public const int UnselectPreviouslySelectedRequest = 41;
-    public const int MoveAnimator = 42;
-    public const int Unit = 43;
+    public const int Building = 6;
+    public const int BuildTypeId = 7;
+    public const int CenterPosition = 8;
+    public const int Highlight = 9;
+    public const int RectTransform = 10;
+    public const int Size = 11;
+    public const int EndPosition = 12;
+    public const int InteractionRequest = 13;
+    public const int MousePositionOnScreen = 14;
+    public const int MultipleSelectionRequest = 15;
+    public const int PositionOnScreen = 16;
+    public const int SelectionEnded = 17;
+    public const int SelectionStarted = 18;
+    public const int SingleSelectionRequest = 19;
+    public const int StartPosition = 20;
+    public const int CreatedNow = 21;
+    public const int CurrentAvoidancePriority = 22;
+    public const int Destination = 23;
+    public const int DestructOldMoveIndicatorRequest = 24;
+    public const int Idle = 25;
+    public const int IdleAvoidancePriority = 26;
+    public const int Move = 27;
+    public const int MoveAvoidancePriority = 28;
+    public const int MoveClickIndicator = 29;
+    public const int MoveDirection = 30;
+    public const int MoveRequest = 31;
+    public const int NavMeshAgent = 32;
+    public const int PositionUpdated = 33;
+    public const int Transform = 34;
+    public const int UpdatePositionAfterSpawning = 35;
+    public const int WorldPosition = 36;
+    public const int Selectable = 37;
+    public const int Selected = 38;
+    public const int SelectedNow = 39;
+    public const int SelectingAnimator = 40;
+    public const int TargetId = 41;
+    public const int Unselected = 42;
+    public const int UnselectPreviouslySelectedRequest = 43;
+    public const int MoveAnimator = 44;
+    public const int Unit = 45;
 
-    public const int TotalComponents = 44;
+    public const int TotalComponents = 46;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -62,6 +64,8 @@ public static class GameComponentsLookup {
         "View",
         "ViewPrefab",
         "Id",
+        "Building",
+        "BuildTypeId",
         "CenterPosition",
         "Highlight",
         "RectTransform",
@@ -109,6 +113,8 @@ public static class GameComponentsLookup {
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Gameplay.Features.Build.Building),
+        typeof(Code.Gameplay.Features.Build.BuildTypeIdComponent),
         typeof(Code.Gameplay.Features.Highlight.CenterPosition),
         typeof(Code.Gameplay.Features.Highlight.Highlight),
         typeof(Code.Gameplay.Features.Highlight.RectTransformComponent),

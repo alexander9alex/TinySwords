@@ -1,9 +1,10 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Build.Data;
+using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Data;
-using Code.Gameplay.Features.Units.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -18,19 +19,19 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ICurtain _curtain;
     private readonly ISceneLoader _sceneLoader;
     private readonly IGameStateMachine _gameStateMachine;
-    private readonly IUnitFactory _unitFactory;
     private readonly ICameraProvider _cameraProvider;
     private readonly IInputService _inputService;
+    private readonly IBuildingFactory _buildingFactory;
 
-    public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, IUnitFactory unitFactory,
-      ICameraProvider cameraProvider, IInputService inputService)
+    public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
+      IInputService inputService, IBuildingFactory buildingFactory)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
       _gameStateMachine = gameStateMachine;
-      _unitFactory = unitFactory;
       _cameraProvider = cameraProvider;
       _inputService = inputService;
+      _buildingFactory = buildingFactory;
     }
 
     public override void Enter() =>
@@ -40,10 +41,8 @@ namespace Code.Infrastructure.States.GameStates
     {
       _cameraProvider.SetMainCamera(Camera.main);
       _inputService.ChangeInputMap(InputMap.Game);
-        
-      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(-1, 0));
-      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(1, 0));
-      _unitFactory.CreateUnit(UnitTypeId.Knight, UnitColor.Blue, new Vector3(0, 1));
+
+      _buildingFactory.CreateBuilding(BuildingTypeId.Castle, TeamColor.Blue, new Vector3(0, 0));
 
       _gameStateMachine.Enter<GameLoopState>();
     }

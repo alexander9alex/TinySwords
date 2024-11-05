@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Units.Factory
       _identifiers = identifiers;
     }
 
-    public void CreateUnit(UnitTypeId type, UnitColor color, Vector3 pos)
+    public void CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos)
     {
       UnitConfig unitConfig = _staticDataService.GetUnitConfig(type, color);
       CreateEntity.Empty()
@@ -33,7 +33,6 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)
         ;
-
     }
   }
 }

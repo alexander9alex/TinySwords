@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 496868340355832354}
   - component: {fileID: 8158022113453314696}
   - component: {fileID: 7240923510066802841}
+  - component: {fileID: 4969136736495787735}
   m_Layer: 11
   m_Name: BlueCastle
   m_TagString: Untagged
@@ -260,3 +261,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123557e73f1740f3bf6947069c033851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4969136736495787735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570030486685499455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dcdd84e28f4ee2953387ead2da432e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityBehaviour: {fileID: 7240923510066802841}

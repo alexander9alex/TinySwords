@@ -4,6 +4,7 @@ using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Move.Factory;
@@ -82,6 +83,7 @@ namespace Code.Infrastructure.Installers
     {
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
       Container.Bind<IMoveClickIndicatorFactory>().To<MoveClickIndicatorFactory>().AsSingle();
+      Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
     }
 
     private void BindGameStates()

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe8e75129e4413fafe7683eda9b5946, type: 3}
+  m_Name: BlueCastleConfig
+  m_EditorClassIdentifier: 
+  Color: 1
+  CastlePrefab: {fileID: 7240923510066802841, guid: dece7db882f71bd48bd9bd6c055260de, type: 3}
+  MaxHp: 100

@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.Units.Configs
   public class UnitConfig : ScriptableObject
   {
     public UnitTypeId TypeId;
-    public UnitColor Color;
+    public TeamColor Color;
 
     [Header("Unit Setup")]
     public EntityBehaviour UnitPrefab;

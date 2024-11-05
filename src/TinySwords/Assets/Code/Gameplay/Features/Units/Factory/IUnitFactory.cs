@@ -5,6 +5,6 @@ namespace Code.Gameplay.Features.Units.Factory
 {
   public interface IUnitFactory
   {
-    void CreateUnit(UnitTypeId type, UnitColor color, Vector3 pos);
+    void CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos);
   }
 }

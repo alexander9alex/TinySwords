@@ -1,6 +1,6 @@
 ﻿namespace Code.Gameplay.Features.Units.Data
 {
-  public enum UnitColor
+  public enum TeamColor
   {
     Unknown = 0,
     Blue = 1,
