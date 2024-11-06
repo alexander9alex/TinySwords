@@ -7,7 +7,6 @@ namespace Code.Gameplay.Features.Move
   {
     public MoveFeature(ISystemFactory systems)
     {
-      Add(systems.Create<UpdateTransformAfterSpawningSystem>());
       Add(systems.Create<TurnOnNavMeshAgentAfterTransformUpdatingSystem>());
 
       Add(systems.Create<ProcessMoveRequestSystem>());

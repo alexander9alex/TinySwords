@@ -9,6 +9,7 @@ using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Move.Factory;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Factory;
@@ -77,6 +78,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ICurtain>().FromInstance(Curtain).AsSingle();
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+      Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
     }
 
     private void BindGameplayFactories()

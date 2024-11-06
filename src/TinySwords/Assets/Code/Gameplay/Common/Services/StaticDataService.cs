@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
 using UnityEngine;
 
@@ -13,11 +14,13 @@ namespace Code.Gameplay.Common.Services
   {
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
+    private List<LevelConfig> _levelConfigs;
 
     public void LoadAll()
     {
       LoadUnitConfigs();
       LoadCastleConfigs();
+      LoadLevelConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -32,6 +35,12 @@ namespace Code.Gameplay.Common.Services
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];
 
+    public LevelConfig GetLevelConfig() =>
+      _levelConfigs[0];
+
+    public EntityBehaviour GetNavMeshPrefab() =>
+      Resources.Load<EntityBehaviour>("Game/NavMesh/NavMesh");
+
     private void LoadUnitConfigs()
     {
       _unitConfigByTypeAndColor = Resources
@@ -44,6 +53,13 @@ namespace Code.Gameplay.Common.Services
       _castleConfigByColor = Resources
         .LoadAll<CastleConfig>("Configs/Castles")
         .ToDictionary(x => x.Color, x => x);
+    }
+
+    private void LoadLevelConfigs()
+    {
+      _levelConfigs = Resources
+        .LoadAll<LevelConfig>("Configs/Levels")
+        .ToList();
     }
   }
 }

@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
 
 namespace Code.Gameplay.Common.Services
@@ -13,5 +14,7 @@ namespace Code.Gameplay.Common.Services
     EntityBehaviour GetHighlightViewPrefab();
     MoveClickIndicatorConfig GetMoveClickIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
+    LevelConfig GetLevelConfig();
+    EntityBehaviour GetNavMeshPrefab();
   }
 }

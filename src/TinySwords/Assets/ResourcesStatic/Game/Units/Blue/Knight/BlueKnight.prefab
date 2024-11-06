@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 3755063440252525448}
   - component: {fileID: 8752529674717942869}
   - component: {fileID: -7218152853136370546}
+  - component: {fileID: 8339995057775743882}
+  - component: {fileID: 1400087004846229561}
   - component: {fileID: 4031696372157677748}
   - component: {fileID: 2810683365945737114}
   - component: {fileID: 9178764250356365506}
   - component: {fileID: 4847912186616274848}
-  - component: {fileID: 143435494583332122}
   - component: {fileID: 1765808273595722036}
-  - component: {fileID: 1400087004846229561}
   m_Layer: 10
   m_Name: BlueKnight
   m_TagString: Untagged
@@ -100,6 +100,45 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8339995057775743882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062871423326038689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1400087004846229561
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062871423326038689}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &4031696372157677748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,18 +193,6 @@ MonoBehaviour:
   Animator: {fileID: 4549486574946373586}
   SpriteRenderer: {fileID: 6763967789457780471}
   SelectingCircle: {fileID: 6087336141347869145}
---- !u!114 &143435494583332122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062871423326038689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaf8f9852d041e580fdc9cc3800c805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1765808273595722036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,33 +208,6 @@ MonoBehaviour:
   EntityBehaviour: {fileID: 4031696372157677748}
   NavMeshAgent: {fileID: -7218152853136370546}
   MoveAvoidancePriority: 35
---- !u!50 &1400087004846229561
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062871423326038689}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &6602827645550739253
 GameObject:
   m_ObjectHideFlags: 0

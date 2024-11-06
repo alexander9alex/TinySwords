@@ -42,10 +42,10 @@ namespace Code.Gameplay.Common.Curtain
 
       while (CurtainImage.color != endColor)
       {
-        timer += Time.deltaTime;
-
         CurtainImage.color = NextColor(startColor, endColor, timer);
         yield return null;
+        
+        timer += Time.deltaTime;
       }
       
       onEnded?.Invoke();

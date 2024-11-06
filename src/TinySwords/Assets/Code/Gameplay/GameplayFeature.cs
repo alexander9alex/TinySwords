@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Interact;
 using Code.Gameplay.Features.Move;
+using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
@@ -24,6 +25,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
+      Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());
