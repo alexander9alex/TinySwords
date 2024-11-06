@@ -51,23 +51,25 @@ public static class GameComponentsLookup {
     public const int Transform = 40;
     public const int UpdatePositionAfterSpawning = 41;
     public const int WorldPosition = 42;
-    public const int BuildNavMeshAtStart = 43;
-    public const int NavMesh = 44;
-    public const int NavMeshCollectSourcesCache = 45;
-    public const int NavMeshCollectSources = 46;
-    public const int NavMeshRootSources = 47;
-    public const int NavMeshSurface = 48;
-    public const int NotAddedNavMeshRootSource = 49;
-    public const int Selectable = 50;
-    public const int Selected = 51;
-    public const int SelectedNow = 52;
-    public const int SelectingAnimator = 53;
-    public const int Unselected = 54;
-    public const int UnselectPreviouslySelectedRequest = 55;
-    public const int MoveAnimator = 56;
-    public const int Unit = 57;
+    public const int AddToNavMeshCachedSources = 43;
+    public const int BuildNavMeshAtStart = 44;
+    public const int NavMesh = 45;
+    public const int NavMeshCollectSourcesCache = 46;
+    public const int NavMeshCollectSources = 47;
+    public const int NavMeshRootSources = 48;
+    public const int NavMeshSurface = 49;
+    public const int NotAddedNavMeshRootSource = 50;
+    public const int UpdateNavMesh = 51;
+    public const int Selectable = 52;
+    public const int Selected = 53;
+    public const int SelectedNow = 54;
+    public const int SelectingAnimator = 55;
+    public const int Unselected = 56;
+    public const int UnselectPreviouslySelectedRequest = 57;
+    public const int MoveAnimator = 58;
+    public const int Unit = 59;
 
-    public const int TotalComponents = 58;
+    public const int TotalComponents = 60;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -113,6 +115,7 @@ public static class GameComponentsLookup {
         "Transform",
         "UpdatePositionAfterSpawning",
         "WorldPosition",
+        "AddToNavMeshCachedSources",
         "BuildNavMeshAtStart",
         "NavMesh",
         "NavMeshCollectSourcesCache",
@@ -120,6 +123,7 @@ public static class GameComponentsLookup {
         "NavMeshRootSources",
         "NavMeshSurface",
         "NotAddedNavMeshRootSource",
+        "UpdateNavMesh",
         "Selectable",
         "Selected",
         "SelectedNow",
@@ -174,6 +178,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.TransformComponent),
         typeof(Code.Gameplay.Features.Move.UpdatePositionAfterSpawning),
         typeof(Code.Gameplay.Features.Move.WorldPosition),
+        typeof(Code.Gameplay.Features.NavMesh.AddToNavMeshCachedSources),
         typeof(Code.Gameplay.Features.NavMesh.BuildNavMeshAtStart),
         typeof(Code.Gameplay.Features.NavMesh.NavMesh),
         typeof(Code.Gameplay.Features.NavMesh.NavMeshCollectSourcesCacheComponent),
@@ -181,6 +186,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.NavMesh.NavMeshRootSourcesComponent),
         typeof(Code.Gameplay.Features.NavMesh.NavMeshSurfaceComponent),
         typeof(Code.Gameplay.Features.NavMesh.NotAddedNavMeshRootSource),
+        typeof(Code.Gameplay.Features.NavMesh.UpdateNavMesh),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedNow),

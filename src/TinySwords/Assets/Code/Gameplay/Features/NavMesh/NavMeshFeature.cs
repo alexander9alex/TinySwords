@@ -7,8 +7,13 @@ namespace Code.Gameplay.Features.NavMesh
   {
     public NavMeshFeature(ISystemFactory systems)
     {
-      Add(systems.Create<AddRootSourcesToNavMeshSystem>());
+      Add(systems.Create<AddRootSourceToNavMeshSystem>());
+      
       Add(systems.Create<BuildNavMeshAtStartSystem>());
+
+      Add(systems.Create<AddSourceToNavMeshCachedSourcesSystem>());
+      
+      Add(systems.Create<UpdateNavMeshSystem>());
     }
   }
 }

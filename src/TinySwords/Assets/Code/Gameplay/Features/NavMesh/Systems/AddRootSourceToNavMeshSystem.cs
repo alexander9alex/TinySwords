@@ -1,19 +1,17 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Entitas;
 
 namespace Code.Gameplay.Features.NavMesh.Systems
 {
-  public class AddRootSourcesToNavMeshSystem : IExecuteSystem
+  public class AddRootSourceToNavMeshSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _navMeshRootSources;
     private readonly IGroup<GameEntity> _notAddedRootSources;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public AddRootSourcesToNavMeshSystem(GameContext game)
+    public AddRootSourceToNavMeshSystem(GameContext game)
     {
-      _navMeshRootSources = game.GetGroup(GameMatcher.NavMeshRootSources);
+      _navMeshRootSources = game.GetGroup(GameMatcher.AllOf(GameMatcher.NavMeshRootSources, GameMatcher.NavMeshCollectSourcesCache));
       _notAddedRootSources = game.GetGroup(GameMatcher.AllOf(GameMatcher.NotAddedNavMeshRootSource, GameMatcher.View));
     }
 
@@ -23,10 +21,7 @@ namespace Code.Gameplay.Features.NavMesh.Systems
       foreach (GameEntity navMesh in _navMeshRootSources)
       {
         navMesh.NavMeshRootSources.RootSources.Add(rootSource.View.gameObject);
-
-        CreateEntity.Empty()
-          .With(x => x.isBuildNavMeshAtStart = true);
-
+        
         rootSource.isNotAddedNavMeshRootSource = false;
       }
     }

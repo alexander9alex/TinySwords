@@ -49,6 +49,8 @@ namespace Code.Gameplay.Features.Build.Factory
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)
+        .With(x => x.isNotAddedNavMeshRootSource = true)
+        .With(x => x.isAddToNavMeshCachedSources = true)
         ;
     }
   }

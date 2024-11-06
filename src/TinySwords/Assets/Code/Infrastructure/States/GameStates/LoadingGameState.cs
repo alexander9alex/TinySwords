@@ -48,6 +48,8 @@ namespace Code.Infrastructure.States.GameStates
       _cameraProvider.SetMainCamera(Camera.main);
       _inputService.ChangeInputMap(InputMap.Game);
 
+      _levelFactory.CreateLevel();
+      
       _buildingFactory.CreateBuilding(BuildingTypeId.Castle, TeamColor.Blue, new Vector3(0, 0));
 
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, 2));
@@ -55,7 +57,6 @@ namespace Code.Infrastructure.States.GameStates
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, -2));
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, -2));
 
-      _levelFactory.CreateLevel();
       
       _gameStateMachine.Enter<GameLoopState>();
     }

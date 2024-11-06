@@ -10,6 +10,8 @@ namespace Code.Gameplay.Features.NavMesh
   [Game] public class NavMeshRootSourcesComponent : IComponent { public RootSources2d Value; }
   [Game] public class NavMeshCollectSourcesComponent : IComponent { public CollectSources2d Value; }
   [Game] public class BuildNavMeshAtStart : IComponent { }
+  [Game] public class UpdateNavMesh : IComponent { }
   [Game] public class NotAddedNavMeshRootSource : IComponent { }
+  [Game] public class AddToNavMeshCachedSources : IComponent { }
   
 }

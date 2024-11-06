@@ -25,6 +25,9 @@ namespace Code.Gameplay.Level.Factory
         .AddWorldPosition(Vector3.zero)
         .With(x => x.isUpdatePositionAfterSpawning = true)
         .With(x => x.isNotAddedNavMeshRootSource = true);
+      
+      CreateEntity.Empty()
+        .With(x => x.isBuildNavMeshAtStart = true);
     }
   }
 }
