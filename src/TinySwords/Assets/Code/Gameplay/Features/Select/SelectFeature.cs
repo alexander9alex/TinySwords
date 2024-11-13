@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Select
       Add(systems.Create<SelectHighlightedSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
-      Add(systems.Create<UnselectIfSingleSelectionNotProcessedSystem>());
+      // Add(systems.Create<UnselectIfSingleSelectionNotProcessedSystem>());
 
       Add(systems.Create<AnimateSelectingSystem>());
       Add(systems.Create<AnimateUnselectingSystem>());

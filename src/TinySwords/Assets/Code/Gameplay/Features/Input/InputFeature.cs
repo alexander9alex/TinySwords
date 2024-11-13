@@ -7,6 +7,9 @@ namespace Code.Gameplay.Features.Input
   {
     public InputFeature(ISystemFactory systems)
     {
+      Add(systems.Create<CreateHighlightRequestSystem>());
+      Add(systems.Create<UpdateHighlightRequestSystem>());
+      
       Add(systems.Create<CreateSingleSelectionRequestSystem>());
       Add(systems.Create<CreateMultipleSelectionRequestSystem>());
       

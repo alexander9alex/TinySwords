@@ -17,59 +17,61 @@ public static class GameComponentsLookup {
     public const int Building = 6;
     public const int BuildTypeId = 7;
     public const int CenterPosition = 8;
-    public const int Highlight = 9;
-    public const int RectTransform = 10;
-    public const int Size = 11;
-    public const int EndPosition = 12;
-    public const int InteractionRequest = 13;
-    public const int MousePositionOnScreen = 14;
-    public const int MultipleSelectionRequest = 15;
-    public const int PositionOnScreen = 16;
-    public const int SelectionEnded = 17;
-    public const int SelectionStarted = 18;
-    public const int SingleSelectionRequest = 19;
-    public const int StartPosition = 20;
-    public const int Interactable = 21;
-    public const int InteractWithBuildingRequest = 22;
-    public const int InteractWithUnitRequest = 23;
-    public const int PickedForInteraction = 24;
-    public const int TargetId = 25;
-    public const int CreatedNow = 26;
-    public const int CurrentAvoidancePriority = 27;
-    public const int Destination = 28;
-    public const int DestructOldMoveIndicatorRequest = 29;
-    public const int Idle = 30;
-    public const int IdleAvoidancePriority = 31;
-    public const int Movable = 32;
-    public const int Move = 33;
-    public const int MoveAvoidancePriority = 34;
-    public const int MoveClickIndicator = 35;
-    public const int MoveDirection = 36;
-    public const int MoveRequest = 37;
-    public const int NavMeshAgent = 38;
-    public const int PositionUpdated = 39;
-    public const int Transform = 40;
-    public const int UpdatePositionAfterSpawning = 41;
-    public const int WorldPosition = 42;
-    public const int AddToNavMeshCachedSources = 43;
-    public const int BuildNavMeshAtStart = 44;
-    public const int NavMesh = 45;
-    public const int NavMeshCollectSourcesCache = 46;
-    public const int NavMeshCollectSources = 47;
-    public const int NavMeshRootSources = 48;
-    public const int NavMeshSurface = 49;
-    public const int NotAddedNavMeshRootSource = 50;
-    public const int UpdateNavMesh = 51;
-    public const int Selectable = 52;
-    public const int Selected = 53;
-    public const int SelectedNow = 54;
-    public const int SelectingAnimator = 55;
-    public const int Unselected = 56;
-    public const int UnselectPreviouslySelectedRequest = 57;
-    public const int MoveAnimator = 58;
-    public const int Unit = 59;
+    public const int CreateHighlightRequest = 9;
+    public const int Highlight = 10;
+    public const int HighlightEnded = 11;
+    public const int RectTransform = 12;
+    public const int Size = 13;
+    public const int EndPosition = 14;
+    public const int InteractionRequest = 15;
+    public const int MousePositionOnScreen = 16;
+    public const int MultipleSelectionRequest = 17;
+    public const int PositionOnScreen = 18;
+    public const int SelectionEnded = 19;
+    public const int SelectionStarted = 20;
+    public const int SingleSelectionRequest = 21;
+    public const int StartPosition = 22;
+    public const int Interactable = 23;
+    public const int InteractWithBuildingRequest = 24;
+    public const int InteractWithUnitRequest = 25;
+    public const int PickedForInteraction = 26;
+    public const int TargetId = 27;
+    public const int CreatedNow = 28;
+    public const int CurrentAvoidancePriority = 29;
+    public const int Destination = 30;
+    public const int DestructOldMoveIndicatorRequest = 31;
+    public const int Idle = 32;
+    public const int IdleAvoidancePriority = 33;
+    public const int Movable = 34;
+    public const int Move = 35;
+    public const int MoveAvoidancePriority = 36;
+    public const int MoveClickIndicator = 37;
+    public const int MoveDirection = 38;
+    public const int MoveRequest = 39;
+    public const int NavMeshAgent = 40;
+    public const int PositionUpdated = 41;
+    public const int Transform = 42;
+    public const int UpdatePositionAfterSpawning = 43;
+    public const int WorldPosition = 44;
+    public const int AddToNavMeshCachedSources = 45;
+    public const int BuildNavMeshAtStart = 46;
+    public const int NavMesh = 47;
+    public const int NavMeshCollectSourcesCache = 48;
+    public const int NavMeshCollectSources = 49;
+    public const int NavMeshRootSources = 50;
+    public const int NavMeshSurface = 51;
+    public const int NotAddedNavMeshRootSource = 52;
+    public const int UpdateNavMesh = 53;
+    public const int Selectable = 54;
+    public const int Selected = 55;
+    public const int SelectedNow = 56;
+    public const int SelectingAnimator = 57;
+    public const int Unselected = 58;
+    public const int UnselectPreviouslySelectedRequest = 59;
+    public const int MoveAnimator = 60;
+    public const int Unit = 61;
 
-    public const int TotalComponents = 60;
+    public const int TotalComponents = 62;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -81,7 +83,9 @@ public static class GameComponentsLookup {
         "Building",
         "BuildTypeId",
         "CenterPosition",
+        "CreateHighlightRequest",
         "Highlight",
+        "HighlightEnded",
         "RectTransform",
         "Size",
         "EndPosition",
@@ -144,7 +148,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Build.Building),
         typeof(Code.Gameplay.Features.Build.BuildTypeIdComponent),
         typeof(Code.Gameplay.Features.Highlight.CenterPosition),
+        typeof(Code.Gameplay.Features.Highlight.CreateHighlightRequest),
         typeof(Code.Gameplay.Features.Highlight.Highlight),
+        typeof(Code.Gameplay.Features.Highlight.HighlightEnded),
         typeof(Code.Gameplay.Features.Highlight.RectTransformComponent),
         typeof(Code.Gameplay.Features.Highlight.Size),
         typeof(Code.Gameplay.Features.Input.EndPosition),
