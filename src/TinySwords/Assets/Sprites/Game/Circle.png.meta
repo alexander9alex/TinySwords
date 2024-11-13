@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 925b19ca466eb63408e7debccce5544e
+guid: 42771d0642e7914488513c8f6ea4f41d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8431436568718634585
-    second: SelectingCircle_0
+      213: -2413806693520163455
+    second: Circle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SelectingCircle_0
+      name: Circle_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 41
-        width: 98
-        height: 46
+        x: 0
+        y: 0
+        width: 451
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a19947cc158dfa80800000000000000
-      internalID: -8431436568718634585
+      spriteID: 18d3544e99f608ed0800000000000000
+      internalID: -2413806693520163455
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SelectingCircle_0: -8431436568718634585
+      Circle_0: -2413806693520163455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

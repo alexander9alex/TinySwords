@@ -5,7 +5,7 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
 {
   public class KnightAnimator : MonoBehaviour, ISelectingAnimator, IMoveAnimator
   {
-    private const float FlipXMinValue = 0.05f;
+    private const float FlipXMinValue = 0.1f;
     public Animator Animator;
     public SpriteRenderer SpriteRenderer;
     public GameObject SelectingCircle;

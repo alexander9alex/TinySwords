@@ -8,8 +8,6 @@ namespace Code.Gameplay.Features.Move.Systems
 {
   public class CreateMoveClickIndicatorSystem : IExecuteSystem
   {
-    private const float IndicatorShowTime = 0.5f;
-    
     private readonly ICameraProvider _cameraProvider;
     private readonly IMoveClickIndicatorFactory _moveClickIndicatorFactory;
 
@@ -30,8 +28,7 @@ namespace Code.Gameplay.Features.Move.Systems
       {
         GameEntity moveIndicator = _moveClickIndicatorFactory.CreateMoveIndicator(_cameraProvider.MainCamera.ScreenToWorldPoint(request.PositionOnScreen));
         
-        moveIndicator
-            .isCreatedNow = true;
+        moveIndicator.isCreatedNow = true;
 
         CreateEntity.Empty()
           .With(x => x.isDestructOldMoveIndicatorRequest = true);
