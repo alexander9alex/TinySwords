@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Physics;
@@ -8,7 +9,7 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Select.Systems
 {
-  public class SelectHighlightedSystem : IExecuteSystem
+  public class SelectHighlightedUnitSystem : IExecuteSystem
   {
     private const float PixelsPerUnit = 100;
 
@@ -18,7 +19,7 @@ namespace Code.Gameplay.Features.Select.Systems
     private readonly IGroup<GameEntity> _highlights;
     private readonly IGroup<GameEntity> _createMultipleSelectionRequests;
 
-    public SelectHighlightedSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
+    public SelectHighlightedUnitSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
@@ -33,7 +34,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity _ in _createMultipleSelectionRequests)
       foreach (GameEntity highlight in _highlights)
-      foreach (GameEntity entity in GetHighlightedEntities(highlight))
+      foreach (GameEntity entity in GetHighlightedUnits(highlight))
       {
         if (entity.isSelectable)
         {
@@ -47,12 +48,13 @@ namespace Code.Gameplay.Features.Select.Systems
       }
     }
 
-    private IEnumerable<GameEntity> GetHighlightedEntities(GameEntity highlight)
+    private IEnumerable<GameEntity> GetHighlightedUnits(GameEntity highlight)
     {
       return _physicsService.BoxCast(
         _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),
         highlight.Size / PixelsPerUnit,
-        GameConstants.SelectionLayerMask);
+        GameConstants.SelectionLayerMask)
+        .Where(entity => entity.isUnit);
     }
   }
 }

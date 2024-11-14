@@ -46,6 +46,7 @@ namespace Code.Gameplay.Features.Build.Factory
         .AddWorldPosition(pos)
         .AddBuildTypeId(BuildingTypeId.Castle)
         .With(x => x.isBuilding = true)
+        .With(x => x.isCastle = true)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)

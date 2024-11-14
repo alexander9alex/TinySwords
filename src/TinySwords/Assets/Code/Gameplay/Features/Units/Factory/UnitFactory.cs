@@ -28,6 +28,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(unitConfig.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
+        .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
         .With(x => x.isInteractable = true)

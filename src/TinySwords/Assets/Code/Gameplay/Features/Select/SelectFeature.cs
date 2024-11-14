@@ -8,7 +8,8 @@ namespace Code.Gameplay.Features.Select
     public SelectFeature(ISystemFactory systems)
     {
       Add(systems.Create<ProcessSingleSelectionSystem>());
-      Add(systems.Create<SelectHighlightedSystem>());
+      Add(systems.Create<SelectHighlightedUnitSystem>());
+      Add(systems.Create<SelectHighlightedCastleSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
       // Add(systems.Create<UnselectIfSingleSelectionNotProcessedSystem>());
