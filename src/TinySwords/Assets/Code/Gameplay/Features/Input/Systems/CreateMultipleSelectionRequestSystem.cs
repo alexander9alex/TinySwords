@@ -8,32 +8,31 @@ namespace Code.Gameplay.Features.Input.Systems
 {
   public class CreateMultipleSelectionRequestSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _selectionStarted;
-    private readonly IGroup<GameEntity> _selectionEnded;
+    private readonly IGroup<GameEntity> _actionStarted;
+    private readonly IGroup<GameEntity> _actionEnded;
 
     public CreateMultipleSelectionRequestSystem(GameContext game)
     {
-      _selectionStarted = game.GetGroup(GameMatcher
+      _actionStarted = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.SelectionStarted,
-          GameMatcher.PositionOnScreen));
+          GameMatcher.ActionStarted,
+          GameMatcher.PositionOnScreen,
+          GameMatcher.Processed));
 
-      _selectionEnded = game.GetGroup(GameMatcher
+      _actionEnded = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.SelectionEnded,
-          GameMatcher.PositionOnScreen));
+          GameMatcher.ActionEnded,
+          GameMatcher.PositionOnScreen,
+          GameMatcher.Processed));
     }
 
     public void Execute()
     {
-      foreach (GameEntity started in _selectionStarted)
-      foreach (GameEntity ended in _selectionEnded)
+      foreach (GameEntity ended in _actionEnded)
+      foreach (GameEntity started in _actionStarted)
       {
-        if (Vector2.Distance(started.PositionOnScreen, ended.PositionOnScreen) >= GameConstants.SelectionClickDelta)
-        {
-          CreateEntity.Empty()
-            .With(x => x.isMultipleSelectionRequest = true);
-        }
+        CreateEntity.Empty()
+          .With(x => x.isMultipleSelectionRequest = true);
       }
     }
   }

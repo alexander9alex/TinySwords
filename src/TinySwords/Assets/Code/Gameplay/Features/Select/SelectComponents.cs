@@ -12,5 +12,8 @@ namespace Code.Gameplay.Features.Select
     [Game] public class SelectedChanged : IComponent { }
     [Game] public class UnselectPreviouslySelectedRequest : IComponent { }
     [Game] public class SelectingAnimator : IComponent { public ISelectingAnimator Value; }
+    
+    [Game] public class SingleSelectionRequest : IComponent { }
+    [Game] public class MultipleSelectionRequest : IComponent { }
   }
 }

@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
-using Code.Gameplay.Features.Interact.Extensions;
+using Code.Gameplay.Features.FastInteract.Extensions;
 using Entitas;
 
-namespace Code.Gameplay.Features.Interact.Systems
+namespace Code.Gameplay.Features.FastInteract.Systems
 {
-  public class CreateInteractWithBuildRequestSystem : IExecuteSystem
+  public class CreateFastInteractWithUnitRequestSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _interactionRequests;
     private readonly List<GameEntity> _buffer = new(1);
-
-    public CreateInteractWithBuildRequestSystem(GameContext game)
+    public CreateFastInteractWithUnitRequestSystem(GameContext game)
     {
       _interactionRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.InteractionRequest, GameMatcher.PickedForInteraction)
+        .AllOf(GameMatcher.FastInteraction, GameMatcher.PickedForInteraction)
         .NoneOf(GameMatcher.Processed));
     }
 
@@ -25,11 +24,11 @@ namespace Code.Gameplay.Features.Interact.Systems
       {
         GameEntity entity = entityId.GetEntity();
 
-        if (entity.isBuilding)
+        if (entity.isUnit)
         {
           CreateEntity.Empty()
             .AddTargetId(entityId)
-            .With(x => x.isInteractWithBuildingRequest = true);
+            .With(x => x.isInteractWithUnitRequest = true);
           
           request.isProcessed = true;
           break;

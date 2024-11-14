@@ -1,33 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Interact.Systems
+namespace Code.Gameplay.Features.FastInteract.Systems
 {
-  public class PickEntitiesForInteractionSystem : IExecuteSystem
+  public class PickEntitiesForFastInteractionSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _interactionRequests;
+    private readonly IGroup<GameEntity> _fastInteractions;
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
 
-    public PickEntitiesForInteractionSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
+    public PickEntitiesForFastInteractionSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
 
-      _interactionRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.InteractionRequest, GameMatcher.PositionOnScreen));
+      _fastInteractions = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.FastInteraction, GameMatcher.PositionOnScreen));
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _interactionRequests)
+      foreach (GameEntity request in _fastInteractions)
       {
         List<GameEntity> interactableEntities = GetInteractableEntityFromPosition(request.PositionOnScreen);
 

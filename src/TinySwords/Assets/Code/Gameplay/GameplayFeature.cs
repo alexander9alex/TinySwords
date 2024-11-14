@@ -1,8 +1,8 @@
 ﻿using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.FastInteract;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
-using Code.Gameplay.Features.Interact;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
@@ -18,7 +18,7 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      Add(systems.Create<InteractFeature>());
+      Add(systems.Create<FastInteractFeature>());
       
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());

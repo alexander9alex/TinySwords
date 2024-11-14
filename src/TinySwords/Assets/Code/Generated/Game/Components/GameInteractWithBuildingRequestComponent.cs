@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.FastInteract;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherInteractWithBuildingRequest;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Interact.InteractWithBuildingRequest interactWithBuildingRequestComponent = new Code.Gameplay.Features.Interact.InteractWithBuildingRequest();
+    static readonly InteractWithBuildingRequest interactWithBuildingRequestComponent = new InteractWithBuildingRequest();
 
     public bool isInteractWithBuildingRequest {
         get { return HasComponent(GameComponentsLookup.InteractWithBuildingRequest); }

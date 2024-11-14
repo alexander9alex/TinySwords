@@ -6,18 +6,18 @@ namespace Code.Gameplay.Features.Highlight.Systems
   public class DestroyHighlightSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _highlights;
-    private readonly IGroup<GameEntity> _selectionEnded;
+    private readonly IGroup<GameEntity> _actionEnded;
     private readonly List<GameEntity> _buffer = new(1);
 
     public DestroyHighlightSystem(GameContext game)
     {
       _highlights = game.GetGroup(GameMatcher.AllOf(GameMatcher.Highlight));
-      _selectionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.SelectionEnded));
+      _actionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.ActionEnded));
     }
 
     public void Cleanup()
     {
-      foreach (GameEntity _ in _selectionEnded)
+      foreach (GameEntity _ in _actionEnded)
       foreach (GameEntity highlight in _highlights.GetEntities(_buffer))
       {
         highlight.isDestructed = true;

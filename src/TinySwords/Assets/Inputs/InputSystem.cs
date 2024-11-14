@@ -544,7 +544,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ""id"": ""943e9d6d-9cfb-43a2-a30b-1b537a570f10"",
             ""actions"": [
                 {
-                    ""name"": ""Select"",
+                    ""name"": ""Action"",
                     ""type"": ""Button"",
                     ""id"": ""06f43887-3275-4080-811b-527c54fd0e9f"",
                     ""expectedControlType"": """",
@@ -553,7 +553,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""FastInteraction"",
                     ""type"": ""Button"",
                     ""id"": ""45f37cc1-bee5-4fed-90db-15d01b4af231"",
                     ""expectedControlType"": """",
@@ -579,7 +579,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Select"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -590,7 +590,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Interact"",
+                    ""action"": ""FastInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -685,8 +685,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
-        m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
+        m_Game_Action = m_Game.FindAction("Action", throwIfNotFound: true);
+        m_Game_FastInteraction = m_Game.FindAction("FastInteraction", throwIfNotFound: true);
         m_Game_MousePosition = m_Game.FindAction("MousePosition", throwIfNotFound: true);
     }
 
@@ -873,15 +873,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_Select;
-    private readonly InputAction m_Game_Interact;
+    private readonly InputAction m_Game_Action;
+    private readonly InputAction m_Game_FastInteraction;
     private readonly InputAction m_Game_MousePosition;
     public struct GameActions
     {
         private @InputSystem m_Wrapper;
         public GameActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Select => m_Wrapper.m_Game_Select;
-        public InputAction @Interact => m_Wrapper.m_Game_Interact;
+        public InputAction @Action => m_Wrapper.m_Game_Action;
+        public InputAction @FastInteraction => m_Wrapper.m_Game_FastInteraction;
         public InputAction @MousePosition => m_Wrapper.m_Game_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
@@ -892,12 +892,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @Select.started += instance.OnSelect;
-            @Select.performed += instance.OnSelect;
-            @Select.canceled += instance.OnSelect;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
+            @FastInteraction.started += instance.OnFastInteraction;
+            @FastInteraction.performed += instance.OnFastInteraction;
+            @FastInteraction.canceled += instance.OnFastInteraction;
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
@@ -905,12 +905,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @Select.started -= instance.OnSelect;
-            @Select.performed -= instance.OnSelect;
-            @Select.canceled -= instance.OnSelect;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
+            @FastInteraction.started -= instance.OnFastInteraction;
+            @FastInteraction.performed -= instance.OnFastInteraction;
+            @FastInteraction.canceled -= instance.OnFastInteraction;
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
@@ -991,8 +991,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     }
     public interface IGameActions
     {
-        void OnSelect(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
+        void OnFastInteraction(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
     }
 }

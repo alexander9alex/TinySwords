@@ -2,7 +2,7 @@
 using Code.UI.Buttons.Data;
 using Entitas;
 
-namespace Code.Gameplay.Features.Interact
+namespace Code.Gameplay.Features.FastInteract
 {
   [Game] public class Interactable : IComponent {}
   [Game] public class PickedForInteraction : IComponent { public List<int> Value; }

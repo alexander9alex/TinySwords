@@ -16,10 +16,10 @@ namespace Code.Gameplay.Features.Input.Services
 
     public InputService()
     {
-      _inputSystem.Game.Select.started += SelectionStarted;
-      _inputSystem.Game.Select.canceled += SelectionEnded;
+      _inputSystem.Game.Action.started += OnActionStarted;
+      _inputSystem.Game.Action.canceled += OnActionEnded;
 
-      _inputSystem.Game.Interact.canceled += OnInteracted;
+      _inputSystem.Game.FastInteraction.canceled += OnFastInteracted;
       
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
@@ -57,23 +57,23 @@ namespace Code.Gameplay.Features.Input.Services
         .AddMousePositionOnScreen(_mousePos);
     }
 
-    private void OnInteracted(InputAction.CallbackContext context)
+    private void OnFastInteracted(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isInteractionRequest = true)
+        .With(x => x.isFastInteraction = true)
         .AddPositionOnScreen(_mousePos);
     }
 
-    private void SelectionStarted(InputAction.CallbackContext context)
+    private void OnActionStarted(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isSelectionStarted = true)
+        .With(x => x.isActionStarted = true)
         .AddPositionOnScreen(_mousePos);
     }
-    private void SelectionEnded(InputAction.CallbackContext context)
+    private void OnActionEnded(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isSelectionEnded = true)
+        .With(x => x.isActionEnded = true)
         .AddPositionOnScreen(_mousePos);
     }
     private void ChangeMousePosition(InputAction.CallbackContext context) =>

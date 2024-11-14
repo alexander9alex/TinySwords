@@ -522,7 +522,7 @@
             "id": "943e9d6d-9cfb-43a2-a30b-1b537a570f10",
             "actions": [
                 {
-                    "name": "Select",
+                    "name": "Action",
                     "type": "Button",
                     "id": "06f43887-3275-4080-811b-527c54fd0e9f",
                     "expectedControlType": "",
@@ -531,7 +531,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "FastInteraction",
                     "type": "Button",
                     "id": "45f37cc1-bee5-4fed-90db-15d01b4af231",
                     "expectedControlType": "",
@@ -557,7 +557,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Select",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -568,7 +568,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Interact",
+                    "action": "FastInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

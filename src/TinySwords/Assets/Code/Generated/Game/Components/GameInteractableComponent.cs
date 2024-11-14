@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.FastInteract;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherInteractable;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Interact.Interactable interactableComponent = new Code.Gameplay.Features.Interact.Interactable();
+    static readonly Interactable interactableComponent = new Interactable();
 
     public bool isInteractable {
         get { return HasComponent(GameComponentsLookup.Interactable); }

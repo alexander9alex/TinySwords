@@ -18,21 +18,22 @@ namespace Code.Gameplay.Features.Select.Systems
 
     private readonly IGroup<GameEntity> _highlights;
     private readonly IGroup<GameEntity> _createMultipleSelectionRequests;
+    private readonly List<GameEntity> _buffer = new(1);
 
     public SelectHighlightedUnitSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
 
+      _createMultipleSelectionRequests = game.GetGroup(GameMatcher.MultipleSelectionRequest);
+      
       _highlights = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Highlight, GameMatcher.CenterPosition, GameMatcher.Size));
-
-      _createMultipleSelectionRequests = game.GetGroup(GameMatcher.MultipleSelectionRequest);
     }
 
     public void Execute()
     {
-      foreach (GameEntity _ in _createMultipleSelectionRequests)
+      foreach (GameEntity request in _createMultipleSelectionRequests.GetEntities(_buffer))
       foreach (GameEntity highlight in _highlights)
       foreach (GameEntity entity in GetHighlightedUnits(highlight))
       {
@@ -48,6 +49,8 @@ namespace Code.Gameplay.Features.Select.Systems
         
         CreateEntity.Empty()
           .With(x => x.isSelectedChanged = true);
+
+        request.isProcessed = true;
       }
     }
 

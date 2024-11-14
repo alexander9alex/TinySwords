@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.Interact.Systems
+namespace Code.Gameplay.Features.Input.Systems
 {
-  public class CleanupInteractRequestSystem : ICleanupSystem
+  public class CleanupFastInteractionSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _interactionRequests;
     private readonly List<GameEntity> _clicksBuffer = new(1);
 
-    public CleanupInteractRequestSystem(GameContext game)
+    public CleanupFastInteractionSystem(GameContext game)
     {
-      _interactionRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.InteractionRequest));
+      _interactionRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.FastInteraction));
     }
 
     public void Cleanup()

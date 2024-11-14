@@ -1,40 +1,29 @@
-﻿using Code.Common.Entities;
+﻿using System.Collections.Generic;
 using Code.Common.Extensions;
-using Code.Gameplay.Constants;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Input.Systems
 {
   public class CreateSingleSelectionRequestSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _selectionStarted;
-    private readonly IGroup<GameEntity> _selectionEnded;
+    private readonly IGroup<GameEntity> _actionEnded;
+    private readonly List<GameEntity> _buffer = new(1);
 
     public CreateSingleSelectionRequestSystem(GameContext game)
     {
-      _selectionStarted = game.GetGroup(GameMatcher
+      _actionEnded = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.SelectionStarted,
-          GameMatcher.PositionOnScreen));
-
-      _selectionEnded = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.SelectionEnded,
-          GameMatcher.PositionOnScreen));
+          GameMatcher.ActionEnded,
+          GameMatcher.PositionOnScreen)
+        .NoneOf(GameMatcher.Processed));
     }
 
     public void Execute()
     {
-      foreach (GameEntity ended in _selectionEnded)
-      foreach (GameEntity started in _selectionStarted)
+      foreach (GameEntity ended in _actionEnded.GetEntities(_buffer))
       {
-        if (Vector2.Distance(started.PositionOnScreen, ended.PositionOnScreen) < GameConstants.SelectionClickDelta)
-        {
-          CreateEntity.Empty()
-            .With(x => x.isSingleSelectionRequest = true)
-            .AddPositionOnScreen(ended.PositionOnScreen);
-        }
+        ended
+          .With(x => x.isSingleSelectionRequest = true);
       }
     }
   }

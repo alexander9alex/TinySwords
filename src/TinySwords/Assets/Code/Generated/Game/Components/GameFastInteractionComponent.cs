@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSelectionEnded;
+    static Entitas.IMatcher<GameEntity> _matcherFastInteraction;
 
-    public static Entitas.IMatcher<GameEntity> SelectionEnded {
+    public static Entitas.IMatcher<GameEntity> FastInteraction {
         get {
-            if (_matcherSelectionEnded == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SelectionEnded);
+            if (_matcherFastInteraction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.FastInteraction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSelectionEnded = matcher;
+                _matcherFastInteraction = matcher;
             }
 
-            return _matcherSelectionEnded;
+            return _matcherFastInteraction;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.SelectionEnded selectionEndedComponent = new Code.Gameplay.Features.Input.SelectionEnded();
+    static readonly Code.Gameplay.Features.Input.FastInteraction fastInteractionComponent = new Code.Gameplay.Features.Input.FastInteraction();
 
-    public bool isSelectionEnded {
-        get { return HasComponent(GameComponentsLookup.SelectionEnded); }
+    public bool isFastInteraction {
+        get { return HasComponent(GameComponentsLookup.FastInteraction); }
         set {
-            if (value != isSelectionEnded) {
-                var index = GameComponentsLookup.SelectionEnded;
+            if (value != isFastInteraction) {
+                var index = GameComponentsLookup.FastInteraction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : selectionEndedComponent;
+                            : fastInteractionComponent;
 
                     AddComponent(index, component);
                 } else {

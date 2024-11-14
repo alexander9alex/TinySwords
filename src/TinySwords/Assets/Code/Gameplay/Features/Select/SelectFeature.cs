@@ -19,6 +19,9 @@ namespace Code.Gameplay.Features.Select
       
       Add(systems.Create<CleanupSelectedNowSystem>());
       Add(systems.Create<CleanupUnselectRequestSystem>());
+      
+      Add(systems.Create<CleanupSingleSelectionRequestSystem>());
+      Add(systems.Create<CleanupMultipleSelectionRequestSystem>());
     }
   }
 }

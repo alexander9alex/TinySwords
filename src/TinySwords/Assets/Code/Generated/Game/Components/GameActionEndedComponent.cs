@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherInteractionRequest;
+    static Entitas.IMatcher<GameEntity> _matcherActionEnded;
 
-    public static Entitas.IMatcher<GameEntity> InteractionRequest {
+    public static Entitas.IMatcher<GameEntity> ActionEnded {
         get {
-            if (_matcherInteractionRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.InteractionRequest);
+            if (_matcherActionEnded == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ActionEnded);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherInteractionRequest = matcher;
+                _matcherActionEnded = matcher;
             }
 
-            return _matcherInteractionRequest;
+            return _matcherActionEnded;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.InteractionRequest interactionRequestComponent = new Code.Gameplay.Features.Input.InteractionRequest();
+    static readonly Code.Gameplay.Features.Input.ActionEnded actionEndedComponent = new Code.Gameplay.Features.Input.ActionEnded();
 
-    public bool isInteractionRequest {
-        get { return HasComponent(GameComponentsLookup.InteractionRequest); }
+    public bool isActionEnded {
+        get { return HasComponent(GameComponentsLookup.ActionEnded); }
         set {
-            if (value != isInteractionRequest) {
-                var index = GameComponentsLookup.InteractionRequest;
+            if (value != isActionEnded) {
+                var index = GameComponentsLookup.ActionEnded;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : interactionRequestComponent;
+                            : actionEndedComponent;
 
                     AddComponent(index, component);
                 } else {

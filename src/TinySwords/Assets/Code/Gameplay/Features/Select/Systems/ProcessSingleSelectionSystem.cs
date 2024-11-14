@@ -41,23 +41,16 @@ namespace Code.Gameplay.Features.Select.Systems
         if (selectableEntities.Count > 0)
         {
           SelectEntity(selectableEntities.First());
-
-          request.isProcessed = true;
+          
+          CreateEntity.Empty()
+            .With(x => x.isUnselectPreviouslySelectedRequest = true);
           
           CreateEntity.Empty()
             .With(x => x.isSelectedChanged = true);
+          
+          request.isProcessed = true;
         }
       }
-    }
-
-    private static void SelectEntity(GameEntity entity)
-    {
-      entity.isUnselected = false;
-      entity.isSelected = true;
-      entity.isSelectedNow = true;
-
-      CreateEntity.Empty()
-        .With(x => x.isUnselectPreviouslySelectedRequest = true);
     }
 
     private List<GameEntity> GetSelectableEntitiesFromPosition(Vector2 mousePos)
@@ -69,6 +62,13 @@ namespace Code.Gameplay.Features.Select.Systems
         .Where(entity => entity.hasTransform)
         .OrderBy(entity => entity.Transform.position.y)
         .ToList();
+    }
+
+    private static void SelectEntity(GameEntity entity)
+    {
+      entity.isUnselected = false;
+      entity.isSelected = true;
+      entity.isSelectedNow = true;
     }
   }
 }

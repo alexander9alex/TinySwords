@@ -7,17 +7,18 @@ namespace Code.Gameplay.Features.Input
   {
     public InputFeature(ISystemFactory systems)
     {
+      Add(systems.Create<SetActionEndedProcessingSystem>());
+     
       Add(systems.Create<CreateHighlightRequestSystem>());
-      Add(systems.Create<UpdateHighlightRequestSystem>());
+      Add(systems.Create<UpdateHighlightLocationRequestSystem>());
       
       Add(systems.Create<CreateSingleSelectionRequestSystem>());
       Add(systems.Create<CreateMultipleSelectionRequestSystem>());
       
       Add(systems.Create<CleanupMousePositionSystem>());
-
-      Add(systems.Create<CleanupSingleSelectionRequestSystem>());
-      Add(systems.Create<CleanupMultipleSelectionRequestSystem>());
-      Add(systems.Create<CleanupSelectionInputSystem>());
+      
+      Add(systems.Create<CleanupActionInputSystem>());
+      Add(systems.Create<CleanupFastInteractionSystem>());
     }
   }
 }

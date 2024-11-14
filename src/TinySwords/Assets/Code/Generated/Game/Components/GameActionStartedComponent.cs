@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherSelectionStarted;
+    static Entitas.IMatcher<GameEntity> _matcherActionStarted;
 
-    public static Entitas.IMatcher<GameEntity> SelectionStarted {
+    public static Entitas.IMatcher<GameEntity> ActionStarted {
         get {
-            if (_matcherSelectionStarted == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.SelectionStarted);
+            if (_matcherActionStarted == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ActionStarted);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherSelectionStarted = matcher;
+                _matcherActionStarted = matcher;
             }
 
-            return _matcherSelectionStarted;
+            return _matcherActionStarted;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.SelectionStarted selectionStartedComponent = new Code.Gameplay.Features.Input.SelectionStarted();
+    static readonly Code.Gameplay.Features.Input.ActionStarted actionStartedComponent = new Code.Gameplay.Features.Input.ActionStarted();
 
-    public bool isSelectionStarted {
-        get { return HasComponent(GameComponentsLookup.SelectionStarted); }
+    public bool isActionStarted {
+        get { return HasComponent(GameComponentsLookup.ActionStarted); }
         set {
-            if (value != isSelectionStarted) {
-                var index = GameComponentsLookup.SelectionStarted;
+            if (value != isActionStarted) {
+                var index = GameComponentsLookup.ActionStarted;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : selectionStartedComponent;
+                            : actionStartedComponent;
 
                     AddComponent(index, component);
                 } else {

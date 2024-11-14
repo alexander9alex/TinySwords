@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.FastInteract;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherPickedForInteraction;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Interact.PickedForInteraction pickedForInteraction { get { return (Code.Gameplay.Features.Interact.PickedForInteraction)GetComponent(GameComponentsLookup.PickedForInteraction); } }
+    public PickedForInteraction pickedForInteraction { get { return (PickedForInteraction)GetComponent(GameComponentsLookup.PickedForInteraction); } }
     public System.Collections.Generic.List<int> PickedForInteraction { get { return pickedForInteraction.Value; } }
     public bool hasPickedForInteraction { get { return HasComponent(GameComponentsLookup.PickedForInteraction); } }
 
     public GameEntity AddPickedForInteraction(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.PickedForInteraction;
-        var component = (Code.Gameplay.Features.Interact.PickedForInteraction)CreateComponent(index, typeof(Code.Gameplay.Features.Interact.PickedForInteraction));
+        var component = (PickedForInteraction)CreateComponent(index, typeof(PickedForInteraction));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplacePickedForInteraction(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.PickedForInteraction;
-        var component = (Code.Gameplay.Features.Interact.PickedForInteraction)CreateComponent(index, typeof(Code.Gameplay.Features.Interact.PickedForInteraction));
+        var component = (PickedForInteraction)CreateComponent(index, typeof(PickedForInteraction));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

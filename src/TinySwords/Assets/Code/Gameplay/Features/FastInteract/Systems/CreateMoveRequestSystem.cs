@@ -3,7 +3,7 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Entitas;
 
-namespace Code.Gameplay.Features.Interact.Systems
+namespace Code.Gameplay.Features.FastInteract.Systems
 {
   public class CreateMoveRequestSystem : IExecuteSystem
   {
@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Interact.Systems
     public CreateMoveRequestSystem(GameContext game)
     {
       _interactionRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.InteractionRequest, GameMatcher.PositionOnScreen)
+        .AllOf(GameMatcher.FastInteraction, GameMatcher.PositionOnScreen)
         .NoneOf(GameMatcher.Processed));
 
       _selectedAndMovable = game.GetGroup(GameMatcher

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.Input.Systems
+namespace Code.Gameplay.Features.Select.Systems
 {
   public class CleanupSingleSelectionRequestSystem : ICleanupSystem
   {
