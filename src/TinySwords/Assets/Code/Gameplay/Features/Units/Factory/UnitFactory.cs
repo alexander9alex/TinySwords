@@ -5,6 +5,7 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Services;
+using Code.UI.Buttons.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Factory
@@ -28,6 +29,11 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(unitConfig.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
+        .AddAllActionTypeIds(new()
+        {
+          ActionTypeId.Move,
+          ActionTypeId.MoveWithAttack
+        })
         .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)

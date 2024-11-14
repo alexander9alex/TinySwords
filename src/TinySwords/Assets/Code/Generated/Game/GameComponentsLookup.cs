@@ -32,47 +32,50 @@ public static class GameComponentsLookup {
     public const int SelectionStarted = 21;
     public const int SingleSelectionRequest = 22;
     public const int StartPosition = 23;
-    public const int Interactable = 24;
-    public const int InteractWithBuildingRequest = 25;
-    public const int InteractWithUnitRequest = 26;
-    public const int PickedForInteraction = 27;
-    public const int TargetId = 28;
-    public const int CreatedNow = 29;
-    public const int CurrentAvoidancePriority = 30;
-    public const int Destination = 31;
-    public const int DestructOldMoveIndicatorRequest = 32;
-    public const int Idle = 33;
-    public const int IdleAvoidancePriority = 34;
-    public const int Movable = 35;
-    public const int Move = 36;
-    public const int MoveAvoidancePriority = 37;
-    public const int MoveClickIndicator = 38;
-    public const int MoveDirection = 39;
-    public const int MoveRequest = 40;
-    public const int NavMeshAgent = 41;
-    public const int PositionUpdated = 42;
-    public const int Transform = 43;
-    public const int UpdatePositionAfterSpawning = 44;
-    public const int WorldPosition = 45;
-    public const int AddToNavMeshCachedSources = 46;
-    public const int BuildNavMeshAtStart = 47;
-    public const int NavMesh = 48;
-    public const int NavMeshCollectSourcesCache = 49;
-    public const int NavMeshCollectSources = 50;
-    public const int NavMeshRootSources = 51;
-    public const int NavMeshSurface = 52;
-    public const int NotAddedNavMeshRootSource = 53;
-    public const int UpdateNavMesh = 54;
-    public const int Selectable = 55;
-    public const int Selected = 56;
-    public const int SelectedNow = 57;
-    public const int SelectingAnimator = 58;
-    public const int Unselected = 59;
-    public const int UnselectPreviouslySelectedRequest = 60;
-    public const int MoveAnimator = 61;
-    public const int Unit = 62;
+    public const int ActionTypeId = 24;
+    public const int AllActionTypeIds = 25;
+    public const int Interactable = 26;
+    public const int InteractWithBuildingRequest = 27;
+    public const int InteractWithUnitRequest = 28;
+    public const int PickedForInteraction = 29;
+    public const int TargetId = 30;
+    public const int CreatedNow = 31;
+    public const int CurrentAvoidancePriority = 32;
+    public const int Destination = 33;
+    public const int DestructOldMoveIndicatorRequest = 34;
+    public const int Idle = 35;
+    public const int IdleAvoidancePriority = 36;
+    public const int Movable = 37;
+    public const int Move = 38;
+    public const int MoveAvoidancePriority = 39;
+    public const int MoveClickIndicator = 40;
+    public const int MoveDirection = 41;
+    public const int MoveRequest = 42;
+    public const int NavMeshAgent = 43;
+    public const int PositionUpdated = 44;
+    public const int Transform = 45;
+    public const int UpdatePositionAfterSpawning = 46;
+    public const int WorldPosition = 47;
+    public const int AddToNavMeshCachedSources = 48;
+    public const int BuildNavMeshAtStart = 49;
+    public const int NavMesh = 50;
+    public const int NavMeshCollectSourcesCache = 51;
+    public const int NavMeshCollectSources = 52;
+    public const int NavMeshRootSources = 53;
+    public const int NavMeshSurface = 54;
+    public const int NotAddedNavMeshRootSource = 55;
+    public const int UpdateNavMesh = 56;
+    public const int Selectable = 57;
+    public const int Selected = 58;
+    public const int SelectedChanged = 59;
+    public const int SelectedNow = 60;
+    public const int SelectingAnimator = 61;
+    public const int Unselected = 62;
+    public const int UnselectPreviouslySelectedRequest = 63;
+    public const int MoveAnimator = 64;
+    public const int Unit = 65;
 
-    public const int TotalComponents = 63;
+    public const int TotalComponents = 66;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -99,6 +102,8 @@ public static class GameComponentsLookup {
         "SelectionStarted",
         "SingleSelectionRequest",
         "StartPosition",
+        "ActionTypeId",
+        "AllActionTypeIds",
         "Interactable",
         "InteractWithBuildingRequest",
         "InteractWithUnitRequest",
@@ -132,6 +137,7 @@ public static class GameComponentsLookup {
         "UpdateNavMesh",
         "Selectable",
         "Selected",
+        "SelectedChanged",
         "SelectedNow",
         "SelectingAnimator",
         "Unselected",
@@ -165,6 +171,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.SelectionStarted),
         typeof(Code.Gameplay.Features.Input.SingleSelectionRequest),
         typeof(Code.Gameplay.Features.Input.StartPosition),
+        typeof(Code.Gameplay.Features.Interact.ActionTypeIdComponent),
+        typeof(Code.Gameplay.Features.Interact.AllActionTypeIds),
         typeof(Code.Gameplay.Features.Interact.Interactable),
         typeof(Code.Gameplay.Features.Interact.InteractWithBuildingRequest),
         typeof(Code.Gameplay.Features.Interact.InteractWithUnitRequest),
@@ -198,6 +206,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.NavMesh.UpdateNavMesh),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedChanged),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedNow),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),

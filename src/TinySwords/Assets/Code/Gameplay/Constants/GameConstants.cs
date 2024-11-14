@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Code.UI.Buttons.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Constants
 {
@@ -9,5 +11,10 @@ namespace Code.Gameplay.Constants
     
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static readonly int InteractionLayerMask = LayerMask.GetMask("Unit", "Building");
+    public static readonly List<ActionTypeId> AllActions = new()
+    {
+      ActionTypeId.Move,
+      ActionTypeId.MoveWithAttack,
+    };
   }
 }

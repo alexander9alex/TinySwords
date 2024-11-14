@@ -6,6 +6,8 @@ using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
+using Code.UI.Buttons.Configs;
+using Code.UI.Buttons.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -15,12 +17,14 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
+    private List<ControlButtonConfig> _controlButtonConfigs;
 
     public void LoadAll()
     {
       LoadUnitConfigs();
       LoadCastleConfigs();
       LoadLevelConfigs();
+      LoadControlButtonConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -38,8 +42,11 @@ namespace Code.Gameplay.Common.Services
     public LevelConfig GetLevelConfig() =>
       _levelConfigs[0];
 
-    public EntityBehaviour GetNavMeshPrefab() =>
-      Resources.Load<EntityBehaviour>("Game/NavMesh/NavMesh");
+    public List<ControlButtonConfig> GetControlButtonConfigs(List<ActionTypeId> availableActions) =>
+      _controlButtonConfigs
+        .Where(config => availableActions
+          .Any(actionTypeId => config.ActionTypeId == actionTypeId))
+        .ToList();
 
     private void LoadUnitConfigs()
     {
@@ -59,6 +66,13 @@ namespace Code.Gameplay.Common.Services
     {
       _levelConfigs = Resources
         .LoadAll<LevelConfig>("Configs/Levels")
+        .ToList();
+    }
+
+    private void LoadControlButtonConfigs()
+    {
+      _controlButtonConfigs = Resources
+        .LoadAll<ControlButtonConfig>("Configs/UI/ControlButtons")
         .ToList();
     }
   }

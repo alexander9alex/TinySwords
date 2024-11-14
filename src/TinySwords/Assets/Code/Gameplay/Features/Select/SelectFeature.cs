@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Select
       Add(systems.Create<SelectHighlightedCastleSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
-      // Add(systems.Create<UnselectIfSingleSelectionNotProcessedSystem>());
+      Add(systems.Create<UpdateHudControlButtonSystem>());
 
       Add(systems.Create<AnimateSelectingSystem>());
       Add(systems.Create<AnimateUnselectingSystem>());

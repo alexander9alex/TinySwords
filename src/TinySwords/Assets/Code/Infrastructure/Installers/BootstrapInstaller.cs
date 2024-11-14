@@ -18,6 +18,8 @@ using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Views.Factory;
+using Code.UI.Hud.Factory;
+using Code.UI.Hud.Service;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -32,6 +34,7 @@ namespace Code.Infrastructure.Installers
       BindInfrastructureFactories();
       BindCommonServices();
       BindContexts();
+      BindUIServices();
       BindUIFactories();
       BindGameplayServices();
       BindGameplayFactories();
@@ -68,11 +71,17 @@ namespace Code.Infrastructure.Installers
       Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
     }
 
+    private void BindUIServices()
+    {
+      Container.Bind<IHudService>().To<HudService>().AsSingle();
+    }
+
     private void BindUIFactories()
     {
       Container.Bind<IHighlightFactory>().To<HighlightFactory>().AsSingle();
+      Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
     }
-
+    
     private void BindGameplayServices()
     {
       Container.Bind<ICurtain>().FromInstance(Curtain).AsSingle();

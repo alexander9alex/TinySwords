@@ -52,6 +52,9 @@ namespace Code.Gameplay.Features.Select.Systems
 
           CreateEntity.Empty()
             .With(x => x.isUnselectPreviouslySelectedRequest = true);
+          
+          CreateEntity.Empty()
+            .With(x => x.isSelectedChanged = true);
         }
       }
     }

@@ -43,6 +43,9 @@ namespace Code.Gameplay.Features.Select.Systems
           SelectEntity(selectableEntities.First());
 
           request.isProcessed = true;
+          
+          CreateEntity.Empty()
+            .With(x => x.isSelectedChanged = true);
         }
       }
     }

@@ -1,9 +1,12 @@
-﻿using Code.Gameplay.Features.Build.Configs;
+﻿using System.Collections.Generic;
+using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
+using Code.UI.Buttons.Configs;
+using Code.UI.Buttons.Data;
 
 namespace Code.Gameplay.Common.Services
 {
@@ -15,6 +18,6 @@ namespace Code.Gameplay.Common.Services
     MoveClickIndicatorConfig GetMoveClickIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
-    EntityBehaviour GetNavMeshPrefab();
+    List<ControlButtonConfig> GetControlButtonConfigs(List<ActionTypeId> availableActions);
   }
 }
