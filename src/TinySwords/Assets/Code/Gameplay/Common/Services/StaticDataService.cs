@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
+using Code.Gameplay.Features.ControlAction.Configs;
 using Code.Gameplay.Features.Move.Configs;
-using Code.Gameplay.Features.ParseAction.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
@@ -19,7 +19,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
     private List<ControlButtonConfig> _controlButtonConfigs;
-    private Dictionary<ActionTypeId, ActionConfig> _actionConfigByType;
+    private Dictionary<ControlActionTypeId, ControlActionConfig> _actionConfigByType;
 
     public void LoadAll()
     {
@@ -45,14 +45,14 @@ namespace Code.Gameplay.Common.Services
     public LevelConfig GetLevelConfig() =>
       _levelConfigs[0];
 
-    public List<ControlButtonConfig> GetControlButtonConfigs(List<ActionTypeId> availableActions) =>
+    public List<ControlButtonConfig> GetControlButtonConfigs(List<ControlActionTypeId> availableActions) =>
       _controlButtonConfigs
         .Where(config => availableActions
-          .Any(actionTypeId => config.ActionTypeId == actionTypeId))
+          .Any(actionTypeId => config.ControlActionTypeId == actionTypeId))
         .ToList();
 
-    public GameObject GetActionDescription(ActionTypeId actionTypeId) =>
-      _actionConfigByType[actionTypeId].DescriptionPrefab;
+    public GameObject GetActionDescription(ControlActionTypeId controlActionTypeId) =>
+      _actionConfigByType[controlActionTypeId].DescriptionPrefab;
 
     private void LoadUnitConfigs()
     {
@@ -85,8 +85,8 @@ namespace Code.Gameplay.Common.Services
     private void LoadActionConfigs()
     {
       _actionConfigByType = Resources
-        .LoadAll<ActionConfig>("Configs/UI/Actions")
-        .ToDictionary(x => x.ActionTypeId, x => x);
+        .LoadAll<ControlActionConfig>("Configs/UI/Actions")
+        .ToDictionary(x => x.ControlActionTypeId, x => x);
     }
   }
 }

@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.ControlAction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherActionStarted;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.ActionStarted actionStartedComponent = new Code.Gameplay.Features.Input.ActionStarted();
+    static readonly ActionStarted actionStartedComponent = new ActionStarted();
 
     public bool isActionStarted {
         get { return HasComponent(GameComponentsLookup.ActionStarted); }

@@ -34,10 +34,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.FastInteract.AllActionTypeIds allActionTypeIds { get { return (Code.Gameplay.Features.FastInteract.AllActionTypeIds)GetComponent(GameComponentsLookup.AllActionTypeIds); } }
-    public System.Collections.Generic.List<Code.UI.Buttons.Data.ActionTypeId> AllActionTypeIds { get { return allActionTypeIds.Value; } }
+    public System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> AllActionTypeIds { get { return allActionTypeIds.Value; } }
     public bool hasAllActionTypeIds { get { return HasComponent(GameComponentsLookup.AllActionTypeIds); } }
 
-    public GameEntity AddAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ActionTypeId> newValue) {
+    public GameEntity AddAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> newValue) {
         var index = GameComponentsLookup.AllActionTypeIds;
         var component = (Code.Gameplay.Features.FastInteract.AllActionTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteract.AllActionTypeIds));
         component.Value = newValue;
@@ -45,7 +45,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ActionTypeId> newValue) {
+    public GameEntity ReplaceAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> newValue) {
         var index = GameComponentsLookup.AllActionTypeIds;
         var component = (Code.Gameplay.Features.FastInteract.AllActionTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteract.AllActionTypeIds));
         component.Value = newValue;

@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.ControlAction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherActionTypeId;
@@ -33,21 +36,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.ParseAction.ActionTypeIdComponent actionTypeId { get { return (Code.Gameplay.Features.ParseAction.ActionTypeIdComponent)GetComponent(GameComponentsLookup.ActionTypeId); } }
-    public Code.UI.Buttons.Data.ActionTypeId ActionTypeId { get { return actionTypeId.Value; } }
+    public ActionTypeIdComponent actionTypeId { get { return (ActionTypeIdComponent)GetComponent(GameComponentsLookup.ActionTypeId); } }
+    public Code.UI.Buttons.Data.ControlActionTypeId ControlActionTypeId { get { return actionTypeId.Value; } }
     public bool hasActionTypeId { get { return HasComponent(GameComponentsLookup.ActionTypeId); } }
 
-    public GameEntity AddActionTypeId(Code.UI.Buttons.Data.ActionTypeId newValue) {
+    public GameEntity AddActionTypeId(Code.UI.Buttons.Data.ControlActionTypeId newValue) {
         var index = GameComponentsLookup.ActionTypeId;
-        var component = (Code.Gameplay.Features.ParseAction.ActionTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.ParseAction.ActionTypeIdComponent));
+        var component = (ActionTypeIdComponent)CreateComponent(index, typeof(ActionTypeIdComponent));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceActionTypeId(Code.UI.Buttons.Data.ActionTypeId newValue) {
+    public GameEntity ReplaceActionTypeId(Code.UI.Buttons.Data.ControlActionTypeId newValue) {
         var index = GameComponentsLookup.ActionTypeId;
-        var component = (Code.Gameplay.Features.ParseAction.ActionTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.ParseAction.ActionTypeIdComponent));
+        var component = (ActionTypeIdComponent)CreateComponent(index, typeof(ActionTypeIdComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

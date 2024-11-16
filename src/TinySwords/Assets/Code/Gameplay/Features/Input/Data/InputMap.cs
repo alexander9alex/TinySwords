@@ -4,6 +4,7 @@
   {
     Unknown = 0,
     UI = 1,
-    Game = 2
+    Game = 2,
+    ActionIsActive = 3
   }
 }

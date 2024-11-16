@@ -11,17 +11,17 @@ using Code.Gameplay.Features.ControlAction;
 
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherActionEnded;
+    static Entitas.IMatcher<GameEntity> _matcherCancelControlAction;
 
-    public static Entitas.IMatcher<GameEntity> ActionEnded {
+    public static Entitas.IMatcher<GameEntity> CancelControlAction {
         get {
-            if (_matcherActionEnded == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ActionEnded);
+            if (_matcherCancelControlAction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CancelControlAction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherActionEnded = matcher;
+                _matcherCancelControlAction = matcher;
             }
 
-            return _matcherActionEnded;
+            return _matcherCancelControlAction;
         }
     }
 }
@@ -36,18 +36,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly ActionEnded actionEndedComponent = new ActionEnded();
+    static readonly CancelControlAction cancelControlActionComponent = new CancelControlAction();
 
-    public bool isActionEnded {
-        get { return HasComponent(GameComponentsLookup.ActionEnded); }
+    public bool isCancelControlAction {
+        get { return HasComponent(GameComponentsLookup.CancelControlAction); }
         set {
-            if (value != isActionEnded) {
-                var index = GameComponentsLookup.ActionEnded;
+            if (value != isCancelControlAction) {
+                var index = GameComponentsLookup.CancelControlAction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : actionEndedComponent;
+                            : cancelControlActionComponent;
 
                     AddComponent(index, component);
                 } else {

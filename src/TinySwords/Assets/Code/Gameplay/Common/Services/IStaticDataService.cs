@@ -19,7 +19,7 @@ namespace Code.Gameplay.Common.Services
     MoveClickIndicatorConfig GetMoveClickIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
-    List<ControlButtonConfig> GetControlButtonConfigs(List<ActionTypeId> availableActions);
-    GameObject GetActionDescription(ActionTypeId actionTypeId);
+    List<ControlButtonConfig> GetControlButtonConfigs(List<ControlActionTypeId> availableActions);
+    GameObject GetActionDescription(ControlActionTypeId controlActionTypeId);
   }
 }

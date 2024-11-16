@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Providers;
@@ -10,25 +9,28 @@ using Code.UI.Layouts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Code.Gameplay.Features.Input.Services
 {
   public class InputService : IInputService, ITickable
   {
-    private readonly ICameraProvider _cameraProvider;
     private readonly InputSystem _inputSystem = new();
-    private Image _gameZoneLayout;
 
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
 
-    public InputService(ICameraProvider cameraProvider)
+    public InputService()
     {
-      _cameraProvider = cameraProvider;
+      InitGameInputMap();
+      InitActionIsActiveInputMap();
 
+      ChangeInputMap(InputMap.UI);
+    }
+
+    private void InitGameInputMap()
+    {
       _inputSystem.Game.Action.started += OnActionStarted;
       _inputSystem.Game.Action.canceled += OnActionEnded;
 
@@ -37,8 +39,17 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
       _inputSystem.Game.MousePosition.canceled += ChangeMousePosition;
+    }
 
-      ChangeInputMap(InputMap.UI);
+    private void InitActionIsActiveInputMap()
+    {
+      _inputSystem.ControlActionIsActive.ApplyAction.canceled += ApplyControlAction;
+
+      _inputSystem.ControlActionIsActive.CancelAction.canceled += CancelControlAction;
+
+      _inputSystem.ControlActionIsActive.MousePosition.started += ChangeMousePosition;
+      _inputSystem.ControlActionIsActive.MousePosition.performed += ChangeMousePosition;
+      _inputSystem.ControlActionIsActive.MousePosition.canceled += ChangeMousePosition;
     }
 
     public void Tick()
@@ -46,9 +57,6 @@ namespace Code.Gameplay.Features.Input.Services
       if (GameInputMapEnabled)
         CreateMousePositionInput();
     }
-
-    public void SetGameZoneButton(Image gameZoneLayout) =>
-      _gameZoneLayout = gameZoneLayout;
 
     public void ChangeInputMap(InputMap inputMap)
     {
@@ -61,6 +69,10 @@ namespace Code.Gameplay.Features.Input.Services
         case InputMap.Game:
           _inputSystem.Disable();
           _inputSystem.Game.Enable();
+          break;
+        case InputMap.ActionIsActive:
+          _inputSystem.Disable();
+          _inputSystem.ControlActionIsActive.Enable();
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(inputMap), inputMap, null);
@@ -86,10 +98,10 @@ namespace Code.Gameplay.Features.Input.Services
     private void OnActionStarted(InputAction.CallbackContext context)
     {
       _actionStartedPos = _mousePos;
-      
+
       if (!ClickInGameZone(_mousePos))
         return;
-      
+
       CreateEntity.Empty()
         .With(x => x.isActionStarted = true)
         .AddPositionOnScreen(_mousePos);
@@ -99,9 +111,26 @@ namespace Code.Gameplay.Features.Input.Services
     {
       if (!ClickInGameZone(_actionStartedPos))
         return;
-      
+
       CreateEntity.Empty()
         .With(x => x.isActionEnded = true)
+        .AddPositionOnScreen(_mousePos);
+    }
+
+    private void ApplyControlAction(InputAction.CallbackContext context)
+    {
+      if (!ClickInGameZone(_mousePos))
+        return;
+
+      CreateEntity.Empty()
+        .With(x => x.isApplyControlAction = true)
+        .AddPositionOnScreen(_mousePos);
+    }
+
+    private void CancelControlAction(InputAction.CallbackContext context)
+    {
+      CreateEntity.Empty()
+        .With(x => x.isCancelControlAction = true)
         .AddPositionOnScreen(_mousePos);
     }
 
@@ -115,8 +144,11 @@ namespace Code.Gameplay.Features.Input.Services
       List<RaycastResult> results = new();
       EventSystem.current.RaycastAll(eventData, results);
 
-      if (results[0].gameObject.layer == GameConstants.UILayer)
-        return results[0].gameObject.GetComponent<GameZoneLayout>() != null;
+      foreach (RaycastResult result in results)
+      {
+        if (result.gameObject.layer == GameConstants.UILayer)
+          return result.gameObject.GetComponent<GameZoneLayout>() != null;
+      }
       
       return false;
     }

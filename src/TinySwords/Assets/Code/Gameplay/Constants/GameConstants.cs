@@ -13,10 +13,10 @@ namespace Code.Gameplay.Constants
     public static readonly int InteractionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static readonly int UILayer = LayerMask.NameToLayer("UI");
     
-    public static readonly List<ActionTypeId> AllActions = new()
+    public static readonly List<ControlActionTypeId> AllActions = new()
     {
-      ActionTypeId.Move,
-      ActionTypeId.MoveWithAttack,
+      ControlActionTypeId.Move,
+      ControlActionTypeId.MoveWithAttack,
     };
   }
 }

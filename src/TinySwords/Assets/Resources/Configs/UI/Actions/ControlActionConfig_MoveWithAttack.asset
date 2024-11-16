@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7188aa14f70448f590e552a89d0b0a1d, type: 3}
-  m_Name: ActionConfig_MoveWithAttack
+  m_Name: ControlActionConfig_MoveWithAttack
   m_EditorClassIdentifier: 
-  ActionTypeId: 2
+  ControlActionTypeId: 2
   DescriptionPrefab: {fileID: 7519926160145930417, guid: 151800f2e3a706d4e87fc5a64d47ca73, type: 3}

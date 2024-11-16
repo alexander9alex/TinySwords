@@ -7,9 +7,7 @@ namespace Code.Gameplay.Features.FastInteract
   {
     public FastInteractFeature(ISystemFactory systems)
     {
-      Add(systems.Create<CancelActionSystem>());
-
-      // Add(systems.Create<PickEntitiesForFastInteractionSystem>());
+      // Add(systems.Crate<PickEntitiesForFastInteractionSystem>());
 
       // Add(systems.Create<CreateFastInteractWithUnitRequestSystem>());
       // Add(systems.Create<CreateMoveRequestSystem>());

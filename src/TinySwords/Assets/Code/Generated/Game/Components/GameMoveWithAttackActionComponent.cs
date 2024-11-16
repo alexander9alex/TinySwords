@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.ControlAction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherMoveWithAttackAction;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ParseAction.MoveWithAttackAction moveWithAttackActionComponent = new Code.Gameplay.Features.ParseAction.MoveWithAttackAction();
+    static readonly MoveWithAttackAction moveWithAttackActionComponent = new MoveWithAttackAction();
 
     public bool isMoveWithAttackAction {
         get { return HasComponent(GameComponentsLookup.MoveWithAttackAction); }

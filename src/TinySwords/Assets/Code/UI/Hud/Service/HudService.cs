@@ -22,9 +22,9 @@ namespace Code.UI.Hud.Service
     public HudService(IStaticDataService staticData) =>
       _staticData = staticData;
 
-    public void UpdateAvailableActions(List<ActionTypeId> availableActions)
+    public void UpdateAvailableActions(List<ControlActionTypeId> availableActions)
     {
-      if (Equals(_availableButtonConfigs.Select(x => x.ActionTypeId), availableActions))
+      if (Equals(_availableButtonConfigs.Select(x => x.ControlActionTypeId), availableActions))
         return;
 
       _availableButtonConfigs = _staticData.GetControlButtonConfigs(availableActions);
@@ -37,12 +37,12 @@ namespace Code.UI.Hud.Service
     public GameObject GetActionDescription() =>
       _actionDescription;
 
-    public void SetAction(ActionTypeId actionTypeId)
+    public void SetAction(ControlActionTypeId controlActionTypeId)
     {
       _availableButtonConfigs = new();
       UpdateHud?.Invoke();
 
-      _actionDescription = _staticData.GetActionDescription(actionTypeId);
+      _actionDescription = _staticData.GetActionDescription(controlActionTypeId);
       UpdateActionDescription?.Invoke();
     }
 
@@ -52,26 +52,26 @@ namespace Code.UI.Hud.Service
       UpdateActionDescription?.Invoke();
     }
 
-    public void ClickedToButton(ActionTypeId actionTypeId)
+    public void ClickedToButton(ControlActionTypeId controlActionTypeId)
     {
       GameEntity entity = CreateEntity.Empty();
 
-      switch (actionTypeId)
+      switch (controlActionTypeId)
       {
-        case ActionTypeId.Move:
+        case ControlActionTypeId.Move:
           entity
-            .AddActionTypeId(ActionTypeId.Move)
+            .AddActionTypeId(ControlActionTypeId.Move)
             .With(x => x.isMoveAction = true);
 
           break;
-        case ActionTypeId.MoveWithAttack:
+        case ControlActionTypeId.MoveWithAttack:
           entity
-            .AddActionTypeId(ActionTypeId.MoveWithAttack)
+            .AddActionTypeId(ControlActionTypeId.MoveWithAttack)
             .With(x => x.isMoveWithAttackAction = true);
 
           break;
         default:
-          throw new ArgumentOutOfRangeException(nameof(actionTypeId), actionTypeId, null);
+          throw new ArgumentOutOfRangeException(nameof(controlActionTypeId), controlActionTypeId, null);
       }
     }
   }

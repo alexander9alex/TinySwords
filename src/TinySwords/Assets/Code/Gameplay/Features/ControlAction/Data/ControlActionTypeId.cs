@@ -1,6 +1,6 @@
 ﻿namespace Code.UI.Buttons.Data
 {
-  public enum ActionTypeId
+  public enum ControlActionTypeId
   {
     Unknown = 0,
     Move = 1,

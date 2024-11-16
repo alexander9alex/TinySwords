@@ -31,8 +31,8 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddMoveDirection(Vector2.zero)
         .AddAllActionTypeIds(new()
         {
-          ActionTypeId.Move,
-          ActionTypeId.MoveWithAttack
+          ControlActionTypeId.Move,
+          ControlActionTypeId.MoveWithAttack
         })
         .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)

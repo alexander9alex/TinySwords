@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
-        List<ActionTypeId> availableActions = new(GameConstants.AllActions);
+        List<ControlActionTypeId> availableActions = new(GameConstants.AllActions);
 
         foreach (GameEntity selected in _selected)
         {

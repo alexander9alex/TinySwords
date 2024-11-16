@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.ControlAction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherMoveAction;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ParseAction.MoveAction moveActionComponent = new Code.Gameplay.Features.ParseAction.MoveAction();
+    static readonly MoveAction moveActionComponent = new MoveAction();
 
     public bool isMoveAction {
         get { return HasComponent(GameComponentsLookup.MoveAction); }

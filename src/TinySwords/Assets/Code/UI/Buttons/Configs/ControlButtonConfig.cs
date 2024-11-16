@@ -1,5 +1,6 @@
 ﻿using Code.UI.Buttons.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.UI.Buttons.Configs
 {
@@ -7,6 +8,7 @@ namespace Code.UI.Buttons.Configs
   public class ControlButtonConfig : ScriptableObject
   {
     public GameObject ControlButtonPrefab;
-    public ActionTypeId ActionTypeId;
+    [FormerlySerializedAs("ActionTypeId")]
+    public ControlActionTypeId ControlActionTypeId;
   }
 }

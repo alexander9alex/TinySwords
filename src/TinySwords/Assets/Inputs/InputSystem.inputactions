@@ -584,6 +584,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ControlActionIsActive",
+            "id": "cfd39a08-3ffb-464f-a4fe-f37e0de65023",
+            "actions": [
+                {
+                    "name": "ApplyAction",
+                    "type": "Button",
+                    "id": "9a21d1ca-014c-4c10-a091-edf006567e84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CancelAction",
+                    "type": "Button",
+                    "id": "23c6f089-263b-4718-a371-ba8ce39dde33",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "f63832f8-d185-4257-98ae-b1d766da3859",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a2a1f04-ff95-45c5-80dd-cce3cd53b2b2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ApplyAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d040ceb4-dcd9-455c-acdc-6f897109e3df",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "CancelAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc036d2e-80aa-47ae-942f-7d5d688e2d30",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

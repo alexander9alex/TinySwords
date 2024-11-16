@@ -12,9 +12,9 @@ namespace Code.UI.Hud.Service
     event Action UpdateActionDescription;
     GameObject GetActionDescription();
     List<ControlButtonConfig> GetAvailableButtonConfigs();
-    void UpdateAvailableActions(List<ActionTypeId> availableActions);
-    void ClickedToButton(ActionTypeId actionTypeId);
-    void SetAction(ActionTypeId actionTypeId);
+    void UpdateAvailableActions(List<ControlActionTypeId> availableActions);
+    void ClickedToButton(ControlActionTypeId controlActionTypeId);
+    void SetAction(ControlActionTypeId controlActionTypeId);
     void CancelAction();
   }
 }

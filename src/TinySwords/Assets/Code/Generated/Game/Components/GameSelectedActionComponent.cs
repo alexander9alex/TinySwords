@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.ControlAction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherSelectedAction;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ParseAction.SelectedAction selectedActionComponent = new Code.Gameplay.Features.ParseAction.SelectedAction();
+    static readonly SelectedAction selectedActionComponent = new SelectedAction();
 
     public bool isSelectedAction {
         get { return HasComponent(GameComponentsLookup.SelectedAction); }
