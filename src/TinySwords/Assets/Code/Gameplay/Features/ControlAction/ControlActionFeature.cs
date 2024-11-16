@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.ControlAction
       Add(systems.Create<SelectControlActionSystem>());
       
       Add(systems.Create<ApplyMoveControlActionSystem>());
+      Add(systems.Create<ApplyMoveWithAttackControlActionSystem>());
       
       Add(systems.Create<CancelControlActionSystem>());
 
