@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using Code.UI.Buttons.Configs;
 using Code.UI.Buttons.Data;
+using UnityEngine;
 
 namespace Code.UI.Hud.Service
 {
   public interface IHudService
   {
     event Action UpdateHud;
-    void UpdateAvailableActions(List<ActionTypeId> availableActions);
+    event Action UpdateActionDescription;
+    GameObject GetActionDescription();
     List<ControlButtonConfig> GetAvailableButtonConfigs();
+    void UpdateAvailableActions(List<ActionTypeId> availableActions);
     void ClickedToButton(ActionTypeId actionTypeId);
+    void SetAction(ActionTypeId actionTypeId);
   }
 }

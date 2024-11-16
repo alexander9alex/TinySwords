@@ -14,5 +14,8 @@ namespace Code.UI.Hud.Factory
 
     public Button CreateControlButton(ControlButtonConfig controlButtonConfig, RectTransform parent) =>
       _instantiator.InstantiatePrefabForComponent<Button>(controlButtonConfig.ControlButtonPrefab, parent);
+
+    public GameObject CreateActionDescription(GameObject prefab, RectTransform parent) =>
+      _instantiator.InstantiatePrefab(prefab, parent);
   }
 }

@@ -62,21 +62,23 @@ public static class GameComponentsLookup {
     public const int NavMeshSurface = 51;
     public const int NotAddedNavMeshRootSource = 52;
     public const int UpdateNavMesh = 53;
-    public const int MoveAction = 54;
-    public const int MoveWithAttackAction = 55;
-    public const int MultipleSelectionRequest = 56;
-    public const int Selectable = 57;
-    public const int Selected = 58;
-    public const int SelectedChanged = 59;
-    public const int SelectedNow = 60;
-    public const int SelectingAnimator = 61;
-    public const int SingleSelectionRequest = 62;
-    public const int Unselected = 63;
-    public const int UnselectPreviouslySelectedRequest = 64;
-    public const int MoveAnimator = 65;
-    public const int Unit = 66;
+    public const int ActionTypeId = 54;
+    public const int MoveAction = 55;
+    public const int MoveWithAttackAction = 56;
+    public const int SelectedAction = 57;
+    public const int MultipleSelectionRequest = 58;
+    public const int Selectable = 59;
+    public const int Selected = 60;
+    public const int SelectedChanged = 61;
+    public const int SelectedNow = 62;
+    public const int SelectingAnimator = 63;
+    public const int SingleSelectionRequest = 64;
+    public const int Unselected = 65;
+    public const int UnselectPreviouslySelectedRequest = 66;
+    public const int MoveAnimator = 67;
+    public const int Unit = 68;
 
-    public const int TotalComponents = 67;
+    public const int TotalComponents = 69;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -133,8 +135,10 @@ public static class GameComponentsLookup {
         "NavMeshSurface",
         "NotAddedNavMeshRootSource",
         "UpdateNavMesh",
+        "ActionTypeId",
         "MoveAction",
         "MoveWithAttackAction",
+        "SelectedAction",
         "MultipleSelectionRequest",
         "Selectable",
         "Selected",
@@ -203,8 +207,10 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.NavMesh.NavMeshSurfaceComponent),
         typeof(Code.Gameplay.Features.NavMesh.NotAddedNavMeshRootSource),
         typeof(Code.Gameplay.Features.NavMesh.UpdateNavMesh),
+        typeof(Code.Gameplay.Features.ParseAction.ActionTypeIdComponent),
         typeof(Code.Gameplay.Features.ParseAction.MoveAction),
         typeof(Code.Gameplay.Features.ParseAction.MoveWithAttackAction),
+        typeof(Code.Gameplay.Features.ParseAction.SelectedAction),
         typeof(Code.Gameplay.Features.Select.SelectComponents.MultipleSelectionRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selectable),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),

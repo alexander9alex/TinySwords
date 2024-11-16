@@ -6,7 +6,7 @@ namespace Code.Gameplay.Features.ParseAction
   {
     public ParseActionFeature(ISystemFactory systems)
     {
-      
+      Add(systems.Create<SelectActionSystem>());
     }
   }
 }

@@ -7,6 +7,7 @@ using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
 using Code.UI.Buttons.Configs;
 using Code.UI.Buttons.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
 {
@@ -19,5 +20,6 @@ namespace Code.Gameplay.Common.Services
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
     List<ControlButtonConfig> GetControlButtonConfigs(List<ActionTypeId> availableActions);
+    GameObject GetActionDescription(ActionTypeId actionTypeId);
   }
 }

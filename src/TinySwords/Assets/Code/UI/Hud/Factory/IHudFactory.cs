@@ -7,5 +7,6 @@ namespace Code.UI.Hud.Factory
   public interface IHudFactory
   {
     Button CreateControlButton(ControlButtonConfig controlButtonConfig, RectTransform parent);
+    GameObject CreateActionDescription(GameObject prefab, RectTransform parent);
   }
 }

@@ -11,11 +11,13 @@ namespace Code.UI.Hud
   public class HUD : MonoBehaviour
   {
     public RectTransform ControlButtonsLayout;
+    public RectTransform ActionDescriptionLayout;
 
     private IHudService _hudService;
     private IHudFactory _hudFactory;
 
     private readonly List<GameObject> _spawnedButtons = new();
+    private GameObject _actionDescription;
 
     [Inject]
     private void Construct(IHudService hudService, IHudFactory hudFactory)
@@ -33,8 +35,10 @@ namespace Code.UI.Hud
     private void SubscribeUpdates()
     {
       _hudService.UpdateHud += RefreshButtons;
+      _hudService.UpdateActionDescription += RefreshActionDescription;
 
       RefreshButtons();
+      RefreshActionDescription();
     }
 
     private void RefreshButtons()
@@ -43,11 +47,27 @@ namespace Code.UI.Hud
       CreateNewButtons();
     }
 
+    private void RefreshActionDescription()
+    {
+      DestroySpawnedDescription();
+      CreateNewDescription();
+    }
+
+    private void CreateNewDescription()
+    {
+      GameObject actionDescriptionPrefab = _hudService.GetActionDescription();
+
+      if (actionDescriptionPrefab == null)
+        return;
+
+      _actionDescription = _hudFactory.CreateActionDescription(actionDescriptionPrefab, ActionDescriptionLayout);
+    }
+
     private void DestroySpawnedButtons()
     {
       foreach (GameObject button in _spawnedButtons)
         Destroy(button);
-      
+
       _spawnedButtons.Clear();
     }
 
@@ -63,7 +83,13 @@ namespace Code.UI.Hud
       }
     }
 
-    private void UnsubscribeUpdates() =>
+    private void UnsubscribeUpdates()
+    {
       _hudService.UpdateHud -= RefreshButtons;
+      _hudService.UpdateActionDescription -= RefreshActionDescription;
+    }
+
+    private void DestroySpawnedDescription() =>
+      Destroy(_actionDescription);
   }
 }

@@ -6,15 +6,18 @@ using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
 using Code.UI.Buttons.Configs;
 using Code.UI.Buttons.Data;
+using UnityEngine;
 
 namespace Code.UI.Hud.Service
 {
   class HudService : IHudService
   {
     public event Action UpdateHud;
+    public event Action UpdateActionDescription;
 
     private readonly IStaticDataService _staticData;
     private List<ControlButtonConfig> _availableButtonConfigs = new();
+    private GameObject _actionDescription;
 
     public HudService(IStaticDataService staticData) =>
       _staticData = staticData;
@@ -30,6 +33,17 @@ namespace Code.UI.Hud.Service
 
     public List<ControlButtonConfig> GetAvailableButtonConfigs() =>
       _availableButtonConfigs;
+    public GameObject GetActionDescription() =>
+      _actionDescription;
+
+    public void SetAction(ActionTypeId actionTypeId)
+    {
+      _availableButtonConfigs = new();
+      UpdateHud?.Invoke();
+
+      _actionDescription = _staticData.GetActionDescription(actionTypeId);
+      UpdateActionDescription?.Invoke();
+    }
 
     public void ClickedToButton(ActionTypeId actionTypeId)
     {
@@ -38,10 +52,14 @@ namespace Code.UI.Hud.Service
       switch (actionTypeId)
       {
         case ActionTypeId.Move:
-          entity.With(x => x.isMoveAction = true);
+          entity
+            .AddActionTypeId(ActionTypeId.Move)
+            .With(x => x.isMoveAction = true);
           break;
         case ActionTypeId.MoveWithAttack:
-          entity.With(x => x.isMoveWithAttackAction = true);
+          entity
+            .AddActionTypeId(ActionTypeId.MoveWithAttack)
+            .With(x => x.isMoveWithAttackAction = true);
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(actionTypeId), actionTypeId, null);
