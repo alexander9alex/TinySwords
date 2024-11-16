@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.FastInteraction;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherAllActionTypeIds;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.FastInteract.AllActionTypeIds allActionTypeIds { get { return (Code.Gameplay.Features.FastInteract.AllActionTypeIds)GetComponent(GameComponentsLookup.AllActionTypeIds); } }
+    public AllActionTypeIds allActionTypeIds { get { return (AllActionTypeIds)GetComponent(GameComponentsLookup.AllActionTypeIds); } }
     public System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> AllActionTypeIds { get { return allActionTypeIds.Value; } }
     public bool hasAllActionTypeIds { get { return HasComponent(GameComponentsLookup.AllActionTypeIds); } }
 
     public GameEntity AddAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> newValue) {
         var index = GameComponentsLookup.AllActionTypeIds;
-        var component = (Code.Gameplay.Features.FastInteract.AllActionTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteract.AllActionTypeIds));
+        var component = (AllActionTypeIds)CreateComponent(index, typeof(AllActionTypeIds));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAllActionTypeIds(System.Collections.Generic.List<Code.UI.Buttons.Data.ControlActionTypeId> newValue) {
         var index = GameComponentsLookup.AllActionTypeIds;
-        var component = (Code.Gameplay.Features.FastInteract.AllActionTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteract.AllActionTypeIds));
+        var component = (AllActionTypeIds)CreateComponent(index, typeof(AllActionTypeIds));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

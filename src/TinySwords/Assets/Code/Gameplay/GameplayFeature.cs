@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.ControlAction;
 using Code.Gameplay.Features.Destruct;
-using Code.Gameplay.Features.FastInteract;
+using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
@@ -20,7 +20,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<InputFeature>());
       Add(systems.Create<ControlActionFeature>());
-      Add(systems.Create<FastInteractFeature>());
+      Add(systems.Create<FastInteractionFeature>());
 
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());

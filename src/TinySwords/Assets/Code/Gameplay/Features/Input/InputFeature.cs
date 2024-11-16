@@ -18,7 +18,6 @@ namespace Code.Gameplay.Features.Input
       Add(systems.Create<CleanupMousePositionSystem>());
       
       Add(systems.Create<CleanupActionInputSystem>());
-      Add(systems.Create<CleanupFastInteractionSystem>());
     }
   }
 }

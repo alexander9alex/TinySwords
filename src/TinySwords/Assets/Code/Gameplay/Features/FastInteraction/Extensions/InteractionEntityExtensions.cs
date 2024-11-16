@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Features.FastInteract.Extensions
+﻿namespace Code.Gameplay.Features.FastInteraction.Extensions
 {
   public static class InteractionEntityExtensions
   {
