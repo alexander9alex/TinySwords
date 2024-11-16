@@ -9,6 +9,5 @@ namespace Code.Gameplay.Features.FastInteract
   [Game] public class TargetId : IComponent { public int Value; }
   [Game] public class InteractWithBuildingRequest : IComponent { }
   [Game] public class InteractWithUnitRequest : IComponent { }
-  [Game] public class ActionTypeIdComponent : IComponent { public ActionTypeId Value; }
   [Game] public class AllActionTypeIds : IComponent { public List<ActionTypeId> Value; }
 }

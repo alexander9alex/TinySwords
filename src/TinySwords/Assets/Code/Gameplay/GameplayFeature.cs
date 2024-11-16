@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
+using Code.Gameplay.Features.ParseAction;
 using Code.Gameplay.Features.Select;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
@@ -18,7 +19,8 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      Add(systems.Create<FastInteractFeature>());
+      // Add(systems.Create<FastInteractFeature>());
+      Add(systems.Create<ParseActionFeature>());
       
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());

@@ -1,7 +1,5 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
-using Code.Gameplay.Features.Build.Data;
-using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Units.Data;
@@ -23,19 +21,17 @@ namespace Code.Infrastructure.States.GameStates
     private readonly IGameStateMachine _gameStateMachine;
     private readonly ICameraProvider _cameraProvider;
     private readonly IInputService _inputService;
-    private readonly IBuildingFactory _buildingFactory;
     private readonly IUnitFactory _unitFactory;
     private readonly ILevelFactory _levelFactory;
 
     public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
-      IInputService inputService, IBuildingFactory buildingFactory, IUnitFactory unitFactory, ILevelFactory levelFactory)
+      IInputService inputService, IUnitFactory unitFactory, ILevelFactory levelFactory)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
       _gameStateMachine = gameStateMachine;
       _cameraProvider = cameraProvider;
       _inputService = inputService;
-      _buildingFactory = buildingFactory;
       _unitFactory = unitFactory;
       _levelFactory = levelFactory;
     }
@@ -50,8 +46,6 @@ namespace Code.Infrastructure.States.GameStates
 
       _levelFactory.CreateLevel();
       
-      _buildingFactory.CreateBuilding(BuildingTypeId.Castle, TeamColor.Blue, new Vector3(0, 0));
-
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, 2));
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, 2));
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(2, -2));

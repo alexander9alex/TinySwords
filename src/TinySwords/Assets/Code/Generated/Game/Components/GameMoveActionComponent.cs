@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherInteractWithUnitRequest;
+    static Entitas.IMatcher<GameEntity> _matcherMoveAction;
 
-    public static Entitas.IMatcher<GameEntity> InteractWithUnitRequest {
+    public static Entitas.IMatcher<GameEntity> MoveAction {
         get {
-            if (_matcherInteractWithUnitRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.InteractWithUnitRequest);
+            if (_matcherMoveAction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveAction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherInteractWithUnitRequest = matcher;
+                _matcherMoveAction = matcher;
             }
 
-            return _matcherInteractWithUnitRequest;
+            return _matcherMoveAction;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.FastInteract.InteractWithUnitRequest interactWithUnitRequestComponent = new Code.Gameplay.Features.FastInteract.InteractWithUnitRequest();
+    static readonly Code.Gameplay.Features.ParseAction.MoveAction moveActionComponent = new Code.Gameplay.Features.ParseAction.MoveAction();
 
-    public bool isInteractWithUnitRequest {
-        get { return HasComponent(GameComponentsLookup.InteractWithUnitRequest); }
+    public bool isMoveAction {
+        get { return HasComponent(GameComponentsLookup.MoveAction); }
         set {
-            if (value != isInteractWithUnitRequest) {
-                var index = GameComponentsLookup.InteractWithUnitRequest;
+            if (value != isMoveAction) {
+                var index = GameComponentsLookup.MoveAction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : interactWithUnitRequestComponent;
+                            : moveActionComponent;
 
                     AddComponent(index, component);
                 } else {

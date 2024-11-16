@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherInteractWithUnitRequest;
+    static Entitas.IMatcher<GameEntity> _matcherMoveWithAttackAction;
 
-    public static Entitas.IMatcher<GameEntity> InteractWithUnitRequest {
+    public static Entitas.IMatcher<GameEntity> MoveWithAttackAction {
         get {
-            if (_matcherInteractWithUnitRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.InteractWithUnitRequest);
+            if (_matcherMoveWithAttackAction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveWithAttackAction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherInteractWithUnitRequest = matcher;
+                _matcherMoveWithAttackAction = matcher;
             }
 
-            return _matcherInteractWithUnitRequest;
+            return _matcherMoveWithAttackAction;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.FastInteract.InteractWithUnitRequest interactWithUnitRequestComponent = new Code.Gameplay.Features.FastInteract.InteractWithUnitRequest();
+    static readonly Code.Gameplay.Features.ParseAction.MoveWithAttackAction moveWithAttackActionComponent = new Code.Gameplay.Features.ParseAction.MoveWithAttackAction();
 
-    public bool isInteractWithUnitRequest {
-        get { return HasComponent(GameComponentsLookup.InteractWithUnitRequest); }
+    public bool isMoveWithAttackAction {
+        get { return HasComponent(GameComponentsLookup.MoveWithAttackAction); }
         set {
-            if (value != isInteractWithUnitRequest) {
-                var index = GameComponentsLookup.InteractWithUnitRequest;
+            if (value != isMoveWithAttackAction) {
+                var index = GameComponentsLookup.MoveWithAttackAction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : interactWithUnitRequestComponent;
+                            : moveWithAttackActionComponent;
 
                     AddComponent(index, component);
                 } else {
