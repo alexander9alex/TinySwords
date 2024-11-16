@@ -10,21 +10,22 @@ namespace Code.Gameplay.Features.Select.Systems
   public class UpdateHudControlButtonSystem : IExecuteSystem
   {
     private readonly IHudService _hudService;
-    private readonly IGroup<GameEntity> _selectedChangedRequests;
+    
+    private readonly IGroup<GameEntity> _updateHudControlButtonsRequests;
     private readonly IGroup<GameEntity> _selected;
-    private readonly List<GameEntity> _buffer = new();
+    private readonly List<GameEntity> _buffer = new(1);
 
     public UpdateHudControlButtonSystem(GameContext game, IHudService hudService)
     {
       _hudService = hudService;
 
-      _selectedChangedRequests = game.GetGroup(GameMatcher.SelectedChanged);
+      _updateHudControlButtonsRequests = game.GetGroup(GameMatcher.UpdateHudControlButtons);
       _selected = game.GetGroup(GameMatcher.Selected);
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _selectedChangedRequests.GetEntities(_buffer))
+      foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
         List<ActionTypeId> availableActions = new(GameConstants.AllActions);
 

@@ -19,9 +19,9 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      // Add(systems.Create<FastInteractFeature>());
       Add(systems.Create<ParseActionFeature>());
-      
+      Add(systems.Create<FastInteractFeature>());
+
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());
       

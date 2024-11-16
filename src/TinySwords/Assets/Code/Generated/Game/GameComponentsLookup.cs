@@ -75,10 +75,11 @@ public static class GameComponentsLookup {
     public const int SingleSelectionRequest = 64;
     public const int Unselected = 65;
     public const int UnselectPreviouslySelectedRequest = 66;
-    public const int MoveAnimator = 67;
-    public const int Unit = 68;
+    public const int UpdateHudControlButtons = 67;
+    public const int MoveAnimator = 68;
+    public const int Unit = 69;
 
-    public const int TotalComponents = 69;
+    public const int TotalComponents = 70;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -148,6 +149,7 @@ public static class GameComponentsLookup {
         "SingleSelectionRequest",
         "Unselected",
         "UnselectPreviouslySelectedRequest",
+        "UpdateHudControlButtons",
         "MoveAnimator",
         "Unit"
     };
@@ -220,6 +222,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.SingleSelectionRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
         typeof(Code.Gameplay.Features.Units.MoveAnimator),
         typeof(Code.Gameplay.Features.Units.Unit)
     };

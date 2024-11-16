@@ -15,5 +15,6 @@ namespace Code.UI.Hud.Service
     void UpdateAvailableActions(List<ActionTypeId> availableActions);
     void ClickedToButton(ActionTypeId actionTypeId);
     void SetAction(ActionTypeId actionTypeId);
+    void CancelAction();
   }
 }

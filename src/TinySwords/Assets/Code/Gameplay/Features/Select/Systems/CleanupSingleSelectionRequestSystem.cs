@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Select.Systems
 
     public CleanupSingleSelectionRequestSystem(GameContext game)
     {
-      _singleSelectionRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.SingleSelectionRequest));
+      _singleSelectionRequests = game.GetGroup(GameMatcher.SingleSelectionRequest);
     }
 
     public void Cleanup()

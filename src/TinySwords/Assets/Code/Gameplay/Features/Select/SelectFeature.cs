@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.Select
       Add(systems.Create<SelectHighlightedCastleSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
+      Add(systems.Create<CreateUpdateHudControlButtonsRequest>());
       Add(systems.Create<UpdateHudControlButtonSystem>());
 
       Add(systems.Create<AnimateSelectingSystem>());
@@ -22,6 +23,7 @@ namespace Code.Gameplay.Features.Select
       
       Add(systems.Create<CleanupSingleSelectionRequestSystem>());
       Add(systems.Create<CleanupMultipleSelectionRequestSystem>());
+      Add(systems.Create<CleanupSelectedChangedRequestSystem>());
     }
   }
 }

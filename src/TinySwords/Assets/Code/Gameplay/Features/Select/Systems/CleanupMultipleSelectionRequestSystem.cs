@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Select.Systems
 
     public CleanupMultipleSelectionRequestSystem(GameContext game)
     {
-      _multipleSelectionRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.MultipleSelectionRequest));
+      _multipleSelectionRequests = game.GetGroup(GameMatcher.MultipleSelectionRequest);
     }
 
     public void Cleanup()

@@ -26,13 +26,14 @@ namespace Code.UI.Hud.Service
     {
       if (Equals(_availableButtonConfigs.Select(x => x.ActionTypeId), availableActions))
         return;
-      
+
       _availableButtonConfigs = _staticData.GetControlButtonConfigs(availableActions);
       UpdateHud?.Invoke();
     }
 
     public List<ControlButtonConfig> GetAvailableButtonConfigs() =>
       _availableButtonConfigs;
+
     public GameObject GetActionDescription() =>
       _actionDescription;
 
@@ -42,6 +43,12 @@ namespace Code.UI.Hud.Service
       UpdateHud?.Invoke();
 
       _actionDescription = _staticData.GetActionDescription(actionTypeId);
+      UpdateActionDescription?.Invoke();
+    }
+
+    public void CancelAction()
+    {
+      _actionDescription = null;
       UpdateActionDescription?.Invoke();
     }
 
@@ -55,11 +62,13 @@ namespace Code.UI.Hud.Service
           entity
             .AddActionTypeId(ActionTypeId.Move)
             .With(x => x.isMoveAction = true);
+
           break;
         case ActionTypeId.MoveWithAttack:
           entity
             .AddActionTypeId(ActionTypeId.MoveWithAttack)
             .With(x => x.isMoveWithAttackAction = true);
+
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(actionTypeId), actionTypeId, null);

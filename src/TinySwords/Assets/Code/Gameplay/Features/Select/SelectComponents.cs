@@ -15,5 +15,6 @@ namespace Code.Gameplay.Features.Select
     
     [Game] public class SingleSelectionRequest : IComponent { }
     [Game] public class MultipleSelectionRequest : IComponent { }
+    [Game] public class UpdateHudControlButtons : IComponent { }
   }
 }
