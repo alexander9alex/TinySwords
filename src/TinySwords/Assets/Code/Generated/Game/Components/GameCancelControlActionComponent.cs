@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.ControlAction;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCancelControlAction;
@@ -36,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly CancelControlAction cancelControlActionComponent = new CancelControlAction();
+    static readonly Code.Gameplay.Features.ControlAction.CancelControlAction cancelControlActionComponent = new Code.Gameplay.Features.ControlAction.CancelControlAction();
 
     public bool isCancelControlAction {
         get { return HasComponent(GameComponentsLookup.CancelControlAction); }

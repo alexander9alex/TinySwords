@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.ControlAction.Systems
       _hudService = hudService;
       _inputService = inputService;
       _moveActions = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ActionTypeId)
+        .AllOf(GameMatcher.ControlActionTypeId)
         .NoneOf(GameMatcher.SelectedAction));
     }
 

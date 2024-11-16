@@ -60,14 +60,14 @@ namespace Code.UI.Hud.Service
       {
         case ControlActionTypeId.Move:
           entity
-            .AddActionTypeId(ControlActionTypeId.Move)
-            .With(x => x.isMoveAction = true);
+            .AddControlActionTypeId(ControlActionTypeId.Move)
+            .With(x => x.isMoveControlAction = true);
 
           break;
         case ControlActionTypeId.MoveWithAttack:
           entity
-            .AddActionTypeId(ControlActionTypeId.MoveWithAttack)
-            .With(x => x.isMoveWithAttackAction = true);
+            .AddControlActionTypeId(ControlActionTypeId.MoveWithAttack)
+            .With(x => x.isMoveWithAttackControlAction = true);
 
           break;
         default:

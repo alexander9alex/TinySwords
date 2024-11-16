@@ -7,8 +7,8 @@ namespace Code.Gameplay.Features.ControlAction
   [Game] public class ActionEnded : IComponent { }
   [Game] public class ApplyControlAction : IComponent { }
   [Game] public class CancelControlAction : IComponent { }
-  [Game] public class MoveAction : IComponent { }
-  [Game] public class MoveWithAttackAction : IComponent { }
+  [Game] public class MoveControlAction : IComponent { }
+  [Game] public class MoveWithAttackControlAction : IComponent { }
   [Game] public class SelectedAction : IComponent { }
-  [Game] public class ActionTypeIdComponent : IComponent { public ControlActionTypeId Value; }
+  [Game] public class ControlActionTypeIdComponent : IComponent { public ControlActionTypeId Value; }
 }

@@ -8,7 +8,12 @@ namespace Code.Gameplay.Features.ControlAction
     public ControlActionFeature(ISystemFactory systems)
     {
       Add(systems.Create<SelectControlActionSystem>());
+      
+      Add(systems.Create<ApplyMoveControlActionSystem>());
+      
       Add(systems.Create<CancelControlActionSystem>());
+
+      Add(systems.Create<CleanupApplyControlActionRequestSystem>());
     }
   }
 }

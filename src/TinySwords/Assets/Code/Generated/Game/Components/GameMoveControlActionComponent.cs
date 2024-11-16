@@ -6,22 +6,19 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.ControlAction;
-
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMoveAction;
+    static Entitas.IMatcher<GameEntity> _matcherMoveControlAction;
 
-    public static Entitas.IMatcher<GameEntity> MoveAction {
+    public static Entitas.IMatcher<GameEntity> MoveControlAction {
         get {
-            if (_matcherMoveAction == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveAction);
+            if (_matcherMoveControlAction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveControlAction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMoveAction = matcher;
+                _matcherMoveControlAction = matcher;
             }
 
-            return _matcherMoveAction;
+            return _matcherMoveControlAction;
         }
     }
 }
@@ -36,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MoveAction moveActionComponent = new MoveAction();
+    static readonly Code.Gameplay.Features.ControlAction.MoveControlAction moveControlActionComponent = new Code.Gameplay.Features.ControlAction.MoveControlAction();
 
-    public bool isMoveAction {
-        get { return HasComponent(GameComponentsLookup.MoveAction); }
+    public bool isMoveControlAction {
+        get { return HasComponent(GameComponentsLookup.MoveControlAction); }
         set {
-            if (value != isMoveAction) {
-                var index = GameComponentsLookup.MoveAction;
+            if (value != isMoveControlAction) {
+                var index = GameComponentsLookup.MoveControlAction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : moveActionComponent;
+                            : moveControlActionComponent;
 
                     AddComponent(index, component);
                 } else {

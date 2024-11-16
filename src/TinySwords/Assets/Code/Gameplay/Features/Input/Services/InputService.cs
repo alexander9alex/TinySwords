@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
-using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Input.Data;
 using Code.UI.Layouts;
@@ -20,6 +19,7 @@ namespace Code.Gameplay.Features.Input.Services
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
+    private Vector2 _applyControlActionStartedPos;
 
     public InputService()
     {
@@ -43,6 +43,7 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void InitActionIsActiveInputMap()
     {
+      _inputSystem.ControlActionIsActive.ApplyAction.started += ApplyControlActionStarted;
       _inputSystem.ControlActionIsActive.ApplyAction.canceled += ApplyControlAction;
 
       _inputSystem.ControlActionIsActive.CancelAction.canceled += CancelControlAction;
@@ -117,11 +118,17 @@ namespace Code.Gameplay.Features.Input.Services
         .AddPositionOnScreen(_mousePos);
     }
 
+    private void ApplyControlActionStarted(InputAction.CallbackContext context) =>
+      _applyControlActionStartedPos = _mousePos;
+
     private void ApplyControlAction(InputAction.CallbackContext context)
     {
       if (!ClickInGameZone(_mousePos))
         return;
 
+      if (Vector2.Distance(_applyControlActionStartedPos, _mousePos) > GameConstants.SelectionClickDelta * 3)
+        return;
+      
       CreateEntity.Empty()
         .With(x => x.isApplyControlAction = true)
         .AddPositionOnScreen(_mousePos);

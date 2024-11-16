@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.ControlAction;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherActionEnded;
@@ -36,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly ActionEnded actionEndedComponent = new ActionEnded();
+    static readonly Code.Gameplay.Features.ControlAction.ActionEnded actionEndedComponent = new Code.Gameplay.Features.ControlAction.ActionEnded();
 
     public bool isActionEnded {
         get { return HasComponent(GameComponentsLookup.ActionEnded); }

@@ -6,22 +6,19 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.ControlAction;
-
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMoveWithAttackAction;
+    static Entitas.IMatcher<GameEntity> _matcherMoveWithAttackControlAction;
 
-    public static Entitas.IMatcher<GameEntity> MoveWithAttackAction {
+    public static Entitas.IMatcher<GameEntity> MoveWithAttackControlAction {
         get {
-            if (_matcherMoveWithAttackAction == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveWithAttackAction);
+            if (_matcherMoveWithAttackControlAction == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveWithAttackControlAction);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMoveWithAttackAction = matcher;
+                _matcherMoveWithAttackControlAction = matcher;
             }
 
-            return _matcherMoveWithAttackAction;
+            return _matcherMoveWithAttackControlAction;
         }
     }
 }
@@ -36,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MoveWithAttackAction moveWithAttackActionComponent = new MoveWithAttackAction();
+    static readonly Code.Gameplay.Features.ControlAction.MoveWithAttackControlAction moveWithAttackControlActionComponent = new Code.Gameplay.Features.ControlAction.MoveWithAttackControlAction();
 
-    public bool isMoveWithAttackAction {
-        get { return HasComponent(GameComponentsLookup.MoveWithAttackAction); }
+    public bool isMoveWithAttackControlAction {
+        get { return HasComponent(GameComponentsLookup.MoveWithAttackControlAction); }
         set {
-            if (value != isMoveWithAttackAction) {
-                var index = GameComponentsLookup.MoveWithAttackAction;
+            if (value != isMoveWithAttackControlAction) {
+                var index = GameComponentsLookup.MoveWithAttackControlAction;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : moveWithAttackActionComponent;
+                            : moveWithAttackControlActionComponent;
 
                     AddComponent(index, component);
                 } else {
