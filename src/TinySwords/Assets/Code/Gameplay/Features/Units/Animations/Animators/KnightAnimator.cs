@@ -11,12 +11,12 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
     public GameObject SelectingCircle;
 
     public void AnimateIdle() =>
-      Animator.Play(KnightAnimations.Idle);
+      Animator.Play(AnimationConstants.Idle);
 
     public void AnimateWalk(Vector2 dir)
     {
       TurnToMoveDir(dir);
-      Animator.Play(KnightAnimations.Walk);
+      Animator.Play(AnimationConstants.Walk);
     }
 
     private void TurnToMoveDir(Vector2 dir)

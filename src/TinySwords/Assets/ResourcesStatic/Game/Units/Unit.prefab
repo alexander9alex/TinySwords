@@ -15,11 +15,9 @@ GameObject:
   - component: {fileID: 1400087004846229561}
   - component: {fileID: 4031696372157677748}
   - component: {fileID: 2810683365945737114}
-  - component: {fileID: 9178764250356365506}
-  - component: {fileID: 4847912186616274848}
   - component: {fileID: 1765808273595722036}
   m_Layer: 10
-  m_Name: BlueKnight
+  m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,35 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityBehaviour: {fileID: 4031696372157677748}
---- !u!114 &9178764250356365506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062871423326038689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51069ab281ff439b9e032cf4c033f806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EntityBehaviour: {fileID: 4031696372157677748}
-  KnightAnimator: {fileID: 4847912186616274848}
---- !u!114 &4847912186616274848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062871423326038689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8705fc96a96542f888b967cf302d50ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 4549486574946373586}
-  SpriteRenderer: {fileID: 6763967789457780471}
-  SelectingCircle: {fileID: 6087336141347869145}
 --- !u!114 &1765808273595722036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,16 +272,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 156989720974902515, guid: 0669baf9d1611b04aa61d89269df7a2c, type: 3}
   m_PrefabInstance: {fileID: 432132584272450271}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &4549486574946373586 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4241330525567458573, guid: 0669baf9d1611b04aa61d89269df7a2c, type: 3}
-  m_PrefabInstance: {fileID: 432132584272450271}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &6763967789457780471 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6350443354374732840, guid: 0669baf9d1611b04aa61d89269df7a2c, type: 3}
-  m_PrefabInstance: {fileID: 432132584272450271}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7252867427385830252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,11 +345,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}
---- !u!1 &6087336141347869145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3521203067313371829, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}
-  m_PrefabInstance: {fileID: 7252867427385830252}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8201827767557434432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1546391194742245164, guid: 837b08e1337b4174da968b34eb1f866b, type: 3}
