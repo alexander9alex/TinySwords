@@ -1,10 +1,10 @@
+using System;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
-using Code.Gameplay.Services;
 using Code.UI.Buttons.Data;
 using UnityEngine;
 
@@ -23,10 +23,27 @@ namespace Code.Gameplay.Features.Units.Factory
 
     public void CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos)
     {
-      UnitConfig unitConfig = _staticDataService.GetUnitConfig(type, color);
+      switch (type)
+      {
+        case UnitTypeId.Knight:
+          CreateKnight(type, color, pos);
+          break;
+        case UnitTypeId.TorchGoblin:
+          CreateTorchGoblin(type, color, pos);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(type), type, null);
+      }
+
+    }
+
+    private void CreateKnight(UnitTypeId type, TeamColor color, Vector3 pos)
+    {
+      UnitConfig config = _staticDataService.GetUnitConfig(type, color);
+      
       CreateEntity.Empty()
         .AddId(_identifiers.Next())
-        .AddViewPrefab(unitConfig.UnitPrefab)
+        .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
         .AddAllActionTypeIds(new()
@@ -37,7 +54,27 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
-        .With(x => x.isInteractable = true)
+        .With(x => x.isIdle = true)
+        .With(x => x.isUpdatePositionAfterSpawning = true)
+        .With(x => x.isMovable = true)
+        ;
+    }
+
+    private void CreateTorchGoblin(UnitTypeId type, TeamColor color, Vector3 pos)
+    {
+      UnitConfig config = _staticDataService.GetUnitConfig(type, color);
+      
+      CreateEntity.Empty()
+        .AddId(_identifiers.Next())
+        .AddViewPrefab(config.UnitPrefab)
+        .AddWorldPosition(pos)
+        .AddMoveDirection(Vector2.zero)
+        .AddAllActionTypeIds(new()
+        {
+          ControlActionTypeId.Move,
+          ControlActionTypeId.MoveWithAttack
+        })
+        .With(x => x.isUnit = true)
         .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)
         .With(x => x.isMovable = true)

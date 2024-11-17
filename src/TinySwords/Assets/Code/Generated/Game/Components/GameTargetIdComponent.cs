@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.FastInteraction;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherTargetId;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public TargetId targetId { get { return (TargetId)GetComponent(GameComponentsLookup.TargetId); } }
+    public Code.Gameplay.Features.FastInteraction.TargetId targetId { get { return (Code.Gameplay.Features.FastInteraction.TargetId)GetComponent(GameComponentsLookup.TargetId); } }
     public int TargetId { get { return targetId.Value; } }
     public bool hasTargetId { get { return HasComponent(GameComponentsLookup.TargetId); } }
 
     public GameEntity AddTargetId(int newValue) {
         var index = GameComponentsLookup.TargetId;
-        var component = (TargetId)CreateComponent(index, typeof(TargetId));
+        var component = (Code.Gameplay.Features.FastInteraction.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.TargetId));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTargetId(int newValue) {
         var index = GameComponentsLookup.TargetId;
-        var component = (TargetId)CreateComponent(index, typeof(TargetId));
+        var component = (Code.Gameplay.Features.FastInteraction.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.TargetId));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

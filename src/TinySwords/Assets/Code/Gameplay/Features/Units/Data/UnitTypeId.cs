@@ -6,5 +6,7 @@
     Worker = 1,
     Knight = 2,
     Archer = 3,
+    
+    TorchGoblin = 13,
   }
 }
