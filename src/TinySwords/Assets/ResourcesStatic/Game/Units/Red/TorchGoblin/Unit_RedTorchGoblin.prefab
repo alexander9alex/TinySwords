@@ -82,7 +82,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
       propertyPath: m_Name
-      value: Unit_RedTourchGoblin
+      value: Unit_RedTorchGoblin
       objectReference: {fileID: 0}
     - target: {fileID: 3755063440252525448, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -132,17 +132,80 @@ PrefabInstance:
       propertyPath: SpriteRenderer
       value: 
       objectReference: {fileID: 4786132380375357664}
+    - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4847912186616274848, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
     - {fileID: 9178764250356365506, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5423737015542596535, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+    - {fileID: 6087336141347869145, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1758428944033554491}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6140176259750766709}
+    - targetCorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3722473033554714428}
   m_SourcePrefab: {fileID: 100100000, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+--- !u!114 &258101408585404370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4031696372157677748, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+  m_PrefabInstance: {fileID: 3776131537107570534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938397550708090311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123557e73f1740f3bf6947069c033851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2938397550708090311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+  m_PrefabInstance: {fileID: 3776131537107570534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6140176259750766709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938397550708090311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8544a5c63aeb4ca78a154ad73551027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 2348265720363776453}
+  SpriteRenderer: {fileID: 4786132380375357664}
+--- !u!114 &3722473033554714428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938397550708090311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf525712d10453e8d2a3b3d4176a390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityBehaviour: {fileID: 258101408585404370}
+  TorchGoblinAnimator: {fileID: 6140176259750766709}
 --- !u!4 &4852106188976226284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
