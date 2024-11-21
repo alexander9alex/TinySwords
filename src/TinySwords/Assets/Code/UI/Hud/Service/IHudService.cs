@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.UI.Buttons.Configs;
-using Code.UI.Buttons.Data;
+using Code.Gameplay.Features.ControlAction.Configs;
+using Code.Gameplay.Features.ControlAction.Data;
 using UnityEngine;
 
 namespace Code.UI.Hud.Service
@@ -11,10 +11,10 @@ namespace Code.UI.Hud.Service
     event Action UpdateHud;
     event Action UpdateActionDescription;
     GameObject GetActionDescription();
-    List<ControlButtonConfig> GetAvailableButtonConfigs();
-    void UpdateAvailableActions(List<ControlActionTypeId> availableActions);
-    void ClickedToButton(ControlActionTypeId controlActionTypeId);
-    void SetAction(ControlActionTypeId controlActionTypeId);
+    List<UnitActionUIConfig> GetAvailableUnitActionUIConfigs();
+    void UpdateAvailableActions(List<UnitActionTypeId> availableActions);
+    void ClickedToButton(UnitActionTypeId unitActionTypeId);
+    void SetAction(UnitActionTypeId unitActionTypeId);
     void CancelAction();
   }
 }

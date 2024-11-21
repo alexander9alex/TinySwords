@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Constants;
-using Code.UI.Buttons.Data;
+using Code.Gameplay.Features.ControlAction.Data;
 using Code.UI.Hud.Service;
 using Entitas;
 
@@ -27,17 +27,17 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
-        List<ControlActionTypeId> availableActions = new(GameConstants.AllActions);
+        List<UnitActionTypeId> availableActions = new(GameConstants.AllUnitActions);
 
         foreach (GameEntity selected in _selected)
         {
-          if (!selected.hasAllActionTypeIds)
+          if (!selected.hasAllUnitActionTypeIds)
           {
             availableActions.Clear();
             break;
           }
 
-          availableActions = availableActions.Intersect(selected.AllActionTypeIds).ToList();
+          availableActions = availableActions.Intersect(selected.AllUnitActionTypeIds).ToList();
         }
 
         _hudService.UpdateAvailableActions(availableActions);

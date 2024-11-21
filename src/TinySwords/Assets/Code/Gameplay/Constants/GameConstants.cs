@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Code.UI.Buttons.Data;
+using Code.Gameplay.Features.ControlAction.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Constants
@@ -13,10 +13,10 @@ namespace Code.Gameplay.Constants
     public static readonly int InteractionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static readonly int UILayer = LayerMask.NameToLayer("UI");
     
-    public static readonly List<ControlActionTypeId> AllActions = new()
+    public static readonly List<UnitActionTypeId> AllUnitActions = new()
     {
-      ControlActionTypeId.Move,
-      ControlActionTypeId.MoveWithAttack,
+      UnitActionTypeId.Move,
+      UnitActionTypeId.MoveWithAttack,
     };
   }
 }

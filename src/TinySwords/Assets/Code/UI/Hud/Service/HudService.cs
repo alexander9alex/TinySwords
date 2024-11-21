@@ -4,8 +4,8 @@ using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
-using Code.UI.Buttons.Configs;
-using Code.UI.Buttons.Data;
+using Code.Gameplay.Features.ControlAction.Configs;
+using Code.Gameplay.Features.ControlAction.Data;
 using UnityEngine;
 
 namespace Code.UI.Hud.Service
@@ -16,33 +16,33 @@ namespace Code.UI.Hud.Service
     public event Action UpdateActionDescription;
 
     private readonly IStaticDataService _staticData;
-    private List<ControlButtonConfig> _availableButtonConfigs = new();
+    private List<UnitActionUIConfig> _availableUnitActionUIConfigs = new();
     private GameObject _actionDescription;
 
     public HudService(IStaticDataService staticData) =>
       _staticData = staticData;
 
-    public void UpdateAvailableActions(List<ControlActionTypeId> availableActions)
+    public void UpdateAvailableActions(List<UnitActionTypeId> availableActions)
     {
-      if (Equals(_availableButtonConfigs.Select(x => x.ControlActionTypeId), availableActions))
+      if (Equals(_availableUnitActionUIConfigs.Select(x => x.UnitActionTypeId), availableActions))
         return;
 
-      _availableButtonConfigs = _staticData.GetControlButtonConfigs(availableActions);
+      _availableUnitActionUIConfigs = _staticData.GetUnitActionUIConfigs(availableActions);
       UpdateHud?.Invoke();
     }
 
-    public List<ControlButtonConfig> GetAvailableButtonConfigs() =>
-      _availableButtonConfigs;
+    public List<UnitActionUIConfig> GetAvailableUnitActionUIConfigs() =>
+      _availableUnitActionUIConfigs;
 
     public GameObject GetActionDescription() =>
       _actionDescription;
 
-    public void SetAction(ControlActionTypeId controlActionTypeId)
+    public void SetAction(UnitActionTypeId unitActionTypeId)
     {
-      _availableButtonConfigs = new();
+      _availableUnitActionUIConfigs = new();
       UpdateHud?.Invoke();
 
-      _actionDescription = _staticData.GetActionDescription(controlActionTypeId);
+      _actionDescription = _staticData.GetUnitActionUIConfig(unitActionTypeId).UnitActionDescriptionPrefab;
       UpdateActionDescription?.Invoke();
     }
 
@@ -52,26 +52,26 @@ namespace Code.UI.Hud.Service
       UpdateActionDescription?.Invoke();
     }
 
-    public void ClickedToButton(ControlActionTypeId controlActionTypeId)
+    public void ClickedToButton(UnitActionTypeId unitActionTypeId)
     {
       GameEntity entity = CreateEntity.Empty();
 
-      switch (controlActionTypeId)
+      switch (unitActionTypeId)
       {
-        case ControlActionTypeId.Move:
+        case UnitActionTypeId.Move:
           entity
-            .AddControlActionTypeId(ControlActionTypeId.Move)
+            .AddUnitActionTypeId(UnitActionTypeId.Move)
             .With(x => x.isMoveControlAction = true);
 
           break;
-        case ControlActionTypeId.MoveWithAttack:
+        case UnitActionTypeId.MoveWithAttack:
           entity
-            .AddControlActionTypeId(ControlActionTypeId.MoveWithAttack)
+            .AddUnitActionTypeId(UnitActionTypeId.MoveWithAttack)
             .With(x => x.isMoveWithAttackControlAction = true);
 
           break;
         default:
-          throw new ArgumentOutOfRangeException(nameof(controlActionTypeId), controlActionTypeId, null);
+          throw new ArgumentOutOfRangeException(nameof(unitActionTypeId), unitActionTypeId, null);
       }
     }
   }

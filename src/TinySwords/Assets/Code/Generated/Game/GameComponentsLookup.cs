@@ -21,11 +21,11 @@ public static class GameComponentsLookup {
     public const int ActionStarted = 10;
     public const int ApplyControlAction = 11;
     public const int CancelControlAction = 12;
-    public const int ControlActionTypeId = 13;
-    public const int MoveControlAction = 14;
-    public const int MoveWithAttackControlAction = 15;
-    public const int SelectedAction = 16;
-    public const int AllActionTypeIds = 17;
+    public const int MoveControlAction = 13;
+    public const int MoveWithAttackControlAction = 14;
+    public const int SelectedAction = 15;
+    public const int UnitActionTypeId = 16;
+    public const int AllUnitActionTypeIds = 17;
     public const int FastInteraction = 18;
     public const int TargetId = 19;
     public const int CenterPosition = 20;
@@ -93,11 +93,11 @@ public static class GameComponentsLookup {
         "ActionStarted",
         "ApplyControlAction",
         "CancelControlAction",
-        "ControlActionTypeId",
         "MoveControlAction",
         "MoveWithAttackControlAction",
         "SelectedAction",
-        "AllActionTypeIds",
+        "UnitActionTypeId",
+        "AllUnitActionTypeIds",
         "FastInteraction",
         "TargetId",
         "CenterPosition",
@@ -164,11 +164,11 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.ControlAction.ActionStarted),
         typeof(Code.Gameplay.Features.ControlAction.ApplyControlAction),
         typeof(Code.Gameplay.Features.ControlAction.CancelControlAction),
-        typeof(Code.Gameplay.Features.ControlAction.ControlActionTypeIdComponent),
         typeof(Code.Gameplay.Features.ControlAction.MoveControlAction),
         typeof(Code.Gameplay.Features.ControlAction.MoveWithAttackControlAction),
         typeof(Code.Gameplay.Features.ControlAction.SelectedAction),
-        typeof(Code.Gameplay.Features.FastInteraction.AllActionTypeIds),
+        typeof(Code.Gameplay.Features.ControlAction.UnitActionTypeIdComponent),
+        typeof(Code.Gameplay.Features.FastInteraction.AllUnitActionTypeIds),
         typeof(Code.Gameplay.Features.FastInteraction.FastInteraction),
         typeof(Code.Gameplay.Features.FastInteraction.TargetId),
         typeof(Code.Gameplay.Features.Highlight.CenterPosition),

@@ -3,9 +3,9 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.ControlAction.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
-using Code.UI.Buttons.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Factory
@@ -46,10 +46,10 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddAllActionTypeIds(new()
+        .AddAllUnitActionTypeIds(new()
         {
-          ControlActionTypeId.Move,
-          ControlActionTypeId.MoveWithAttack
+          UnitActionTypeId.Move,
+          UnitActionTypeId.MoveWithAttack
         })
         .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)
@@ -69,10 +69,10 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddAllActionTypeIds(new()
+        .AddAllUnitActionTypeIds(new()
         {
-          ControlActionTypeId.Move,
-          ControlActionTypeId.MoveWithAttack
+          UnitActionTypeId.Move,
+          UnitActionTypeId.MoveWithAttack
         })
         .With(x => x.isUnit = true)
         .With(x => x.isIdle = true)

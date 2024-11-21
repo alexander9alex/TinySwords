@@ -7,7 +7,7 @@ namespace Code.Gameplay.Features.ControlAction
   {
     public ControlActionFeature(ISystemFactory systems)
     {
-      Add(systems.Create<SelectControlActionSystem>());
+      Add(systems.Create<SelectUnitActionSystem>());
       
       Add(systems.Create<ApplyMoveControlActionSystem>());
       Add(systems.Create<ApplyMoveWithAttackControlActionSystem>());

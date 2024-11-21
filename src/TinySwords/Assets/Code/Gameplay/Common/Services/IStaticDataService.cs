@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Build.Configs;
+using Code.Gameplay.Features.ControlAction.Configs;
+using Code.Gameplay.Features.ControlAction.Data;
 using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
-using Code.UI.Buttons.Configs;
-using Code.UI.Buttons.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -19,7 +19,7 @@ namespace Code.Gameplay.Common.Services
     MoveClickIndicatorConfig GetMoveClickIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
-    List<ControlButtonConfig> GetControlButtonConfigs(List<ControlActionTypeId> availableActions);
-    GameObject GetActionDescription(ControlActionTypeId controlActionTypeId);
+    List<UnitActionUIConfig> GetUnitActionUIConfigs(List<UnitActionTypeId> availableActions);
+    UnitActionUIConfig GetUnitActionUIConfig(UnitActionTypeId unitActionTypeId);
   }
 }

@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.ControlAction.Configs;
+using Code.Gameplay.Features.ControlAction.Data;
 using Code.Gameplay.Features.Move.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Infrastructure.Views;
-using Code.UI.Buttons.Configs;
-using Code.UI.Buttons.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -18,15 +17,13 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
-    private List<ControlButtonConfig> _controlButtonConfigs;
-    private Dictionary<ControlActionTypeId, ControlActionConfig> _actionConfigByType;
+    private Dictionary<UnitActionTypeId, UnitActionUIConfig> _unitActionUIConfigByType;
 
     public void LoadAll()
     {
       LoadUnitConfigs();
       LoadCastleConfigs();
       LoadLevelConfigs();
-      LoadControlButtonConfigs();
       LoadActionConfigs();
     }
 
@@ -45,14 +42,15 @@ namespace Code.Gameplay.Common.Services
     public LevelConfig GetLevelConfig() =>
       _levelConfigs[0];
 
-    public List<ControlButtonConfig> GetControlButtonConfigs(List<ControlActionTypeId> availableActions) =>
-      _controlButtonConfigs
-        .Where(config => availableActions
-          .Any(actionTypeId => config.ControlActionTypeId == actionTypeId))
+    public List<UnitActionUIConfig> GetUnitActionUIConfigs(List<UnitActionTypeId> availableActions)
+    {
+      return _unitActionUIConfigByType.Values
+        .Where(config => availableActions.Any(actionTypeId => config.UnitActionTypeId == actionTypeId))
         .ToList();
+    }
 
-    public GameObject GetActionDescription(ControlActionTypeId controlActionTypeId) =>
-      _actionConfigByType[controlActionTypeId].DescriptionPrefab;
+    public UnitActionUIConfig GetUnitActionUIConfig(UnitActionTypeId unitActionTypeId) =>
+      _unitActionUIConfigByType[unitActionTypeId];
 
     private void LoadUnitConfigs()
     {
@@ -75,18 +73,11 @@ namespace Code.Gameplay.Common.Services
         .ToList();
     }
 
-    private void LoadControlButtonConfigs()
-    {
-      _controlButtonConfigs = Resources
-        .LoadAll<ControlButtonConfig>("Configs/UI/ControlButtons")
-        .ToList();
-    }
-
     private void LoadActionConfigs()
     {
-      _actionConfigByType = Resources
-        .LoadAll<ControlActionConfig>("Configs/UI/Actions")
-        .ToDictionary(x => x.ControlActionTypeId, x => x);
+      _unitActionUIConfigByType = Resources
+        .LoadAll<UnitActionUIConfig>("Configs/UI/Actions/Units")
+        .ToDictionary(x => x.UnitActionTypeId, x => x);
     }
   }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Code.UI.Buttons.Configs;
+using Code.Gameplay.Features.ControlAction.Configs;
 using Code.UI.Hud.Factory;
 using Code.UI.Hud.Service;
 using UnityEngine;
@@ -73,13 +73,13 @@ namespace Code.UI.Hud
 
     private void CreateNewButtons()
     {
-      List<ControlButtonConfig> buttonConfigs = _hudService.GetAvailableButtonConfigs();
+      List<UnitActionUIConfig> configs = _hudService.GetAvailableUnitActionUIConfigs();
 
-      foreach (ControlButtonConfig buttonConfig in buttonConfigs)
+      foreach (UnitActionUIConfig config in configs)
       {
-        Button button = _hudFactory.CreateControlButton(buttonConfig, ControlButtonsLayout);
+        Button button = _hudFactory.CreateControlButton(config, ControlButtonsLayout);
         _spawnedButtons.Add(button.gameObject);
-        button.onClick.AddListener(() => _hudService.ClickedToButton(buttonConfig.ControlActionTypeId));
+        button.onClick.AddListener(() => _hudService.ClickedToButton(config.UnitActionTypeId));
       }
     }
 

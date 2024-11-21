@@ -1,4 +1,4 @@
-﻿using Code.UI.Buttons.Data;
+﻿using Code.Gameplay.Features.ControlAction.Data;
 using Entitas;
 
 namespace Code.Gameplay.Features.ControlAction
@@ -10,5 +10,5 @@ namespace Code.Gameplay.Features.ControlAction
   [Game] public class MoveControlAction : IComponent { }
   [Game] public class MoveWithAttackControlAction : IComponent { }
   [Game] public class SelectedAction : IComponent { }
-  [Game] public class ControlActionTypeIdComponent : IComponent { public ControlActionTypeId Value; }
+  [Game] public class UnitActionTypeIdComponent : IComponent { public UnitActionTypeId Value; }
 }

@@ -7,31 +7,31 @@ using Entitas;
 
 namespace Code.Gameplay.Features.ControlAction.Systems
 {
-  public class SelectControlActionSystem : IExecuteSystem
+  public class SelectUnitActionSystem : IExecuteSystem
   {
     private readonly IHudService _hudService;
     private readonly IInputService _inputService;
 
-    private readonly IGroup<GameEntity> _moveActions;
+    private readonly IGroup<GameEntity> _unitActions;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public SelectControlActionSystem(GameContext game, IHudService hudService, IInputService inputService)
+    public SelectUnitActionSystem(GameContext game, IHudService hudService, IInputService inputService)
     {
       _hudService = hudService;
       _inputService = inputService;
-      _moveActions = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ControlActionTypeId)
+      _unitActions = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.UnitActionTypeId)
         .NoneOf(GameMatcher.SelectedAction));
     }
 
     public void Execute()
     {
-      foreach (GameEntity action in _moveActions.GetEntities(_buffer))
+      foreach (GameEntity unitAction in _unitActions.GetEntities(_buffer))
       {
-        _hudService.SetAction(action.ControlActionTypeId);
+        _hudService.SetAction(unitAction.UnitActionTypeId);
         _inputService.ChangeInputMap(InputMap.ActionIsActive);
         
-        action.With(x => x.isSelectedAction = true);
+        unitAction.With(x => x.isSelectedAction = true);
       }
     }
   }
