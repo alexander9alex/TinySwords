@@ -28,6 +28,8 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<AnimateMoveSystem>());
 
       Add(systems.Create<CleanupDestinationSystem>());
+      Add(systems.Create<CleanupEndDestinationSystem>());
+      
       Add(systems.Create<CleanupMoveRequestSystem>());
       Add(systems.Create<CleanupCreatedNowSystem>());
       Add(systems.Create<CleanupPositionUpdatedSystem>());

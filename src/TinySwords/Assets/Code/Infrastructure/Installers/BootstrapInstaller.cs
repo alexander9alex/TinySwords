@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Move.Factory;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
+using Code.Gameplay.UtilityAI;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Loading;
@@ -38,6 +39,7 @@ namespace Code.Infrastructure.Installers
       BindUIFactories();
       BindGameplayServices();
       BindGameplayFactories();
+      BindAI();
       BindSystemFactory();
       BindStateFactory();
       BindGameStates();
@@ -67,7 +69,7 @@ namespace Code.Infrastructure.Installers
     private void BindContexts()
     {
       Container.Bind<Contexts>().FromInstance(Contexts.sharedInstance).AsSingle();
-      
+
       Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
     }
 
@@ -81,7 +83,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IHighlightFactory>().To<HighlightFactory>().AsSingle();
       Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
     }
-    
+
     private void BindGameplayServices()
     {
       Container.Bind<ICurtain>().FromInstance(Curtain).AsSingle();
@@ -95,6 +97,17 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
       Container.Bind<IMoveClickIndicatorFactory>().To<MoveClickIndicatorFactory>().AsSingle();
       Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
+    }
+
+    private void BindAI()
+    {
+      Container.Bind<When>().To<When>().AsSingle();
+      Container.Bind<GetInput>().To<GetInput>().AsSingle();
+      Container.Bind<Score>().To<Score>().AsSingle();
+      
+      Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
+      
+      Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }
 
     private void BindGameStates()

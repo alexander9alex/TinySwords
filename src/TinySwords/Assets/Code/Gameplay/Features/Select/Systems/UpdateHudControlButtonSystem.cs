@@ -27,20 +27,20 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
-        List<UnitActionTypeId> availableActions = new(GameConstants.AllUnitActions);
+        List<UnitCommandTypeId> availableCommand = new(GameConstants.AllUnitCommands);
 
         foreach (GameEntity selected in _selected)
         {
-          if (!selected.hasAllUnitActionTypeIds)
+          if (!selected.hasAllUnitCommandTypeIds)
           {
-            availableActions.Clear();
+            availableCommand.Clear();
             break;
           }
 
-          availableActions = availableActions.Intersect(selected.AllUnitActionTypeIds).ToList();
+          availableCommand = availableCommand.Intersect(selected.AllUnitCommandTypeIds).ToList();
         }
 
-        _hudService.UpdateAvailableActions(availableActions);
+        _hudService.UpdateAvailableActions(availableCommand);
 
         request.isDestructed = true;
       }

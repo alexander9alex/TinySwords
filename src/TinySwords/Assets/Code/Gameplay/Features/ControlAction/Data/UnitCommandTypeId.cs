@@ -1,6 +1,6 @@
 ﻿namespace Code.Gameplay.Features.ControlAction.Data
 {
-  public enum UnitActionTypeId
+  public enum UnitCommandTypeId
   {
     Unknown = 0,
     Move = 1,

@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.ControlAction.Systems
       _hudService = hudService;
       _inputService = inputService;
       _unitActions = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.UnitActionTypeId)
+        .AllOf(GameMatcher.UnitCommandTypeId)
         .NoneOf(GameMatcher.SelectedAction));
     }
 
@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.ControlAction.Systems
     {
       foreach (GameEntity unitAction in _unitActions.GetEntities(_buffer))
       {
-        _hudService.SetAction(unitAction.UnitActionTypeId);
+        _hudService.SetAction(unitAction.UnitCommandTypeId);
         _inputService.ChangeInputMap(InputMap.ActionIsActive);
         
         unitAction.With(x => x.isSelectedAction = true);

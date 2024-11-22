@@ -16,33 +16,33 @@ namespace Code.UI.Hud.Service
     public event Action UpdateActionDescription;
 
     private readonly IStaticDataService _staticData;
-    private List<UnitActionUIConfig> _availableUnitActionUIConfigs = new();
+    private List<UnitActionUIConfig> _availableUnitCommandUIConfigs = new();
     private GameObject _actionDescription;
 
     public HudService(IStaticDataService staticData) =>
       _staticData = staticData;
 
-    public void UpdateAvailableActions(List<UnitActionTypeId> availableActions)
+    public void UpdateAvailableActions(List<UnitCommandTypeId> availableCommands)
     {
-      if (Equals(_availableUnitActionUIConfigs.Select(x => x.UnitActionTypeId), availableActions))
+      if (Equals(_availableUnitCommandUIConfigs.Select(x => x.UnitCommandTypeId), availableCommands))
         return;
 
-      _availableUnitActionUIConfigs = _staticData.GetUnitActionUIConfigs(availableActions);
+      _availableUnitCommandUIConfigs = _staticData.GetUnitCommandUIConfigs(availableCommands);
       UpdateHud?.Invoke();
     }
 
     public List<UnitActionUIConfig> GetAvailableUnitActionUIConfigs() =>
-      _availableUnitActionUIConfigs;
+      _availableUnitCommandUIConfigs;
 
     public GameObject GetActionDescription() =>
       _actionDescription;
 
-    public void SetAction(UnitActionTypeId unitActionTypeId)
+    public void SetAction(UnitCommandTypeId unitCommandTypeId)
     {
-      _availableUnitActionUIConfigs = new();
+      _availableUnitCommandUIConfigs = new();
       UpdateHud?.Invoke();
 
-      _actionDescription = _staticData.GetUnitActionUIConfig(unitActionTypeId).UnitActionDescriptionPrefab;
+      _actionDescription = _staticData.GetUnitCommandUIConfig(unitCommandTypeId).UnitActionDescriptionPrefab;
       UpdateActionDescription?.Invoke();
     }
 
@@ -52,26 +52,26 @@ namespace Code.UI.Hud.Service
       UpdateActionDescription?.Invoke();
     }
 
-    public void ClickedToButton(UnitActionTypeId unitActionTypeId)
+    public void ClickedToButton(UnitCommandTypeId unitCommandTypeId)
     {
       GameEntity entity = CreateEntity.Empty();
 
-      switch (unitActionTypeId)
+      switch (unitCommandTypeId)
       {
-        case UnitActionTypeId.Move:
+        case UnitCommandTypeId.Move:
           entity
-            .AddUnitActionTypeId(UnitActionTypeId.Move)
+            .AddUnitCommandTypeId(UnitCommandTypeId.Move)
             .With(x => x.isMoveControlAction = true);
 
           break;
-        case UnitActionTypeId.MoveWithAttack:
+        case UnitCommandTypeId.MoveWithAttack:
           entity
-            .AddUnitActionTypeId(UnitActionTypeId.MoveWithAttack)
+            .AddUnitCommandTypeId(UnitCommandTypeId.MoveWithAttack)
             .With(x => x.isMoveWithAttackControlAction = true);
 
           break;
         default:
-          throw new ArgumentOutOfRangeException(nameof(unitActionTypeId), unitActionTypeId, null);
+          throw new ArgumentOutOfRangeException(nameof(unitCommandTypeId), unitCommandTypeId, null);
       }
     }
   }

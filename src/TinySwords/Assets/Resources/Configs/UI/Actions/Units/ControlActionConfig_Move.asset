@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7188aa14f70448f590e552a89d0b0a1d, type: 3}
   m_Name: ControlActionConfig_Move
   m_EditorClassIdentifier: 
-  UnitActionTypeId: 1
+  UnitCommandTypeId: 1
   UnitActionButtonPrefab: {fileID: 5795563699309381283, guid: a54f65fe5e1756547966a0bb4cf67fc2, type: 3}
   UnitActionDescriptionPrefab: {fileID: 7519926160145930417, guid: 01eb36aadfe0daf4ba28e3e5d1807fe7, type: 3}

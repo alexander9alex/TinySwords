@@ -38,6 +38,8 @@ namespace Code.Gameplay.Features.Move.Systems
         foreach (GameEntity selected in _selected)
         {
           selected.ReplaceDestination(destinations.First());
+          selected.ReplaceEndDestination(destinations.First());
+          
           destinations.RemoveAt(0);
         }
 

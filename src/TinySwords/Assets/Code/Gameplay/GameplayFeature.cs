@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Features.Build;
+﻿using Code.Gameplay.Features.AI;
+using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.ControlAction;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.FastInteraction;
@@ -27,6 +28,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
+      Add(systems.Create<AIFeature>());
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
       

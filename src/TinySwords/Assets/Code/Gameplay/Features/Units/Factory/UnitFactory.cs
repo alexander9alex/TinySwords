@@ -46,10 +46,12 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddAllUnitActionTypeIds(new()
+        .AddMakeDecisionInterval(0.5f)
+        .AddMakeDecisionTimer(0.5f)
+        .AddAllUnitCommandTypeIds(new()
         {
-          UnitActionTypeId.Move,
-          UnitActionTypeId.MoveWithAttack
+          UnitCommandTypeId.Move,
+          UnitCommandTypeId.MoveWithAttack
         })
         .With(x => x.isUnit = true)
         .With(x => x.isSelectable = true)
@@ -69,11 +71,8 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddAllUnitActionTypeIds(new()
-        {
-          UnitActionTypeId.Move,
-          UnitActionTypeId.MoveWithAttack
-        })
+        .AddMakeDecisionInterval(0.5f)
+        .AddMakeDecisionTimer(0.5f)
         .With(x => x.isUnit = true)
         .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)

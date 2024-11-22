@@ -17,14 +17,14 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
-    private Dictionary<UnitActionTypeId, UnitActionUIConfig> _unitActionUIConfigByType;
+    private Dictionary<UnitCommandTypeId, UnitActionUIConfig> _unitCommandUIConfigByType;
 
     public void LoadAll()
     {
       LoadUnitConfigs();
       LoadCastleConfigs();
       LoadLevelConfigs();
-      LoadActionConfigs();
+      LoadCommandUIConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -42,15 +42,15 @@ namespace Code.Gameplay.Common.Services
     public LevelConfig GetLevelConfig() =>
       _levelConfigs[0];
 
-    public List<UnitActionUIConfig> GetUnitActionUIConfigs(List<UnitActionTypeId> availableActions)
+    public List<UnitActionUIConfig> GetUnitCommandUIConfigs(List<UnitCommandTypeId> availableCommands)
     {
-      return _unitActionUIConfigByType.Values
-        .Where(config => availableActions.Any(actionTypeId => config.UnitActionTypeId == actionTypeId))
+      return _unitCommandUIConfigByType.Values
+        .Where(config => availableCommands.Any(actionTypeId => config.UnitCommandTypeId == actionTypeId))
         .ToList();
     }
 
-    public UnitActionUIConfig GetUnitActionUIConfig(UnitActionTypeId unitActionTypeId) =>
-      _unitActionUIConfigByType[unitActionTypeId];
+    public UnitActionUIConfig GetUnitCommandUIConfig(UnitCommandTypeId unitCommandTypeId) =>
+      _unitCommandUIConfigByType[unitCommandTypeId];
 
     private void LoadUnitConfigs()
     {
@@ -73,11 +73,11 @@ namespace Code.Gameplay.Common.Services
         .ToList();
     }
 
-    private void LoadActionConfigs()
+    private void LoadCommandUIConfigs()
     {
-      _unitActionUIConfigByType = Resources
+      _unitCommandUIConfigByType = Resources
         .LoadAll<UnitActionUIConfig>("Configs/UI/Actions/Units")
-        .ToDictionary(x => x.UnitActionTypeId, x => x);
+        .ToDictionary(x => x.UnitCommandTypeId, x => x);
     }
   }
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.ControlAction.Configs
 {
-  [CreateAssetMenu(menuName = "Static Data/UI/Unit Action UI Config", fileName = "UnitActionUIConfig", order = 0)]
+  [CreateAssetMenu(menuName = "Static Data/UI/Unit Command UI Config", fileName = "UnitCommandUIConfig", order = 0)]
   public class UnitActionUIConfig : ScriptableObject
   {
-    public UnitActionTypeId UnitActionTypeId;
+    public UnitCommandTypeId UnitCommandTypeId;
     public GameObject UnitActionButtonPrefab;
     public GameObject UnitActionDescriptionPrefab;
   }
