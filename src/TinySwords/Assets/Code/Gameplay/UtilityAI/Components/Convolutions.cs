@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Code.Gameplay.Features.Units.Data;
 
-namespace Code.Gameplay.UtilityAI
+namespace Code.Gameplay.UtilityAI.Components
 {
   public class Convolutions : List<UtilityFunction>
   {

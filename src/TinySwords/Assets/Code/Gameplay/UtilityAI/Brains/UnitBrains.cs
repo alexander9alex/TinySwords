@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Code.Gameplay.UtilityAI.Components;
 
-namespace Code.Gameplay.UtilityAI
+namespace Code.Gameplay.UtilityAI.Brains
 {
   public class UnitBrains
   {

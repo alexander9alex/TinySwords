@@ -1,4 +1,4 @@
-namespace Code.Gameplay.UtilityAI
+namespace Code.Gameplay.UtilityAI.Components
 {
   public interface IBrainsComponents
   {

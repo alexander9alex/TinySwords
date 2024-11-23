@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.UtilityAI.Brains;
+using Code.Gameplay.UtilityAI.Components;
+using Code.Gameplay.UtilityAI.Data;
 
 namespace Code.Gameplay.UtilityAI
 {

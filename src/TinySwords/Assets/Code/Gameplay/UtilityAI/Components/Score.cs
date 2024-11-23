@@ -1,6 +1,6 @@
 using System;
 
-namespace Code.Gameplay.UtilityAI
+namespace Code.Gameplay.UtilityAI.Components
 {
   public class Score
   {

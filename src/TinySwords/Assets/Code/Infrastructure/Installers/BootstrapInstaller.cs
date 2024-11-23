@@ -12,6 +12,8 @@ using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
+using Code.Gameplay.UtilityAI.Brains;
+using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Loading;

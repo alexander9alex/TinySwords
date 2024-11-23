@@ -1,6 +1,6 @@
 using Code.Gameplay.Features.Units.Data;
 
-namespace Code.Gameplay.UtilityAI
+namespace Code.Gameplay.UtilityAI.Data
 {
   public class ScoredDecision : UnitDecision
   {
