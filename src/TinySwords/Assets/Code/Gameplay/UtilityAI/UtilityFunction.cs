@@ -7,13 +7,13 @@ namespace Code.Gameplay.UtilityAI
   {
     public string Name { get; }
 
-    private readonly Func<GameEntity, UnitAction, bool> _appliesTo;
-    private readonly Func<GameEntity, UnitAction, float> _getInput;
+    private readonly Func<GameEntity, UnitDecision, bool> _appliesTo;
+    private readonly Func<GameEntity, UnitDecision, float> _getInput;
     private readonly Func<float, GameEntity, float> _score;
 
     public UtilityFunction(
-      Func<GameEntity, UnitAction, bool> appliesTo,
-      Func<GameEntity, UnitAction, float> getInput,
+      Func<GameEntity, UnitDecision, bool> appliesTo,
+      Func<GameEntity, UnitDecision, float> getInput,
       Func<float, GameEntity, float> score,
       string name)
     {
@@ -23,11 +23,11 @@ namespace Code.Gameplay.UtilityAI
       _appliesTo = appliesTo;
     }
 
-    public bool AppliesTo(GameEntity unit, UnitAction action) =>
-      _appliesTo(unit, action);
+    public bool AppliesTo(GameEntity unit, UnitDecision decision) =>
+      _appliesTo(unit, decision);
 
-    public float GetInput(GameEntity unit, UnitAction action) =>
-      _getInput(unit, action);
+    public float GetInput(GameEntity unit, UnitDecision decision) =>
+      _getInput(unit, decision);
 
     public float Score(GameEntity unit, float input) =>
       _score(input, unit);

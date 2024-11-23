@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Data
 {
-  public class UnitAction
+  public class UnitDecision
   {
-    public UnitActionTypeId UnitActionTypeId;
+    public UnitDecisionTypeId UnitDecisionTypeId;
     public Vector2 Destination;
     // todo: add target
   }

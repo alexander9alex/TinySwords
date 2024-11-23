@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMoveUnitAction;
+    static Entitas.IMatcher<GameEntity> _matcherStayUnitDecision;
 
-    public static Entitas.IMatcher<GameEntity> MoveUnitAction {
+    public static Entitas.IMatcher<GameEntity> StayUnitDecision {
         get {
-            if (_matcherMoveUnitAction == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveUnitAction);
+            if (_matcherStayUnitDecision == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.StayUnitDecision);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMoveUnitAction = matcher;
+                _matcherStayUnitDecision = matcher;
             }
 
-            return _matcherMoveUnitAction;
+            return _matcherStayUnitDecision;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ControlAction.MoveUnitAction moveUnitActionComponent = new Code.Gameplay.Features.ControlAction.MoveUnitAction();
+    static readonly Code.Gameplay.Features.ControlAction.StayUnitDecision stayUnitDecisionComponent = new Code.Gameplay.Features.ControlAction.StayUnitDecision();
 
-    public bool isMoveUnitAction {
-        get { return HasComponent(GameComponentsLookup.MoveUnitAction); }
+    public bool isStayUnitDecision {
+        get { return HasComponent(GameComponentsLookup.StayUnitDecision); }
         set {
-            if (value != isMoveUnitAction) {
-                var index = GameComponentsLookup.MoveUnitAction;
+            if (value != isStayUnitDecision) {
+                var index = GameComponentsLookup.StayUnitDecision;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : moveUnitActionComponent;
+                            : stayUnitDecisionComponent;
 
                     AddComponent(index, component);
                 } else {

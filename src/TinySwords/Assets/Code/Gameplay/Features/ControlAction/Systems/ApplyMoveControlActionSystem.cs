@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.ControlAction.Systems
       {
         CreateEntity.Empty()
           .AddPositionOnScreen(request.PositionOnScreen)
-          .With(x => x.isMoveRequest = true);
+          .With(x => x.isChangeEndDestinationRequest = true);
 
         CreateEntity.Empty()
           .With(x => x.isCancelControlAction = true);

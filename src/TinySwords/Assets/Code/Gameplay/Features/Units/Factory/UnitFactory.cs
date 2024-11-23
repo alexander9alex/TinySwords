@@ -3,9 +3,11 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Constants;
 using Code.Gameplay.Features.ControlAction.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.UtilityAI;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Factory
@@ -14,11 +16,13 @@ namespace Code.Gameplay.Features.Units.Factory
   {
     private readonly IStaticDataService _staticDataService;
     private readonly IIdentifierService _identifiers;
+    private readonly IUnitAI _unitUI;
 
-    public UnitFactory(IStaticDataService staticDataService, IIdentifierService identifiers)
+    public UnitFactory(IStaticDataService staticDataService, IIdentifierService identifiers, IUnitAI unitUI)
     {
       _staticDataService = staticDataService;
       _identifiers = identifiers;
+      _unitUI = unitUI;
     }
 
     public void CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos)
@@ -46,8 +50,9 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddMakeDecisionInterval(0.5f)
-        .AddMakeDecisionTimer(0.5f)
+        .AddMakeDecisionInterval(GameConstants.MakeDecisionInterval)
+        .AddMakeDecisionTimer(0)
+        .AddUnitAI(_unitUI)
         .AddAllUnitCommandTypeIds(new()
         {
           UnitCommandTypeId.Move,
@@ -71,8 +76,9 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddViewPrefab(config.UnitPrefab)
         .AddWorldPosition(pos)
         .AddMoveDirection(Vector2.zero)
-        .AddMakeDecisionInterval(0.5f)
-        .AddMakeDecisionTimer(0.5f)
+        .AddMakeDecisionInterval(GameConstants.MakeDecisionInterval)
+        .AddMakeDecisionTimer(0)
+        .AddUnitAI(_unitUI)
         .With(x => x.isUnit = true)
         .With(x => x.isIdle = true)
         .With(x => x.isUpdatePositionAfterSpawning = true)

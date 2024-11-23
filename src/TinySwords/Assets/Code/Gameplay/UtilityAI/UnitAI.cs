@@ -9,36 +9,34 @@ namespace Code.Gameplay.UtilityAI
   {
     private readonly IEnumerable<IUtilityFunction> _utilityFunctions;
 
-    public UnitAI(UnitBrains unitBrains)
-    {
+    public UnitAI(UnitBrains unitBrains) =>
       _utilityFunctions = unitBrains.GetUtilityFunctions();
-    }
-    
-    public UnitAction MakeBestDecision(GameEntity unit)
+
+    public UnitDecision MakeBestDecision(GameEntity unit)
     {
-      IEnumerable<ScoredAction> actions = GetScoredUnitActions(unit);
-      return actions.FindMax(x => x.Score);
+      IEnumerable<ScoredDecision> decisions = GetScoredUnitDecisions(unit);
+      return decisions.FindMax(x => x.Score);
     }
 
-    private IEnumerable<ScoredAction> GetScoredUnitActions(GameEntity unit)
+    private IEnumerable<ScoredDecision> GetScoredUnitDecisions(GameEntity unit)
     {
-      foreach (UnitAction action in GetAvailableActions(unit))
+      foreach (UnitDecision decision in GetAvailableDecisions(unit))
       {
-        float? score = CalculateScore(unit, action);
+        float? score = CalculateScore(unit, decision);
 
         if (!score.HasValue)
           continue;
 
-        yield return new ScoredAction(action, score.Value);
+        yield return new ScoredDecision(decision, score.Value);
       }
     }
 
-    private IEnumerable<UnitAction> GetAvailableActions(GameEntity unit)
+    private IEnumerable<UnitDecision> GetAvailableDecisions(GameEntity unit)
     {
-      yield return StayAction(unit);
+      yield return StayDecision(unit);
 
-      if (unit.hasDestination)
-        yield return MoveToEndDestinationAction(unit);
+      if (unit.hasEndDestination)
+        yield return MoveToEndDestinationDecision(unit);
 
       // todo: if (has target) => attack
       // ...
@@ -46,32 +44,32 @@ namespace Code.Gameplay.UtilityAI
       // ...
     }
 
-    private float? CalculateScore(GameEntity unit, UnitAction action)
+    private float? CalculateScore(GameEntity unit, UnitDecision decision)
     {
       IEnumerable<float> scores = (
           from utilityFunction in _utilityFunctions
-          where utilityFunction.AppliesTo(unit, action)
-          let input = utilityFunction.GetInput(unit, action)
+          where utilityFunction.AppliesTo(unit, decision)
+          let input = utilityFunction.GetInput(unit, decision)
           select utilityFunction.Score(unit, input)
         );
 
       return scores.SumOrNull();
     }
 
-    private UnitAction StayAction(GameEntity unit)
+    private UnitDecision StayDecision(GameEntity unit)
     {
-      return new UnitAction
+      return new UnitDecision
       {
-        UnitActionTypeId = UnitActionTypeId.Stay,
+        UnitDecisionTypeId = UnitDecisionTypeId.Stay,
       };
     }
 
-    private UnitAction MoveToEndDestinationAction(GameEntity unit)
+    private UnitDecision MoveToEndDestinationDecision(GameEntity unit)
     {
-      return new UnitAction
+      return new UnitDecision
       {
-        UnitActionTypeId = UnitActionTypeId.Move,
-        Destination = unit.Destination
+        UnitDecisionTypeId = UnitDecisionTypeId.Move,
+        Destination = unit.EndDestination
       };
     }
   }

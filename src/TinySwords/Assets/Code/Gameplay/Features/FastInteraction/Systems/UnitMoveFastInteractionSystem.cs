@@ -29,7 +29,7 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
         {
           CreateEntity.Empty()
             .AddPositionOnScreen(request.PositionOnScreen)
-            .With(x => x.isMoveRequest = true);
+            .With(x => x.isChangeEndDestinationRequest = true);
 
           request.isProcessed = true;
         }

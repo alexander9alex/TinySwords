@@ -28,9 +28,9 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
-      Add(systems.Create<AIFeature>());
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
+      Add(systems.Create<AIFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());
     }

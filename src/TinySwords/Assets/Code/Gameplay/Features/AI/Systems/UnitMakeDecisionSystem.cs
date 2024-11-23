@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Code.Gameplay.Features.Units.Data;
 using Entitas;
 
 namespace Code.Gameplay.Features.AI.Systems
@@ -18,7 +19,9 @@ namespace Code.Gameplay.Features.AI.Systems
     {
       foreach (GameEntity unit in _units.GetEntities(_buffer))
       {
-        unit.UnitAI.MakeBestDecision(unit);
+        UnitDecision decision = unit.UnitAI.MakeBestDecision(unit);
+        unit.ReplaceUnitDecision(decision);
+        
         unit.isMakeDecisionRequest = false;
       }
     }

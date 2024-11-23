@@ -101,11 +101,17 @@ namespace Code.Infrastructure.Installers
 
     private void BindAI()
     {
-      Container.Bind<When>().To<When>().AsSingle();
-      Container.Bind<GetInput>().To<GetInput>().AsSingle();
-      Container.Bind<Score>().To<Score>().AsSingle();
+      Container.BindInterfacesAndSelfTo<When>().AsSingle();
+      Container.BindInterfacesAndSelfTo<GetInput>().AsSingle();
+      Container.BindInterfacesAndSelfTo<Score>().AsSingle();
+      
+      // Container.Bind<When>().To<When>().AsSingle();
+      // Container.Bind<GetInput>().To<GetInput>().AsSingle();
+      // Container.Bind<Score>().To<Score>().AsSingle();
       
       Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
+      
+      Container.BindInterfacesAndSelfTo<UnitBrains>().AsSingle();
       
       Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }

@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.AI
       Add(systems.Create<TickToMakeDecisionTimerSystem>());
       
       Add(systems.Create<UnitMakeDecisionSystem>());
+      Add(systems.Create<ProcessUnitDecisionSystem>());
     }
   }
 }

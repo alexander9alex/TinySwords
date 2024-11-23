@@ -4,6 +4,6 @@ namespace Code.Gameplay.UtilityAI
 {
   public interface IUnitAI
   {
-    UnitAction MakeBestDecision(GameEntity unit);
+    UnitDecision MakeBestDecision(GameEntity unit);
   }
 }

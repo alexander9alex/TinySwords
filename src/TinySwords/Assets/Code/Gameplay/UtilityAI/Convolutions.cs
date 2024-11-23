@@ -7,8 +7,8 @@ namespace Code.Gameplay.UtilityAI
   public class Convolutions : List<UtilityFunction>
   {
     public void Add(
-      Func<GameEntity, UnitAction, bool> appliesTo,
-      Func<GameEntity, UnitAction, float> getInput,
+      Func<GameEntity, UnitDecision, bool> appliesTo,
+      Func<GameEntity, UnitDecision, float> getInput,
       Func<float, GameEntity, float> score,
       string name)
     {

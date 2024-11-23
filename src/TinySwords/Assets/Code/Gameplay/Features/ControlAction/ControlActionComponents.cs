@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.ControlAction
   [Game] public class SelectedAction : IComponent { }
   [Game] public class UnitCommandTypeIdComponent : IComponent { public UnitCommandTypeId Value; }
   
-  [Game] public class StayUnitAction : IComponent { }
-  [Game] public class MoveUnitAction : IComponent { }
-  [Game] public class AttackUnitAction : IComponent { }
+  [Game] public class StayUnitDecision : IComponent { }
+  [Game] public class MoveUnitDecision : IComponent { }
+  [Game] public class AttackUnitDecision : IComponent { }
 }

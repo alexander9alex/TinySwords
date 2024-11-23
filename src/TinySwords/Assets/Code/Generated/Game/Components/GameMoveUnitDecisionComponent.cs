@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherAttackUnitAction;
+    static Entitas.IMatcher<GameEntity> _matcherMoveUnitDecision;
 
-    public static Entitas.IMatcher<GameEntity> AttackUnitAction {
+    public static Entitas.IMatcher<GameEntity> MoveUnitDecision {
         get {
-            if (_matcherAttackUnitAction == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.AttackUnitAction);
+            if (_matcherMoveUnitDecision == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveUnitDecision);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherAttackUnitAction = matcher;
+                _matcherMoveUnitDecision = matcher;
             }
 
-            return _matcherAttackUnitAction;
+            return _matcherMoveUnitDecision;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ControlAction.AttackUnitAction attackUnitActionComponent = new Code.Gameplay.Features.ControlAction.AttackUnitAction();
+    static readonly Code.Gameplay.Features.ControlAction.MoveUnitDecision moveUnitDecisionComponent = new Code.Gameplay.Features.ControlAction.MoveUnitDecision();
 
-    public bool isAttackUnitAction {
-        get { return HasComponent(GameComponentsLookup.AttackUnitAction); }
+    public bool isMoveUnitDecision {
+        get { return HasComponent(GameComponentsLookup.MoveUnitDecision); }
         set {
-            if (value != isAttackUnitAction) {
-                var index = GameComponentsLookup.AttackUnitAction;
+            if (value != isMoveUnitDecision) {
+                var index = GameComponentsLookup.MoveUnitDecision;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : attackUnitActionComponent;
+                            : moveUnitDecisionComponent;
 
                     AddComponent(index, component);
                 } else {

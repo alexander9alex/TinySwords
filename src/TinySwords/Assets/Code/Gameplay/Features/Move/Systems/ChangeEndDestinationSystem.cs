@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class ProcessMoveRequestSystem : IExecuteSystem
+  public class ChangeEndDestinationSystem : IExecuteSystem
   {
     private readonly ICameraProvider _cameraProvider;
 
-    private readonly IGroup<GameEntity> _moveRequests;
+    private readonly IGroup<GameEntity> _changeEndDestinationRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public ProcessMoveRequestSystem(GameContext game, ICameraProvider cameraProvider)
+    public ChangeEndDestinationSystem(GameContext game, ICameraProvider cameraProvider)
     {
       _cameraProvider = cameraProvider;
 
-      _moveRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MoveRequest, GameMatcher.PositionOnScreen)
+      _changeEndDestinationRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen)
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher
@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Move.Systems
 
     public void Execute()
     {
-      foreach (GameEntity request in _moveRequests.GetEntities(_buffer))
+      foreach (GameEntity request in _changeEndDestinationRequests.GetEntities(_buffer))
       {
         if (_selected.count == 0)
           return;
@@ -37,8 +37,8 @@ namespace Code.Gameplay.Features.Move.Systems
 
         foreach (GameEntity selected in _selected)
         {
-          selected.ReplaceDestination(destinations.First());
           selected.ReplaceEndDestination(destinations.First());
+          selected.ReplaceMakeDecisionTimer(0);
           
           destinations.RemoveAt(0);
         }

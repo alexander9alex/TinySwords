@@ -25,4 +25,5 @@ namespace Code.Gameplay.Features.Move
   [Game] public class CreatedNow : IComponent { }
   [Game] public class DestructOldMoveIndicatorRequest : IComponent { }
   
+  [Game] public class ChangeEndDestinationRequest : IComponent { }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Code.Gameplay.Features.Units.Data
 {
-  public enum UnitActionTypeId
+  public enum UnitDecisionTypeId
   {
     Unknown = 0,
     Stay = 1,

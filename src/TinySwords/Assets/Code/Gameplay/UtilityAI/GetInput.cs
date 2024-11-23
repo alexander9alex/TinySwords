@@ -7,7 +7,7 @@ namespace Code.Gameplay.UtilityAI
     private const float True = 1;
     private const float False = 0;
 
-    public float HasEndDestination(GameEntity unit, UnitAction action) =>
+    public float HasEndDestination(GameEntity unit, UnitDecision decision) =>
       unit.hasEndDestination ? True : False;
   }
 }

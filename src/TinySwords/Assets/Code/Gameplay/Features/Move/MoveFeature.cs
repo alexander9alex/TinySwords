@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Move
     {
       Add(systems.Create<TurnOnNavMeshAgentAfterTransformUpdatingSystem>());
 
-      Add(systems.Create<ProcessMoveRequestSystem>());
+      Add(systems.Create<ChangeEndDestinationSystem>());
       Add(systems.Create<MoveToDestinationSystem>());
 
       Add(systems.Create<CreateMoveClickIndicatorSystem>());
@@ -30,6 +30,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<CleanupDestinationSystem>());
       Add(systems.Create<CleanupEndDestinationSystem>());
       
+      Add(systems.Create<CleanupChangeDestinationRequestSystem>());
       Add(systems.Create<CleanupMoveRequestSystem>());
       Add(systems.Create<CleanupCreatedNowSystem>());
       Add(systems.Create<CleanupPositionUpdatedSystem>());
