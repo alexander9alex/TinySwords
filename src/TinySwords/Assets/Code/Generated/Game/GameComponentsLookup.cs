@@ -84,10 +84,16 @@ public static class GameComponentsLookup {
     public const int Unselected = 73;
     public const int UnselectPreviouslySelectedRequest = 74;
     public const int UpdateHudControlButtons = 75;
-    public const int MoveAnimator = 76;
-    public const int Unit = 77;
+    public const int CollectTargetsInterval = 76;
+    public const int CollectTargetsRadius = 77;
+    public const int CollectTargetsRequest = 78;
+    public const int CollectTargetsTimer = 79;
+    public const int TargetBuffer = 80;
+    public const int TeamColor = 81;
+    public const int MoveAnimator = 82;
+    public const int Unit = 83;
 
-    public const int TotalComponents = 78;
+    public const int TotalComponents = 84;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -166,6 +172,12 @@ public static class GameComponentsLookup {
         "Unselected",
         "UnselectPreviouslySelectedRequest",
         "UpdateHudControlButtons",
+        "CollectTargetsInterval",
+        "CollectTargetsRadius",
+        "CollectTargetsRequest",
+        "CollectTargetsTimer",
+        "TargetBuffer",
+        "TeamColor",
         "MoveAnimator",
         "Unit"
     };
@@ -247,6 +259,12 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
+        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsInterval),
+        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRadius),
+        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRequest),
+        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsTimer),
+        typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer),
+        typeof(Code.Gameplay.Features.Unit.TeamColorComponent),
         typeof(Code.Gameplay.Features.Units.MoveAnimator),
         typeof(Code.Gameplay.Features.Units.Unit)
     };

@@ -21,8 +21,6 @@ namespace Code.Gameplay.Features.AI.Systems
     {
       foreach (GameEntity unit in _units.GetEntities(_buffer))
       {
-        Debug.Log(unit.UnitDecision.UnitDecisionTypeId);
-
         ProcessUnitDecision(unit);
 
         unit.RemoveUnitDecision();

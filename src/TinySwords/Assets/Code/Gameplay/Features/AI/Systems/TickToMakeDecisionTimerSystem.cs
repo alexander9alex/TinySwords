@@ -6,27 +6,26 @@ namespace Code.Gameplay.Features.AI.Systems
   public class TickToMakeDecisionTimerSystem : IExecuteSystem
   {
     private readonly ITimeService _time;
-    private readonly IGroup<GameEntity> _makeDecisionTimers;
+    private readonly IGroup<GameEntity> _entities;
 
     public TickToMakeDecisionTimerSystem(GameContext game, ITimeService time)
     {
       _time = time;
-      _makeDecisionTimers = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MakeDecisionTimer));
+      _entities = game.GetGroup(GameMatcher.MakeDecisionTimer);
     }
 
     public void Execute()
     {
-      foreach (GameEntity timer in _makeDecisionTimers)
+      foreach (GameEntity entity in _entities)
       {
-        timer.ReplaceMakeDecisionTimer(timer.MakeDecisionTimer - _time.DeltaTime);
+        entity.ReplaceMakeDecisionTimer(entity.MakeDecisionTimer - _time.DeltaTime);
 
-        if (timer.MakeDecisionTimer <= 0)
+        if (entity.MakeDecisionTimer <= 0)
         {
-          timer.isMakeDecisionRequest = true;
+          entity.isMakeDecisionRequest = true;
 
-          if (timer.hasMakeDecisionInterval)
-            timer.ReplaceMakeDecisionTimer(timer.MakeDecisionInterval);
+          if (entity.hasMakeDecisionInterval)
+            entity.ReplaceMakeDecisionTimer(entity.MakeDecisionInterval);
         }
       }
     }

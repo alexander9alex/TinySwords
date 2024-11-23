@@ -1,6 +1,7 @@
 ﻿using Code.Gameplay.Features.Units.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.Gameplay.Features.Units.Configs
 {
@@ -16,5 +17,8 @@ namespace Code.Gameplay.Features.Units.Configs
     public float Hp;
     public float Damage;
     public float AttackRadius;
+    public float CollectTargetRadius;
+    public float MakeDecisionInterval = 0.5f;
+    public float CollectTargetsInterval = 0.5f;
   }
 }

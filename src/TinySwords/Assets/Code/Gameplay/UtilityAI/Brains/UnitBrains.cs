@@ -22,6 +22,9 @@ namespace Code.Gameplay.UtilityAI.Brains
         { When.ActionIsStay, GetInput.HasEndDestination, Score.IfFalseThen(+50), "Stay here" },
         
         { When.ActionIsMove, GetInput.HasEndDestination, Score.IfTrueThen(+50), "Move to Destination" },
+        
+        // if target is unit => +100
+        // if target is building => +50
       };
     }
 
