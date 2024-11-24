@@ -10,7 +10,6 @@ namespace Code.Gameplay.Constants
     public const float ClickRadius = 0.01f;
 
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
-    public static readonly int InteractionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static readonly int UILayer = LayerMask.NameToLayer("UI");
     public static readonly int UnitsAndBuildingsLayerMask = LayerMask.GetMask("Unit", "Building");
 

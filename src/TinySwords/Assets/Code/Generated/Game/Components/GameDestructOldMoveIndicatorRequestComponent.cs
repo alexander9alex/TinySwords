@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.DestructOldMoveIndicatorRequest destructOldMoveIndicatorRequestComponent = new Code.Gameplay.Features.Move.DestructOldMoveIndicatorRequest();
+    static readonly Code.Gameplay.Features.MoveIndicator.DestructOldMoveIndicatorRequest destructOldMoveIndicatorRequestComponent = new Code.Gameplay.Features.MoveIndicator.DestructOldMoveIndicatorRequest();
 
     public bool isDestructOldMoveIndicatorRequest {
         get { return HasComponent(GameComponentsLookup.DestructOldMoveIndicatorRequest); }

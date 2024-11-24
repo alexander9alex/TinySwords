@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Move.NavMeshAgentComponent navMeshAgent { get { return (Code.Gameplay.Features.Move.NavMeshAgentComponent)GetComponent(GameComponentsLookup.NavMeshAgent); } }
+    public Code.Gameplay.Features.NavMesh.NavMeshAgentComponent navMeshAgent { get { return (Code.Gameplay.Features.NavMesh.NavMeshAgentComponent)GetComponent(GameComponentsLookup.NavMeshAgent); } }
     public UnityEngine.AI.NavMeshAgent NavMeshAgent { get { return navMeshAgent.Value; } }
     public bool hasNavMeshAgent { get { return HasComponent(GameComponentsLookup.NavMeshAgent); } }
 
     public GameEntity AddNavMeshAgent(UnityEngine.AI.NavMeshAgent newValue) {
         var index = GameComponentsLookup.NavMeshAgent;
-        var component = (Code.Gameplay.Features.Move.NavMeshAgentComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent));
+        var component = (Code.Gameplay.Features.NavMesh.NavMeshAgentComponent)CreateComponent(index, typeof(Code.Gameplay.Features.NavMesh.NavMeshAgentComponent));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceNavMeshAgent(UnityEngine.AI.NavMeshAgent newValue) {
         var index = GameComponentsLookup.NavMeshAgent;
-        var component = (Code.Gameplay.Features.Move.NavMeshAgentComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Move.NavMeshAgentComponent));
+        var component = (Code.Gameplay.Features.NavMesh.NavMeshAgentComponent)CreateComponent(index, typeof(Code.Gameplay.Features.NavMesh.NavMeshAgentComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

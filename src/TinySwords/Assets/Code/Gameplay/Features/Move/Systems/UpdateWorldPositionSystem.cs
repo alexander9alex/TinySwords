@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Move.Systems
     {
       _entity = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.WorldPosition, GameMatcher.Transform)
-        .NoneOf(GameMatcher.UpdatePositionAfterSpawning));
+        .NoneOf(GameMatcher.InitializationRequest));
     }
 
     public void Execute()

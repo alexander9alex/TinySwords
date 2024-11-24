@@ -9,5 +9,11 @@ namespace Code.Common.Extensions
 
     public static Vector3 SetZ(this Vector2 v, float z) =>
       new(v.x, v.y, z);
+    
+    public static Vector2 ToVector2(this Vector3 v) =>
+      new(v.x, v.y);
+
+    public static Vector3 ToVector3(this Vector2 v) =>
+      new(v.x, v.y, 0);
   }
 }

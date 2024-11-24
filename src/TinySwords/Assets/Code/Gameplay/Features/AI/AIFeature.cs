@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.AI.Systems;
+using Code.Gameplay.Features.Battle.Systems;
 using Code.Infrastructure.Factory;
 
 namespace Code.Gameplay.Features.AI

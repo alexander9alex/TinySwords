@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Unit.HasTarget.AttackReach attackReach { get { return (Code.Gameplay.Features.Unit.HasTarget.AttackReach)GetComponent(GameComponentsLookup.AttackReach); } }
+    public Code.Gameplay.Features.Units.AttackReach attackReach { get { return (Code.Gameplay.Features.Units.AttackReach)GetComponent(GameComponentsLookup.AttackReach); } }
     public float AttackReach { get { return attackReach.Value; } }
     public bool hasAttackReach { get { return HasComponent(GameComponentsLookup.AttackReach); } }
 
     public GameEntity AddAttackReach(float newValue) {
         var index = GameComponentsLookup.AttackReach;
-        var component = (Code.Gameplay.Features.Unit.HasTarget.AttackReach)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.HasTarget.AttackReach));
+        var component = (Code.Gameplay.Features.Units.AttackReach)CreateComponent(index, typeof(Code.Gameplay.Features.Units.AttackReach));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAttackReach(float newValue) {
         var index = GameComponentsLookup.AttackReach;
-        var component = (Code.Gameplay.Features.Unit.HasTarget.AttackReach)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.HasTarget.AttackReach));
+        var component = (Code.Gameplay.Features.Units.AttackReach)CreateComponent(index, typeof(Code.Gameplay.Features.Units.AttackReach));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

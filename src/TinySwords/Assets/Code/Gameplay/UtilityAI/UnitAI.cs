@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
@@ -50,10 +49,13 @@ namespace Code.Gameplay.UtilityAI
       if (unit.hasTargetBuffer)
       {
         foreach (int targetId in unit.TargetBuffer)
-        {
           yield return MoveToTargetDecision(targetId);
-          yield return AttackTargetDecision(targetId);
-        }
+      }
+
+      if (unit.hasReachedTargetBuffer)
+      {
+        foreach (int reachedTargetId in unit.ReachedTargetBuffer)
+          yield return AttackTargetDecision(reachedTargetId);
       }
     }
 
@@ -75,6 +77,7 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.Stay,
+        Destination = unit.WorldPosition
       };
     }
 
@@ -83,7 +86,7 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToEndDestination,
-        Position = unit.EndDestination
+        Destination = unit.EndDestination
       };
     }
 
@@ -94,8 +97,7 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,
-        Position = target.WorldPosition,
-        HasTarget = true
+        Destination = target.WorldPosition
       };
     }
 
@@ -106,8 +108,8 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.Attack,
-        Position = target.WorldPosition,
-        HasTarget = true
+        Destination = target.WorldPosition,
+        TargetId = targetId
       };
     }
 

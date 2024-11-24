@@ -19,11 +19,10 @@ namespace Code.Gameplay.Features.Move.Systems
       _cameraProvider = cameraProvider;
 
       _changeEndDestinationRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen)
-        .NoneOf(GameMatcher.Processed));
+        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen));
 
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected, GameMatcher.Movable));
+        .AllOf(GameMatcher.Selected, GameMatcher.Movable, GameMatcher.Available));
     }
 
     public void Execute()
@@ -44,6 +43,7 @@ namespace Code.Gameplay.Features.Move.Systems
         }
 
         request.isProcessed = true;
+        request.isDestructed = true;
       }
     }
 

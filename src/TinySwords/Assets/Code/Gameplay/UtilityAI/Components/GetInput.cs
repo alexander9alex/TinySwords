@@ -1,4 +1,5 @@
 using Code.Gameplay.Features.Units.Data;
+using ModestTree;
 using UnityEngine;
 
 namespace Code.Gameplay.UtilityAI.Components
@@ -13,36 +14,24 @@ namespace Code.Gameplay.UtilityAI.Components
 
     public float PercentageDistanceToTarget(GameEntity unit, UnitDecision decision)
     {
-      if (!decision.HasTarget || !unit.hasWorldPosition || !unit.hasCollectTargetsRadius)
+      if (!unit.hasTargetBuffer || unit.TargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasCollectTargetsRadius)
         return 0;
 
-      return Vector2.Distance(unit.WorldPosition, decision.Position) / unit.CollectTargetsRadius;
+      return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.CollectTargetsRadius + 0.1f);
     }
 
     public float HasTarget(GameEntity unit, UnitDecision decision) =>
-      decision.HasTarget ? True : False;
+      unit.hasTargetBuffer && !unit.TargetBuffer.IsEmpty() ? True : False;
+
+    public float CanReachToTarget(GameEntity unit, UnitDecision decision) =>
+      unit.hasReachedTargetBuffer && !unit.ReachedTargetBuffer.IsEmpty() ? True : False;
 
     public float PercentageReachToTarget(GameEntity unit, UnitDecision decision)
     {
-      if (!decision.HasTarget || !unit.hasWorldPosition || !unit.hasAttackReach)
+      if (!unit.hasReachedTargetBuffer || unit.ReachedTargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasAttackReach)
         return 1;
 
-      float distanceToTarget = Vector2.Distance(unit.WorldPosition, decision.Position);
-      
-      if (distanceToTarget > unit.AttackReach)
-        return 1;
-
-      return distanceToTarget / unit.AttackReach;
-    }
-
-    public float CanReachToTarget(GameEntity unit, UnitDecision decision)
-    {
-      if (!decision.HasTarget || !unit.hasWorldPosition || !unit.hasAttackReach)
-        return 0;
-
-      return Vector2.Distance(unit.WorldPosition, decision.Position) <= unit.AttackReach 
-        ? True
-        : False;
+      return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.AttackReach + 0.1f);
     }
   }
 }

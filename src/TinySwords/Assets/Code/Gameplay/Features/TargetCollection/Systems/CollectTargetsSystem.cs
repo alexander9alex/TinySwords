@@ -2,6 +2,7 @@
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Entitas;
+using ModestTree;
 
 namespace Code.Gameplay.Features.TargetCollection.Systems
 {
@@ -22,7 +23,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
           GameMatcher.TargetBuffer,
           GameMatcher.WorldPosition,
           GameMatcher.TeamColor
-          ));
+        ));
     }
 
     public void Execute()
@@ -30,20 +31,20 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
         List<int> targets = new();
-        
+
         foreach (GameEntity target in GetTargetsInRadius(entity))
         {
           if (!target.hasTeamColor || !target.hasId)
             continue;
-          
+
           if (entity.TeamColor == target.TeamColor)
             continue;
 
           targets.Add(target.Id);
         }
-
-        entity.ReplaceTargetBuffer(targets);
         
+        entity.ReplaceTargetBuffer(targets);
+
         entity.isCollectTargetsRequest = false;
       }
     }

@@ -23,7 +23,7 @@ namespace Code.Gameplay.Level.Factory
       CreateEntity.Empty()
         .AddViewPrefab(config.MapPrefab)
         .AddWorldPosition(Vector3.zero)
-        .With(x => x.isUpdatePositionAfterSpawning = true)
+        .With(x => x.isInitializationRequest = true)
         .With(x => x.isNotAddedNavMeshRootSource = true);
       
       CreateEntity.Empty()

@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.FastInteraction.TargetId targetId { get { return (Code.Gameplay.Features.FastInteraction.TargetId)GetComponent(GameComponentsLookup.TargetId); } }
+    public Code.Gameplay.Features.Effects.TargetId targetId { get { return (Code.Gameplay.Features.Effects.TargetId)GetComponent(GameComponentsLookup.TargetId); } }
     public int TargetId { get { return targetId.Value; } }
     public bool hasTargetId { get { return HasComponent(GameComponentsLookup.TargetId); } }
 
     public GameEntity AddTargetId(int newValue) {
         var index = GameComponentsLookup.TargetId;
-        var component = (Code.Gameplay.Features.FastInteraction.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.TargetId));
+        var component = (Code.Gameplay.Features.Effects.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.Effects.TargetId));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTargetId(int newValue) {
         var index = GameComponentsLookup.TargetId;
-        var component = (Code.Gameplay.Features.FastInteraction.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.TargetId));
+        var component = (Code.Gameplay.Features.Effects.TargetId)CreateComponent(index, typeof(Code.Gameplay.Features.Effects.TargetId));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

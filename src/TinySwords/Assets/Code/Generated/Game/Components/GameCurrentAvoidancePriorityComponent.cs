@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Move.CurrentAvoidancePriority currentAvoidancePriority { get { return (Code.Gameplay.Features.Move.CurrentAvoidancePriority)GetComponent(GameComponentsLookup.CurrentAvoidancePriority); } }
+    public Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority currentAvoidancePriority { get { return (Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority)GetComponent(GameComponentsLookup.CurrentAvoidancePriority); } }
     public int CurrentAvoidancePriority { get { return currentAvoidancePriority.Value; } }
     public bool hasCurrentAvoidancePriority { get { return HasComponent(GameComponentsLookup.CurrentAvoidancePriority); } }
 
     public GameEntity AddCurrentAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.CurrentAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.CurrentAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCurrentAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.CurrentAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.CurrentAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.CurrentAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

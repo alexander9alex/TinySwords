@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.AI;
+using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.ControlAction;
 using Code.Gameplay.Features.Destruct;
@@ -6,6 +7,7 @@ using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
+using Code.Gameplay.Features.MoveIndicator;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.TargetCollection;
@@ -31,7 +33,11 @@ namespace Code.Gameplay
 
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
+      Add(systems.Create<MoveIndicatorFeature>());
+      
       Add(systems.Create<CollectTargetsFeature>());
+      Add(systems.Create<BattleFeature>());
+      
       Add(systems.Create<AIFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());

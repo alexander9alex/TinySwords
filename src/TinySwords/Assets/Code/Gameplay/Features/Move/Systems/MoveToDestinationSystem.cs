@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.Move.Systems
 
     public MoveToDestinationSystem(GameContext game)
     {
-      _movables = game.GetGroup(GameMatcher.AllOf(GameMatcher.NavMeshAgent, GameMatcher.Destination));
+      _movables = game.GetGroup(GameMatcher.AllOf(GameMatcher.NavMeshAgent, GameMatcher.Destination, GameMatcher.Available));
     }
 
     public void Execute()

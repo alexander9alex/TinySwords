@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.CreatedNow createdNowComponent = new Code.Gameplay.Features.Move.CreatedNow();
+    static readonly Code.Gameplay.Features.MoveIndicator.CreatedNow createdNowComponent = new Code.Gameplay.Features.MoveIndicator.CreatedNow();
 
     public bool isCreatedNow {
         get { return HasComponent(GameComponentsLookup.CreatedNow); }

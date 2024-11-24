@@ -11,8 +11,4 @@ namespace Code.Gameplay.Features.ControlAction
   [Game] public class MoveWithAttackControlAction : IComponent { }
   [Game] public class SelectedAction : IComponent { }
   [Game] public class UnitCommandTypeIdComponent : IComponent { public UnitCommandTypeId Value; }
-  
-  [Game] public class StayUnitDecision : IComponent { }
-  [Game] public class MoveUnitDecision : IComponent { }
-  [Game] public class AttackUnitDecision : IComponent { }
 }

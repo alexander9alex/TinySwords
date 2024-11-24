@@ -8,8 +8,10 @@ namespace Code.Gameplay.Features.TargetCollection
     public CollectTargetsFeature(ISystemFactory systems)
     {
       Add(systems.Create<TickToCollectTargetsTimerSystem>());
+      Add(systems.Create<TickToCollectReachedTargetsTimerSystem>());
       
       Add(systems.Create<CollectTargetsSystem>());
+      Add(systems.Create<CollectReachedTargetsSystem>());
     }
   }
 }

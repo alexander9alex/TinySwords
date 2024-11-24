@@ -14,6 +14,8 @@ namespace Code.Gameplay.Features.NavMesh
       Add(systems.Create<AddSourceToNavMeshCachedSourcesSystem>());
       
       Add(systems.Create<UpdateNavMeshSystem>());
+      
+      Add(systems.Create<TurnOnNavMeshAgentSystem>());
     }
   }
 }

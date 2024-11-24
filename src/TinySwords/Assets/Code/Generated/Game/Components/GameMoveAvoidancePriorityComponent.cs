@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Move.MoveAvoidancePriority moveAvoidancePriority { get { return (Code.Gameplay.Features.Move.MoveAvoidancePriority)GetComponent(GameComponentsLookup.MoveAvoidancePriority); } }
+    public Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority moveAvoidancePriority { get { return (Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority)GetComponent(GameComponentsLookup.MoveAvoidancePriority); } }
     public int MoveAvoidancePriority { get { return moveAvoidancePriority.Value; } }
     public bool hasMoveAvoidancePriority { get { return HasComponent(GameComponentsLookup.MoveAvoidancePriority); } }
 
     public GameEntity AddMoveAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.MoveAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.MoveAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceMoveAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.MoveAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.MoveAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.MoveAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

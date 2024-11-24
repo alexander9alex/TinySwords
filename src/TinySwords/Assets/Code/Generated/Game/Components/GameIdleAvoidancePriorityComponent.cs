@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Move.IdleAvoidancePriority idleAvoidancePriority { get { return (Code.Gameplay.Features.Move.IdleAvoidancePriority)GetComponent(GameComponentsLookup.IdleAvoidancePriority); } }
+    public Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority idleAvoidancePriority { get { return (Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority)GetComponent(GameComponentsLookup.IdleAvoidancePriority); } }
     public int IdleAvoidancePriority { get { return idleAvoidancePriority.Value; } }
     public bool hasIdleAvoidancePriority { get { return HasComponent(GameComponentsLookup.IdleAvoidancePriority); } }
 
     public GameEntity AddIdleAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.IdleAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.IdleAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.IdleAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceIdleAvoidancePriority(int newValue) {
         var index = GameComponentsLookup.IdleAvoidancePriority;
-        var component = (Code.Gameplay.Features.Move.IdleAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.Move.IdleAvoidancePriority));
+        var component = (Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority)CreateComponent(index, typeof(Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

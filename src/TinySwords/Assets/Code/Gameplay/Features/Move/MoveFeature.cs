@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Move.Systems;
+using Code.Gameplay.Features.UpdateAvoidance;
 using Code.Infrastructure.Factory;
 
 namespace Code.Gameplay.Features.Move
@@ -7,34 +8,21 @@ namespace Code.Gameplay.Features.Move
   {
     public MoveFeature(ISystemFactory systems)
     {
-      Add(systems.Create<TurnOnNavMeshAgentAfterTransformUpdatingSystem>());
-
       Add(systems.Create<ChangeEndDestinationSystem>());
       Add(systems.Create<MoveToDestinationSystem>());
 
-      Add(systems.Create<CreateMoveClickIndicatorSystem>());
-      Add(systems.Create<DestructOldClickIndicatorSystem>());
-      
       Add(systems.Create<UpdateMoveDirectionSystem>());
       Add(systems.Create<UpdateMovementStateSystem>());
-
-      Add(systems.Create<UpdateMoveAvoidanceSystem>());
-      Add(systems.Create<UpdateIdleAvoidanceSystem>());
-      Add(systems.Create<SetAvoidanceSystem>());
-
       Add(systems.Create<UpdateWorldPositionSystem>());
 
-      Add(systems.Create<AnimateIdleSystem>());
+      Add(systems.Create<UpdateAvoidanceFeature>());
+
+      Add(systems.Create<AnimateIdleSystem>()); // todo: move to animate feature
       Add(systems.Create<AnimateMoveSystem>());
+      Add(systems.Create<UpdateLookDirectionSystem>());
 
       Add(systems.Create<CleanupDestinationSystem>());
       Add(systems.Create<CleanupEndDestinationSystem>());
-      
-      Add(systems.Create<CleanupChangeDestinationRequestSystem>());
-      Add(systems.Create<CleanupMoveRequestSystem>());
-      Add(systems.Create<CleanupCreatedNowSystem>());
-      Add(systems.Create<CleanupPositionUpdatedSystem>());
-      Add(systems.Create<CleanupDestructOldClickIndicatorRequestSystem>());
     }
   }
 }

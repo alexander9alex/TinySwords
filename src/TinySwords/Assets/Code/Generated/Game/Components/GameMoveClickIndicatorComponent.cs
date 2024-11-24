@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.MoveClickIndicator moveClickIndicatorComponent = new Code.Gameplay.Features.Move.MoveClickIndicator();
+    static readonly Code.Gameplay.Features.MoveIndicator.MoveClickIndicator moveClickIndicatorComponent = new Code.Gameplay.Features.MoveIndicator.MoveClickIndicator();
 
     public bool isMoveClickIndicator {
         get { return HasComponent(GameComponentsLookup.MoveClickIndicator); }
