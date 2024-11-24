@@ -11,7 +11,7 @@ namespace Code.Gameplay.UtilityAI.Data
       Score = score;
       
       UnitDecisionTypeId = decision.UnitDecisionTypeId;
-      Destination = decision.Destination;
+      Position = decision.Position;
     }
   }
 }

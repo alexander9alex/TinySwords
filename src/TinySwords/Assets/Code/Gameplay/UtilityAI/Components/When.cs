@@ -5,9 +5,15 @@ namespace Code.Gameplay.UtilityAI.Components
   public class When
   {
     public bool ActionIsStay(GameEntity unit, UnitDecision decision) =>
-    decision.UnitDecisionTypeId == UnitDecisionTypeId.Stay;
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.Stay;
 
-    public bool ActionIsMove(GameEntity unit, UnitDecision decision) =>
-      decision.UnitDecisionTypeId == UnitDecisionTypeId.Move;
+    public bool ActionIsMoveToEndDestination(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToEndDestination;
+
+    public bool ActionIsMoveToTarget(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToTarget;
+
+    public bool ActionIsAttack(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.Attack;
   }
 }

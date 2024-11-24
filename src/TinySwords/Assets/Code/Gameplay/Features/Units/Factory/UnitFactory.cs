@@ -35,6 +35,7 @@ namespace Code.Gameplay.Features.Units.Factory
           .AddWorldPosition(pos)
           .AddMoveDirection(Vector2.zero)
           .AddTeamColor(color)
+          .AddAttackReach(config.AttackReach)
           .AddMakeDecisionInterval(config.MakeDecisionInterval)
           .AddMakeDecisionTimer(0)
           .AddCollectTargetsInterval(config.CollectTargetsInterval)

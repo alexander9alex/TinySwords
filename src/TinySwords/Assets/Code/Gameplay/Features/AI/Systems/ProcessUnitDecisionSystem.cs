@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.AI.Systems
   public class ProcessUnitDecisionSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _units;
-    private List<GameEntity> _buffer = new(32);
+    private readonly List<GameEntity> _buffer = new(32);
 
     public ProcessUnitDecisionSystem(GameContext game)
     {
@@ -36,23 +36,34 @@ namespace Code.Gameplay.Features.AI.Systems
         case UnitDecisionTypeId.Stay:
           MakeStayDecision(unit);
           break;
-        case UnitDecisionTypeId.Move:
-          MakeMoveDecision(unit, decision);
+        case UnitDecisionTypeId.MoveToEndDestination:
+          MakeMoveToEndDestinationDecision(unit, decision);
+          break;
+        case UnitDecisionTypeId.MoveToTarget:
+          MakeMoveToTargetDecision(unit, decision);
           break;
         case UnitDecisionTypeId.Attack:
+          MakeAttackDecision(unit, decision);
           break;
         default:
           throw new ArgumentOutOfRangeException();
       }
     }
 
-    private static void MakeStayDecision(GameEntity unit)
-    {
-      if (unit.hasDestination)
-        unit.RemoveDestination();
-    }
+    private static void MakeStayDecision(GameEntity unit) =>
+      unit.ReplaceDestination(unit.WorldPosition);
 
-    private void MakeMoveDecision(GameEntity unit, UnitDecision decision) =>
-      unit.ReplaceDestination(decision.Destination);
+    private void MakeMoveToEndDestinationDecision(GameEntity unit, UnitDecision decision) =>
+      unit.ReplaceDestination(decision.Position);
+
+    private void MakeMoveToTargetDecision(GameEntity unit, UnitDecision decision) =>
+      unit.ReplaceDestination(decision.Position);
+
+    private void MakeAttackDecision(GameEntity unit, UnitDecision decision)
+    {
+      unit.ReplaceDestination(unit.WorldPosition);
+      
+      Debug.Log("Attack Request");
+    }
   }
 }

@@ -3,8 +3,12 @@
   public enum UnitDecisionTypeId
   {
     Unknown = 0,
-    Stay = 1,
-    Move = 2,
-    Attack = 3
+    
+    Stay = 100,
+    
+    MoveToEndDestination = 200,
+    MoveToTarget = 201,
+    
+    Attack = 300,
   }
 }

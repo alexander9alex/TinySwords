@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Units.Configs
     [Space]
     public float Hp;
     public float Damage;
-    public float AttackRadius;
+    public float AttackReach;
     public float CollectTargetRadius;
     public float MakeDecisionInterval = 0.5f;
     public float CollectTargetsInterval = 0.5f;

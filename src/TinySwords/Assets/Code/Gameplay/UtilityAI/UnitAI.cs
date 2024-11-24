@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
@@ -5,15 +6,20 @@ using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
 using Code.Gameplay.UtilityAI.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.UtilityAI
 {
   class UnitAI : IUnitAI
   {
     private readonly IEnumerable<IUtilityFunction> _utilityFunctions;
+    private readonly GameContext _gameContext;
 
-    public UnitAI(UnitBrains unitBrains) =>
+    public UnitAI(UnitBrains unitBrains, GameContext gameContext)
+    {
       _utilityFunctions = unitBrains.GetUtilityFunctions();
+      _gameContext = gameContext;
+    }
 
     public UnitDecision MakeBestDecision(GameEntity unit)
     {
@@ -41,22 +47,27 @@ namespace Code.Gameplay.UtilityAI
       if (unit.hasEndDestination)
         yield return MoveToEndDestinationDecision(unit);
 
-      // todo: if (has target) => attack
-      // ...
-      // ...
-      // ...
+      if (unit.hasTargetBuffer)
+      {
+        foreach (int targetId in unit.TargetBuffer)
+        {
+          yield return MoveToTargetDecision(targetId);
+          yield return AttackTargetDecision(targetId);
+        }
+      }
     }
 
     private float? CalculateScore(GameEntity unit, UnitDecision decision)
     {
-      IEnumerable<float> scores = (
+      IEnumerable<ScoreFactor> scores = (
           from utilityFunction in _utilityFunctions
           where utilityFunction.AppliesTo(unit, decision)
           let input = utilityFunction.GetInput(unit, decision)
-          select utilityFunction.Score(unit, input)
+          let score = utilityFunction.Score(unit, input)
+          select new ScoreFactor(utilityFunction.Name, score)
         );
 
-      return scores.SumOrNull();
+      return scores.Select(x => x.Score).SumOrNull();
     }
 
     private UnitDecision StayDecision(GameEntity unit)
@@ -71,9 +82,43 @@ namespace Code.Gameplay.UtilityAI
     {
       return new UnitDecision
       {
-        UnitDecisionTypeId = UnitDecisionTypeId.Move,
-        Destination = unit.EndDestination
+        UnitDecisionTypeId = UnitDecisionTypeId.MoveToEndDestination,
+        Position = unit.EndDestination
       };
+    }
+
+    private UnitDecision MoveToTargetDecision(int targetId)
+    {
+      GameEntity target = _gameContext.GetEntityWithId(targetId);
+
+      return new UnitDecision
+      {
+        UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,
+        Position = target.WorldPosition,
+        HasTarget = true
+      };
+    }
+
+    private UnitDecision AttackTargetDecision(int targetId)
+    {
+      GameEntity target = _gameContext.GetEntityWithId(targetId);
+
+      return new UnitDecision
+      {
+        UnitDecisionTypeId = UnitDecisionTypeId.Attack,
+        Position = target.WorldPosition,
+        HasTarget = true
+      };
+    }
+
+    private void PrintDecision(UnitDecision decision, IEnumerable<ScoreFactor> scores)
+    {
+      Debug.Log("----------------");
+
+      Debug.Log($"Decision: {decision.UnitDecisionTypeId} == {scores.Select(x => x.Score).SumOrNull()}");
+
+      foreach (ScoreFactor scoreFactor in scores)
+        Debug.Log(scoreFactor.ToString());
     }
   }
 }

@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Unit.TeamColorComponent teamColor { get { return (Code.Gameplay.Features.Unit.TeamColorComponent)GetComponent(GameComponentsLookup.TeamColor); } }
+    public Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent teamColor { get { return (Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent)GetComponent(GameComponentsLookup.TeamColor); } }
     public Code.Gameplay.Features.Units.Data.TeamColor TeamColor { get { return teamColor.Value; } }
     public bool hasTeamColor { get { return HasComponent(GameComponentsLookup.TeamColor); } }
 
     public GameEntity AddTeamColor(Code.Gameplay.Features.Units.Data.TeamColor newValue) {
         var index = GameComponentsLookup.TeamColor;
-        var component = (Code.Gameplay.Features.Unit.TeamColorComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.TeamColorComponent));
+        var component = (Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTeamColor(Code.Gameplay.Features.Units.Data.TeamColor newValue) {
         var index = GameComponentsLookup.TeamColor;
-        var component = (Code.Gameplay.Features.Unit.TeamColorComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.TeamColorComponent));
+        var component = (Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

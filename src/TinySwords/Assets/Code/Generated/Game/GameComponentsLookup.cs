@@ -89,11 +89,13 @@ public static class GameComponentsLookup {
     public const int CollectTargetsRequest = 78;
     public const int CollectTargetsTimer = 79;
     public const int TargetBuffer = 80;
-    public const int TeamColor = 81;
-    public const int MoveAnimator = 82;
-    public const int Unit = 83;
+    public const int HasTarget = 81;
+    public const int AttackReach = 82;
+    public const int TeamColor = 83;
+    public const int MoveAnimator = 84;
+    public const int Unit = 85;
 
-    public const int TotalComponents = 84;
+    public const int TotalComponents = 86;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -177,6 +179,8 @@ public static class GameComponentsLookup {
         "CollectTargetsRequest",
         "CollectTargetsTimer",
         "TargetBuffer",
+        "HasTarget",
+        "AttackReach",
         "TeamColor",
         "MoveAnimator",
         "Unit"
@@ -264,7 +268,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRequest),
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsTimer),
         typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer),
-        typeof(Code.Gameplay.Features.Unit.TeamColorComponent),
+        typeof(Code.Gameplay.Features.Unit.HasTarget),
+        typeof(Code.Gameplay.Features.Unit.HasTarget.AttackReach),
+        typeof(Code.Gameplay.Features.Unit.HasTarget.TeamColorComponent),
         typeof(Code.Gameplay.Features.Units.MoveAnimator),
         typeof(Code.Gameplay.Features.Units.Unit)
     };

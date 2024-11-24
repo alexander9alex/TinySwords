@@ -17,7 +17,7 @@ MonoBehaviour:
   UnitPrefab: {fileID: 3841485622853786287, guid: 1630d57fb4cc7c54ab5046182c148606, type: 3}
   Hp: 0
   Damage: 0
-  AttackRadius: 0
+  AttackReach: 1
   CollectTargetRadius: 3
   MakeDecisionInterval: 0.5
   CollectTargetsInterval: 0.5
