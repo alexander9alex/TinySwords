@@ -43,7 +43,7 @@ namespace Code.Gameplay
       Add(systems.Create<EffectFeature>());
       
       Add(systems.Create<AnimateFeature>());
-
+      
       Add(systems.Create<DeadFeature>());
 
       Add(systems.Create<AIFeature>());

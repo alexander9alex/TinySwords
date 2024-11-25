@@ -46,17 +46,11 @@ namespace Code.Gameplay.UtilityAI
       if (unit.hasEndDestination)
         yield return MoveToEndDestinationDecision(unit);
 
-      if (unit.hasTargetBuffer)
-      {
-        foreach (int targetId in unit.TargetBuffer)
-          yield return MoveToTargetDecision(targetId);
-      }
+      foreach (UnitDecision moveToTargetDecision in MoveToTargetDecisions(unit))
+        yield return moveToTargetDecision;
 
-      if (unit.hasReachedTargetBuffer)
-      {
-        foreach (int reachedTargetId in unit.ReachedTargetBuffer)
-          yield return AttackTargetDecision(reachedTargetId);
-      }
+      foreach (UnitDecision unitDecision in AttackTargetDecisions(unit))
+        yield return unitDecision;
     }
 
     private float? CalculateScore(GameEntity unit, UnitDecision decision)
@@ -70,6 +64,34 @@ namespace Code.Gameplay.UtilityAI
         );
 
       return scores.Select(x => x.Score).SumOrNull();
+    }
+
+    private IEnumerable<UnitDecision> MoveToTargetDecisions(GameEntity unit)
+    {
+      if (!unit.hasTargetBuffer)
+        yield break;
+
+      foreach (int targetId in unit.TargetBuffer)
+      {
+        GameEntity target = _gameContext.GetEntityWithId(targetId);
+
+        if (target is { isAlive: true })
+          yield return MoveToTargetDecision(target);
+      }
+    }
+
+    private IEnumerable<UnitDecision> AttackTargetDecisions(GameEntity unit)
+    {
+      if (!unit.hasReachedTargetBuffer)
+        yield break;
+
+      foreach (int reachedTargetId in unit.ReachedTargetBuffer)
+      {
+        GameEntity target = _gameContext.GetEntityWithId(reachedTargetId);
+
+        if (target is { isAlive: true })
+          yield return AttackTargetDecision(reachedTargetId);
+      }
     }
 
     private UnitDecision StayDecision(GameEntity unit)
@@ -90,10 +112,8 @@ namespace Code.Gameplay.UtilityAI
       };
     }
 
-    private UnitDecision MoveToTargetDecision(int targetId)
+    private UnitDecision MoveToTargetDecision(GameEntity target)
     {
-      GameEntity target = _gameContext.GetEntityWithId(targetId);
-      
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,

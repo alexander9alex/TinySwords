@@ -7,5 +7,6 @@ namespace Code.Gameplay.Level.Configs
   public class LevelConfig : ScriptableObject
   {
     public EntityBehaviour MapPrefab;
+    public LevelMap LevelMap;
   }
 }

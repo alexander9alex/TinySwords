@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
   MapPrefab: {fileID: 2113220392298316763, guid: 459e7e44f141b9e4187af3a21dda4b8e, type: 3}
+  LevelMap: {fileID: 6746565119539317206, guid: 459e7e44f141b9e4187af3a21dda4b8e, type: 3}
