@@ -1,7 +1,7 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
 
-namespace Code.Gameplay.Features.Units.Animations.Services
+namespace Code.Gameplay.Features.Animations.Services
 {
   class AttackAnimationService : IAttackAnimationService
   {

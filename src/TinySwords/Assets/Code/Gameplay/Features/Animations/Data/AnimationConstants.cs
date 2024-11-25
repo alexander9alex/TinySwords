@@ -1,4 +1,4 @@
-namespace Code.Gameplay.Features.Units.Animations.Data
+namespace Code.Gameplay.Features.Animations.Data
 {
   public static class AnimationConstants
   {

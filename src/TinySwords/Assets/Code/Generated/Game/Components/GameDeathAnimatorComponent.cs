@@ -34,10 +34,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.Animations.DeathAnimator deathAnimator { get { return (Code.Gameplay.Features.Animations.DeathAnimator)GetComponent(GameComponentsLookup.DeathAnimator); } }
-    public Code.Gameplay.Features.Units.Animations.Animators.IDeathAnimator DeathAnimator { get { return deathAnimator.Value; } }
+    public Code.Gameplay.Features.Animations.Animators.IDeathAnimator DeathAnimator { get { return deathAnimator.Value; } }
     public bool hasDeathAnimator { get { return HasComponent(GameComponentsLookup.DeathAnimator); } }
 
-    public GameEntity AddDeathAnimator(Code.Gameplay.Features.Units.Animations.Animators.IDeathAnimator newValue) {
+    public GameEntity AddDeathAnimator(Code.Gameplay.Features.Animations.Animators.IDeathAnimator newValue) {
         var index = GameComponentsLookup.DeathAnimator;
         var component = (Code.Gameplay.Features.Animations.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DeathAnimator));
         component.Value = newValue;
@@ -45,7 +45,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceDeathAnimator(Code.Gameplay.Features.Units.Animations.Animators.IDeathAnimator newValue) {
+    public GameEntity ReplaceDeathAnimator(Code.Gameplay.Features.Animations.Animators.IDeathAnimator newValue) {
         var index = GameComponentsLookup.DeathAnimator;
         var component = (Code.Gameplay.Features.Animations.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DeathAnimator));
         component.Value = newValue;

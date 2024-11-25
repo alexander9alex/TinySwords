@@ -143,6 +143,22 @@ PrefabInstance:
       propertyPath: SpriteRenderer
       value: 
       objectReference: {fileID: 4786132380375357664}
+    - target: {fileID: 6594983132080181132, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: EndColor.b
+      value: 0.48867923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594983132080181132, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: EndColor.g
+      value: 0.48867923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594983132080181132, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: EndColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594983132080181132, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: SpriteRenderer
+      value: 
+      objectReference: {fileID: 4786132380375357664}
     - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.15

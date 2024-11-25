@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: -7218152853136370546}
   - component: {fileID: 8339995057775743882}
   - component: {fileID: 1400087004846229561}
+  - component: {fileID: 6594983132080181132}
   - component: {fileID: 4031696372157677748}
   - component: {fileID: 2810683365945737114}
   - component: {fileID: 1765808273595722036}
+  - component: {fileID: 2475834333697680308}
   m_Layer: 10
   m_Name: Unit
   m_TagString: Untagged
@@ -137,6 +139,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6594983132080181132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062871423326038689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e45d19da6ec4320bf96cef865559644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteRenderer: {fileID: 0}
+  StartColor: {r: 1, g: 1, b: 1, a: 1}
+  EndColor: {r: 1, g: 0.57169807, b: 0.57169807, a: 1}
+  AnimateTime: 0.2
 --- !u!114 &4031696372157677748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +195,20 @@ MonoBehaviour:
   EntityBehaviour: {fileID: 4031696372157677748}
   NavMeshAgent: {fileID: -7218152853136370546}
   MoveAvoidancePriority: 35
+--- !u!114 &2475834333697680308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062871423326038689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559b3c1d102046abaf94a23a555c7a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityBehaviour: {fileID: 4031696372157677748}
+  DamageTakenAnimator: {fileID: 6594983132080181132}
 --- !u!1 &6602827645550739253
 GameObject:
   m_ObjectHideFlags: 0

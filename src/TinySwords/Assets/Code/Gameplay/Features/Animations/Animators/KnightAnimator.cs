@@ -1,9 +1,9 @@
-﻿using Code.Gameplay.Features.Units.Animations.Data;
-using Code.Gameplay.Features.Units.Animations.Services;
+﻿using Code.Gameplay.Features.Animations.Data;
+using Code.Gameplay.Features.Animations.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Gameplay.Features.Units.Animations.Animators
+namespace Code.Gameplay.Features.Animations.Animators
 {
   public class KnightAnimator : MonoBehaviour, ISelectingAnimator, IMoveAnimator, IAttackAnimator
   {

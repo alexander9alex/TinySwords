@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Features.Units.Animations.Animators
+﻿namespace Code.Gameplay.Features.Animations.Animators
 {
   public interface IDeathAnimator
   {

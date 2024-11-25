@@ -3,19 +3,19 @@ using Code.Gameplay.Features.Animations.Animators;
 
 namespace Code.Gameplay.Features.Units.Registrars
 {
-  public class DeathSkullAnimatorRegistrar : EntityComponentRegistrar
+  public class DamageTakenAnimatorRegistrar : EntityComponentRegistrar
   {
-    public DeathSkullAnimator DeathSkullAnimator;
+    public DamageTakenAnimator DamageTakenAnimator;
     public override void RegisterComponents()
     {
       Entity
-        .AddDeathAnimator(DeathSkullAnimator);
+        .AddDamageTakenAnimator(DamageTakenAnimator);
     }
 
     public override void UnregisterComponents()
     {
-      if (Entity.hasDeathAnimator)
-        Entity.RemoveDeathAnimator();
+      if (Entity.hasDamageTakenAnimator)
+        Entity.RemoveDamageTakenAnimator();
     }
   }
 }

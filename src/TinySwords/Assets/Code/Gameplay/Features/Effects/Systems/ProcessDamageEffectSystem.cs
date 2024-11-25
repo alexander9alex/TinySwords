@@ -21,8 +21,10 @@ namespace Code.Gameplay.Features.Effects.Systems
         GameEntity target = _game.GetEntityWithId(effect.TargetId);
 
         if (target.isAlive && target.hasCurrentHp)
+        {
           target.ReplaceCurrentHp(target.CurrentHp - effect.EffectValue);
-
+          target.isAnimateTakenDamage = true;
+        }
         effect.isDestructed = true;
       }
     }

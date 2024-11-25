@@ -18,7 +18,9 @@ namespace Code.Gameplay.Features.Animations
       Add(systems.Create<AnimateMoveSystem>());
       Add(systems.Create<UpdateLookDirectionSystem>());
       
-      Add(systems.Create<AnimateUnitDeadSystem>());
+      Add(systems.Create<AnimateTakingDamageSystem>());
+      
+      Add(systems.Create<AnimateUnitDeathSystem>());
     }
   }
 }

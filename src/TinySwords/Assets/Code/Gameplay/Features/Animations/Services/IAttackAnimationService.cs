@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Features.Units.Animations.Services
+﻿namespace Code.Gameplay.Features.Animations.Services
 {
   public interface IAttackAnimationService
   {

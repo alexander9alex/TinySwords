@@ -4,13 +4,13 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Animations.Systems
 {
-  public class AnimateUnitDeadSystem : IExecuteSystem
+  public class AnimateUnitDeathSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _entities;
     private readonly ITimeService _time;
     private readonly List<GameEntity> _buffer = new(16);
 
-    public AnimateUnitDeadSystem(GameContext game, ITimeService time)
+    public AnimateUnitDeathSystem(GameContext game, ITimeService time)
     {
       _time = time;
       _entities = game.GetGroup(GameMatcher
