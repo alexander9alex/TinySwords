@@ -7,42 +7,40 @@ using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Effects.Data;
 using Entitas;
 using ModestTree;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Battle.Systems
 {
-  public class StartUnitAttackSystem : IExecuteSystem
+  public class MakeHitSystem : IExecuteSystem
   {
     private readonly IPhysicsService _physicsService;
 
-    private readonly IGroup<GameEntity> _units;
-    private readonly List<GameEntity> _buffer = new(4);
+    private readonly IGroup<GameEntity> _makeHitRequests;
+    private readonly List<GameEntity> _buffer = new(16);
 
-    public StartUnitAttackSystem(GameContext game, IPhysicsService physicsService)
+    public MakeHitSystem(GameContext game, IPhysicsService physicsService)
     {
       _physicsService = physicsService;
 
-      _units = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Unit,
-          GameMatcher.AttackRequest,
-          GameMatcher.AttackTarget,
-          GameMatcher.AttackReach,
-          GameMatcher.Damage,
-          GameMatcher.WorldPosition,
-          GameMatcher.LookDirection,
-          GameMatcher.Available
-        ));
+      _makeHitRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.MakeHit, GameMatcher.CasterId));
     }
 
     public void Execute()
     {
-      foreach (GameEntity unit in _units.GetEntities(_buffer))
+      foreach (GameEntity request in _makeHitRequests.GetEntities(_buffer))
       {
-        if (unit.isCanAttack)
-          Attack(unit);
+        Debug.Log($"Make hit from {request.CasterId}");
 
-        unit.isAttackRequest = false;
+        request.isDestructed = true;
       }
+      
+      // foreach (GameEntity unit in _units.GetEntities(_buffer))
+      // {
+        // if (unit.isCanAttack)
+          // Attack(unit);
+
+        // unit.isAttackRequest = false;
+      // }
     }
 
     private void Attack(GameEntity unit)

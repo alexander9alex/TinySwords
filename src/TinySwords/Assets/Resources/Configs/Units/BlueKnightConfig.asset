@@ -18,8 +18,8 @@ MonoBehaviour:
   Hp: 15
   Damage: 5
   Speed: 2.1
-  AttackReach: 0.85
-  AttackCooldown: 1.15
+  AttackReach: 0.7
+  AttackCooldown: 0.8
   CollectTargetRadius: 3
   MakeDecisionInterval: 0.1
   CollectTargetsInterval: 0.1

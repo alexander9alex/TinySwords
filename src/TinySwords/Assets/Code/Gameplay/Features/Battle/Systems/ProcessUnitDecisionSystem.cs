@@ -67,7 +67,7 @@ namespace Code.Gameplay.Features.Battle.Systems
       unit.ReplaceTargetId(decision.TargetId);
 
       CreateEntity.Empty()
-        .AddTargetId(unit.Id)
+        .AddCasterId(unit.Id)
         .With(x => x.isAttackRequest = true);
     }
   }

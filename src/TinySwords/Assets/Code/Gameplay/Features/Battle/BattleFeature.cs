@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Battle
       
       Add(systems.Create<ProcessUnitAttackRequestSystem>());
       
-      // Add(systems.Create<MakeDamageSystem?>());
+      Add(systems.Create<MakeHitSystem>());
       // Add(systems.Create<SetAttackCooldownSystem>());
       
       Add(systems.Create<UpdateUnitAvailabilitySystem>());

@@ -13,14 +13,14 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       _game = game;
       _attackRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AttackRequest, GameMatcher.TargetId));
+        .AllOf(GameMatcher.AttackRequest, GameMatcher.CasterId));
     }
 
     public void Execute()
     {
       foreach (GameEntity request in _attackRequests.GetEntities(_buffer))
       {
-        GameEntity unit = _game.GetEntityWithId(request.TargetId);
+        GameEntity unit = _game.GetEntityWithId(request.CasterId);
 
         if (unit.isCanAttack)
         {

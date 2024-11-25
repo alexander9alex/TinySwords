@@ -35,85 +35,87 @@ public static class GameComponentsLookup {
     public const int AttackRequest = 24;
     public const int AttackTarget = 25;
     public const int CanAttack = 26;
-    public const int Building = 27;
-    public const int BuildTypeId = 28;
-    public const int Castle = 29;
-    public const int ActionEnded = 30;
-    public const int ActionStarted = 31;
-    public const int ApplyControlAction = 32;
-    public const int CancelControlAction = 33;
-    public const int MoveControlAction = 34;
-    public const int MoveWithAttackControlAction = 35;
-    public const int SelectedAction = 36;
-    public const int UnitCommandTypeId = 37;
-    public const int EffectTypeId = 38;
-    public const int EffectValue = 39;
-    public const int TargetId = 40;
-    public const int AllUnitCommandTypeIds = 41;
-    public const int FastInteraction = 42;
-    public const int CenterPosition = 43;
-    public const int CreateHighlightRequest = 44;
-    public const int Highlight = 45;
-    public const int HighlightEnded = 46;
-    public const int RectTransform = 47;
-    public const int Size = 48;
-    public const int EndPosition = 49;
-    public const int MousePositionOnScreen = 50;
-    public const int PositionOnScreen = 51;
-    public const int StartPosition = 52;
-    public const int ChangeEndDestinationRequest = 53;
-    public const int Destination = 54;
-    public const int EndDestination = 55;
-    public const int Idle = 56;
-    public const int Movable = 57;
-    public const int Move = 58;
-    public const int MoveDirection = 59;
-    public const int CreatedNow = 60;
-    public const int CreateMoveClickIndicator = 61;
-    public const int DestructOldMoveIndicatorRequest = 62;
-    public const int MoveClickIndicator = 63;
-    public const int AddToNavMeshCachedSources = 64;
-    public const int BuildNavMeshAtStart = 65;
-    public const int NavMesh = 66;
-    public const int NavMeshAgent = 67;
-    public const int NavMeshCollectSourcesCache = 68;
-    public const int NavMeshCollectSources = 69;
-    public const int NavMeshRootSources = 70;
-    public const int NavMeshSurface = 71;
-    public const int NotAddedNavMeshRootSource = 72;
-    public const int TurnOnNavMeshAgent = 73;
-    public const int UpdateNavMesh = 74;
-    public const int MultipleSelectionRequest = 75;
-    public const int Selectable = 76;
-    public const int Selected = 77;
-    public const int SelectedChanged = 78;
-    public const int SelectedNow = 79;
-    public const int SingleSelectionRequest = 80;
-    public const int Unselected = 81;
-    public const int UnselectPreviouslySelectedRequest = 82;
-    public const int UpdateHudControlButtons = 83;
-    public const int CollectReachedTargetsInterval = 84;
-    public const int CollectReachedTargetsRadius = 85;
-    public const int CollectReachedTargetsRequest = 86;
-    public const int CollectReachedTargetsTimer = 87;
-    public const int CollectTargetsInterval = 88;
-    public const int CollectTargetsRadius = 89;
-    public const int CollectTargetsRequest = 90;
-    public const int CollectTargetsTimer = 91;
-    public const int ReachedTargetBuffer = 92;
-    public const int TargetBuffer = 93;
-    public const int AttackReach = 94;
-    public const int CurrentHp = 95;
-    public const int Damage = 96;
-    public const int MaxHp = 97;
-    public const int Speed = 98;
-    public const int TeamColor = 99;
-    public const int Unit = 100;
-    public const int CurrentAvoidancePriority = 101;
-    public const int IdleAvoidancePriority = 102;
-    public const int MoveAvoidancePriority = 103;
+    public const int MakeHit = 27;
+    public const int Building = 28;
+    public const int BuildTypeId = 29;
+    public const int Castle = 30;
+    public const int ActionEnded = 31;
+    public const int ActionStarted = 32;
+    public const int ApplyControlAction = 33;
+    public const int CancelControlAction = 34;
+    public const int MoveControlAction = 35;
+    public const int MoveWithAttackControlAction = 36;
+    public const int SelectedAction = 37;
+    public const int UnitCommandTypeId = 38;
+    public const int CasterId = 39;
+    public const int EffectTypeId = 40;
+    public const int EffectValue = 41;
+    public const int TargetId = 42;
+    public const int AllUnitCommandTypeIds = 43;
+    public const int FastInteraction = 44;
+    public const int CenterPosition = 45;
+    public const int CreateHighlightRequest = 46;
+    public const int Highlight = 47;
+    public const int HighlightEnded = 48;
+    public const int RectTransform = 49;
+    public const int Size = 50;
+    public const int EndPosition = 51;
+    public const int MousePositionOnScreen = 52;
+    public const int PositionOnScreen = 53;
+    public const int StartPosition = 54;
+    public const int ChangeEndDestinationRequest = 55;
+    public const int Destination = 56;
+    public const int EndDestination = 57;
+    public const int Idle = 58;
+    public const int Movable = 59;
+    public const int Move = 60;
+    public const int MoveDirection = 61;
+    public const int CreatedNow = 62;
+    public const int CreateMoveClickIndicator = 63;
+    public const int DestructOldMoveIndicatorRequest = 64;
+    public const int MoveClickIndicator = 65;
+    public const int AddToNavMeshCachedSources = 66;
+    public const int BuildNavMeshAtStart = 67;
+    public const int NavMesh = 68;
+    public const int NavMeshAgent = 69;
+    public const int NavMeshCollectSourcesCache = 70;
+    public const int NavMeshCollectSources = 71;
+    public const int NavMeshRootSources = 72;
+    public const int NavMeshSurface = 73;
+    public const int NotAddedNavMeshRootSource = 74;
+    public const int TurnOnNavMeshAgent = 75;
+    public const int UpdateNavMesh = 76;
+    public const int MultipleSelectionRequest = 77;
+    public const int Selectable = 78;
+    public const int Selected = 79;
+    public const int SelectedChanged = 80;
+    public const int SelectedNow = 81;
+    public const int SingleSelectionRequest = 82;
+    public const int Unselected = 83;
+    public const int UnselectPreviouslySelectedRequest = 84;
+    public const int UpdateHudControlButtons = 85;
+    public const int CollectReachedTargetsInterval = 86;
+    public const int CollectReachedTargetsRadius = 87;
+    public const int CollectReachedTargetsRequest = 88;
+    public const int CollectReachedTargetsTimer = 89;
+    public const int CollectTargetsInterval = 90;
+    public const int CollectTargetsRadius = 91;
+    public const int CollectTargetsRequest = 92;
+    public const int CollectTargetsTimer = 93;
+    public const int ReachedTargetBuffer = 94;
+    public const int TargetBuffer = 95;
+    public const int AttackReach = 96;
+    public const int CurrentHp = 97;
+    public const int Damage = 98;
+    public const int MaxHp = 99;
+    public const int Speed = 100;
+    public const int TeamColor = 101;
+    public const int Unit = 102;
+    public const int CurrentAvoidancePriority = 103;
+    public const int IdleAvoidancePriority = 104;
+    public const int MoveAvoidancePriority = 105;
 
-    public const int TotalComponents = 104;
+    public const int TotalComponents = 106;
 
     public static readonly string[] componentNames = {
         "Available",
@@ -143,6 +145,7 @@ public static class GameComponentsLookup {
         "AttackRequest",
         "AttackTarget",
         "CanAttack",
+        "MakeHit",
         "Building",
         "BuildTypeId",
         "Castle",
@@ -154,6 +157,7 @@ public static class GameComponentsLookup {
         "MoveWithAttackControlAction",
         "SelectedAction",
         "UnitCommandTypeId",
+        "CasterId",
         "EffectTypeId",
         "EffectValue",
         "TargetId",
@@ -250,6 +254,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Battle.AttackRequest),
         typeof(Code.Gameplay.Features.Battle.AttackTarget),
         typeof(Code.Gameplay.Features.Battle.CanAttack),
+        typeof(Code.Gameplay.Features.Battle.MakeHit),
         typeof(Code.Gameplay.Features.Build.Building),
         typeof(Code.Gameplay.Features.Build.BuildTypeIdComponent),
         typeof(Code.Gameplay.Features.Build.Castle),
@@ -261,6 +266,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.ControlAction.MoveWithAttackControlAction),
         typeof(Code.Gameplay.Features.ControlAction.SelectedAction),
         typeof(Code.Gameplay.Features.ControlAction.UnitCommandTypeIdComponent),
+        typeof(Code.Gameplay.Features.Effects.CasterId),
         typeof(Code.Gameplay.Features.Effects.EffectTypeIdComponent),
         typeof(Code.Gameplay.Features.Effects.EffectValue),
         typeof(Code.Gameplay.Features.Effects.TargetId),

@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Entitas;
+using ModestTree;
 
 namespace Code.Gameplay.Features.FastInteraction.Systems
 {
@@ -41,6 +42,6 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     }
 
     private bool AllSelectedIsUnits() =>
-      _selected.AsEnumerable().All(selected => selected.isUnit);
+      _selected.AsEnumerable().All(selected => selected.isUnit) && !_selected.AsEnumerable().IsEmpty();
   }
 }

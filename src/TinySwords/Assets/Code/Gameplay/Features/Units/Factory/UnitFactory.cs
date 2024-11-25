@@ -40,6 +40,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddDamage(config.Damage)
         .AddCurrentHp(config.Hp)
         .AddMaxHp(config.Hp)
+        .AddUnitAI(_unitUI)
 
         .AddAttackCooldown(0)
         .AddAttackInterval(config.AttackCooldown)
@@ -82,7 +83,6 @@ namespace Code.Gameplay.Features.Units.Factory
     private void CreateKnight(GameEntity unit)
     {
       unit
-        .AddUnitAI(_unitUI)
         .AddAllUnitCommandTypeIds(new()
         {
           UnitCommandTypeId.Move,
@@ -95,7 +95,7 @@ namespace Code.Gameplay.Features.Units.Factory
 
     private void CreateTorchGoblin(GameEntity unit)
     {
-      unit.AddUnitAI(_unitUI);
+      
     }
   }
 }

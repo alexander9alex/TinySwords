@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Services;
+﻿using System.Collections.Generic;
+using Code.Gameplay.Services;
 using Entitas;
 
 namespace Code.Gameplay.Features.Battle.Systems
@@ -7,16 +8,19 @@ namespace Code.Gameplay.Features.Battle.Systems
   {
     private readonly ITimeService _time;
     private readonly IGroup<GameEntity> _entities;
+    private readonly List<GameEntity> _buffer = new(128);
 
     public TickToAttackCooldownSystem(GameContext game, ITimeService time)
     {
       _time = time;
-      _entities = game.GetGroup(GameMatcher.MakeDecisionTimer);
+      _entities = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.AttackCooldown, GameMatcher.Available)
+        .NoneOf(GameMatcher.CanAttack));
     }
 
     public void Execute()
     {
-      foreach (GameEntity entity in _entities)
+      foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
         entity.ReplaceAttackCooldown(entity.AttackCooldown - _time.DeltaTime);
 
