@@ -42,7 +42,6 @@ namespace Code.Gameplay.Features.Move.Systems
           destinations.RemoveAt(0);
         }
 
-        request.isProcessed = true;
         request.isDestructed = true;
       }
     }

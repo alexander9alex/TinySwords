@@ -1,6 +1,6 @@
 ﻿using Entitas;
 
-namespace Code.Gameplay.Features.Move.Systems
+namespace Code.Gameplay.Features.Animations.Systems
 {
   public class AnimateMoveSystem : IExecuteSystem
   {

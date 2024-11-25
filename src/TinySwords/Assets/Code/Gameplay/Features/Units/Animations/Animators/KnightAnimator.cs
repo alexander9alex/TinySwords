@@ -1,5 +1,7 @@
 ﻿using Code.Gameplay.Features.Units.Animations.Data;
+using Code.Gameplay.Features.Units.Animations.Services;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Gameplay.Features.Units.Animations.Animators
 {
@@ -11,6 +13,16 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
     public SpriteRenderer SpriteRenderer;
     public GameObject SelectingCircle;
     public Vector2 LookDirection { get; private set; }
+
+    private int _unitId;
+    private IAttackAnimationService _attackAnimationService;
+
+    [Inject]
+    private void Construct(IAttackAnimationService attackAnimationService) =>
+      _attackAnimationService = attackAnimationService;
+
+    public void InitializeAttackAnimator(int unitId) =>
+      _unitId = unitId;
 
     public void AnimateIdle() =>
       Animator.Play(AnimationConstants.Idle);
@@ -34,22 +46,26 @@ namespace Code.Gameplay.Features.Units.Animations.Animators
       LookDirection = dir.normalized;
     }
 
-    private static bool TargetOnY(Vector2 dir)
-    {
-      return Mathf.Abs(dir.y) > Mathf.Abs(dir.x);
-    }
-
     public void AnimateSelecting() =>
       SelectingCircle.SetActive(true);
 
     public void AnimateUnselecting() =>
       SelectingCircle.SetActive(false);
 
+    public void UnitMakeHit() =>
+      _attackAnimationService.UnitMakeHit(_unitId);
+
+    public void UnitFinishedAttack() =>
+      _attackAnimationService.UnitFinishedAttack(_unitId);
+
     private void AnimateAttackByX(Vector2 dir)
     {
       TurnToDirX(dir);
       Animator.Play(AnimationConstants.AttackRight);
     }
+
+    private static bool TargetOnY(Vector2 dir) =>
+      Mathf.Abs(dir.y) > Mathf.Abs(dir.x);
 
     private void AnimateAttackByY(Vector2 dir) =>
       Animator.Play(dir.y > 0 ? AnimationConstants.AttackTop : AnimationConstants.AttackBottom);

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.Battle.Systems
+namespace Code.Gameplay.Features.Animations.Systems
 {
   public class AnimateAttackSystem : IExecuteSystem
   {

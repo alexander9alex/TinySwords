@@ -21,12 +21,7 @@ namespace Code.Gameplay.Features.Battle.Systems
         entity.ReplaceAttackCooldown(entity.AttackCooldown - _time.DeltaTime);
 
         if (entity.AttackCooldown <= 0)
-        {
           entity.isCanAttack = true;
-
-          if (entity.hasAttackInterval)
-            entity.ReplaceAttackCooldown(entity.AttackInterval);
-        }
       }
     }
   }

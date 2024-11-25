@@ -12,7 +12,4 @@ namespace Code.Gameplay.Features.Units
   [Game] public class MaxHp : IComponent { public float Value; }
   [Game] public class AttackReach : IComponent { public float Value; }
   [Game] public class TeamColorComponent : IComponent { public TeamColor Value; }
-  
-  [Game] public class LookDirection : IComponent { public Vector2 Value; }
-  [Game] public class MoveAnimator : IComponent { public IMoveAnimator Value; }
 }

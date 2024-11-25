@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.AI;
+using Code.Gameplay.Features.Animations;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.ControlAction;
@@ -37,6 +38,8 @@ namespace Code.Gameplay
       
       Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<BattleFeature>());
+      
+      Add(systems.Create<AnimateFeature>());
       
       Add(systems.Create<AIFeature>());
       

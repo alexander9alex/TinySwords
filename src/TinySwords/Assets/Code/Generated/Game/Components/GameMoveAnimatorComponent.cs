@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Units.MoveAnimator moveAnimator { get { return (Code.Gameplay.Features.Units.MoveAnimator)GetComponent(GameComponentsLookup.MoveAnimator); } }
+    public Code.Gameplay.Features.Animations.MoveAnimator moveAnimator { get { return (Code.Gameplay.Features.Animations.MoveAnimator)GetComponent(GameComponentsLookup.MoveAnimator); } }
     public Code.Gameplay.Features.Units.Animations.Animators.IMoveAnimator MoveAnimator { get { return moveAnimator.Value; } }
     public bool hasMoveAnimator { get { return HasComponent(GameComponentsLookup.MoveAnimator); } }
 
     public GameEntity AddMoveAnimator(Code.Gameplay.Features.Units.Animations.Animators.IMoveAnimator newValue) {
         var index = GameComponentsLookup.MoveAnimator;
-        var component = (Code.Gameplay.Features.Units.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Units.MoveAnimator));
+        var component = (Code.Gameplay.Features.Animations.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.MoveAnimator));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceMoveAnimator(Code.Gameplay.Features.Units.Animations.Animators.IMoveAnimator newValue) {
         var index = GameComponentsLookup.MoveAnimator;
-        var component = (Code.Gameplay.Features.Units.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Units.MoveAnimator));
+        var component = (Code.Gameplay.Features.Animations.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.MoveAnimator));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Gameplay.Features.Move.Factory
+namespace Code.Gameplay.Features.MoveIndicator.Factory
 {
   public interface IMoveClickIndicatorFactory
   {

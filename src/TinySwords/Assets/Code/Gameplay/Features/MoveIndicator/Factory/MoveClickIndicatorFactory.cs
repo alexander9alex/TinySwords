@@ -1,11 +1,10 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
-using Code.Gameplay.Features.Move.Configs;
-using Code.Gameplay.Services;
+using Code.Gameplay.Features.MoveIndicator.Configs;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Move.Factory
+namespace Code.Gameplay.Features.MoveIndicator.Factory
 {
   class MoveClickIndicatorFactory : IMoveClickIndicatorFactory
   {

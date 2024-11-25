@@ -72,6 +72,17 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6350443354374732840, guid: 8985fdb1217ca634da4438835bf59c85, type: 3}
   m_PrefabInstance: {fileID: 1894481208125580488}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7242612416208670029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9135658503359818117, guid: 8985fdb1217ca634da4438835bf59c85, type: 3}
+  m_PrefabInstance: {fileID: 1894481208125580488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8544a5c63aeb4ca78a154ad73551027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3776131537107570534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,9 +168,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6140176259750766709}
-    - targetCorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3722473033554714428}
   m_SourcePrefab: {fileID: 100100000, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
 --- !u!114 &258101408585404370 stripped
@@ -178,20 +186,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
   m_PrefabInstance: {fileID: 3776131537107570534}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6140176259750766709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938397550708090311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8544a5c63aeb4ca78a154ad73551027b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 2348265720363776453}
-  SpriteRenderer: {fileID: 4786132380375357664}
 --- !u!114 &3722473033554714428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityBehaviour: {fileID: 258101408585404370}
-  TorchGoblinAnimator: {fileID: 6140176259750766709}
+  TorchGoblinAnimator: {fileID: 7242612416208670029}
 --- !u!4 &4852106188976226284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}

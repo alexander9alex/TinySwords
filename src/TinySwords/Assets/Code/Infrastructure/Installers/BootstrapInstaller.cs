@@ -7,7 +7,8 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
-using Code.Gameplay.Features.Move.Factory;
+using Code.Gameplay.Features.MoveIndicator.Factory;
+using Code.Gameplay.Features.Units.Animations.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
@@ -92,6 +93,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       Container.Bind<ITimeService>().To<TimeService>().AsSingle();
       Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
+      Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
     }
 
     private void BindGameplayFactories()

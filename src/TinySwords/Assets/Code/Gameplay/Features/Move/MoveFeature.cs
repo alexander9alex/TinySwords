@@ -16,11 +16,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<UpdateWorldPositionSystem>());
 
       Add(systems.Create<UpdateAvoidanceFeature>());
-
-      Add(systems.Create<AnimateIdleSystem>()); // todo: move to animate feature
-      Add(systems.Create<AnimateMoveSystem>());
-      Add(systems.Create<UpdateLookDirectionSystem>());
-
+      
       Add(systems.Create<CleanupDestinationSystem>());
       Add(systems.Create<CleanupEndDestinationSystem>());
     }

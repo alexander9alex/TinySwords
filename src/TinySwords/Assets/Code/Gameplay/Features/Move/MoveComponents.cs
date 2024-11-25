@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Move
 {
-  [Game] public class TransformComponent : IComponent { public Transform Value; }
-  [Game] public class WorldPosition : IComponent { public Vector3 Value; }
   [Game] public class Idle : IComponent { }
   [Game] public class Move : IComponent { }
   [Game] public class Movable : IComponent { }

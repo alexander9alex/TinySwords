@@ -1,6 +1,5 @@
 ﻿using Code.Gameplay.Common.Registrars;
 using Code.Gameplay.Features.Units.Animations.Animators;
-using UnityEngine.Serialization;
 
 namespace Code.Gameplay.Features.Units.Registrars
 {

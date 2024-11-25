@@ -14,9 +14,6 @@ namespace Code.Gameplay.Features.Select
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
       Add(systems.Create<ProcessSelectedChangingSystem>());
       Add(systems.Create<UpdateHudControlButtonSystem>());
-
-      Add(systems.Create<AnimateSelectingSystem>());
-      Add(systems.Create<AnimateUnselectingSystem>());
       
       Add(systems.Create<CleanupSelectedNowSystem>());
       Add(systems.Create<CleanupUnselectRequestSystem>());

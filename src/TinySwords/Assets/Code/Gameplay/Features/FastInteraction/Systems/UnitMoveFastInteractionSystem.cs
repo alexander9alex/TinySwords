@@ -31,6 +31,10 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
             .AddPositionOnScreen(request.PositionOnScreen)
             .With(x => x.isChangeEndDestinationRequest = true);
 
+          CreateEntity.Empty()
+            .AddPositionOnScreen(request.PositionOnScreen)
+            .With(x => x.isCreateMoveClickIndicator = true);
+          
           request.isProcessed = true;
         }
       }
