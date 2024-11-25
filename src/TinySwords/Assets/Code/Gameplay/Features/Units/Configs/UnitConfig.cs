@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Configs
 {
-  [CreateAssetMenu(menuName = "Static Data/Unit Config", fileName = "UnitConfig", order = 0)]
+  [CreateAssetMenu(menuName = "Static Data/Units/Unit Config", fileName = "UnitConfig", order = 0)]
   public class UnitConfig : ScriptableObject
   {
     public UnitTypeId TypeId;

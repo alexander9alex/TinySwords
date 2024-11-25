@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.ControlAction.Configs;
 using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Dead.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
@@ -21,5 +22,6 @@ namespace Code.Gameplay.Common.Services
     LevelConfig GetLevelConfig();
     List<UnitActionUIConfig> GetUnitCommandUIConfigs(List<UnitCommandTypeId> availableCommands);
     UnitActionUIConfig GetUnitCommandUIConfig(UnitCommandTypeId unitCommandTypeId);
+    UnitDeathConfig GetUnitDeathConfig();
   }
 }

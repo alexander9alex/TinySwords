@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Entitas;
 
 namespace Code.Gameplay.Features.Dead.Systems
@@ -20,12 +22,15 @@ namespace Code.Gameplay.Features.Dead.Systems
       {
         if (entity.CurrentHp <= 0)
         {
-          entity.isAlive = false;
-          entity.isSelectable = false;
-          entity.isSelected = false;
-          entity.isDead = true;
+          if (entity.isUnit && entity.hasWorldPosition)
+          {
+            CreateEntity.Empty()
+              .AddWorldPosition(entity.WorldPosition)
+              .With(x => x.isAnimateDeath = true);
+          }
 
-          entity.isDestructed = true;
+          entity.isAlive = false;
+          entity.isDead = true;
         }
       }
     }

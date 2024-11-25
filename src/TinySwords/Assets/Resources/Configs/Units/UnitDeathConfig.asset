@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5772337a02824b259a3d5e513e59b36f, type: 3}
+  m_Name: UnitDeathConfig
+  m_EditorClassIdentifier: 
+  UnitDeathAnimationPrefab: {fileID: 5484234837503596985, guid: 431393c7187c5a04d9937380de190076, type: 3}
+  DisplayTime: 3
+  HideTime: 1

@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.ControlAction.Configs;
 using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Dead.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
@@ -51,6 +52,9 @@ namespace Code.Gameplay.Common.Services
 
     public UnitActionUIConfig GetUnitCommandUIConfig(UnitCommandTypeId unitCommandTypeId) =>
       _unitCommandUIConfigByType[unitCommandTypeId];
+
+    public UnitDeathConfig GetUnitDeathConfig() =>
+      Resources.Load<UnitDeathConfig>("Configs/Units/UnitDeathConfig");
 
     private void LoadUnitConfigs()
     {

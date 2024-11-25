@@ -41,13 +41,12 @@ namespace Code.Gameplay
       Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());
-      
-      Add(systems.Create<AnimateFeature>());
-      
-      Add(systems.Create<DeadFeature>());
 
       Add(systems.Create<AIFeature>());
       
+      Add(systems.Create<AnimateFeature>());
+
+      Add(systems.Create<DeadFeature>());
       Add(systems.Create<ProcessDestructedFeature>());
     }
   }

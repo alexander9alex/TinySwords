@@ -5,6 +5,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Build.Factory;
+using Code.Gameplay.Features.Dead.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.MoveIndicator.Factory;
@@ -101,22 +102,17 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
       Container.Bind<IMoveClickIndicatorFactory>().To<MoveClickIndicatorFactory>().AsSingle();
       Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
+      Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
     }
 
     private void BindAI()
     {
-      Container.BindInterfacesAndSelfTo<When>().AsSingle();
-      Container.BindInterfacesAndSelfTo<GetInput>().AsSingle();
-      Container.BindInterfacesAndSelfTo<Score>().AsSingle();
-      
-      // Container.Bind<When>().To<When>().AsSingle();
-      // Container.Bind<GetInput>().To<GetInput>().AsSingle();
-      // Container.Bind<Score>().To<Score>().AsSingle();
-      
+      Container.Bind<When>().To<When>().AsSingle();
+      Container.Bind<GetInput>().To<GetInput>().AsSingle();
+      Container.Bind<Score>().To<Score>().AsSingle();
       Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
       
-      Container.BindInterfacesAndSelfTo<UnitBrains>().AsSingle();
-      
+      Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
       Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }
 
