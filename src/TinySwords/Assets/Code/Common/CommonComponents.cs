@@ -10,7 +10,6 @@ namespace Code.Common
   [Game] public class ViewPrefab : IComponent { public EntityBehaviour Value; }
   [Game] public class Processed : IComponent { }
   [Game] public class SelfDestructTimer : IComponent { public float Value; }
-  [Game] public class Available : IComponent { }
   [Game] public class Initialized : IComponent { }
   [Game] public class InitializationRequest : IComponent { }
 }

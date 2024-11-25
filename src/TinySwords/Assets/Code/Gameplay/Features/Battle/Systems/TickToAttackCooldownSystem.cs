@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       _time = time;
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AttackCooldown, GameMatcher.Available)
+        .AllOf(GameMatcher.AttackCooldown, GameMatcher.NotAttacking)
         .NoneOf(GameMatcher.CanAttack));
     }
 

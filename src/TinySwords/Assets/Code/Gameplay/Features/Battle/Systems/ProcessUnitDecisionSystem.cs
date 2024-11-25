@@ -63,7 +63,6 @@ namespace Code.Gameplay.Features.Battle.Systems
     private void MakeAttackDecision(GameEntity unit, UnitDecision decision)
     {
       unit.ReplaceDestination(unit.WorldPosition);
-      unit.ReplaceAttackTarget(decision.TargetId);
       unit.ReplaceTargetId(decision.TargetId);
 
       CreateEntity.Empty()

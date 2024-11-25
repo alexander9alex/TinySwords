@@ -93,7 +93,7 @@ namespace Code.Gameplay.UtilityAI
     private UnitDecision MoveToTargetDecision(int targetId)
     {
       GameEntity target = _gameContext.GetEntityWithId(targetId);
-
+      
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,

@@ -22,7 +22,8 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
           GameMatcher.CollectTargetsRadius,
           GameMatcher.TargetBuffer,
           GameMatcher.WorldPosition,
-          GameMatcher.TeamColor
+          GameMatcher.TeamColor,
+          GameMatcher.Alive
         ));
     }
 
@@ -34,7 +35,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
         foreach (GameEntity target in GetTargetsInRadius(entity))
         {
-          if (!target.hasTeamColor || !target.hasId)
+          if (!target.isAlive || !target.hasTeamColor || !target.hasId)
             continue;
 
           if (entity.TeamColor == target.TeamColor)

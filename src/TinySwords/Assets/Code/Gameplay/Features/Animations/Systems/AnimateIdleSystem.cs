@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Animations.Systems
     public AnimateIdleSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Idle, GameMatcher.MoveAnimator, GameMatcher.Available));
+        .AllOf(GameMatcher.Idle, GameMatcher.MoveAnimator, GameMatcher.NotAttacking, GameMatcher.Alive));
     }
 
     public void Execute()

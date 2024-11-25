@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Animations.Systems
     public AnimateMoveSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Move, GameMatcher.MoveAnimator, GameMatcher.MoveDirection, GameMatcher.Available));
+        .AllOf(GameMatcher.Move, GameMatcher.MoveAnimator, GameMatcher.MoveDirection, GameMatcher.NotAttacking, GameMatcher.Alive));
     }
 
     public void Execute()

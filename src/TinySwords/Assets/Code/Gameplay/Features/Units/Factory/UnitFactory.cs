@@ -63,8 +63,9 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isIdle = true)
         .With(x => x.isInitializationRequest = true)
         .With(x => x.isMovable = true)
-        .With(x => x.isAvailable = true)
+        .With(x => x.isNotAttacking = true)
         .With(x => x.isCanAttack = true)
+        .With(x => x.isAlive = true)
         ;
 
       switch (type)

@@ -45,11 +45,20 @@ namespace Code.Infrastructure.States.GameStates
       _inputService.ChangeInputMap(InputMap.Game);
 
       _levelFactory.CreateLevel();
-      
-      // _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, 2));
+
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, 2));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, 1));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
       _unitFactory.CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, new Vector3(2, -2));
       
-      // _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, 2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, 2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, 0));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, -2));
+      _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, -2));
       _unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, new Vector3(-2, -2));
 
       

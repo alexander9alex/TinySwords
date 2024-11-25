@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Move.Systems
         .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen));
 
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected, GameMatcher.Movable, GameMatcher.Available));
+        .AllOf(GameMatcher.Selected, GameMatcher.Movable, GameMatcher.NotAttacking, GameMatcher.Alive));
     }
 
     public void Execute()

@@ -3,7 +3,9 @@ using Code.Gameplay.Features.Animations;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.ControlAction;
+using Code.Gameplay.Features.Dead;
 using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.Effects;
 using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.Input;
@@ -31,16 +33,19 @@ namespace Code.Gameplay
       Add(systems.Create<SelectFeature>());
       
       Add(systems.Create<BuildFeature>());
-
+      
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
       Add(systems.Create<MoveIndicatorFeature>());
       
       Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<BattleFeature>());
+      Add(systems.Create<EffectFeature>());
       
       Add(systems.Create<AnimateFeature>());
-      
+
+      Add(systems.Create<DeadFeature>());
+
       Add(systems.Create<AIFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());

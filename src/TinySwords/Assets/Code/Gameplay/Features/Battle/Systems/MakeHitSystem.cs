@@ -7,19 +7,20 @@ using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Effects.Data;
 using Entitas;
 using ModestTree;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Battle.Systems
 {
   public class MakeHitSystem : IExecuteSystem
   {
     private readonly IPhysicsService _physicsService;
+    private readonly GameContext _game;
 
     private readonly IGroup<GameEntity> _makeHitRequests;
     private readonly List<GameEntity> _buffer = new(16);
 
     public MakeHitSystem(GameContext game, IPhysicsService physicsService)
     {
+      _game = game;
       _physicsService = physicsService;
 
       _makeHitRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.MakeHit, GameMatcher.CasterId));
@@ -29,49 +30,52 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       foreach (GameEntity request in _makeHitRequests.GetEntities(_buffer))
       {
-        Debug.Log($"Make hit from {request.CasterId}");
+        GameEntity caster = _game.GetEntityWithId(request.CasterId);
+        MakeHit(caster);
+        
+        caster.isCollectTargetsRequest = true;
+        caster.isCollectReachedTargetsRequest = true;
 
         request.isDestructed = true;
       }
-      
-      // foreach (GameEntity unit in _units.GetEntities(_buffer))
-      // {
-        // if (unit.isCanAttack)
-          // Attack(unit);
-
-        // unit.isAttackRequest = false;
-      // }
     }
 
-    private void Attack(GameEntity unit)
+    private void MakeHit(GameEntity caster)
     {
-      List<int> targets = GetTargets(unit);
+      if (CasterNotValid(caster))
+        return;
+
+      List<int> targets = GetTargets(caster);
 
       if (targets.IsEmpty())
         return;
 
-      if (targets.Contains(unit.AttackTarget))
-        Attack(unit, unit.AttackTarget);
+      if (targets.Contains(caster.TargetId))
+        MakeHit(caster, caster.TargetId);
       else
-        Attack(unit, targets.First());
+        MakeHit(caster, targets.First());
     }
 
-    private static void Attack(GameEntity unit, int targetId)
+    private static void MakeHit(GameEntity caster, int targetId)
     {
       CreateEntity.Empty()
         .AddTargetId(targetId)
         .AddEffectTypeId(EffectTypeId.Damage)
-        .AddEffectValue(unit.Damage);
+        .AddEffectValue(caster.Damage)
+        .With(x => x.isDamageEffect = true);
     }
 
     private List<int> GetTargets(GameEntity unit)
     {
       return _physicsService.CircleCast(
           unit.WorldPosition.ToVector2() + unit.LookDirection * unit.AttackReach,
-          unit.AttackReach,
+          unit.AttackReach / 2,
           GameConstants.UnitsAndBuildingsLayerMask)
         .Select(entity => entity.Id)
         .ToList();
     }
+
+    private static bool CasterNotValid(GameEntity caster) =>
+      !caster.hasWorldPosition || !caster.hasLookDirection || !caster.hasAttackReach || !caster.hasDamage;
   }
 }

@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Battle.Systems
       {
         GameEntity unit = _game.GetEntityWithId(request.CasterId);
 
-        if (unit.isCanAttack)
+        if (unit != null && unit.isAlive && unit.isCanAttack)
         {
           unit.isCanAttack = false;
           unit.isAnimateAttack = true;

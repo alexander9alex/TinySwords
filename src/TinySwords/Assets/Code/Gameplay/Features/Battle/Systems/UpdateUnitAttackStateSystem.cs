@@ -2,11 +2,11 @@
 
 namespace Code.Gameplay.Features.Battle.Systems
 {
-  public class UpdateUnitAvailabilitySystem : IExecuteSystem
+  public class UpdateUnitAttackStateSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _unit;
 
-    public UpdateUnitAvailabilitySystem(GameContext game)
+    public UpdateUnitAttackStateSystem(GameContext game)
     {
       _unit = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Unit));
@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       foreach (GameEntity unit in _unit)
       {
-        unit.isAvailable = !unit.isAttacking;
+        unit.isNotAttacking = !unit.isAttacking;
       }
     }
   }

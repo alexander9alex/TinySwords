@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherAvailable;
+    static Entitas.IMatcher<GameEntity> _matcherAlive;
 
-    public static Entitas.IMatcher<GameEntity> Available {
+    public static Entitas.IMatcher<GameEntity> Alive {
         get {
-            if (_matcherAvailable == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Available);
+            if (_matcherAlive == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Alive);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherAvailable = matcher;
+                _matcherAlive = matcher;
             }
 
-            return _matcherAvailable;
+            return _matcherAlive;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Common.Available availableComponent = new Code.Common.Available();
+    static readonly Code.Gameplay.Features.Units.Alive aliveComponent = new Code.Gameplay.Features.Units.Alive();
 
-    public bool isAvailable {
-        get { return HasComponent(GameComponentsLookup.Available); }
+    public bool isAlive {
+        get { return HasComponent(GameComponentsLookup.Alive); }
         set {
-            if (value != isAvailable) {
-                var index = GameComponentsLookup.Available;
+            if (value != isAlive) {
+                var index = GameComponentsLookup.Alive;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : availableComponent;
+                            : aliveComponent;
 
                     AddComponent(index, component);
                 } else {
