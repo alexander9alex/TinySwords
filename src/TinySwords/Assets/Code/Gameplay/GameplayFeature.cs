@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
 using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Highlight;
+using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.MoveIndicator;
@@ -41,6 +42,7 @@ namespace Code.Gameplay
       Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());
+      Add(systems.Create<HpBarFeature>());
 
       Add(systems.Create<AIFeature>());
       

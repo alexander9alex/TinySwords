@@ -10,7 +10,6 @@ namespace Code.Gameplay.Features.Battle
       Add(systems.Create<FinishAttackSystem>());
       
       Add(systems.Create<TickToAttackCooldownSystem>());
-      
       Add(systems.Create<ProcessUnitAttackRequestSystem>());
       
       Add(systems.Create<MakeHitSystem>());
