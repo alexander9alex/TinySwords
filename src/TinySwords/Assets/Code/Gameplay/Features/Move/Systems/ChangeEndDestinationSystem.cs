@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
@@ -58,7 +59,7 @@ namespace Code.Gameplay.Features.Move.Systems
       for (int y = 0; y < sqrt; y++)
       for (int x = 0; x < sqrt; x++)
       {
-        destinations.Add(leftUpClickWorldPos + new Vector3(x, -y));
+        destinations.Add(leftUpClickWorldPos + new Vector3(x, -y) * GameConstants.UnitMinRadius);
       }
 
       return destinations;
@@ -67,10 +68,10 @@ namespace Code.Gameplay.Features.Move.Systems
     private static Vector3 GetLeftUpClickWorldPos(Vector3 clickWorldPos, float sqrt)
     {
       if (sqrt % 2 == 0)
-        return GetLeftUpClickWorldPos(clickWorldPos, sqrt + 1) + new Vector3(0.5f, -0.5f);
+        return GetLeftUpClickWorldPos(clickWorldPos, sqrt + 1) + new Vector3(0.5f, -0.5f) * GameConstants.UnitMinRadius;
 
       int offsetCoef = (int)(sqrt / 2);
-      return clickWorldPos + new Vector3(-offsetCoef, offsetCoef, 0);
+      return clickWorldPos + new Vector3(-offsetCoef, offsetCoef, 0) * GameConstants.UnitMinRadius;
     }
   }
 }
