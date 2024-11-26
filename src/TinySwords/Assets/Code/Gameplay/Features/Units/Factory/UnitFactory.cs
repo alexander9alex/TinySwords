@@ -41,7 +41,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddCurrentHp(config.Hp)
         .AddMaxHp(config.Hp)
         .AddUnitAI(_unitUI)
-
+        
         .AddAttackCooldown(0)
         .AddAttackInterval(config.AttackCooldown)
         .AddAttackReach(config.AttackReach)
@@ -66,6 +66,8 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isNotAttacking = true)
         .With(x => x.isCanAttack = true)
         .With(x => x.isAlive = true)
+        .With(x => x.isFocusing = true)
+        .With(x => x.isUnfocused = true)
         ;
 
       switch (type)

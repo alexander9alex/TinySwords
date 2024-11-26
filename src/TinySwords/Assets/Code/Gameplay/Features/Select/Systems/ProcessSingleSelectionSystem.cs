@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.Select.Systems
     private readonly IGroup<GameEntity> _singleSelectionRequests;
     private readonly IGroup<GameEntity> _mousePositions;
     private readonly List<GameEntity> _buffer = new(1);
-    
+
     public ProcessSingleSelectionSystem(GameContext game, IPhysicsService physicsService, ICameraProvider cameraProvider)
     {
       _physicsService = physicsService;
@@ -41,16 +41,23 @@ namespace Code.Gameplay.Features.Select.Systems
         if (selectableEntities.Count > 0)
         {
           SelectEntity(selectableEntities.First());
-          
+
           CreateEntity.Empty()
             .With(x => x.isUnselectPreviouslySelectedRequest = true);
-          
+
           CreateEntity.Empty()
             .With(x => x.isSelectedChanged = true);
-          
+
           request.isProcessed = true;
         }
       }
+    }
+
+    private static void SelectEntity(GameEntity entity)
+    {
+      entity.isUnselected = false;
+      entity.isSelected = true;
+      entity.isSelectedNow = true;
     }
 
     private List<GameEntity> GetSelectableEntitiesFromPosition(Vector2 mousePos)
@@ -62,13 +69,6 @@ namespace Code.Gameplay.Features.Select.Systems
         .Where(entity => entity.hasTransform)
         .OrderBy(entity => entity.Transform.position.y)
         .ToList();
-    }
-
-    private static void SelectEntity(GameEntity entity)
-    {
-      entity.isUnselected = false;
-      entity.isSelected = true;
-      entity.isSelectedNow = true;
     }
   }
 }

@@ -7,9 +7,9 @@ namespace Code.Gameplay.Features.HpBars
   {
     public HpBarFeature(ISystemFactory systems)
     {
-      // Add(systems.Create<HideHpBarSystem>());
+      Add(systems.Create<HideHpBarSystem>());
       Add(systems.Create<UpdateHpBarSystem>());
-      // Add(systems.Create<ShowHpBarSystem>());
+      Add(systems.Create<ShowHpBarSystem>());
     }
   }
 }

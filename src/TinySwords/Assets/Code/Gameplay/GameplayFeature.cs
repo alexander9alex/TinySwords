@@ -7,6 +7,7 @@ using Code.Gameplay.Features.Dead;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
 using Code.Gameplay.Features.FastInteraction;
+using Code.Gameplay.Features.Focus;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Input;
@@ -32,6 +33,7 @@ namespace Code.Gameplay
 
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());
+      Add(systems.Create<FocusFeature>());
       
       Add(systems.Create<BuildFeature>());
       

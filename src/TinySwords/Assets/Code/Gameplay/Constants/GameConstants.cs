@@ -8,8 +8,10 @@ namespace Code.Gameplay.Constants
   {
     public const float SelectionClickDelta = 10;
     public const float ClickRadius = 0.01f;
+    public static float FocusRadius => ClickRadius;
 
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
+    public static int FocusLayerMask => SelectionLayerMask;
     public static readonly int UILayer = LayerMask.NameToLayer("UI");
     public static readonly int UnitsAndBuildingsLayerMask = LayerMask.GetMask("Unit", "Building");
 

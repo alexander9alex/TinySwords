@@ -2,21 +2,21 @@
 
 namespace Code.Gameplay.Features.HpBars.Systems
 {
-  public class HideHpBarSystem : IExecuteSystem
+  public class ShowHpBarSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _hpBars;
 
-    public HideHpBarSystem(GameContext game)
+    public ShowHpBarSystem(GameContext game)
     {
       _hpBars = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.HpBar, GameMatcher.Unfocused));
+        .AllOf(GameMatcher.HpBar, GameMatcher.Focused));
     }
 
     public void Execute()
     {
       foreach (GameEntity hpBar in _hpBars)
       {
-        hpBar.HpBar.Hide();
+        hpBar.HpBar.Show();
       }
     }
   }
