@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.Command.Systems
       _applyCommandRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ApplyCommand, GameMatcher.PositionOnScreen));
       
-      _selectedCommands = game.GetGroup(GameMatcher.AllOf(GameMatcher.SelectedCommand, GameMatcher.CommandTypeId));
+      _selectedCommands = game.GetGroup(GameMatcher.AllOf(GameMatcher.Command, GameMatcher.SelectedCommand, GameMatcher.CommandTypeId));
     }
 
     public void Execute()
@@ -26,7 +26,7 @@ namespace Code.Gameplay.Features.Command.Systems
         CreateEntity.Empty()
           .AddCommandTypeId(command.CommandTypeId)
           .AddPositionOnScreen(request.PositionOnScreen)
-          .With(x => x.isUpdateCommand = true);
+          .With(x => x.isProcessCommand = true);
         
         CreateEntity.Empty()
           .With(x => x.isCancelCommand = true);

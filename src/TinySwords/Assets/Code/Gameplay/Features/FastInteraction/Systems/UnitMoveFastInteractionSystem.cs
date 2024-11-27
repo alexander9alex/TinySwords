@@ -2,6 +2,7 @@
 using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Data;
 using Entitas;
 using ModestTree;
 
@@ -30,12 +31,9 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
         {
           CreateEntity.Empty()
             .AddPositionOnScreen(request.PositionOnScreen)
-            .With(x => x.isChangeEndDestinationRequest = true);
+            .AddCommandTypeId(CommandTypeId.Move)
+            .With(x => x.isProcessCommand = true);
 
-          CreateEntity.Empty()
-            .AddPositionOnScreen(request.PositionOnScreen)
-            .With(x => x.isCreateMoveClickIndicator = true);
-          
           request.isProcessed = true;
         }
       }

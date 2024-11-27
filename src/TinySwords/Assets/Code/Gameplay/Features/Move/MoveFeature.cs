@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.Move
     public MoveFeature(ISystemFactory systems)
     {
       Add(systems.Create<MoveToDestinationSystem>());
+      Add(systems.Create<UpdateWorldPositionSystem>());
 
       Add(systems.Create<UpdateMoveDirectionSystem>());
       Add(systems.Create<UpdateMovementStateSystem>());
@@ -17,7 +18,6 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<AnimateMoveSystem>());
       Add(systems.Create<UpdateLookDirectionSystem>());
       
-      Add(systems.Create<UpdateWorldPositionSystem>());
 
       Add(systems.Create<UpdateAvoidanceFeature>());
       

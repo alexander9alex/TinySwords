@@ -38,49 +38,49 @@ public static class GameComponentsLookup {
     public const int Castle = 27;
     public const int ApplyCommand = 28;
     public const int CancelCommand = 29;
-    public const int CommandTypeId = 30;
-    public const int SelectedCommand = 31;
-    public const int UpdateCommand = 32;
-    public const int AnimateDeath = 33;
-    public const int DeathAnimator = 34;
-    public const int DisplayTimer = 35;
-    public const int HideTimer = 36;
-    public const int AnimateTakenDamage = 37;
-    public const int CasterId = 38;
-    public const int DamageEffect = 39;
-    public const int DamageTakenAnimator = 40;
-    public const int EffectTypeId = 41;
-    public const int EffectValue = 42;
-    public const int TargetId = 43;
-    public const int AllUnitCommandTypeIds = 44;
-    public const int FastInteraction = 45;
-    public const int Focused = 46;
-    public const int Focusing = 47;
-    public const int FocusRequest = 48;
-    public const int Unfocused = 49;
-    public const int CenterPosition = 50;
-    public const int CreateHighlightRequest = 51;
-    public const int Highlight = 52;
-    public const int HighlightEnded = 53;
-    public const int RectTransform = 54;
-    public const int Size = 55;
-    public const int HpBar = 56;
-    public const int ActionEnded = 57;
-    public const int ActionStarted = 58;
-    public const int EndPosition = 59;
-    public const int MousePositionOnScreen = 60;
-    public const int PositionOnScreen = 61;
-    public const int StartPosition = 62;
-    public const int ChangeEndDestinationRequest = 63;
-    public const int Destination = 64;
-    public const int EndDestination = 65;
-    public const int Idle = 66;
-    public const int LookDirection = 67;
-    public const int Movable = 68;
-    public const int Move = 69;
-    public const int MoveAnimator = 70;
-    public const int MoveDirection = 71;
-    public const int RunAway = 72;
+    public const int Command = 30;
+    public const int CommandTypeId = 31;
+    public const int ProcessCommand = 32;
+    public const int SelectedCommand = 33;
+    public const int AnimateDeath = 34;
+    public const int DeathAnimator = 35;
+    public const int DisplayTimer = 36;
+    public const int HideTimer = 37;
+    public const int AnimateTakenDamage = 38;
+    public const int CasterId = 39;
+    public const int DamageEffect = 40;
+    public const int DamageTakenAnimator = 41;
+    public const int EffectTypeId = 42;
+    public const int EffectValue = 43;
+    public const int TargetId = 44;
+    public const int AllUnitCommandTypeIds = 45;
+    public const int FastInteraction = 46;
+    public const int Focused = 47;
+    public const int Focusing = 48;
+    public const int FocusRequest = 49;
+    public const int Unfocused = 50;
+    public const int CenterPosition = 51;
+    public const int CreateHighlightRequest = 52;
+    public const int Highlight = 53;
+    public const int HighlightEnded = 54;
+    public const int RectTransform = 55;
+    public const int Size = 56;
+    public const int HpBar = 57;
+    public const int ActionEnded = 58;
+    public const int ActionStarted = 59;
+    public const int EndPosition = 60;
+    public const int MousePositionOnScreen = 61;
+    public const int PositionOnScreen = 62;
+    public const int StartPosition = 63;
+    public const int ChangeEndDestinationRequest = 64;
+    public const int Destination = 65;
+    public const int EndDestination = 66;
+    public const int Idle = 67;
+    public const int LookDirection = 68;
+    public const int Movable = 69;
+    public const int Move = 70;
+    public const int MoveAnimator = 71;
+    public const int MoveDirection = 72;
     public const int UpdateRunAwayState = 73;
     public const int CreatedNow = 74;
     public const int CreateMoveClickIndicator = 75;
@@ -163,9 +163,10 @@ public static class GameComponentsLookup {
         "Castle",
         "ApplyCommand",
         "CancelCommand",
+        "Command",
         "CommandTypeId",
+        "ProcessCommand",
         "SelectedCommand",
-        "UpdateCommand",
         "AnimateDeath",
         "DeathAnimator",
         "DisplayTimer",
@@ -205,7 +206,6 @@ public static class GameComponentsLookup {
         "Move",
         "MoveAnimator",
         "MoveDirection",
-        "RunAway",
         "UpdateRunAwayState",
         "CreatedNow",
         "CreateMoveClickIndicator",
@@ -287,9 +287,10 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Build.Castle),
         typeof(Code.Gameplay.Features.Command.ApplyCommand),
         typeof(Code.Gameplay.Features.Command.CancelCommand),
+        typeof(Code.Gameplay.Features.Command.Command),
         typeof(Code.Gameplay.Features.Command.CommandTypeIdComponent),
+        typeof(Code.Gameplay.Features.Command.ProcessCommand),
         typeof(Code.Gameplay.Features.Command.SelectedCommand),
-        typeof(Code.Gameplay.Features.Command.UpdateCommand),
         typeof(Code.Gameplay.Features.Death.AnimateDeath),
         typeof(Code.Gameplay.Features.Death.DeathAnimator),
         typeof(Code.Gameplay.Features.Death.DisplayTimer),
@@ -329,7 +330,6 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.Move),
         typeof(Code.Gameplay.Features.Move.MoveAnimator),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
-        typeof(Code.Gameplay.Features.Move.RunAway),
         typeof(Code.Gameplay.Features.Move.UpdateRunAwayState),
         typeof(Code.Gameplay.Features.MoveIndicator.CreatedNow),
         typeof(Code.Gameplay.Features.MoveIndicator.CreateMoveClickIndicator),

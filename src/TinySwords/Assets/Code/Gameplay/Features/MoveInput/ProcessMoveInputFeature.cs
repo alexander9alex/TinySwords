@@ -8,7 +8,6 @@ namespace Code.Gameplay.Features.MoveInput
     public ProcessMoveInputFeature(ISystemFactory systems)
     {
       Add(systems.Create<ChangeEndDestinationSystem>());
-      Add(systems.Create<UpdateRunAwayStateSystem>());
     }
   }
 }

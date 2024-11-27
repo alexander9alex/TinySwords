@@ -1,3 +1,4 @@
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Data;
 using ModestTree;
 using UnityEngine;
@@ -34,7 +35,14 @@ namespace Code.Gameplay.UtilityAI.Components
       return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.AttackReach + 0.1f);
     }
 
-    public float IsRunAway(GameEntity unit, UnitDecision decision) =>
-      unit.isRunAway ? True : False;
+    public float CommandIsMove(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasCommandTypeId)
+        return False;
+
+      return unit.CommandTypeId == CommandTypeId.Move
+        ? True
+        : False;
+    }
   }
 }

@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.Command.Systems
       _inputService = inputService;
 
       _cancelCommandRequests = game.GetGroup(GameMatcher.CancelCommand);
-      _selectedCommands = game.GetGroup(GameMatcher.SelectedCommand);
+      _selectedCommands = game.GetGroup(GameMatcher.AllOf(GameMatcher.Command, GameMatcher.SelectedCommand));
     }
 
     public void Execute()

@@ -21,18 +21,18 @@ namespace Code.Gameplay.Features.Command.Systems
       _inputService = inputService;
 
       _commands = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.CommandTypeId)
+        .AllOf(GameMatcher.Command, GameMatcher.CommandTypeId)
         .NoneOf(GameMatcher.SelectedCommand));
     }
 
     public void Execute()
     {
-      foreach (GameEntity unitAction in _commands.GetEntities(_buffer))
+      foreach (GameEntity command in _commands.GetEntities(_buffer))
       {
-        _hudService.SelectCommand(unitAction.CommandTypeId);
+        _hudService.SelectCommand(command.CommandTypeId);
         _inputService.ChangeInputMap(InputMap.CommandIsActive);
 
-        unitAction.With(x => x.isSelectedCommand = true);
+        command.With(x => x.isSelectedCommand = true);
       }
     }
   }

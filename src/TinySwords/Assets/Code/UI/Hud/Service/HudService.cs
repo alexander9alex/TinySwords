@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
@@ -41,7 +42,8 @@ namespace Code.UI.Hud.Service
 
     public void ApplyCommand(CommandTypeId commandTypeId)
     {
-      GameEntity entity = CreateEntity.Empty();
+      GameEntity entity = CreateEntity.Empty()
+        .With(x => x.isCommand = true);
 
       switch (commandTypeId)
       {

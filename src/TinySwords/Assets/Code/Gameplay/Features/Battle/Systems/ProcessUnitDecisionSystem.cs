@@ -23,7 +23,6 @@ namespace Code.Gameplay.Features.Battle.Systems
       foreach (GameEntity unit in _units.GetEntities(_buffer))
       {
         ProcessUnitDecision(unit);
-
         unit.RemoveUnitDecision();
       }
     }
@@ -51,8 +50,11 @@ namespace Code.Gameplay.Features.Battle.Systems
       }
     }
 
-    private static void MakeStayDecision(GameEntity unit) =>
-      unit.ReplaceDestination(unit.WorldPosition);
+    private static void MakeStayDecision(GameEntity unit)
+    {
+      if (unit.hasDestination)
+        unit.ReplaceDestination(unit.WorldPosition);
+    }
 
     private void MakeMoveToEndDestinationDecision(GameEntity unit, UnitDecision decision) =>
       unit.ReplaceDestination(decision.Destination);

@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherRunAway;
+    static Entitas.IMatcher<GameEntity> _matcherCommand;
 
-    public static Entitas.IMatcher<GameEntity> RunAway {
+    public static Entitas.IMatcher<GameEntity> Command {
         get {
-            if (_matcherRunAway == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.RunAway);
+            if (_matcherCommand == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Command);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherRunAway = matcher;
+                _matcherCommand = matcher;
             }
 
-            return _matcherRunAway;
+            return _matcherCommand;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.RunAway runAwayComponent = new Code.Gameplay.Features.Move.RunAway();
+    static readonly Code.Gameplay.Features.Command.Command commandComponent = new Code.Gameplay.Features.Command.Command();
 
-    public bool isRunAway {
-        get { return HasComponent(GameComponentsLookup.RunAway); }
+    public bool isCommand {
+        get { return HasComponent(GameComponentsLookup.Command); }
         set {
-            if (value != isRunAway) {
-                var index = GameComponentsLookup.RunAway;
+            if (value != isCommand) {
+                var index = GameComponentsLookup.Command;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : runAwayComponent;
+                            : commandComponent;
 
                     AddComponent(index, component);
                 } else {

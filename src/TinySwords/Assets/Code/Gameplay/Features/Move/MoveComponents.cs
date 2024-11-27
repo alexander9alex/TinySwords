@@ -11,7 +11,6 @@ namespace Code.Gameplay.Features.Move
   [Game] public class Destination : IComponent { public Vector2 Value; }
   [Game] public class EndDestination : IComponent { public Vector2 Value; }
   [Game] public class ChangeEndDestinationRequest : IComponent { }
-  [Game] public class RunAway : IComponent { }
   [Game] public class UpdateRunAwayState : IComponent { }
   [Game] public class LookDirection : IComponent { public Vector2 Value; }
   [Game] public class MoveAnimator : IComponent { public IMoveAnimator Value; }
