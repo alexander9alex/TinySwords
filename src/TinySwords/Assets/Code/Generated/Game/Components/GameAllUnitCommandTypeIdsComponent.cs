@@ -34,10 +34,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds allUnitCommandTypeIds { get { return (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)GetComponent(GameComponentsLookup.AllUnitCommandTypeIds); } }
-    public System.Collections.Generic.List<Code.Gameplay.Features.ControlAction.Data.UnitCommandTypeId> AllUnitCommandTypeIds { get { return allUnitCommandTypeIds.Value; } }
+    public System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> AllUnitCommandTypeIds { get { return allUnitCommandTypeIds.Value; } }
     public bool hasAllUnitCommandTypeIds { get { return HasComponent(GameComponentsLookup.AllUnitCommandTypeIds); } }
 
-    public GameEntity AddAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.ControlAction.Data.UnitCommandTypeId> newValue) {
+    public GameEntity AddAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> newValue) {
         var index = GameComponentsLookup.AllUnitCommandTypeIds;
         var component = (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds));
         component.Value = newValue;
@@ -45,7 +45,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.ControlAction.Data.UnitCommandTypeId> newValue) {
+    public GameEntity ReplaceAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> newValue) {
         var index = GameComponentsLookup.AllUnitCommandTypeIds;
         var component = (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds));
         component.Value = newValue;

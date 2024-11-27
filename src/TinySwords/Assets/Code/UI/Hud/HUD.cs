@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Features.ControlAction.Configs;
+using Code.Gameplay.Features.Command.Configs;
 using Code.UI.Hud.Factory;
 using Code.UI.Hud.Service;
 using UnityEngine;
@@ -10,14 +10,14 @@ namespace Code.UI.Hud
 {
   public class HUD : MonoBehaviour
   {
-    public RectTransform ControlButtonsLayout;
-    public RectTransform ActionDescriptionLayout;
+    public RectTransform CommandLayout;
+    public RectTransform CommandDescriptionLayout;
 
     private IHudService _hudService;
     private IHudFactory _hudFactory;
 
     private readonly List<GameObject> _spawnedButtons = new();
-    private GameObject _actionDescription;
+    private GameObject _spawnedActionDescription;
 
     [Inject]
     private void Construct(IHudService hudService, IHudFactory hudFactory)
@@ -34,20 +34,20 @@ namespace Code.UI.Hud
 
     private void SubscribeUpdates()
     {
-      _hudService.UpdateHud += RefreshButtons;
-      _hudService.UpdateActionDescription += RefreshActionDescription;
+      _hudService.UpdateCommandButtons += RefreshCommandButtons;
+      _hudService.UpdateCommandDescription += RefreshCommandDescription;
 
-      RefreshButtons();
-      RefreshActionDescription();
+      RefreshCommandButtons();
+      RefreshCommandDescription();
     }
 
-    private void RefreshButtons()
+    private void RefreshCommandButtons()
     {
-      DestroySpawnedButtons();
-      CreateNewButtons();
+      DestroySpawnedCommandButtons();
+      CreateNewCommandButtons();
     }
 
-    private void RefreshActionDescription()
+    private void RefreshCommandDescription()
     {
       DestroySpawnedDescription();
       CreateNewDescription();
@@ -55,15 +55,15 @@ namespace Code.UI.Hud
 
     private void CreateNewDescription()
     {
-      GameObject actionDescriptionPrefab = _hudService.GetActionDescription();
+      GameObject actionDescriptionPrefab = _hudService.CommandDescriptionPrefab;
 
       if (actionDescriptionPrefab == null)
         return;
 
-      _actionDescription = _hudFactory.CreateActionDescription(actionDescriptionPrefab, ActionDescriptionLayout);
+      _spawnedActionDescription = _hudFactory.CreateActionDescription(actionDescriptionPrefab, CommandDescriptionLayout);
     }
 
-    private void DestroySpawnedButtons()
+    private void DestroySpawnedCommandButtons()
     {
       foreach (GameObject button in _spawnedButtons)
         Destroy(button);
@@ -71,25 +71,25 @@ namespace Code.UI.Hud
       _spawnedButtons.Clear();
     }
 
-    private void CreateNewButtons()
+    private void CreateNewCommandButtons()
     {
-      List<UnitActionUIConfig> configs = _hudService.GetAvailableUnitActionUIConfigs();
+      List<CommandUIConfig> configs = _hudService.AvailableCommandUIConfigs;
 
-      foreach (UnitActionUIConfig config in configs)
+      foreach (CommandUIConfig config in configs)
       {
-        Button button = _hudFactory.CreateControlButton(config, ControlButtonsLayout);
+        Button button = _hudFactory.CreateControlButton(config, CommandLayout);
         _spawnedButtons.Add(button.gameObject);
-        button.onClick.AddListener(() => _hudService.ClickedToButton(config.UnitCommandTypeId));
+        button.onClick.AddListener(() => _hudService.ApplyCommand(config.CommandTypeId));
       }
     }
 
     private void UnsubscribeUpdates()
     {
-      _hudService.UpdateHud -= RefreshButtons;
-      _hudService.UpdateActionDescription -= RefreshActionDescription;
+      _hudService.UpdateCommandButtons -= RefreshCommandButtons;
+      _hudService.UpdateCommandDescription -= RefreshCommandDescription;
     }
 
     private void DestroySpawnedDescription() =>
-      Destroy(_actionDescription);
+      Destroy(_spawnedActionDescription);
   }
 }

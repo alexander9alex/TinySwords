@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4597209479260269456}
   m_Layer: 5
-  m_Name: Actions
+  m_Name: Commands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19b6f9872bd412f94b4237b8ad82a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlButtonsLayout: {fileID: 5417823453159181955}
-  ActionDescriptionLayout: {fileID: 5493725472027371315}
+  CommandLayout: {fileID: 5417823453159181955}
+  CommandDescriptionLayout: {fileID: 5493725472027371315}
 --- !u!1 &5429022087334952934
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5493725472027371315}
   m_Layer: 5
-  m_Name: ActionDescriptionLayout
+  m_Name: CommandDescriptionLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 5417823453159181955}
   - component: {fileID: 4116378588614621395}
   m_Layer: 5
-  m_Name: ControlButtonsLayout
+  m_Name: CommandsLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Input.Services
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
-    private Vector2 _applyControlActionStartedPos;
+    private Vector2 _applyCommandStartedPos;
 
     public InputService()
     {
@@ -43,14 +43,14 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void InitActionIsActiveInputMap()
     {
-      _inputSystem.ControlActionIsActive.ApplyAction.started += ApplyControlActionStarted;
-      _inputSystem.ControlActionIsActive.ApplyAction.canceled += ApplyControlAction;
+      _inputSystem.CommandIsActive.ApplyAction.started += ApplyCommandStarted;
+      _inputSystem.CommandIsActive.ApplyAction.canceled += ApplyCommand;
 
-      _inputSystem.ControlActionIsActive.CancelAction.canceled += CancelControlAction;
+      _inputSystem.CommandIsActive.CancelAction.canceled += CancelCommand;
 
-      _inputSystem.ControlActionIsActive.MousePosition.started += ChangeMousePosition;
-      _inputSystem.ControlActionIsActive.MousePosition.performed += ChangeMousePosition;
-      _inputSystem.ControlActionIsActive.MousePosition.canceled += ChangeMousePosition;
+      _inputSystem.CommandIsActive.MousePosition.started += ChangeMousePosition;
+      _inputSystem.CommandIsActive.MousePosition.performed += ChangeMousePosition;
+      _inputSystem.CommandIsActive.MousePosition.canceled += ChangeMousePosition;
     }
 
     public void Tick()
@@ -71,9 +71,9 @@ namespace Code.Gameplay.Features.Input.Services
           _inputSystem.Disable();
           _inputSystem.Game.Enable();
           break;
-        case InputMap.ActionIsActive:
+        case InputMap.CommandIsActive:
           _inputSystem.Disable();
-          _inputSystem.ControlActionIsActive.Enable();
+          _inputSystem.CommandIsActive.Enable();
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(inputMap), inputMap, null);
@@ -118,26 +118,26 @@ namespace Code.Gameplay.Features.Input.Services
         .AddPositionOnScreen(_mousePos);
     }
 
-    private void ApplyControlActionStarted(InputAction.CallbackContext context) =>
-      _applyControlActionStartedPos = _mousePos;
+    private void ApplyCommandStarted(InputAction.CallbackContext context) =>
+      _applyCommandStartedPos = _mousePos;
 
-    private void ApplyControlAction(InputAction.CallbackContext context)
+    private void ApplyCommand(InputAction.CallbackContext context)
     {
       if (!ClickInGameZone(_mousePos))
         return;
 
-      if (Vector2.Distance(_applyControlActionStartedPos, _mousePos) > GameConstants.SelectionClickDelta * 3)
+      if (Vector2.Distance(_applyCommandStartedPos, _mousePos) > GameConstants.SelectionClickDelta * 3)
         return;
       
       CreateEntity.Empty()
-        .With(x => x.isApplyControlAction = true)
+        .With(x => x.isApplyCommand = true)
         .AddPositionOnScreen(_mousePos);
     }
 
-    private void CancelControlAction(InputAction.CallbackContext context)
+    private void CancelCommand(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
-        .With(x => x.isCancelControlAction = true)
+        .With(x => x.isCancelCommand = true)
         .AddPositionOnScreen(_mousePos);
     }
 

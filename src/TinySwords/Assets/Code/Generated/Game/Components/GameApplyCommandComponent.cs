@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherActionEnded;
+    static Entitas.IMatcher<GameEntity> _matcherApplyCommand;
 
-    public static Entitas.IMatcher<GameEntity> ActionEnded {
+    public static Entitas.IMatcher<GameEntity> ApplyCommand {
         get {
-            if (_matcherActionEnded == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ActionEnded);
+            if (_matcherApplyCommand == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ApplyCommand);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherActionEnded = matcher;
+                _matcherApplyCommand = matcher;
             }
 
-            return _matcherActionEnded;
+            return _matcherApplyCommand;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.ActionEnded actionEndedComponent = new Code.Gameplay.Features.Input.ActionEnded();
+    static readonly Code.Gameplay.Features.Command.ApplyCommand applyCommandComponent = new Code.Gameplay.Features.Command.ApplyCommand();
 
-    public bool isActionEnded {
-        get { return HasComponent(GameComponentsLookup.ActionEnded); }
+    public bool isApplyCommand {
+        get { return HasComponent(GameComponentsLookup.ApplyCommand); }
         set {
-            if (value != isActionEnded) {
-                var index = GameComponentsLookup.ActionEnded;
+            if (value != isApplyCommand) {
+                var index = GameComponentsLookup.ApplyCommand;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : actionEndedComponent;
+                            : applyCommandComponent;
 
                     AddComponent(index, component);
                 } else {

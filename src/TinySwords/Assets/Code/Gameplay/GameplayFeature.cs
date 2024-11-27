@@ -1,8 +1,7 @@
 ﻿using Code.Gameplay.Features.AI;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
-using Code.Gameplay.Features.ChangeEndDestination;
-using Code.Gameplay.Features.ControlAction;
+using Code.Gameplay.Features.Command;
 using Code.Gameplay.Features.Death;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
@@ -13,6 +12,7 @@ using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.MoveIndicator;
+using Code.Gameplay.Features.MoveInput;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.TargetCollection;
@@ -28,8 +28,8 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       
       Add(systems.Create<InputFeature>());
-      Add(systems.Create<ControlActionFeature>());
       Add(systems.Create<FastInteractionFeature>());
+      Add(systems.Create<CommandFeature>());
 
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());

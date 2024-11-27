@@ -586,7 +586,7 @@
             ]
         },
         {
-            "name": "ControlActionIsActive",
+            "name": "CommandIsActive",
             "id": "cfd39a08-3ffb-464f-a4fe-f37e0de65023",
             "actions": [
                 {

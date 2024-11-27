@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.ControlAction.ActionStarted actionStartedComponent = new Code.Gameplay.Features.ControlAction.ActionStarted();
+    static readonly Code.Gameplay.Features.Input.ActionStarted actionStartedComponent = new Code.Gameplay.Features.Input.ActionStarted();
 
     public bool isActionStarted {
         get { return HasComponent(GameComponentsLookup.ActionStarted); }

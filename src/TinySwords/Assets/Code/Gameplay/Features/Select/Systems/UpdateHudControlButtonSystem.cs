@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Constants;
-using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Command.Data;
 using Code.UI.Hud.Service;
 using Entitas;
 
@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
-        List<UnitCommandTypeId> availableCommand = new(GameConstants.AllUnitCommands);
+        List<CommandTypeId> availableCommand = new(GameConstants.AllUnitCommands);
 
         foreach (GameEntity selected in _selected)
         {
@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.Select.Systems
           availableCommand = availableCommand.Intersect(selected.AllUnitCommandTypeIds).ToList();
         }
 
-        _hudService.UpdateAvailableActions(availableCommand);
+        _hudService.UpdateAvailableCommands(availableCommand);
 
         request.isDestructed = true;
       }

@@ -608,7 +608,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""ControlActionIsActive"",
+            ""name"": ""CommandIsActive"",
             ""id"": ""cfd39a08-3ffb-464f-a4fe-f37e0de65023"",
             ""actions"": [
                 {
@@ -756,18 +756,18 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Game_Action = m_Game.FindAction("Action", throwIfNotFound: true);
         m_Game_FastInteraction = m_Game.FindAction("FastInteraction", throwIfNotFound: true);
         m_Game_MousePosition = m_Game.FindAction("MousePosition", throwIfNotFound: true);
-        // ControlActionIsActive
-        m_ControlActionIsActive = asset.FindActionMap("ControlActionIsActive", throwIfNotFound: true);
-        m_ControlActionIsActive_ApplyAction = m_ControlActionIsActive.FindAction("ApplyAction", throwIfNotFound: true);
-        m_ControlActionIsActive_CancelAction = m_ControlActionIsActive.FindAction("CancelAction", throwIfNotFound: true);
-        m_ControlActionIsActive_MousePosition = m_ControlActionIsActive.FindAction("MousePosition", throwIfNotFound: true);
+        // CommandIsActive
+        m_CommandIsActive = asset.FindActionMap("CommandIsActive", throwIfNotFound: true);
+        m_CommandIsActive_ApplyAction = m_CommandIsActive.FindAction("ApplyAction", throwIfNotFound: true);
+        m_CommandIsActive_CancelAction = m_CommandIsActive.FindAction("CancelAction", throwIfNotFound: true);
+        m_CommandIsActive_MousePosition = m_CommandIsActive.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     ~@InputSystem()
     {
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Game.enabled, "This will cause a leak and performance issues, InputSystem.Game.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_ControlActionIsActive.enabled, "This will cause a leak and performance issues, InputSystem.ControlActionIsActive.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CommandIsActive.enabled, "This will cause a leak and performance issues, InputSystem.CommandIsActive.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -1006,28 +1006,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     }
     public GameActions @Game => new GameActions(this);
 
-    // ControlActionIsActive
-    private readonly InputActionMap m_ControlActionIsActive;
-    private List<IControlActionIsActiveActions> m_ControlActionIsActiveActionsCallbackInterfaces = new List<IControlActionIsActiveActions>();
-    private readonly InputAction m_ControlActionIsActive_ApplyAction;
-    private readonly InputAction m_ControlActionIsActive_CancelAction;
-    private readonly InputAction m_ControlActionIsActive_MousePosition;
-    public struct ControlActionIsActiveActions
+    // CommandIsActive
+    private readonly InputActionMap m_CommandIsActive;
+    private List<ICommandIsActiveActions> m_CommandIsActiveActionsCallbackInterfaces = new List<ICommandIsActiveActions>();
+    private readonly InputAction m_CommandIsActive_ApplyAction;
+    private readonly InputAction m_CommandIsActive_CancelAction;
+    private readonly InputAction m_CommandIsActive_MousePosition;
+    public struct CommandIsActiveActions
     {
         private @InputSystem m_Wrapper;
-        public ControlActionIsActiveActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ApplyAction => m_Wrapper.m_ControlActionIsActive_ApplyAction;
-        public InputAction @CancelAction => m_Wrapper.m_ControlActionIsActive_CancelAction;
-        public InputAction @MousePosition => m_Wrapper.m_ControlActionIsActive_MousePosition;
-        public InputActionMap Get() { return m_Wrapper.m_ControlActionIsActive; }
+        public CommandIsActiveActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ApplyAction => m_Wrapper.m_CommandIsActive_ApplyAction;
+        public InputAction @CancelAction => m_Wrapper.m_CommandIsActive_CancelAction;
+        public InputAction @MousePosition => m_Wrapper.m_CommandIsActive_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_CommandIsActive; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ControlActionIsActiveActions set) { return set.Get(); }
-        public void AddCallbacks(IControlActionIsActiveActions instance)
+        public static implicit operator InputActionMap(CommandIsActiveActions set) { return set.Get(); }
+        public void AddCallbacks(ICommandIsActiveActions instance)
         {
-            if (instance == null || m_Wrapper.m_ControlActionIsActiveActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ControlActionIsActiveActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Add(instance);
             @ApplyAction.started += instance.OnApplyAction;
             @ApplyAction.performed += instance.OnApplyAction;
             @ApplyAction.canceled += instance.OnApplyAction;
@@ -1039,7 +1039,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MousePosition.canceled += instance.OnMousePosition;
         }
 
-        private void UnregisterCallbacks(IControlActionIsActiveActions instance)
+        private void UnregisterCallbacks(ICommandIsActiveActions instance)
         {
             @ApplyAction.started -= instance.OnApplyAction;
             @ApplyAction.performed -= instance.OnApplyAction;
@@ -1052,21 +1052,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MousePosition.canceled -= instance.OnMousePosition;
         }
 
-        public void RemoveCallbacks(IControlActionIsActiveActions instance)
+        public void RemoveCallbacks(ICommandIsActiveActions instance)
         {
-            if (m_Wrapper.m_ControlActionIsActiveActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IControlActionIsActiveActions instance)
+        public void SetCallbacks(ICommandIsActiveActions instance)
         {
-            foreach (var item in m_Wrapper.m_ControlActionIsActiveActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_ControlActionIsActiveActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public ControlActionIsActiveActions @ControlActionIsActive => new ControlActionIsActiveActions(this);
+    public CommandIsActiveActions @CommandIsActive => new CommandIsActiveActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1131,7 +1131,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnFastInteraction(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
     }
-    public interface IControlActionIsActiveActions
+    public interface ICommandIsActiveActions
     {
         void OnApplyAction(InputAction.CallbackContext context);
         void OnCancelAction(InputAction.CallbackContext context);

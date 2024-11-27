@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.Features.ControlAction.Configs;
+﻿using Code.Gameplay.Features.Command.Configs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +6,7 @@ namespace Code.UI.Hud.Factory
 {
   public interface IHudFactory
   {
-    Button CreateControlButton(UnitActionUIConfig unitActionUIConfig, RectTransform parent);
+    Button CreateControlButton(CommandUIConfig commandUIConfig, RectTransform parent);
     GameObject CreateActionDescription(GameObject prefab, RectTransform parent);
   }
 }

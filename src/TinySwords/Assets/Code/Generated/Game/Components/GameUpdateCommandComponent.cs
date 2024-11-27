@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherActionEnded;
+    static Entitas.IMatcher<GameEntity> _matcherUpdateCommand;
 
-    public static Entitas.IMatcher<GameEntity> ActionEnded {
+    public static Entitas.IMatcher<GameEntity> UpdateCommand {
         get {
-            if (_matcherActionEnded == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ActionEnded);
+            if (_matcherUpdateCommand == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UpdateCommand);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherActionEnded = matcher;
+                _matcherUpdateCommand = matcher;
             }
 
-            return _matcherActionEnded;
+            return _matcherUpdateCommand;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Input.ActionEnded actionEndedComponent = new Code.Gameplay.Features.Input.ActionEnded();
+    static readonly Code.Gameplay.Features.Command.UpdateCommand updateCommandComponent = new Code.Gameplay.Features.Command.UpdateCommand();
 
-    public bool isActionEnded {
-        get { return HasComponent(GameComponentsLookup.ActionEnded); }
+    public bool isUpdateCommand {
+        get { return HasComponent(GameComponentsLookup.UpdateCommand); }
         set {
-            if (value != isActionEnded) {
-                var index = GameComponentsLookup.ActionEnded;
+            if (value != isUpdateCommand) {
+                var index = GameComponentsLookup.UpdateCommand;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : actionEndedComponent;
+                            : updateCommandComponent;
 
                     AddComponent(index, component);
                 } else {

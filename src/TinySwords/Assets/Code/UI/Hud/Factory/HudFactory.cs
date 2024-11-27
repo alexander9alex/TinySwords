@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.Features.ControlAction.Configs;
+﻿using Code.Gameplay.Features.Command.Configs;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,8 +12,8 @@ namespace Code.UI.Hud.Factory
     public HudFactory(IInstantiator instantiator) =>
       _instantiator = instantiator;
 
-    public Button CreateControlButton(UnitActionUIConfig unitActionUIConfig, RectTransform parent) =>
-      _instantiator.InstantiatePrefabForComponent<Button>(unitActionUIConfig.UnitActionButtonPrefab, parent);
+    public Button CreateControlButton(CommandUIConfig commandUIConfig, RectTransform parent) =>
+      _instantiator.InstantiatePrefabForComponent<Button>(commandUIConfig.CommandButtonPrefab, parent);
 
     public GameObject CreateActionDescription(GameObject prefab, RectTransform parent) =>
       _instantiator.InstantiatePrefab(prefab, parent);

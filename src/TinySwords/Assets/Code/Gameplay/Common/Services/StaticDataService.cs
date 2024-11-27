@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
-using Code.Gameplay.Features.ControlAction.Configs;
-using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Command.Configs;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Units.Configs;
@@ -18,7 +18,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
-    private Dictionary<UnitCommandTypeId, UnitActionUIConfig> _unitCommandUIConfigByType;
+    private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
 
     public void LoadAll()
     {
@@ -43,15 +43,15 @@ namespace Code.Gameplay.Common.Services
     public LevelConfig GetLevelConfig() =>
       _levelConfigs[0];
 
-    public List<UnitActionUIConfig> GetUnitCommandUIConfigs(List<UnitCommandTypeId> availableCommands)
+    public List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands)
     {
-      return _unitCommandUIConfigByType.Values
-        .Where(config => availableCommands.Any(actionTypeId => config.UnitCommandTypeId == actionTypeId))
+      return _commandUIConfigByType.Values
+        .Where(config => availableCommands.Any(actionTypeId => config.CommandTypeId == actionTypeId))
         .ToList();
     }
 
-    public UnitActionUIConfig GetUnitCommandUIConfig(UnitCommandTypeId unitCommandTypeId) =>
-      _unitCommandUIConfigByType[unitCommandTypeId];
+    public CommandUIConfig GetCommandUIConfig(CommandTypeId commandTypeId) =>
+      _commandUIConfigByType[commandTypeId];
 
     public UnitDeathConfig GetUnitDeathConfig() =>
       Resources.Load<UnitDeathConfig>("Configs/Units/UnitDeathConfig");
@@ -79,9 +79,9 @@ namespace Code.Gameplay.Common.Services
 
     private void LoadCommandUIConfigs()
     {
-      _unitCommandUIConfigByType = Resources
-        .LoadAll<UnitActionUIConfig>("Configs/UI/Actions/Units")
-        .ToDictionary(x => x.UnitCommandTypeId, x => x);
+      _commandUIConfigByType = Resources
+        .LoadAll<CommandUIConfig>("Configs/UI/Commands")
+        .ToDictionary(x => x.CommandTypeId, x => x);
     }
   }
 }

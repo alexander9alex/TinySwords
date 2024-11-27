@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Gameplay.Features.ControlAction.Configs;
-using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Command.Configs;
+using Code.Gameplay.Features.Command.Data;
 using UnityEngine;
 
 namespace Code.UI.Hud.Service
 {
   public interface IHudService
   {
-    event Action UpdateHud;
-    event Action UpdateActionDescription;
-    GameObject GetActionDescription();
-    List<UnitActionUIConfig> GetAvailableUnitActionUIConfigs();
-    void UpdateAvailableActions(List<UnitCommandTypeId> availableCommands);
-    void ClickedToButton(UnitCommandTypeId unitCommandTypeId);
-    void SetAction(UnitCommandTypeId unitCommandTypeId);
-    void CancelAction();
+    event Action UpdateCommandButtons;
+    event Action UpdateCommandDescription;
+    List<CommandUIConfig> AvailableCommandUIConfigs { get; }
+    GameObject CommandDescriptionPrefab { get; }
+    void UpdateAvailableCommands(List<CommandTypeId> commands);
+    void SelectCommand(CommandTypeId commandTypeId);
+    void ApplyCommand(CommandTypeId commandTypeId);
+    void CancelCommand();
   }
 }

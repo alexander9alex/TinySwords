@@ -4,7 +4,7 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
-using Code.Gameplay.Features.ControlAction.Data;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI;
@@ -88,8 +88,8 @@ namespace Code.Gameplay.Features.Units.Factory
       unit
         .AddAllUnitCommandTypeIds(new()
         {
-          UnitCommandTypeId.Move,
-          UnitCommandTypeId.MoveWithAttack
+          CommandTypeId.Move,
+          CommandTypeId.MoveWithAttack
         })
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
