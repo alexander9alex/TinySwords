@@ -23,6 +23,7 @@ namespace Code.Gameplay.Features.Battle.Systems
         GameEntity unit = _game.GetEntityWithId(request.CasterId);
 
         unit.isAttacking = false;
+        unit.isNotAttacking = true;
         
         if (unit.hasAttackInterval)
           unit.ReplaceAttackCooldown(unit.AttackInterval);

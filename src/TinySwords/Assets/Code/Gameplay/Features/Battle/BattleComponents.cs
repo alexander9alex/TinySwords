@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using Code.Gameplay.Features.Battle.Animators;
+using Entitas;
 
 namespace Code.Gameplay.Features.Battle
 {
@@ -10,4 +11,6 @@ namespace Code.Gameplay.Features.Battle
   [Game] public class FinishAttack : IComponent { }
   [Game] public class AttackCooldown : IComponent { public float Value; }
   [Game] public class AttackInterval : IComponent { public float Value; }
+  [Game] public class AnimateAttackRequest : IComponent { }
+  [Game] public class AttackAnimator : IComponent { public IAttackAnimator Value; }
 }

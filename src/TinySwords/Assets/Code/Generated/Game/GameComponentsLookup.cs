@@ -23,113 +23,115 @@ public static class GameComponentsLookup {
     public const int MakeDecisionTimer = 12;
     public const int UnitAI = 13;
     public const int UnitDecision = 14;
-    public const int AnimateAttack = 15;
-    public const int AnimateDeath = 16;
-    public const int AnimateTakenDamage = 17;
-    public const int AttackAnimator = 18;
-    public const int DamageTakenAnimator = 19;
-    public const int DeathAnimator = 20;
-    public const int DisplayTimer = 21;
-    public const int HideTimer = 22;
-    public const int LookDirection = 23;
-    public const int MoveAnimator = 24;
-    public const int SelectingAnimator = 25;
-    public const int AttackCooldown = 26;
-    public const int Attacking = 27;
-    public const int AttackInterval = 28;
-    public const int AttackRequest = 29;
-    public const int CanAttack = 30;
-    public const int FinishAttack = 31;
-    public const int MakeHit = 32;
-    public const int NotAttacking = 33;
-    public const int Building = 34;
-    public const int BuildTypeId = 35;
-    public const int Castle = 36;
-    public const int ActionEnded = 37;
-    public const int ActionStarted = 38;
-    public const int ApplyControlAction = 39;
-    public const int CancelControlAction = 40;
-    public const int MoveControlAction = 41;
-    public const int MoveWithAttackControlAction = 42;
-    public const int SelectedAction = 43;
-    public const int UnitCommandTypeId = 44;
-    public const int CasterId = 45;
-    public const int DamageEffect = 46;
-    public const int EffectTypeId = 47;
-    public const int EffectValue = 48;
-    public const int TargetId = 49;
-    public const int AllUnitCommandTypeIds = 50;
-    public const int FastInteraction = 51;
-    public const int Focused = 52;
-    public const int Focusing = 53;
-    public const int FocusRequest = 54;
-    public const int Unfocused = 55;
-    public const int CenterPosition = 56;
-    public const int CreateHighlightRequest = 57;
-    public const int Highlight = 58;
-    public const int HighlightEnded = 59;
-    public const int RectTransform = 60;
-    public const int Size = 61;
-    public const int HpBar = 62;
-    public const int EndPosition = 63;
-    public const int MousePositionOnScreen = 64;
-    public const int PositionOnScreen = 65;
-    public const int StartPosition = 66;
-    public const int ChangeEndDestinationRequest = 67;
-    public const int Destination = 68;
-    public const int EndDestination = 69;
-    public const int Idle = 70;
-    public const int Movable = 71;
-    public const int Move = 72;
-    public const int MoveDirection = 73;
-    public const int CreatedNow = 74;
-    public const int CreateMoveClickIndicator = 75;
-    public const int DestructOldMoveIndicatorRequest = 76;
-    public const int MoveClickIndicator = 77;
-    public const int AddToNavMeshCachedSources = 78;
-    public const int BuildNavMeshAtStart = 79;
-    public const int NavMesh = 80;
-    public const int NavMeshAgent = 81;
-    public const int NavMeshCollectSourcesCache = 82;
-    public const int NavMeshCollectSources = 83;
-    public const int NavMeshRootSources = 84;
-    public const int NavMeshSurface = 85;
-    public const int NotAddedNavMeshRootSource = 86;
-    public const int TurnOnNavMeshAgent = 87;
-    public const int UpdateNavMesh = 88;
-    public const int MultipleSelectionRequest = 89;
-    public const int Selectable = 90;
-    public const int Selected = 91;
-    public const int SelectedChanged = 92;
-    public const int SelectedNow = 93;
-    public const int SingleSelectionRequest = 94;
-    public const int Unselected = 95;
-    public const int UnselectPreviouslySelectedRequest = 96;
-    public const int UpdateHudControlButtons = 97;
-    public const int CollectReachedTargetsInterval = 98;
-    public const int CollectReachedTargetsRadius = 99;
-    public const int CollectReachedTargetsRequest = 100;
-    public const int CollectReachedTargetsTimer = 101;
-    public const int CollectTargetsInterval = 102;
-    public const int CollectTargetsRadius = 103;
-    public const int CollectTargetsRequest = 104;
-    public const int CollectTargetsTimer = 105;
-    public const int ReachedTargetBuffer = 106;
-    public const int TargetBuffer = 107;
-    public const int Alive = 108;
-    public const int AttackReach = 109;
-    public const int CurrentHp = 110;
-    public const int Damage = 111;
-    public const int Dead = 112;
-    public const int MaxHp = 113;
-    public const int Speed = 114;
-    public const int TeamColor = 115;
-    public const int Unit = 116;
-    public const int CurrentAvoidancePriority = 117;
-    public const int IdleAvoidancePriority = 118;
-    public const int MoveAvoidancePriority = 119;
+    public const int AnimateAttackRequest = 15;
+    public const int AttackAnimator = 16;
+    public const int AttackCooldown = 17;
+    public const int Attacking = 18;
+    public const int AttackInterval = 19;
+    public const int AttackRequest = 20;
+    public const int CanAttack = 21;
+    public const int FinishAttack = 22;
+    public const int MakeHit = 23;
+    public const int NotAttacking = 24;
+    public const int Building = 25;
+    public const int BuildTypeId = 26;
+    public const int Castle = 27;
+    public const int ActionEnded = 28;
+    public const int ActionStarted = 29;
+    public const int ApplyControlAction = 30;
+    public const int CancelControlAction = 31;
+    public const int MoveControlAction = 32;
+    public const int MoveWithAttackControlAction = 33;
+    public const int SelectedAction = 34;
+    public const int UnitCommandTypeId = 35;
+    public const int AnimateDeath = 36;
+    public const int DeathAnimator = 37;
+    public const int DisplayTimer = 38;
+    public const int HideTimer = 39;
+    public const int AnimateTakenDamage = 40;
+    public const int CasterId = 41;
+    public const int DamageEffect = 42;
+    public const int DamageTakenAnimator = 43;
+    public const int EffectTypeId = 44;
+    public const int EffectValue = 45;
+    public const int TargetId = 46;
+    public const int AllUnitCommandTypeIds = 47;
+    public const int FastInteraction = 48;
+    public const int Focused = 49;
+    public const int Focusing = 50;
+    public const int FocusRequest = 51;
+    public const int Unfocused = 52;
+    public const int CenterPosition = 53;
+    public const int CreateHighlightRequest = 54;
+    public const int Highlight = 55;
+    public const int HighlightEnded = 56;
+    public const int RectTransform = 57;
+    public const int Size = 58;
+    public const int HpBar = 59;
+    public const int EndPosition = 60;
+    public const int MousePositionOnScreen = 61;
+    public const int PositionOnScreen = 62;
+    public const int StartPosition = 63;
+    public const int ChangeEndDestinationRequest = 64;
+    public const int Destination = 65;
+    public const int EndDestination = 66;
+    public const int Idle = 67;
+    public const int LookDirection = 68;
+    public const int Movable = 69;
+    public const int Move = 70;
+    public const int MoveAnimator = 71;
+    public const int MoveDirection = 72;
+    public const int RunAway = 73;
+    public const int UpdateRunAwayState = 74;
+    public const int CreatedNow = 75;
+    public const int CreateMoveClickIndicator = 76;
+    public const int DestructOldMoveIndicatorRequest = 77;
+    public const int MoveClickIndicator = 78;
+    public const int AddToNavMeshCachedSources = 79;
+    public const int BuildNavMeshAtStart = 80;
+    public const int NavMesh = 81;
+    public const int NavMeshAgent = 82;
+    public const int NavMeshCollectSourcesCache = 83;
+    public const int NavMeshCollectSources = 84;
+    public const int NavMeshRootSources = 85;
+    public const int NavMeshSurface = 86;
+    public const int NotAddedNavMeshRootSource = 87;
+    public const int TurnOnNavMeshAgent = 88;
+    public const int UpdateNavMesh = 89;
+    public const int MultipleSelectionRequest = 90;
+    public const int Selectable = 91;
+    public const int Selected = 92;
+    public const int SelectedChanged = 93;
+    public const int SelectedNow = 94;
+    public const int SelectingAnimator = 95;
+    public const int SingleSelectionRequest = 96;
+    public const int Unselected = 97;
+    public const int UnselectPreviouslySelectedRequest = 98;
+    public const int UpdateHudControlButtons = 99;
+    public const int CollectReachedTargetsInterval = 100;
+    public const int CollectReachedTargetsRadius = 101;
+    public const int CollectReachedTargetsRequest = 102;
+    public const int CollectReachedTargetsTimer = 103;
+    public const int CollectTargetsInterval = 104;
+    public const int CollectTargetsRadius = 105;
+    public const int CollectTargetsRequest = 106;
+    public const int CollectTargetsTimer = 107;
+    public const int ReachedTargetBuffer = 108;
+    public const int TargetBuffer = 109;
+    public const int Alive = 110;
+    public const int AttackReach = 111;
+    public const int CurrentHp = 112;
+    public const int Damage = 113;
+    public const int Dead = 114;
+    public const int MaxHp = 115;
+    public const int Speed = 116;
+    public const int TeamColor = 117;
+    public const int Unit = 118;
+    public const int CurrentAvoidancePriority = 119;
+    public const int IdleAvoidancePriority = 120;
+    public const int MoveAvoidancePriority = 121;
 
-    public const int TotalComponents = 120;
+    public const int TotalComponents = 122;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -147,17 +149,8 @@ public static class GameComponentsLookup {
         "MakeDecisionTimer",
         "UnitAI",
         "UnitDecision",
-        "AnimateAttack",
-        "AnimateDeath",
-        "AnimateTakenDamage",
+        "AnimateAttackRequest",
         "AttackAnimator",
-        "DamageTakenAnimator",
-        "DeathAnimator",
-        "DisplayTimer",
-        "HideTimer",
-        "LookDirection",
-        "MoveAnimator",
-        "SelectingAnimator",
         "AttackCooldown",
         "Attacking",
         "AttackInterval",
@@ -177,8 +170,14 @@ public static class GameComponentsLookup {
         "MoveWithAttackControlAction",
         "SelectedAction",
         "UnitCommandTypeId",
+        "AnimateDeath",
+        "DeathAnimator",
+        "DisplayTimer",
+        "HideTimer",
+        "AnimateTakenDamage",
         "CasterId",
         "DamageEffect",
+        "DamageTakenAnimator",
         "EffectTypeId",
         "EffectValue",
         "TargetId",
@@ -203,9 +202,13 @@ public static class GameComponentsLookup {
         "Destination",
         "EndDestination",
         "Idle",
+        "LookDirection",
         "Movable",
         "Move",
+        "MoveAnimator",
         "MoveDirection",
+        "RunAway",
+        "UpdateRunAwayState",
         "CreatedNow",
         "CreateMoveClickIndicator",
         "DestructOldMoveIndicatorRequest",
@@ -226,6 +229,7 @@ public static class GameComponentsLookup {
         "Selected",
         "SelectedChanged",
         "SelectedNow",
+        "SelectingAnimator",
         "SingleSelectionRequest",
         "Unselected",
         "UnselectPreviouslySelectedRequest",
@@ -270,17 +274,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.AI.MakeDecisionTimer),
         typeof(Code.Gameplay.Features.AI.UnitAIComponent),
         typeof(Code.Gameplay.Features.AI.UnitDecisionComponent),
-        typeof(Code.Gameplay.Features.Animations.AnimateAttack),
-        typeof(Code.Gameplay.Features.Animations.AnimateDeath),
-        typeof(Code.Gameplay.Features.Animations.AnimateTakenDamage),
-        typeof(Code.Gameplay.Features.Animations.AttackAnimator),
-        typeof(Code.Gameplay.Features.Animations.DamageTakenAnimator),
-        typeof(Code.Gameplay.Features.Animations.DeathAnimator),
-        typeof(Code.Gameplay.Features.Animations.DisplayTimer),
-        typeof(Code.Gameplay.Features.Animations.HideTimer),
-        typeof(Code.Gameplay.Features.Animations.LookDirection),
-        typeof(Code.Gameplay.Features.Animations.MoveAnimator),
-        typeof(Code.Gameplay.Features.Animations.SelectingAnimator),
+        typeof(Code.Gameplay.Features.Battle.AnimateAttackRequest),
+        typeof(Code.Gameplay.Features.Battle.AttackAnimator),
         typeof(Code.Gameplay.Features.Battle.AttackCooldown),
         typeof(Code.Gameplay.Features.Battle.Attacking),
         typeof(Code.Gameplay.Features.Battle.AttackInterval),
@@ -300,8 +295,14 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.ControlAction.MoveWithAttackControlAction),
         typeof(Code.Gameplay.Features.ControlAction.SelectedAction),
         typeof(Code.Gameplay.Features.ControlAction.UnitCommandTypeIdComponent),
+        typeof(Code.Gameplay.Features.Death.AnimateDeath),
+        typeof(Code.Gameplay.Features.Death.DeathAnimator),
+        typeof(Code.Gameplay.Features.Death.DisplayTimer),
+        typeof(Code.Gameplay.Features.Death.HideTimer),
+        typeof(Code.Gameplay.Features.Effects.AnimateTakenDamage),
         typeof(Code.Gameplay.Features.Effects.CasterId),
         typeof(Code.Gameplay.Features.Effects.DamageEffect),
+        typeof(Code.Gameplay.Features.Effects.DamageTakenAnimator),
         typeof(Code.Gameplay.Features.Effects.EffectTypeIdComponent),
         typeof(Code.Gameplay.Features.Effects.EffectValue),
         typeof(Code.Gameplay.Features.Effects.TargetId),
@@ -326,9 +327,13 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.Destination),
         typeof(Code.Gameplay.Features.Move.EndDestination),
         typeof(Code.Gameplay.Features.Move.Idle),
+        typeof(Code.Gameplay.Features.Move.LookDirection),
         typeof(Code.Gameplay.Features.Move.Movable),
         typeof(Code.Gameplay.Features.Move.Move),
+        typeof(Code.Gameplay.Features.Move.MoveAnimator),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
+        typeof(Code.Gameplay.Features.Move.RunAway),
+        typeof(Code.Gameplay.Features.Move.UpdateRunAwayState),
         typeof(Code.Gameplay.Features.MoveIndicator.CreatedNow),
         typeof(Code.Gameplay.Features.MoveIndicator.CreateMoveClickIndicator),
         typeof(Code.Gameplay.Features.MoveIndicator.DestructOldMoveIndicatorRequest),
@@ -349,6 +354,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Selected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedChanged),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SelectedNow),
+        typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator),
         typeof(Code.Gameplay.Features.Select.SelectComponents.SingleSelectionRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),

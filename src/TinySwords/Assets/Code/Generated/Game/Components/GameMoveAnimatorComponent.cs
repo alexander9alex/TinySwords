@@ -33,21 +33,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.MoveAnimator moveAnimator { get { return (Code.Gameplay.Features.Animations.MoveAnimator)GetComponent(GameComponentsLookup.MoveAnimator); } }
-    public Code.Gameplay.Features.Animations.Animators.IMoveAnimator MoveAnimator { get { return moveAnimator.Value; } }
+    public Code.Gameplay.Features.Move.MoveAnimator moveAnimator { get { return (Code.Gameplay.Features.Move.MoveAnimator)GetComponent(GameComponentsLookup.MoveAnimator); } }
+    public Code.Gameplay.Features.Move.Animators.IMoveAnimator MoveAnimator { get { return moveAnimator.Value; } }
     public bool hasMoveAnimator { get { return HasComponent(GameComponentsLookup.MoveAnimator); } }
 
-    public GameEntity AddMoveAnimator(Code.Gameplay.Features.Animations.Animators.IMoveAnimator newValue) {
+    public GameEntity AddMoveAnimator(Code.Gameplay.Features.Move.Animators.IMoveAnimator newValue) {
         var index = GameComponentsLookup.MoveAnimator;
-        var component = (Code.Gameplay.Features.Animations.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.MoveAnimator));
+        var component = (Code.Gameplay.Features.Move.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Move.MoveAnimator));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceMoveAnimator(Code.Gameplay.Features.Animations.Animators.IMoveAnimator newValue) {
+    public GameEntity ReplaceMoveAnimator(Code.Gameplay.Features.Move.Animators.IMoveAnimator newValue) {
         var index = GameComponentsLookup.MoveAnimator;
-        var component = (Code.Gameplay.Features.Animations.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.MoveAnimator));
+        var component = (Code.Gameplay.Features.Move.MoveAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Move.MoveAnimator));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

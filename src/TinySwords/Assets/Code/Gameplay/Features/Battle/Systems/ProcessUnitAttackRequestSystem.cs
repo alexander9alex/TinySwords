@@ -25,7 +25,10 @@ namespace Code.Gameplay.Features.Battle.Systems
         if (unit != null && unit.isAlive && unit.isCanAttack)
         {
           unit.isCanAttack = false;
-          unit.isAnimateAttack = true;
+          unit.isNotAttacking = false;
+          unit.isAttacking = true;
+
+          unit.isAnimateAttackRequest = true;
         }
 
         request.isDestructed = true;

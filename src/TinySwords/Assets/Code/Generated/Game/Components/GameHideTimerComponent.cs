@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.HideTimer hideTimer { get { return (Code.Gameplay.Features.Animations.HideTimer)GetComponent(GameComponentsLookup.HideTimer); } }
+    public Code.Gameplay.Features.Death.HideTimer hideTimer { get { return (Code.Gameplay.Features.Death.HideTimer)GetComponent(GameComponentsLookup.HideTimer); } }
     public float HideTimer { get { return hideTimer.Value; } }
     public bool hasHideTimer { get { return HasComponent(GameComponentsLookup.HideTimer); } }
 
     public GameEntity AddHideTimer(float newValue) {
         var index = GameComponentsLookup.HideTimer;
-        var component = (Code.Gameplay.Features.Animations.HideTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.HideTimer));
+        var component = (Code.Gameplay.Features.Death.HideTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Death.HideTimer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceHideTimer(float newValue) {
         var index = GameComponentsLookup.HideTimer;
-        var component = (Code.Gameplay.Features.Animations.HideTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.HideTimer));
+        var component = (Code.Gameplay.Features.Death.HideTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Death.HideTimer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

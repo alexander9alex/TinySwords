@@ -8,13 +8,9 @@ namespace Code.Gameplay.Features.NavMesh
     public NavMeshFeature(ISystemFactory systems)
     {
       Add(systems.Create<AddRootSourceToNavMeshSystem>());
-      
       Add(systems.Create<BuildNavMeshAtStartSystem>());
-
       Add(systems.Create<AddSourceToNavMeshCachedSourcesSystem>());
-      
       Add(systems.Create<UpdateNavMeshSystem>());
-      
       Add(systems.Create<TurnOnNavMeshAgentSystem>());
     }
   }

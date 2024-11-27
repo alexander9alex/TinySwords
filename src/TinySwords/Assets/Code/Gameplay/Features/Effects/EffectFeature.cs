@@ -8,6 +8,8 @@ namespace Code.Gameplay.Features.Effects
     public EffectFeature(ISystemFactory systems)
     {
       Add(systems.Create<ProcessDamageEffectSystem>());
+      
+      Add(systems.Create<AnimateTakingDamageSystem>());
     }
   }
 }

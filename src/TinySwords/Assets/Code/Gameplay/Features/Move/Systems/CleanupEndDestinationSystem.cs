@@ -22,6 +22,7 @@ namespace Code.Gameplay.Features.Move.Systems
         if (Vector2.Distance(entity.Transform.position, entity.EndDestination) <= StoppingDistance)
         {
           entity.RemoveEndDestination();
+          entity.isRunAway = false;
         }
       }
     }

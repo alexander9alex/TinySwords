@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using Code.Gameplay.Features.Select.Animators;
+using Entitas;
 
 namespace Code.Gameplay.Features.Select
 {
@@ -13,5 +14,6 @@ namespace Code.Gameplay.Features.Select
     [Game] public class SingleSelectionRequest : IComponent { }
     [Game] public class MultipleSelectionRequest : IComponent { }
     [Game] public class UpdateHudControlButtons : IComponent { }
+    [Game] public class SelectingAnimator : IComponent { public ISelectingAnimator Value; }
   }
 }

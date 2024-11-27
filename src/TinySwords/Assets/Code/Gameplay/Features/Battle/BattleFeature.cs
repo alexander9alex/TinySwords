@@ -7,14 +7,15 @@ namespace Code.Gameplay.Features.Battle
   {
     public BattleFeature(ISystemFactory systems)
     {
+      Add(systems.Create<InitializeAttackAnimatorSystem>());
+
       Add(systems.Create<FinishAttackSystem>());
-      
       Add(systems.Create<TickToAttackCooldownSystem>());
+      
       Add(systems.Create<ProcessUnitAttackRequestSystem>());
-      
+      Add(systems.Create<AnimateAttackSystem>());
+
       Add(systems.Create<MakeHitSystem>());
-      
-      Add(systems.Create<UpdateUnitAttackStateSystem>());
     }
   }
 }

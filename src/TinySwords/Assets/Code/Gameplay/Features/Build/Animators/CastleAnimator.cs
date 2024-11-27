@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.Features.Animations.Animators;
+﻿using Code.Gameplay.Features.Select.Animators;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Build.Animators

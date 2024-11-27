@@ -1,9 +1,9 @@
 ﻿using Code.Gameplay.Features.AI;
-using Code.Gameplay.Features.Animations;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
+using Code.Gameplay.Features.ChangeEndDestination;
 using Code.Gameplay.Features.ControlAction;
-using Code.Gameplay.Features.Dead;
+using Code.Gameplay.Features.Death;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
 using Code.Gameplay.Features.FastInteraction;
@@ -36,21 +36,20 @@ namespace Code.Gameplay
       Add(systems.Create<FocusFeature>());
       
       Add(systems.Create<BuildFeature>());
-      
+
+      Add(systems.Create<CollectTargetsFeature>());
+      Add(systems.Create<ProcessMoveInputFeature>());
+      Add(systems.Create<AIFeature>());
+
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
       Add(systems.Create<MoveIndicatorFeature>());
       
-      Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());
       Add(systems.Create<HpBarFeature>());
-
-      Add(systems.Create<AIFeature>());
       
-      Add(systems.Create<AnimateFeature>());
-
-      Add(systems.Create<DeadFeature>());
+      Add(systems.Create<DeathFeature>());
       Add(systems.Create<ProcessDestructedFeature>());
     }
   }

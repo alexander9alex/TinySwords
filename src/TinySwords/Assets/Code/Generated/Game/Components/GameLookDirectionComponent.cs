@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.LookDirection lookDirection { get { return (Code.Gameplay.Features.Animations.LookDirection)GetComponent(GameComponentsLookup.LookDirection); } }
+    public Code.Gameplay.Features.Move.LookDirection lookDirection { get { return (Code.Gameplay.Features.Move.LookDirection)GetComponent(GameComponentsLookup.LookDirection); } }
     public UnityEngine.Vector2 LookDirection { get { return lookDirection.Value; } }
     public bool hasLookDirection { get { return HasComponent(GameComponentsLookup.LookDirection); } }
 
     public GameEntity AddLookDirection(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.LookDirection;
-        var component = (Code.Gameplay.Features.Animations.LookDirection)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.LookDirection));
+        var component = (Code.Gameplay.Features.Move.LookDirection)CreateComponent(index, typeof(Code.Gameplay.Features.Move.LookDirection));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceLookDirection(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.LookDirection;
-        var component = (Code.Gameplay.Features.Animations.LookDirection)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.LookDirection));
+        var component = (Code.Gameplay.Features.Move.LookDirection)CreateComponent(index, typeof(Code.Gameplay.Features.Move.LookDirection));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

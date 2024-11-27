@@ -1,5 +1,5 @@
 ﻿using Code.Gameplay.Common.Registrars;
-using Code.Gameplay.Features.Animations.Animators;
+using Code.Gameplay.Features.Units.Animators;
 
 namespace Code.Gameplay.Features.Units.Registrars
 {

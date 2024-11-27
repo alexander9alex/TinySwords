@@ -3,7 +3,7 @@ using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.ControlAction.Configs;
 using Code.Gameplay.Features.ControlAction.Data;
-using Code.Gameplay.Features.Dead.Configs;
+using Code.Gameplay.Features.Death.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;

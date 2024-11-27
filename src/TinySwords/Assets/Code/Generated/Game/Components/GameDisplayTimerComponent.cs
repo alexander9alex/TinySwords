@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.DisplayTimer displayTimer { get { return (Code.Gameplay.Features.Animations.DisplayTimer)GetComponent(GameComponentsLookup.DisplayTimer); } }
+    public Code.Gameplay.Features.Death.DisplayTimer displayTimer { get { return (Code.Gameplay.Features.Death.DisplayTimer)GetComponent(GameComponentsLookup.DisplayTimer); } }
     public float DisplayTimer { get { return displayTimer.Value; } }
     public bool hasDisplayTimer { get { return HasComponent(GameComponentsLookup.DisplayTimer); } }
 
     public GameEntity AddDisplayTimer(float newValue) {
         var index = GameComponentsLookup.DisplayTimer;
-        var component = (Code.Gameplay.Features.Animations.DisplayTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DisplayTimer));
+        var component = (Code.Gameplay.Features.Death.DisplayTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Death.DisplayTimer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceDisplayTimer(float newValue) {
         var index = GameComponentsLookup.DisplayTimer;
-        var component = (Code.Gameplay.Features.Animations.DisplayTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DisplayTimer));
+        var component = (Code.Gameplay.Features.Death.DisplayTimer)CreateComponent(index, typeof(Code.Gameplay.Features.Death.DisplayTimer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

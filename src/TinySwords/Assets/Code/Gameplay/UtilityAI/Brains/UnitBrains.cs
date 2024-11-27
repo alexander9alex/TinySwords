@@ -23,6 +23,7 @@ namespace Code.Gameplay.UtilityAI.Brains
         
         { When.ActionIsMoveToEndDestination, GetInput.HasEndDestination, Score.IfTrueThen(+10), "Has End Destination" },
         { When.ActionIsMoveToEndDestination, GetInput.HasTarget, Score.IfFalseThen(+30), "Has Not Target" },
+        { When.ActionIsMoveToEndDestination, GetInput.IsRunAway, Score.IfTrueThen(+150), "Run away" },
         
         { When.ActionIsMoveToTarget, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
         { When.ActionIsMoveToTarget, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Move to Nearest Target" },

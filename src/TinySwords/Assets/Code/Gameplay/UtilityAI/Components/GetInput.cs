@@ -33,5 +33,8 @@ namespace Code.Gameplay.UtilityAI.Components
 
       return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.AttackReach + 0.1f);
     }
+
+    public float IsRunAway(GameEntity unit, UnitDecision decision) =>
+      unit.isRunAway ? True : False;
   }
 }

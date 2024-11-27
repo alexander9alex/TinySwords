@@ -33,21 +33,21 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Animations.DeathAnimator deathAnimator { get { return (Code.Gameplay.Features.Animations.DeathAnimator)GetComponent(GameComponentsLookup.DeathAnimator); } }
-    public Code.Gameplay.Features.Animations.Animators.IDeathAnimator DeathAnimator { get { return deathAnimator.Value; } }
+    public Code.Gameplay.Features.Death.DeathAnimator deathAnimator { get { return (Code.Gameplay.Features.Death.DeathAnimator)GetComponent(GameComponentsLookup.DeathAnimator); } }
+    public Code.Gameplay.Features.Death.Animators.IDeathAnimator DeathAnimator { get { return deathAnimator.Value; } }
     public bool hasDeathAnimator { get { return HasComponent(GameComponentsLookup.DeathAnimator); } }
 
-    public GameEntity AddDeathAnimator(Code.Gameplay.Features.Animations.Animators.IDeathAnimator newValue) {
+    public GameEntity AddDeathAnimator(Code.Gameplay.Features.Death.Animators.IDeathAnimator newValue) {
         var index = GameComponentsLookup.DeathAnimator;
-        var component = (Code.Gameplay.Features.Animations.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DeathAnimator));
+        var component = (Code.Gameplay.Features.Death.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Death.DeathAnimator));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceDeathAnimator(Code.Gameplay.Features.Animations.Animators.IDeathAnimator newValue) {
+    public GameEntity ReplaceDeathAnimator(Code.Gameplay.Features.Death.Animators.IDeathAnimator newValue) {
         var index = GameComponentsLookup.DeathAnimator;
-        var component = (Code.Gameplay.Features.Animations.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Animations.DeathAnimator));
+        var component = (Code.Gameplay.Features.Death.DeathAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Death.DeathAnimator));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
