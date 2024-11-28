@@ -20,18 +20,11 @@ namespace Code.Gameplay.Features.Death.Systems
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
-        if (entity.CurrentHp <= 0)
-        {
-          if (entity.isUnit && entity.hasWorldPosition)
-          {
-            CreateEntity.Empty()
-              .AddWorldPosition(entity.WorldPosition)
-              .With(x => x.isAnimateDeath = true);
-          }
+        if (entity.CurrentHp > 0)
+          continue;
 
-          entity.isAlive = false;
-          entity.isDead = true;
-        }
+        entity.isAlive = false;
+        entity.isDead = true;
       }
     }
   }
