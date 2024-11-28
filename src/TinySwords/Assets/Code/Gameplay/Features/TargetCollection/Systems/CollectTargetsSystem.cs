@@ -18,7 +18,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.CollectTargetsRequest,
+          GameMatcher.MakeDecisionRequest,
           GameMatcher.CollectTargetsRadius,
           GameMatcher.TargetBuffer,
           GameMatcher.WorldPosition,
@@ -46,7 +46,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
         
         entity.ReplaceTargetBuffer(targets);
 
-        entity.isCollectTargetsRequest = false;
+        // entity.isCollectTargetsRequest = false;
       }
     }
 

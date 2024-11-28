@@ -5,5 +5,6 @@
     Unknown = 0,
     Move = 1,
     MoveWithAttack = 2,
+    AimedAttack = 3,
   }
 }

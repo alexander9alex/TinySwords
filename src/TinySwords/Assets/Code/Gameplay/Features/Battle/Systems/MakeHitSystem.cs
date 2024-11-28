@@ -33,9 +33,6 @@ namespace Code.Gameplay.Features.Battle.Systems
         GameEntity caster = _game.GetEntityWithId(request.CasterId);
         MakeHit(caster);
         
-        caster.isCollectTargetsRequest = true;
-        caster.isCollectReachedTargetsRequest = true;
-
         request.isDestructed = true;
       }
     }

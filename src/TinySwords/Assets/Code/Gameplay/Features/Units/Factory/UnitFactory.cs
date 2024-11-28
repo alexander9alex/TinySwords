@@ -50,13 +50,9 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddMakeDecisionInterval(config.MakeDecisionInterval)
 
         .AddTargetBuffer(new List<int>())
-        .AddCollectTargetsTimer(0)
-        .AddCollectTargetsInterval(config.CollectTargetsInterval)
         .AddCollectTargetsRadius(config.CollectTargetRadius)
 
         .AddReachedTargetBuffer(new List<int>())
-        .AddCollectReachedTargetsTimer(0)
-        .AddCollectReachedTargetsInterval(config.CollectReachedTargetsInterval)
         .AddCollectReachedTargetsRadius(config.AttackReach)
 
         .With(x => x.isUnit = true)
@@ -89,7 +85,8 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddAllUnitCommandTypeIds(new()
         {
           CommandTypeId.Move,
-          CommandTypeId.MoveWithAttack
+          CommandTypeId.MoveWithAttack,
+          CommandTypeId.AimedAttack,
         })
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)

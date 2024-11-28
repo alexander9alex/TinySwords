@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Constants;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Systems
 {
-  public class ProcessCommandSystem : IExecuteSystem
+  public class ProcessMoveWithAttackCommandSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _updateCommandRequests;
     private readonly List<GameEntity> _requestsBuffer = new(1);
@@ -13,10 +16,10 @@ namespace Code.Gameplay.Features.Command.Systems
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _selectedBuffer = new(32);
 
-    public ProcessCommandSystem(GameContext game)
+    public ProcessMoveWithAttackCommandSystem(GameContext game)
     {
       _updateCommandRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ProcessCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.ProcessCommand, GameMatcher.MoveWithAttackCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
 
       _selected = game.GetGroup(GameMatcher.AllOf(GameMatcher.Selected, GameMatcher.Alive));
     }
@@ -26,7 +29,6 @@ namespace Code.Gameplay.Features.Command.Systems
       foreach (GameEntity request in _updateCommandRequests.GetEntities(_requestsBuffer))
       {
         ProcessCommand(request);
-
         request.isDestructed = true;
       }
     }
@@ -34,15 +36,32 @@ namespace Code.Gameplay.Features.Command.Systems
     private void ProcessCommand(GameEntity request)
     {
       foreach (GameEntity selected in _selected.GetEntities(_selectedBuffer))
-        selected.ReplaceCommandTypeId(request.CommandTypeId);
-      
+        ProcessCommand(selected, request);
+        
       CreateEntity.Empty()
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isChangeEndDestinationRequest = true);
+        .With(x => x.isChangeEndDestinationRequest = true)
+        .With(x => x.isConvertWhenGroup = true);
 
       CreateEntity.Empty()
         .AddPositionOnScreen(request.PositionOnScreen)
         .With(x => x.isCreateMoveClickIndicator = true);
+    }
+    
+    private static void ProcessCommand(GameEntity selected, GameEntity request)
+    {
+      RemovePreviousCommand(selected);
+      selected.ReplaceCommandTypeId(request.CommandTypeId);
+    }
+    
+    private static void RemovePreviousCommand(GameEntity selected)
+    {
+      if (!selected.hasCommandTypeId)
+        return;
+      
+      CreateEntity.Empty()
+        .AddCommandTypeId(selected.CommandTypeId)
+        .With(x => x.isRemovePreviousCommand = true);
     }
   }
 }

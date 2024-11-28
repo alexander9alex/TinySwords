@@ -42,20 +42,9 @@ namespace Code.UI.Hud.Service
 
     public void ApplyCommand(CommandTypeId commandTypeId)
     {
-      GameEntity entity = CreateEntity.Empty()
+      CreateEntity.Empty()
+        .AddCommandTypeId(commandTypeId)
         .With(x => x.isCommand = true);
-
-      switch (commandTypeId)
-      {
-        case CommandTypeId.Move:
-          entity.AddCommandTypeId(CommandTypeId.Move);
-          break;
-        case CommandTypeId.MoveWithAttack:
-          entity.AddCommandTypeId(CommandTypeId.MoveWithAttack);
-          break;
-        default:
-          throw new ArgumentOutOfRangeException(nameof(commandTypeId), commandTypeId, null);
-      }
     }
 
     public void CancelCommand()

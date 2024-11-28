@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherCollectTargetsRequest;
+    static Entitas.IMatcher<GameEntity> _matcherMoveWithAttackCommand;
 
-    public static Entitas.IMatcher<GameEntity> CollectTargetsRequest {
+    public static Entitas.IMatcher<GameEntity> MoveWithAttackCommand {
         get {
-            if (_matcherCollectTargetsRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CollectTargetsRequest);
+            if (_matcherMoveWithAttackCommand == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveWithAttackCommand);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherCollectTargetsRequest = matcher;
+                _matcherMoveWithAttackCommand = matcher;
             }
 
-            return _matcherCollectTargetsRequest;
+            return _matcherMoveWithAttackCommand;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.TargetCollection.CollectTargetsRequest collectTargetsRequestComponent = new Code.Gameplay.Features.TargetCollection.CollectTargetsRequest();
+    static readonly Code.Gameplay.Features.Command.MoveWithAttackCommand moveWithAttackCommandComponent = new Code.Gameplay.Features.Command.MoveWithAttackCommand();
 
-    public bool isCollectTargetsRequest {
-        get { return HasComponent(GameComponentsLookup.CollectTargetsRequest); }
+    public bool isMoveWithAttackCommand {
+        get { return HasComponent(GameComponentsLookup.MoveWithAttackCommand); }
         set {
-            if (value != isCollectTargetsRequest) {
-                var index = GameComponentsLookup.CollectTargetsRequest;
+            if (value != isMoveWithAttackCommand) {
+                var index = GameComponentsLookup.MoveWithAttackCommand;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : collectTargetsRequestComponent;
+                            : moveWithAttackCommandComponent;
 
                     AddComponent(index, component);
                 } else {

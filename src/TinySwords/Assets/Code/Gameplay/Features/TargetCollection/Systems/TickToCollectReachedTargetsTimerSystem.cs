@@ -11,23 +11,23 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
     public TickToCollectReachedTargetsTimerSystem(GameContext game, ITimeService time)
     {
       _time = time;
-      _entities = game.GetGroup(GameMatcher.CollectReachedTargetsTimer);
+      // _entities = game.GetGroup(GameMatcher.CollectReachedTargetsTimer);
     }
 
     public void Execute()
     {
-      foreach (GameEntity entity in _entities)
-      {
-        entity.ReplaceCollectReachedTargetsTimer(entity.CollectReachedTargetsTimer - _time.DeltaTime);
-
-        if (entity.CollectReachedTargetsTimer <= 0)
-        {
-          entity.isCollectReachedTargetsRequest = true;
-
-          if (entity.hasCollectReachedTargetsInterval)
-            entity.ReplaceCollectReachedTargetsTimer(entity.CollectReachedTargetsInterval);
-        }
-      }
+      // foreach (GameEntity entity in _entities)
+      // {
+      //   entity.ReplaceCollectReachedTargetsTimer(entity.CollectReachedTargetsTimer - _time.DeltaTime);
+      //
+      //   if (entity.CollectReachedTargetsTimer <= 0)
+      //   {
+      //     entity.isCollectReachedTargetsRequest = true;
+      //
+      //     if (entity.hasCollectReachedTargetsInterval)
+      //       entity.ReplaceCollectReachedTargetsTimer(entity.CollectReachedTargetsInterval);
+      //   }
+      // }
     }
   }
 }

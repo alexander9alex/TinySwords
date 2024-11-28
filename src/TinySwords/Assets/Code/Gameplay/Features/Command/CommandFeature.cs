@@ -7,12 +7,18 @@ namespace Code.Gameplay.Features.Command
   {
     public CommandFeature(ISystemFactory systems)
     {
+      Add(systems.Create<RemoveCompletedCommandSystem>());
+      
       Add(systems.Create<SelectCommandSystem>());
       Add(systems.Create<ApplyCommandSystem>());
       Add(systems.Create<CancelCommandSystem>());
 
-      Add(systems.Create<ProcessCommandSystem>());
-      
+      Add(systems.Create<ProcessMoveCommandSystem>());
+      Add(systems.Create<ProcessMoveWithAttackCommandSystem>());
+      Add(systems.Create<ProcessAimedAttackCommandSystem>());
+
+      Add(systems.Create<RemovePreviousCommandSystem>());
+
       Add(systems.Create<CleanupApplyCommandRequestSystem>());
     }
   }

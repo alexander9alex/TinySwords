@@ -23,6 +23,7 @@ namespace Code.Gameplay.UtilityAI.Brains
         
         { When.ActionIsMoveToEndDestination, GetInput.HasEndDestination, Score.IfTrueThen(+10), "Has End Destination" },
         { When.ActionIsMoveToEndDestination, GetInput.HasTarget, Score.IfFalseThen(+30), "Has Not Target" },
+        { When.ActionIsMoveToEndDestination, GetInput.MoveToAimedTarget, Score.IfTrueThen(+150), "Move to Aimed Target" },
         
         { When.ActionIsMoveToTarget, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
         { When.ActionIsMoveToTarget, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
@@ -30,6 +31,7 @@ namespace Code.Gameplay.UtilityAI.Brains
         { When.ActionIsMoveToTarget, GetInput.CanReachToTarget, Score.IfFalseThen(+20), "Can not Reach to Target" },
         
         { When.ActionIsAttack, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
+        { When.ActionIsAttack, GetInput.IsAimedTarget, Score.IfTrueThen(+150), "Aimed Target" },
         { When.ActionIsAttack, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
         { When.ActionIsAttack, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Distance to Target" },
         { When.ActionIsAttack, GetInput.CanReachToTarget, Score.IfTrueThen(+20), "Can Reach to Target" },

@@ -2,7 +2,7 @@
 using Entitas;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Move.Systems
+namespace Code.Gameplay.Features.MoveInput.Systems
 {
   public class CleanupEndDestinationSystem : ICleanupSystem
   {
@@ -22,9 +22,6 @@ namespace Code.Gameplay.Features.Move.Systems
         if (Vector2.Distance(entity.WorldPosition, entity.EndDestination) <= StoppingDistance)
         {
           entity.RemoveEndDestination();
-          
-          if (entity.hasCommandTypeId)
-            entity.RemoveCommandTypeId();
         }
       }
     }

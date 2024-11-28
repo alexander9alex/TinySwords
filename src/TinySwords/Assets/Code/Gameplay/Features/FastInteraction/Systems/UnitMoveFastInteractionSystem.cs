@@ -32,6 +32,7 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
           CreateEntity.Empty()
             .AddPositionOnScreen(request.PositionOnScreen)
             .AddCommandTypeId(CommandTypeId.Move)
+            .With(x => x.isMoveCommand = true)
             .With(x => x.isProcessCommand = true);
 
           request.isProcessed = true;

@@ -48,6 +48,8 @@ namespace Code.Gameplay.Features.Focus.Systems
         GameConstants.FocusRadius,
         GameConstants.FocusLayerMask)
         .Where(x => x.isFocusing)
+        .Where(x => x.hasTransform)
+        .OrderBy(entity => entity.Transform.position.y)
         .ToList();
     }
   }

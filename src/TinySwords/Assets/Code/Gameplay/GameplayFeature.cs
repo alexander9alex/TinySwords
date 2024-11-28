@@ -15,7 +15,6 @@ using Code.Gameplay.Features.MoveIndicator;
 using Code.Gameplay.Features.MoveInput;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
-using Code.Gameplay.Features.TargetCollection;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -37,7 +36,6 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
-      Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<ProcessMoveInputFeature>());
       Add(systems.Create<AIFeature>());
 

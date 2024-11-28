@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherUpdateRunAwayState;
+    static Entitas.IMatcher<GameEntity> _matcherRemovePreviousCommand;
 
-    public static Entitas.IMatcher<GameEntity> UpdateRunAwayState {
+    public static Entitas.IMatcher<GameEntity> RemovePreviousCommand {
         get {
-            if (_matcherUpdateRunAwayState == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UpdateRunAwayState);
+            if (_matcherRemovePreviousCommand == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.RemovePreviousCommand);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherUpdateRunAwayState = matcher;
+                _matcherRemovePreviousCommand = matcher;
             }
 
-            return _matcherUpdateRunAwayState;
+            return _matcherRemovePreviousCommand;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.UpdateRunAwayState updateRunAwayStateComponent = new Code.Gameplay.Features.Move.UpdateRunAwayState();
+    static readonly Code.Gameplay.Features.Command.RemovePreviousCommand removePreviousCommandComponent = new Code.Gameplay.Features.Command.RemovePreviousCommand();
 
-    public bool isUpdateRunAwayState {
-        get { return HasComponent(GameComponentsLookup.UpdateRunAwayState); }
+    public bool isRemovePreviousCommand {
+        get { return HasComponent(GameComponentsLookup.RemovePreviousCommand); }
         set {
-            if (value != isUpdateRunAwayState) {
-                var index = GameComponentsLookup.UpdateRunAwayState;
+            if (value != isRemovePreviousCommand) {
+                var index = GameComponentsLookup.RemovePreviousCommand;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : updateRunAwayStateComponent;
+                            : removePreviousCommandComponent;
 
                     AddComponent(index, component);
                 } else {

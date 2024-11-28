@@ -22,7 +22,6 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<UpdateAvoidanceFeature>());
       
       Add(systems.Create<CleanupDestinationSystem>());
-      Add(systems.Create<CleanupEndDestinationSystem>());
     }
   }
 }

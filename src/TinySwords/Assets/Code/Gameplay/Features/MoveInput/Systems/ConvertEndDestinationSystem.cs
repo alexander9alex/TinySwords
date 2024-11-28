@@ -1,59 +1,55 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Common.Providers;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.MoveInput.Systems
 {
-  public class ChangeEndDestinationSystem : IExecuteSystem
+  public class ConvertEndDestinationSystem : IExecuteSystem
   {
-    private readonly ICameraProvider _cameraProvider;
-
-    private readonly IGroup<GameEntity> _changeEndDestinationRequests;
+    private readonly IGroup<GameEntity> _convertEndDestinationRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public ChangeEndDestinationSystem(GameContext game, ICameraProvider cameraProvider)
+    public ConvertEndDestinationSystem(GameContext game)
     {
-      _cameraProvider = cameraProvider;
-
-      _changeEndDestinationRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen));
+      _convertEndDestinationRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.ConvertWhenGroup, GameMatcher.WorldPosition));
 
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected, GameMatcher.Movable, GameMatcher.Alive));
+        .AllOf(GameMatcher.Selected, GameMatcher.Movable, GameMatcher.Alive, GameMatcher.Id));
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _changeEndDestinationRequests.GetEntities(_buffer))
+      foreach (GameEntity request in _convertEndDestinationRequests.GetEntities(_buffer))
       {
         if (_selected.count == 0)
           return;
-
-        List<Vector2> destinations = GetDestinations(request, _selected.count);
+        
+        List<Vector2> destinations = GetDestinations(request.WorldPosition, _selected.count);
 
         foreach (GameEntity selected in _selected)
         {
-          selected.ReplaceEndDestination(destinations.First());
-          selected.ReplaceMakeDecisionTimer(0);
-          selected.isUpdateRunAwayState = true;
-
+          CreateEntity.Empty()
+            .AddTargetId(selected.Id)
+            .AddWorldPosition(destinations.First())
+            .With(x => x.isChangeEndDestinationRequest = true);
+          
           destinations.RemoveAt(0);
         }
 
-        request.isDestructed = true;
+        request.isProcessed = true;
       }
     }
 
-    private List<Vector2> GetDestinations(GameEntity click, int countOfSelected)
+    private List<Vector2> GetDestinations(Vector3 pos, int countOfSelected)
     {
-      Vector3 clickWorldPos = _cameraProvider.MainCamera.ScreenToWorldPoint(click.PositionOnScreen);
-
       float sqrt = Mathf.Ceil(Mathf.Sqrt(countOfSelected));
-      Vector3 leftUpClickWorldPos = GetLeftUpClickWorldPos(clickWorldPos, sqrt);
+      Vector3 leftUpClickWorldPos = GetLeftUpClickWorldPos(pos, sqrt);
 
       List<Vector2> destinations = new();
 

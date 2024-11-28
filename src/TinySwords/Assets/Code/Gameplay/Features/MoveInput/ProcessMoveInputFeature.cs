@@ -7,7 +7,14 @@ namespace Code.Gameplay.Features.MoveInput
   {
     public ProcessMoveInputFeature(ISystemFactory systems)
     {
-      Add(systems.Create<ChangeEndDestinationSystem>());
+      Add(systems.Create<ConvertPositionOnEndDestinationRequestSystem>());
+      Add(systems.Create<ConvertEndDestinationSystem>());
+      
+      Add(systems.Create<ChangeEndDestinationAtAllSelectedSystem>());
+      Add(systems.Create<ChangeEndDestinationByIdSystem>());
+      
+      Add(systems.Create<CleanupEndDestinationSystem>());
+      Add(systems.Create<CleanupEndDestinationRequestSystem>());
     }
   }
 }

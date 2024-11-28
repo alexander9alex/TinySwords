@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherCollectReachedTargetsRequest;
+    static Entitas.IMatcher<GameEntity> _matcherConvertWhenGroup;
 
-    public static Entitas.IMatcher<GameEntity> CollectReachedTargetsRequest {
+    public static Entitas.IMatcher<GameEntity> ConvertWhenGroup {
         get {
-            if (_matcherCollectReachedTargetsRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CollectReachedTargetsRequest);
+            if (_matcherConvertWhenGroup == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ConvertWhenGroup);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherCollectReachedTargetsRequest = matcher;
+                _matcherConvertWhenGroup = matcher;
             }
 
-            return _matcherCollectReachedTargetsRequest;
+            return _matcherConvertWhenGroup;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRequest collectReachedTargetsRequestComponent = new Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRequest();
+    static readonly Code.Gameplay.Features.Move.ConvertWhenGroup convertWhenGroupComponent = new Code.Gameplay.Features.Move.ConvertWhenGroup();
 
-    public bool isCollectReachedTargetsRequest {
-        get { return HasComponent(GameComponentsLookup.CollectReachedTargetsRequest); }
+    public bool isConvertWhenGroup {
+        get { return HasComponent(GameComponentsLookup.ConvertWhenGroup); }
         set {
-            if (value != isCollectReachedTargetsRequest) {
-                var index = GameComponentsLookup.CollectReachedTargetsRequest;
+            if (value != isConvertWhenGroup) {
+                var index = GameComponentsLookup.ConvertWhenGroup;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : collectReachedTargetsRequestComponent;
+                            : convertWhenGroupComponent;
 
                     AddComponent(index, component);
                 } else {

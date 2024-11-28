@@ -10,6 +10,13 @@ namespace Code.Gameplay.UtilityAI.Components
     private const float False = 0;
     private const float True = 1;
 
+    private readonly GameContext _game;
+
+    public GetInput(GameContext game)
+    {
+      _game = game;
+    }
+
     public float HasEndDestination(GameEntity unit, UnitDecision decision) =>
       unit.hasEndDestination ? True : False;
 
@@ -41,6 +48,38 @@ namespace Code.Gameplay.UtilityAI.Components
         return False;
 
       return unit.CommandTypeId == CommandTypeId.Move
+        ? True
+        : False;
+    }
+
+    public float MoveToAimedTarget(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasCommandTypeId || !unit.hasAimedTargetId)
+        return False;
+
+      if (unit.CommandTypeId != CommandTypeId.AimedAttack)
+        return False;
+
+      GameEntity aimedTarget = _game.GetEntityWithId(unit.AimedTargetId);
+
+      if (aimedTarget is not { hasWorldPosition: true })
+        return False;
+
+      float distance = Vector2.Distance(aimedTarget.WorldPosition, decision.Destination);
+      return distance <= 0.25f
+        ? True
+        : False;
+    }
+
+    public float IsAimedTarget(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasCommandTypeId || !unit.hasAimedTargetId)
+        return False;
+
+      if (unit.CommandTypeId != CommandTypeId.AimedAttack)
+        return False;
+
+      return unit.AimedTargetId == decision.TargetId
         ? True
         : False;
     }

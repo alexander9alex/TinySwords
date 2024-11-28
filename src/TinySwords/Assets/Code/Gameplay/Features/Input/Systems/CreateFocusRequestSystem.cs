@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Entities;
 using Code.Common.Extensions;
 using Entitas;
 
@@ -18,7 +19,7 @@ namespace Code.Gameplay.Features.Input.Systems
     {
       foreach (GameEntity mousePos in _mousePositions.GetEntities(_buffer))
       {
-        mousePos
+        CreateEntity.Empty()
           .AddPositionOnScreen(mousePos.MousePositionOnScreen)
           .With(x => x.isFocusRequest = true);
       }

@@ -20,6 +20,7 @@ namespace Code.Gameplay.Constants
     {
       CommandTypeId.Move,
       CommandTypeId.MoveWithAttack,
+      CommandTypeId.AimedAttack,
     };
   }
 }
