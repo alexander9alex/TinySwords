@@ -6,6 +6,7 @@ using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
+using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
@@ -95,6 +96,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ITimeService>().To<TimeService>().AsSingle();
       Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
+      Container.Bind<ICommandService>().To<CommandService>().AsSingle();
     }
 
     private void BindGameplayFactories()

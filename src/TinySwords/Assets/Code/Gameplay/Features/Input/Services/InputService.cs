@@ -19,7 +19,6 @@ namespace Code.Gameplay.Features.Input.Services
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
-    private Vector2 _applyCommandStartedPos;
 
     public InputService()
     {
@@ -43,7 +42,6 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void InitActionIsActiveInputMap()
     {
-      _inputSystem.CommandIsActive.ApplyAction.started += ApplyCommandStarted;
       _inputSystem.CommandIsActive.ApplyAction.canceled += ApplyCommand;
 
       _inputSystem.CommandIsActive.CancelAction.canceled += CancelCommand;
@@ -118,17 +116,11 @@ namespace Code.Gameplay.Features.Input.Services
         .AddPositionOnScreen(_mousePos);
     }
 
-    private void ApplyCommandStarted(InputAction.CallbackContext context) =>
-      _applyCommandStartedPos = _mousePos;
-
     private void ApplyCommand(InputAction.CallbackContext context)
     {
       if (!ClickInGameZone(_mousePos))
         return;
 
-      if (Vector2.Distance(_applyCommandStartedPos, _mousePos) > GameConstants.SelectionClickDelta * 3)
-        return;
-      
       CreateEntity.Empty()
         .With(x => x.isApplyCommand = true)
         .AddPositionOnScreen(_mousePos);
@@ -156,7 +148,7 @@ namespace Code.Gameplay.Features.Input.Services
         if (result.gameObject.layer == GameConstants.UILayer)
           return result.gameObject.GetComponent<GameZoneLayout>() != null;
       }
-      
+
       return false;
     }
   }
