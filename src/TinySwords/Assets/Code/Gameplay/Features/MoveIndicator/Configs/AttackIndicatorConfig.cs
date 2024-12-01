@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.MoveIndicator.Configs
 {
-  [CreateAssetMenu(menuName = "Static Data/Indicators/Move Indicator", fileName = "MoveIndicatorConfig", order = 0)]
-  public class MoveIndicatorConfig : ScriptableObject
+  [CreateAssetMenu(menuName = "Static Data/Indicators/Attack Indicator", fileName = "AttackIndicatorConfig", order = 0)]
+  public class AttackIndicatorConfig : ScriptableObject
   {
     public EntityBehaviour IndicatorPrefab;
     public float IndicatorShowTime;

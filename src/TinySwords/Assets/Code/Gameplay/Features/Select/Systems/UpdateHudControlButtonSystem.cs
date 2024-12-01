@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Select.Systems
   public class UpdateHudControlButtonSystem : IExecuteSystem
   {
     private readonly IHudService _hudService;
-    
+
     private readonly IGroup<GameEntity> _updateHudControlButtonsRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
@@ -27,23 +27,31 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _updateHudControlButtonsRequests.GetEntities(_buffer))
       {
-        List<CommandTypeId> availableCommand = new(GameConstants.AllUnitCommands);
-
-        foreach (GameEntity selected in _selected)
-        {
-          if (!selected.hasAllUnitCommandTypeIds)
-          {
-            availableCommand.Clear();
-            break;
-          }
-
-          availableCommand = availableCommand.Intersect(selected.AllUnitCommandTypeIds).ToList();
-        }
-
-        _hudService.UpdateAvailableCommands(availableCommand);
+        _hudService.UpdateAvailableCommands(GetAvailableCommands());
 
         request.isDestructed = true;
       }
+    }
+
+    private List<CommandTypeId> GetAvailableCommands()
+    {
+      if (_selected.count == 0)
+        return new List<CommandTypeId>();
+      
+      List<CommandTypeId> availableCommand = new(GameConstants.AllUnitCommands);
+
+      foreach (GameEntity selected in _selected)
+      {
+        if (!selected.hasAllUnitCommandTypeIds)
+        {
+          availableCommand.Clear();
+          break;
+        }
+
+        availableCommand = availableCommand.Intersect(selected.AllUnitCommandTypeIds).ToList();
+      }
+
+      return availableCommand;
     }
   }
 }

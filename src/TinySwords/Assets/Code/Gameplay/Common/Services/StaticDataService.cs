@@ -37,6 +37,9 @@ namespace Code.Gameplay.Common.Services
     public MoveIndicatorConfig GetMoveIndicatorConfig() =>
       Resources.Load<MoveIndicatorConfig>("Configs/Indicators/MoveIndicatorConfig");
 
+    public AttackIndicatorConfig GetAttackIndicatorConfig() =>
+      Resources.Load<AttackIndicatorConfig>("Configs/Indicators/AttackIndicatorConfig");
+
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];
 

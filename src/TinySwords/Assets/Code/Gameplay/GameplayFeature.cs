@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.AI;
+using Code.Gameplay.Features.AttackIndicator;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.Command;
@@ -38,6 +39,8 @@ namespace Code.Gameplay
 
       Add(systems.Create<ProcessMoveInputFeature>());
       Add(systems.Create<AIFeature>());
+
+      Add(systems.Create<AttackIndicatorFeature>());
 
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());

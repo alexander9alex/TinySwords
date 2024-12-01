@@ -24,5 +24,17 @@ namespace Code.Gameplay.Features.MoveIndicator.Factory
         .With(x => x.isMoveIndicator = true)
         .With(x => x.isInitializationRequest = true);
     }
+
+    public GameEntity CreateAttackIndicator(Vector3 pos)
+    {
+      AttackIndicatorConfig config = _staticData.GetAttackIndicatorConfig();
+
+      return CreateEntity.Empty()
+        .AddViewPrefab(config.IndicatorPrefab)
+        .AddWorldPosition(pos.RemoveZ())
+        .AddSelfDestructTimer(config.IndicatorShowTime)
+        .With(x => x.isAttackIndicator = true)
+        .With(x => x.isInitializationRequest = true);
+    }
   }
 }

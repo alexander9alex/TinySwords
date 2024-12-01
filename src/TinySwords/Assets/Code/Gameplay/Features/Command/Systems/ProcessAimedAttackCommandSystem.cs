@@ -46,10 +46,10 @@ namespace Code.Gameplay.Features.Command.Systems
         .AddWorldPosition(target.WorldPosition)
         .With(x => x.isChangeEndDestinationRequest = true);
 
-      // CreateEntity.Empty()
-      // .AddPositionOnScreen(request.PositionOnScreen)
-      // .With(x => x.isCreateMoveClickIndicator = true);
-      // todo: create red indicator
+      CreateEntity.Empty()
+        .AddWorldPosition(target.WorldPosition)
+        .AddTargetId(target.Id)
+        .With(x => x.isCreateAttackIndicator = true);
     }
   }
 }
