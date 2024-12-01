@@ -7,6 +7,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
@@ -112,7 +113,7 @@ namespace Code.Gameplay.Features.Command.Services
     private static bool TargetIsNotSuitable(GameEntity possibleTarget) =>
       !TargetIsSuitable(possibleTarget);
 
-    private static bool TargetIsSuitable(GameEntity possibleTarget) =>
-      possibleTarget.hasId && possibleTarget.hasTransform && possibleTarget.hasWorldPosition;
+    private static bool TargetIsSuitable(GameEntity target) =>
+      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != TeamColor.Blue;
   }
 }
