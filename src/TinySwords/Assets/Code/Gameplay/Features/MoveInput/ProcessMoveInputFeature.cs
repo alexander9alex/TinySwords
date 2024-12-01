@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.MoveInput
       
       Add(systems.Create<ChangeEndDestinationAtAllSelectedSystem>());
       Add(systems.Create<ChangeEndDestinationByIdSystem>());
+      Add(systems.Create<ChangeEndDestinationWhenHasAimedTargetSystem>());
       
       Add(systems.Create<CleanupEndDestinationSystem>());
       Add(systems.Create<CleanupEndDestinationRequestSystem>());

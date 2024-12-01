@@ -19,8 +19,7 @@ namespace Code.Gameplay.Features.Units.Configs
     public float AttackReach;
     public float AttackCooldown = 1;
     public float CollectTargetRadius;
+    public float CollectAlliesRadius = 1;
     public float MakeDecisionInterval = 0.5f;
-    public float CollectTargetsInterval = 0.5f;
-    public float CollectReachedTargetsInterval = 0.1f;
   }
 }

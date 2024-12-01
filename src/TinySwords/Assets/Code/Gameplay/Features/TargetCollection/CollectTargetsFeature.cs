@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.TargetCollection
     {
       Add(systems.Create<CollectTargetsSystem>());
       Add(systems.Create<CollectReachedTargetsSystem>());
+      Add(systems.Create<CollectAlliesSystem>());
     }
   }
 }

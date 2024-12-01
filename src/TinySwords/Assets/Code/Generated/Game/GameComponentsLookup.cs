@@ -115,24 +115,27 @@ public static class GameComponentsLookup {
     public const int Unselected = 104;
     public const int UnselectPreviouslySelectedRequest = 105;
     public const int UpdateHudControlButtons = 106;
-    public const int CollectReachedTargetsRadius = 107;
-    public const int CollectTargetsRadius = 108;
-    public const int ReachedTargetBuffer = 109;
-    public const int TargetBuffer = 110;
-    public const int Alive = 111;
-    public const int AttackReach = 112;
-    public const int CurrentHp = 113;
-    public const int Damage = 114;
-    public const int Dead = 115;
-    public const int MaxHp = 116;
-    public const int Speed = 117;
-    public const int TeamColor = 118;
-    public const int Unit = 119;
-    public const int CurrentAvoidancePriority = 120;
-    public const int IdleAvoidancePriority = 121;
-    public const int MoveAvoidancePriority = 122;
+    public const int AllyBuffer = 107;
+    public const int AllyTargetId = 108;
+    public const int CollectAlliesRadius = 109;
+    public const int CollectReachedTargetsRadius = 110;
+    public const int CollectTargetsRadius = 111;
+    public const int ReachedTargetBuffer = 112;
+    public const int TargetBuffer = 113;
+    public const int Alive = 114;
+    public const int AttackReach = 115;
+    public const int CurrentHp = 116;
+    public const int Damage = 117;
+    public const int Dead = 118;
+    public const int MaxHp = 119;
+    public const int Speed = 120;
+    public const int TeamColor = 121;
+    public const int Unit = 122;
+    public const int CurrentAvoidancePriority = 123;
+    public const int IdleAvoidancePriority = 124;
+    public const int MoveAvoidancePriority = 125;
 
-    public const int TotalComponents = 123;
+    public const int TotalComponents = 126;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -242,6 +245,9 @@ public static class GameComponentsLookup {
         "Unselected",
         "UnselectPreviouslySelectedRequest",
         "UpdateHudControlButtons",
+        "AllyBuffer",
+        "AllyTargetId",
+        "CollectAlliesRadius",
         "CollectReachedTargetsRadius",
         "CollectTargetsRadius",
         "ReachedTargetBuffer",
@@ -368,6 +374,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
+        typeof(Code.Gameplay.Features.TargetCollection.AllyBuffer),
+        typeof(Code.Gameplay.Features.TargetCollection.AllyTargetId),
+        typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius),
         typeof(Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius),
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRadius),
         typeof(Code.Gameplay.Features.TargetCollection.ReachedTargetBuffer),

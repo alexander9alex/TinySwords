@@ -30,6 +30,9 @@ namespace Code.Gameplay.UtilityAI.Brains
         { When.ActionIsMoveToTarget, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Move to Nearest Target" },
         { When.ActionIsMoveToTarget, GetInput.CanReachToTarget, Score.IfFalseThen(+20), "Can not Reach to Target" },
         
+        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfTrueThen(-100), "Has not Target" },
+        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfFalseThen(+20), "Has Target" },
+        
         { When.ActionIsAttack, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
         { When.ActionIsAttack, GetInput.IsAimedTarget, Score.IfTrueThen(+150), "Aimed Target" },
         { When.ActionIsAttack, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
@@ -37,8 +40,8 @@ namespace Code.Gameplay.UtilityAI.Brains
         { When.ActionIsAttack, GetInput.CanReachToTarget, Score.IfTrueThen(+20), "Can Reach to Target" },
         { When.ActionIsAttack, GetInput.PercentageReachToTarget, Score.ScaledByReversed(50), "Attack Nearest Target" },
         
-        // if target is unit => +100
-        // if target is building => +50
+        // todo if target is unit => +100
+        // todo if target is building => +50
       };
     }
 

@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Battle.Systems
       {
         GameEntity target = _game.GetEntityWithId(unit.TargetId);
 
-        if (target.hasWorldPosition)
+        if (target is { hasWorldPosition: true })
           unit.AttackAnimator.AnimateAttack((target.WorldPosition - unit.WorldPosition).normalized);
 
         unit.isAnimateAttackRequest = false;

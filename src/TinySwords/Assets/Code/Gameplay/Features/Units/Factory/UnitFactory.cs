@@ -55,6 +55,9 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddReachedTargetBuffer(new List<int>())
         .AddCollectReachedTargetsRadius(config.AttackReach)
 
+        .AddAllyBuffer(new List<int>())
+        .AddCollectAlliesRadius(config.CollectAlliesRadius)
+        
         .With(x => x.isUnit = true)
         .With(x => x.isIdle = true)
         .With(x => x.isInitializationRequest = true)

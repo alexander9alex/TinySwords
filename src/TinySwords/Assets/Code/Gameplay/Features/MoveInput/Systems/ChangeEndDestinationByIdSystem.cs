@@ -6,14 +6,14 @@ namespace Code.Gameplay.Features.MoveInput.Systems
   public class ChangeEndDestinationByIdSystem : IExecuteSystem
   {
     private readonly GameContext _game;
-    
+
     private readonly IGroup<GameEntity> _changeEndDestinationRequests;
     private readonly List<GameEntity> _buffer = new(1);
 
     public ChangeEndDestinationByIdSystem(GameContext game)
     {
       _game = game;
-      
+
       _changeEndDestinationRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.WorldPosition, GameMatcher.TargetId));
     }
@@ -29,6 +29,30 @@ namespace Code.Gameplay.Features.MoveInput.Systems
 
         target.ReplaceEndDestination(request.WorldPosition);
         target.ReplaceMakeDecisionTimer(0);
+      }
+    }
+  }
+
+  public class ChangeEndDestinationWhenHasAimedTargetSystem : IExecuteSystem
+  {
+    private readonly IGroup<GameEntity> _entities;
+    private readonly GameContext _game;
+
+    public ChangeEndDestinationWhenHasAimedTargetSystem(GameContext game)
+    {
+      _game = game;
+      _entities = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.AimedTargetId, GameMatcher.EndDestination));
+    }
+
+    public void Execute()
+    {
+      foreach (GameEntity entity in _entities)
+      {
+        GameEntity aimedTarget = _game.GetEntityWithId(entity.AimedTargetId);
+
+        if (aimedTarget is { isAlive: true, hasWorldPosition: true })
+          entity.ReplaceEndDestination(aimedTarget.WorldPosition);
       }
     }
   }

@@ -15,5 +15,8 @@ namespace Code.Gameplay.UtilityAI.Components
 
     public bool ActionIsAttack(GameEntity unit, UnitDecision decision) =>
       decision.UnitDecisionTypeId == UnitDecisionTypeId.Attack;
+
+    public bool ActionIsMoveToAllyTarget(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToAllyTarget;
   }
 }

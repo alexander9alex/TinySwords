@@ -45,8 +45,6 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
         }
         
         entity.ReplaceTargetBuffer(targets);
-
-        // entity.isCollectTargetsRequest = false;
       }
     }
 

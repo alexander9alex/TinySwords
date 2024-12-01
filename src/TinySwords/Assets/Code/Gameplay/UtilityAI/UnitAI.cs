@@ -49,6 +49,9 @@ namespace Code.Gameplay.UtilityAI
       foreach (UnitDecision moveToTargetDecision in MoveToTargetDecisions(unit))
         yield return moveToTargetDecision;
 
+      foreach (UnitDecision moveToAllyTargetDecision in MoveToAlliesTargetDecisions(unit))
+        yield return moveToAllyTargetDecision;
+
       foreach (UnitDecision unitDecision in AttackTargetDecisions(unit))
         yield return unitDecision;
     }
@@ -77,6 +80,57 @@ namespace Code.Gameplay.UtilityAI
 
         if (target is { isAlive: true })
           yield return MoveToTargetDecision(target);
+      }
+    }
+
+    private IEnumerable<UnitDecision> MoveToAlliesTargetDecisions(GameEntity unit)
+    {
+      if (!unit.hasAllyBuffer)
+        yield break;
+
+      foreach (int allyId in unit.AllyBuffer)
+      {
+        GameEntity ally = _gameContext.GetEntityWithId(allyId);
+
+        if (ally is not { isAlive: true, hasTargetBuffer: true })
+          continue;
+
+        foreach (UnitDecision moveToAllyTargetDecision in MoveToAllyTargetDecisions(ally))
+          yield return moveToAllyTargetDecision;
+      }
+    }
+
+    private IEnumerable<UnitDecision> MoveToAllyTargetDecisions(GameEntity ally)
+    {
+      if (ally.TargetBuffer.Count > 0)
+      {
+        foreach (UnitDecision moveToAllyTargetDecision in MoveToAllyTargetWhenHasTarget(ally))
+          yield return moveToAllyTargetDecision;
+        
+        yield break;
+      }
+      
+      if (ally.hasAllyTargetId)
+        foreach (UnitDecision moveToAllyTargetDecision in MoveToAllyTargetWhenAllyHasNotTarget(ally))
+          yield return moveToAllyTargetDecision;
+    }
+
+    private IEnumerable<UnitDecision> MoveToAllyTargetWhenAllyHasNotTarget(GameEntity ally)
+    {
+      GameEntity target = _gameContext.GetEntityWithId(ally.AllyTargetId);
+
+      if (target is { isAlive: true })
+        yield return MoveToAllyTargetDecision(target);
+    }
+
+    private IEnumerable<UnitDecision> MoveToAllyTargetWhenHasTarget(GameEntity ally)
+    {
+      foreach (int targetId in ally.TargetBuffer)
+      {
+        GameEntity target = _gameContext.GetEntityWithId(targetId);
+
+        if (target is { isAlive: true })
+          yield return MoveToAllyTargetDecision(target);
       }
     }
 
@@ -117,6 +171,21 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,
+        Destination = target.WorldPosition
+      };
+    }
+
+    private UnitDecision MoveToAllyTargetDecision(GameEntity target)
+    {
+      // return new UnitDecision
+      // {
+      // UnitDecisionTypeId = UnitDecisionTypeId.MoveToAllyTarget,
+      // Destination = ally.Destination
+      // };
+
+      return new UnitDecision
+      {
+        UnitDecisionTypeId = UnitDecisionTypeId.MoveToAllyTarget,
         Destination = target.WorldPosition
       };
     }

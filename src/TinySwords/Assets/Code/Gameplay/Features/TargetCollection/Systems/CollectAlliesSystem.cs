@@ -1,25 +1,25 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Entitas;
 
 namespace Code.Gameplay.Features.TargetCollection.Systems
 {
-  public class CollectReachedTargetsSystem : IExecuteSystem
+  public class CollectAlliesSystem : IExecuteSystem
   {
     private readonly IPhysicsService _physicsService;
     private readonly IGroup<GameEntity> _entities;
     private readonly List<GameEntity> _buffer = new(32);
 
-    public CollectReachedTargetsSystem(GameContext game, IPhysicsService physicsService)
+    public CollectAlliesSystem(GameContext game, IPhysicsService physicsService)
     {
       _physicsService = physicsService;
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.MakeDecisionRequest,
-          GameMatcher.CollectReachedTargetsRadius,
-          GameMatcher.ReachedTargetBuffer,
+          GameMatcher.CollectAlliesRadius,
+          GameMatcher.AllyBuffer,
           GameMatcher.WorldPosition,
           GameMatcher.TeamColor,
           GameMatcher.Alive
@@ -30,24 +30,24 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
-        List<int> targets = new();
+        List<int> allies = new();
         
-        foreach (GameEntity target in GetTargetsInRadius(entity))
+        foreach (GameEntity ally in GetAlliesInRadius(entity))
         {
-          if (!target.isAlive || !target.hasTeamColor || !target.hasId)
+          if (!ally.isAlive || !ally.hasTeamColor || !ally.hasId)
             continue;
           
-          if (entity.TeamColor == target.TeamColor)
+          if (entity.TeamColor != ally.TeamColor)
             continue;
 
-          targets.Add(target.Id);
+          allies.Add(ally.Id);
         }
 
-        entity.ReplaceReachedTargetBuffer(targets);
+        entity.ReplaceAllyBuffer(allies);
       }
     }
 
-    private IEnumerable<GameEntity> GetTargetsInRadius(GameEntity entity)
+    private IEnumerable<GameEntity> GetAlliesInRadius(GameEntity entity)
     {
       return _physicsService.CircleCast(
         entity.WorldPosition,
