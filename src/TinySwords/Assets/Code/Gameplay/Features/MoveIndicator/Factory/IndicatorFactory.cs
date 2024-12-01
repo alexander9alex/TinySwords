@@ -6,22 +6,22 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.MoveIndicator.Factory
 {
-  class MoveClickIndicatorFactory : IMoveClickIndicatorFactory
+  class IndicatorFactory : IIndicatorFactory
   {
     private readonly IStaticDataService _staticData;
 
-    public MoveClickIndicatorFactory(IStaticDataService staticData) =>
+    public IndicatorFactory(IStaticDataService staticData) =>
       _staticData = staticData;
 
     public GameEntity CreateMoveIndicator(Vector3 pos)
     {
-      MoveClickIndicatorConfig config = _staticData.GetMoveClickIndicatorConfig();
+      MoveIndicatorConfig config = _staticData.GetMoveIndicatorConfig();
 
       return CreateEntity.Empty()
         .AddViewPrefab(config.IndicatorPrefab)
         .AddWorldPosition(pos.RemoveZ())
         .AddSelfDestructTimer(config.IndicatorShowTime)
-        .With(x => x.isMoveClickIndicator = true)
+        .With(x => x.isMoveIndicator = true)
         .With(x => x.isInitializationRequest = true);
     }
   }

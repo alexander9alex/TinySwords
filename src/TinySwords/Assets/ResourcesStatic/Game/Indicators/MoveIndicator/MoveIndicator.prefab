@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5155933176537150180}
   - component: {fileID: 6092280616934036006}
   m_Layer: 10
-  m_Name: MoveClickIndicator
+  m_Name: MoveIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

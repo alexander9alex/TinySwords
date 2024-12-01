@@ -3,14 +3,14 @@ using Entitas;
 
 namespace Code.Gameplay.Features.MoveIndicator.Systems
 {
-  public class CleanupCreatedNowSystem : ICleanupSystem
+  public class CleanupCreatedNowMoveIndicatorSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _createdNow;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public CleanupCreatedNowSystem(GameContext game)
+    public CleanupCreatedNowMoveIndicatorSystem(GameContext game)
     {
-      _createdNow = game.GetGroup(GameMatcher.AllOf(GameMatcher.CreatedNow));
+      _createdNow = game.GetGroup(GameMatcher.AllOf(GameMatcher.MoveIndicator, GameMatcher.CreatedNow));
     }
 
     public void Cleanup()

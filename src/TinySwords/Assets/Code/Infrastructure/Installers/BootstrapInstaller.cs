@@ -102,7 +102,7 @@ namespace Code.Infrastructure.Installers
     private void BindGameplayFactories()
     {
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
-      Container.Bind<IMoveClickIndicatorFactory>().To<MoveClickIndicatorFactory>().AsSingle();
+      Container.Bind<IIndicatorFactory>().To<IndicatorFactory>().AsSingle();
       Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
       Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
     }

@@ -87,9 +87,9 @@ public static class GameComponentsLookup {
     public const int MoveAnimator = 76;
     public const int MoveDirection = 77;
     public const int CreatedNow = 78;
-    public const int CreateMoveClickIndicator = 79;
+    public const int CreateMoveIndicator = 79;
     public const int DestructOldMoveIndicatorRequest = 80;
-    public const int MoveClickIndicator = 81;
+    public const int MoveIndicator = 81;
     public const int AddToNavMeshCachedSources = 82;
     public const int BuildNavMeshAtStart = 83;
     public const int NavMesh = 84;
@@ -210,9 +210,9 @@ public static class GameComponentsLookup {
         "MoveAnimator",
         "MoveDirection",
         "CreatedNow",
-        "CreateMoveClickIndicator",
+        "CreateMoveIndicator",
         "DestructOldMoveIndicatorRequest",
-        "MoveClickIndicator",
+        "MoveIndicator",
         "AddToNavMeshCachedSources",
         "BuildNavMeshAtStart",
         "NavMesh",
@@ -332,9 +332,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.MoveAnimator),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
         typeof(Code.Gameplay.Features.MoveIndicator.CreatedNow),
-        typeof(Code.Gameplay.Features.MoveIndicator.CreateMoveClickIndicator),
+        typeof(Code.Gameplay.Features.MoveIndicator.CreateMoveIndicator),
         typeof(Code.Gameplay.Features.MoveIndicator.DestructOldMoveIndicatorRequest),
-        typeof(Code.Gameplay.Features.MoveIndicator.MoveClickIndicator),
+        typeof(Code.Gameplay.Features.MoveIndicator.MoveIndicator),
         typeof(Code.Gameplay.Features.NavMesh.AddToNavMeshCachedSources),
         typeof(Code.Gameplay.Features.NavMesh.BuildNavMeshAtStart),
         typeof(Code.Gameplay.Features.NavMesh.NavMesh),

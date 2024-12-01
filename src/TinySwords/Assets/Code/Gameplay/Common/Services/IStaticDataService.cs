@@ -16,7 +16,7 @@ namespace Code.Gameplay.Common.Services
     void LoadAll();
     UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color);
     EntityBehaviour GetHighlightViewPrefab();
-    MoveClickIndicatorConfig GetMoveClickIndicatorConfig();
+    MoveIndicatorConfig GetMoveIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);

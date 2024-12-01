@@ -2,7 +2,7 @@
 
 namespace Code.Gameplay.Features.MoveIndicator.Factory
 {
-  public interface IMoveClickIndicatorFactory
+  public interface IIndicatorFactory
   {
     GameEntity CreateMoveIndicator(Vector3 pos);
   }

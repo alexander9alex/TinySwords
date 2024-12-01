@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMoveClickIndicator;
+    static Entitas.IMatcher<GameEntity> _matcherMoveIndicator;
 
-    public static Entitas.IMatcher<GameEntity> MoveClickIndicator {
+    public static Entitas.IMatcher<GameEntity> MoveIndicator {
         get {
-            if (_matcherMoveClickIndicator == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveClickIndicator);
+            if (_matcherMoveIndicator == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MoveIndicator);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMoveClickIndicator = matcher;
+                _matcherMoveIndicator = matcher;
             }
 
-            return _matcherMoveClickIndicator;
+            return _matcherMoveIndicator;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.MoveIndicator.MoveClickIndicator moveClickIndicatorComponent = new Code.Gameplay.Features.MoveIndicator.MoveClickIndicator();
+    static readonly Code.Gameplay.Features.MoveIndicator.MoveIndicator moveIndicatorComponent = new Code.Gameplay.Features.MoveIndicator.MoveIndicator();
 
-    public bool isMoveClickIndicator {
-        get { return HasComponent(GameComponentsLookup.MoveClickIndicator); }
+    public bool isMoveIndicator {
+        get { return HasComponent(GameComponentsLookup.MoveIndicator); }
         set {
-            if (value != isMoveClickIndicator) {
-                var index = GameComponentsLookup.MoveClickIndicator;
+            if (value != isMoveIndicator) {
+                var index = GameComponentsLookup.MoveIndicator;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : moveClickIndicatorComponent;
+                            : moveIndicatorComponent;
 
                     AddComponent(index, component);
                 } else {

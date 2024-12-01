@@ -42,7 +42,7 @@ namespace Code.Gameplay.Features.Command.Systems
 
       CreateEntity.Empty()
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isCreateMoveClickIndicator = true);
+        .With(x => x.isCreateMoveIndicator = true);
     }
 
     private static void ProcessCommand(GameEntity selected, GameEntity request)

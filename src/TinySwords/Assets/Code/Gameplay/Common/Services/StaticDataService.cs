@@ -34,8 +34,8 @@ namespace Code.Gameplay.Common.Services
     public EntityBehaviour GetHighlightViewPrefab() =>
       Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
 
-    public MoveClickIndicatorConfig GetMoveClickIndicatorConfig() =>
-      Resources.Load<MoveClickIndicatorConfig>("Configs/MoveClickIndicator/MoveClickIndicatorConfig");
+    public MoveIndicatorConfig GetMoveIndicatorConfig() =>
+      Resources.Load<MoveIndicatorConfig>("Configs/Indicators/MoveIndicatorConfig");
 
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];

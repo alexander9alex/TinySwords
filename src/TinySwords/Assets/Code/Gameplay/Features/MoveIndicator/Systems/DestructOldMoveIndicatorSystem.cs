@@ -3,20 +3,20 @@ using Entitas;
 
 namespace Code.Gameplay.Features.MoveIndicator.Systems
 {
-  public class DestructOldClickIndicatorSystem : IExecuteSystem
+  public class DestructOldMoveIndicatorSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _destructOldMoveIndicatorRequests;
     private readonly List<GameEntity> _requestsBuffer = new(1);
 
-    private readonly IGroup<GameEntity> _moveClickIndicators;
+    private readonly IGroup<GameEntity> _moveIndicators;
     private readonly List<GameEntity> _indicatorsBuffer = new(1);
 
-    public DestructOldClickIndicatorSystem(GameContext game)
+    public DestructOldMoveIndicatorSystem(GameContext game)
     {
       _destructOldMoveIndicatorRequests = game.GetGroup(GameMatcher.DestructOldMoveIndicatorRequest);
 
-      _moveClickIndicators = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MoveClickIndicator)
+      _moveIndicators = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.MoveIndicator)
         .NoneOf(GameMatcher.CreatedNow));
     }
 
@@ -24,10 +24,8 @@ namespace Code.Gameplay.Features.MoveIndicator.Systems
     {
       foreach (GameEntity request in _destructOldMoveIndicatorRequests.GetEntities(_requestsBuffer))
       {
-        foreach (GameEntity indicator in _moveClickIndicators.GetEntities(_indicatorsBuffer))
-        {
+        foreach (GameEntity indicator in _moveIndicators.GetEntities(_indicatorsBuffer))
           indicator.isDestructed = true;
-        }
 
         request.isDestructed = true;
       }

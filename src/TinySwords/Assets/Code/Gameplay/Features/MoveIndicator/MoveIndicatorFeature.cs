@@ -7,10 +7,10 @@ namespace Code.Gameplay.Features.MoveIndicator
   {
     public MoveIndicatorFeature(ISystemFactory systems)
     {
-      Add(systems.Create<CreateMoveClickIndicatorSystem>());
-      Add(systems.Create<DestructOldClickIndicatorSystem>());
+      Add(systems.Create<CreateMoveIndicatorSystem>());
+      Add(systems.Create<DestructOldMoveIndicatorSystem>());
       
-      Add(systems.Create<CleanupCreatedNowSystem>());
+      Add(systems.Create<CleanupCreatedNowMoveIndicatorSystem>());
     }
   }
 }
