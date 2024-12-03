@@ -34,7 +34,10 @@ namespace Code.Gameplay.Features.Sounds.Factory
         .AddViewPrefab(config.SoundPrefab)
         .AddWorldPosition(PositionRelativeCamera(pos))
         .With(x => x.isInitializationRequest = true)
-        .With(x => x.isPlayRequest = true);
+        .With(x => x.isPlayRequest = true)
+        .With(x => x.AddMinPitch(config.MinPitch), when: config.MinPitch != 0)
+        .With(x => x.AddMaxPitch(config.MaxPitch), when: config.MaxPitch != 0)
+        ;
     }
 
     private Vector3 PositionRelativeCamera(Vector2 pos) =>

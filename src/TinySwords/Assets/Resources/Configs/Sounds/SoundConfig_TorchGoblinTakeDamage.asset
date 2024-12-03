@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundId: 300
   SoundPrefab: {fileID: 8630534347271327143, guid: 06027a45d1b0ebe4392de941fb288482, type: 3}
+  MinPitch: 0.95
+  MaxPitch: 1.05

@@ -118,30 +118,32 @@ public static class GameComponentsLookup {
     public const int UpdateHudControlButtons = 107;
     public const int AudioSource = 108;
     public const int CreateSound = 109;
-    public const int PlayRequest = 110;
-    public const int SoundId = 111;
-    public const int AllyBuffer = 112;
-    public const int AllyTargetId = 113;
-    public const int CollectAlliesRadius = 114;
-    public const int CollectReachedTargetsRadius = 115;
-    public const int CollectTargetsRadius = 116;
-    public const int ReachedTargetBuffer = 117;
-    public const int TargetBuffer = 118;
-    public const int Alive = 119;
-    public const int AttackReach = 120;
-    public const int CurrentHp = 121;
-    public const int Damage = 122;
-    public const int Dead = 123;
-    public const int MaxHp = 124;
-    public const int Speed = 125;
-    public const int TeamColor = 126;
-    public const int Unit = 127;
-    public const int UnitTypeId = 128;
-    public const int CurrentAvoidancePriority = 129;
-    public const int IdleAvoidancePriority = 130;
-    public const int MoveAvoidancePriority = 131;
+    public const int MaxPitch = 110;
+    public const int MinPitch = 111;
+    public const int PlayRequest = 112;
+    public const int SoundId = 113;
+    public const int AllyBuffer = 114;
+    public const int AllyTargetId = 115;
+    public const int CollectAlliesRadius = 116;
+    public const int CollectReachedTargetsRadius = 117;
+    public const int CollectTargetsRadius = 118;
+    public const int ReachedTargetBuffer = 119;
+    public const int TargetBuffer = 120;
+    public const int Alive = 121;
+    public const int AttackReach = 122;
+    public const int CurrentHp = 123;
+    public const int Damage = 124;
+    public const int Dead = 125;
+    public const int MaxHp = 126;
+    public const int Speed = 127;
+    public const int TeamColor = 128;
+    public const int Unit = 129;
+    public const int UnitTypeId = 130;
+    public const int CurrentAvoidancePriority = 131;
+    public const int IdleAvoidancePriority = 132;
+    public const int MoveAvoidancePriority = 133;
 
-    public const int TotalComponents = 132;
+    public const int TotalComponents = 134;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -254,6 +256,8 @@ public static class GameComponentsLookup {
         "UpdateHudControlButtons",
         "AudioSource",
         "CreateSound",
+        "MaxPitch",
+        "MinPitch",
         "PlayRequest",
         "SoundId",
         "AllyBuffer",
@@ -389,6 +393,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
         typeof(Code.Gameplay.Features.Sounds.AudioSourceComponent),
         typeof(Code.Gameplay.Features.Sounds.CreateSound),
+        typeof(Code.Gameplay.Features.Sounds.MaxPitch),
+        typeof(Code.Gameplay.Features.Sounds.MinPitch),
         typeof(Code.Gameplay.Features.Sounds.PlayRequest),
         typeof(Code.Gameplay.Features.Sounds.SoundIdComponent),
         typeof(Code.Gameplay.Features.TargetCollection.AllyBuffer),

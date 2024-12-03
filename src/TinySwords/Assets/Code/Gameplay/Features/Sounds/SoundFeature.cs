@@ -9,6 +9,8 @@ namespace Code.Gameplay.Features.Sounds
     {
       Add(systems.Create<CreateSoundSystem>());
       Add(systems.Create<CreateSoundInPositionSystem>());
+      
+      Add(systems.Create<SetRandomPitchSystem>());
 
       Add(systems.Create<PlaySoundSystem>());
     }
