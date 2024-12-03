@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
     public PlaySoundSystem(GameContext game)
     {
       _sounds = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AudioSource, GameMatcher.PlayRequest));
+        .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest));
     }
 
     public void Execute()
@@ -21,7 +21,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
         sound.AudioSource.Play();
         sound.AddSelfDestructTimer(sound.AudioSource.clip.length);
 
-        sound.isPlayRequest = false;
+        sound.isPlaySoundRequest = false;
       }
     }
   }

@@ -31,5 +31,30 @@ namespace Code.Gameplay.Features.Sounds.Services
           throw new ArgumentOutOfRangeException();
       }
     }
+
+    public void PlayMakeDamageSound(GameEntity entity)
+    {
+      if (!entity.hasUnitTypeId && !entity.hasWorldPosition)
+        return;
+
+      GameEntity createSoundRequest = CreateEntity.Empty()
+        .AddWorldPosition(entity.WorldPosition)
+        .With(x => x.isCreateSound = true);
+
+      switch (entity.UnitTypeId)
+      {
+        case UnitTypeId.Knight:
+          createSoundRequest
+            .AddSoundId(SoundId.KnightMakeHit);
+          break;
+        case UnitTypeId.TorchGoblin:
+          createSoundRequest
+            .AddSoundId(SoundId.TorchGoblinMakeHit);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+      
+    }
   }
 }

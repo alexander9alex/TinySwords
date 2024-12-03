@@ -8,8 +8,9 @@ namespace Code.Gameplay.Features.Sounds.Configs
   public class SoundConfig : ScriptableObject
   {
     public SoundId SoundId;
-    
+
     public EntityBehaviour SoundPrefab;
+    public float Delay = 0;
     public float MinPitch = 0;
     public float MaxPitch = 0;
   }

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2396eed80c43b6b016ec536ef18548, type: 3}
-  m_Name: SoundConfig_TorchGoblinTakeDamage
+  m_Name: SoundConfig_TorchGoblinMakeHit
   m_EditorClassIdentifier: 
-  SoundId: 300
-  SoundPrefab: {fileID: 8630534347271327143, guid: 06027a45d1b0ebe4392de941fb288482, type: 3}
-  Delay: 0.03
+  SoundId: 301
+  SoundPrefab: {fileID: 8630534347271327143, guid: be35814443d6bcf48b52f0d494c26d81, type: 3}
   MinPitch: 0.95
   MaxPitch: 1.05

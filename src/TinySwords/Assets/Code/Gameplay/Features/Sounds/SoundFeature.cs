@@ -7,12 +7,16 @@ namespace Code.Gameplay.Features.Sounds
   {
     public SoundFeature(ISystemFactory systems)
     {
+      Add(systems.Create<TickToSoundDelaySystem>());
+      
       Add(systems.Create<CreateSoundSystem>());
       Add(systems.Create<CreateSoundInPositionSystem>());
       
       Add(systems.Create<SetRandomPitchSystem>());
 
       Add(systems.Create<PlaySoundSystem>());
+      
+      Add(systems.Create<CleanupInitializeSoundSystem>());
     }
   }
 }

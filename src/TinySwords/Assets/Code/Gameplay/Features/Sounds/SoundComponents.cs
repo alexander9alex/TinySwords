@@ -9,5 +9,7 @@ namespace Code.Gameplay.Features.Sounds
   [Game] public class AudioSourceComponent : IComponent { public AudioSource Value; }
   [Game] public class MinPitch : IComponent { public float Value; }
   [Game] public class MaxPitch : IComponent { public float Value; }
-  [Game] public class PlayRequest : IComponent { }
+  [Game] public class PlaySoundRequest : IComponent { }
+  [Game] public class InitializeSound : IComponent { }
+  [Game] public class Delay : IComponent { public float Value; }
 }

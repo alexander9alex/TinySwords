@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherPlayRequest;
+    static Entitas.IMatcher<GameEntity> _matcherInitializeSound;
 
-    public static Entitas.IMatcher<GameEntity> PlayRequest {
+    public static Entitas.IMatcher<GameEntity> InitializeSound {
         get {
-            if (_matcherPlayRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.PlayRequest);
+            if (_matcherInitializeSound == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.InitializeSound);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherPlayRequest = matcher;
+                _matcherInitializeSound = matcher;
             }
 
-            return _matcherPlayRequest;
+            return _matcherInitializeSound;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Sounds.PlayRequest playRequestComponent = new Code.Gameplay.Features.Sounds.PlayRequest();
+    static readonly Code.Gameplay.Features.Sounds.InitializeSound initializeSoundComponent = new Code.Gameplay.Features.Sounds.InitializeSound();
 
-    public bool isPlayRequest {
-        get { return HasComponent(GameComponentsLookup.PlayRequest); }
+    public bool isInitializeSound {
+        get { return HasComponent(GameComponentsLookup.InitializeSound); }
         set {
-            if (value != isPlayRequest) {
-                var index = GameComponentsLookup.PlayRequest;
+            if (value != isInitializeSound) {
+                var index = GameComponentsLookup.InitializeSound;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : playRequestComponent;
+                            : initializeSoundComponent;
 
                     AddComponent(index, component);
                 } else {

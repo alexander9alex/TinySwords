@@ -3,5 +3,6 @@
   public interface ISoundService
   {
     void PlayTakingDamageSound(GameEntity entity);
+    void PlayMakeDamageSound(GameEntity entity);
   }
 }

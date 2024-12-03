@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
     public SetRandomPitchSystem(GameContext game)
     {
       _sounds = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AudioSource, GameMatcher.MinPitch, GameMatcher.MaxPitch, GameMatcher.PlayRequest));
+        .AllOf(GameMatcher.AudioSource, GameMatcher.MinPitch, GameMatcher.MaxPitch, GameMatcher.InitializeSound));
     }
 
     public void Execute()

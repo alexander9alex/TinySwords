@@ -5,6 +5,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Effects.Data;
+using Code.Gameplay.Features.Sounds.Services;
 using Entitas;
 using ModestTree;
 
@@ -14,14 +15,16 @@ namespace Code.Gameplay.Features.Battle.Systems
   {
     private readonly IPhysicsService _physicsService;
     private readonly GameContext _game;
+    private readonly ISoundService _soundService;
 
     private readonly IGroup<GameEntity> _makeHitRequests;
     private readonly List<GameEntity> _buffer = new(16);
 
-    public MakeHitSystem(GameContext game, IPhysicsService physicsService)
+    public MakeHitSystem(GameContext game, IPhysicsService physicsService, ISoundService soundService)
     {
       _game = game;
       _physicsService = physicsService;
+      _soundService = soundService;
 
       _makeHitRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.MakeHit, GameMatcher.CasterId));
     }
@@ -53,13 +56,15 @@ namespace Code.Gameplay.Features.Battle.Systems
         MakeHit(caster, targets.First());
     }
 
-    private static void MakeHit(GameEntity caster, int targetId)
+    private void MakeHit(GameEntity caster, int targetId)
     {
       CreateEntity.Empty()
         .AddTargetId(targetId)
         .AddEffectTypeId(EffectTypeId.Damage)
         .AddEffectValue(caster.Damage)
         .With(x => x.isDamageEffect = true);
+
+      _soundService.PlayMakeDamageSound(caster);
     }
 
     private List<int> GetTargets(GameEntity unit)
