@@ -27,6 +27,7 @@ namespace Code.Gameplay.Features.Death.Systems
         entity.isDead = true;
 
         CreateEntity.Empty()
+          
           .With(x => x.isUpdateHudControlButtons = true);
       }
     }

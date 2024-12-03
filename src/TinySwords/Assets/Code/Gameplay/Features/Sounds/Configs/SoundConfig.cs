@@ -10,6 +10,8 @@ namespace Code.Gameplay.Features.Sounds.Configs
     public SoundId SoundId;
 
     public EntityBehaviour SoundPrefab;
+    public AudioClip Clip;
+    public float Volume = 1;
     public float Delay = 0;
     public float MinPitch = 0;
     public float MaxPitch = 0;

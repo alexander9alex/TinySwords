@@ -11,7 +11,8 @@ namespace Code.Gameplay.Features.Sounds.Systems
     public PlaySoundSystem(GameContext game)
     {
       _sounds = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest));
+        .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest)
+        .NoneOf(GameMatcher.InitializeSound));
     }
 
     public void Execute()

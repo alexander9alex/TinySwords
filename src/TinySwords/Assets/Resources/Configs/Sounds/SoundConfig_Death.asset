@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2396eed80c43b6b016ec536ef18548, type: 3}
-  m_Name: SoundConfig_KnightMakeHit
+  m_Name: SoundConfig_Death
   m_EditorClassIdentifier: 
-  SoundId: 201
+  SoundId: 1
   SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
-  Clip: {fileID: 8300000, guid: a40e5fe871ab7ad46954cbf894a70a71, type: 3}
-  Volume: 0.15
+  Clip: {fileID: 8300000, guid: ba5e4ce792dbe01408ea8ae487fc7728, type: 3}
+  Volume: 0.2
   Delay: 0
-  MinPitch: 0.95
-  MaxPitch: 1.05
+  MinPitch: 0
+  MaxPitch: 0

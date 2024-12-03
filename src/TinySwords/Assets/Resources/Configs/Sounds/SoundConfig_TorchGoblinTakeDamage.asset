@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SoundConfig_TorchGoblinTakeDamage
   m_EditorClassIdentifier: 
   SoundId: 300
-  SoundPrefab: {fileID: 8630534347271327143, guid: 06027a45d1b0ebe4392de941fb288482, type: 3}
+  SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
+  Clip: {fileID: 8300000, guid: f5c56a5d4bd88f348a43319db44a2ced, type: 3}
+  Volume: 0.12
   Delay: 0.03
   MinPitch: 0.95
   MaxPitch: 1.05

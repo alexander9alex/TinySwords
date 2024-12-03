@@ -12,6 +12,8 @@ namespace Code.Gameplay.Features.Sounds
       Add(systems.Create<CreateSoundSystem>());
       Add(systems.Create<CreateSoundInPositionSystem>());
       
+      Add(systems.Create<SetAudioClipSystem>());
+      Add(systems.Create<SetVolumeSystem>());
       Add(systems.Create<SetRandomPitchSystem>());
 
       Add(systems.Create<PlaySoundSystem>());

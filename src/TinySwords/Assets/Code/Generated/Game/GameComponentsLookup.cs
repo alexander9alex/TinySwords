@@ -116,36 +116,38 @@ public static class GameComponentsLookup {
     public const int Unselected = 105;
     public const int UnselectPreviouslySelectedRequest = 106;
     public const int UpdateHudControlButtons = 107;
-    public const int AudioSource = 108;
-    public const int CreateSound = 109;
-    public const int Delay = 110;
-    public const int InitializeSound = 111;
-    public const int MaxPitch = 112;
-    public const int MinPitch = 113;
-    public const int PlaySoundRequest = 114;
-    public const int SoundId = 115;
-    public const int AllyBuffer = 116;
-    public const int AllyTargetId = 117;
-    public const int CollectAlliesRadius = 118;
-    public const int CollectReachedTargetsRadius = 119;
-    public const int CollectTargetsRadius = 120;
-    public const int ReachedTargetBuffer = 121;
-    public const int TargetBuffer = 122;
-    public const int Alive = 123;
-    public const int AttackReach = 124;
-    public const int CurrentHp = 125;
-    public const int Damage = 126;
-    public const int Dead = 127;
-    public const int MaxHp = 128;
-    public const int Speed = 129;
-    public const int TeamColor = 130;
-    public const int Unit = 131;
-    public const int UnitTypeId = 132;
-    public const int CurrentAvoidancePriority = 133;
-    public const int IdleAvoidancePriority = 134;
-    public const int MoveAvoidancePriority = 135;
+    public const int AudioClip = 108;
+    public const int AudioSource = 109;
+    public const int CreateSound = 110;
+    public const int Delay = 111;
+    public const int InitializeSound = 112;
+    public const int MaxPitch = 113;
+    public const int MinPitch = 114;
+    public const int PlaySoundRequest = 115;
+    public const int SoundId = 116;
+    public const int Volume = 117;
+    public const int AllyBuffer = 118;
+    public const int AllyTargetId = 119;
+    public const int CollectAlliesRadius = 120;
+    public const int CollectReachedTargetsRadius = 121;
+    public const int CollectTargetsRadius = 122;
+    public const int ReachedTargetBuffer = 123;
+    public const int TargetBuffer = 124;
+    public const int Alive = 125;
+    public const int AttackReach = 126;
+    public const int CurrentHp = 127;
+    public const int Damage = 128;
+    public const int Dead = 129;
+    public const int MaxHp = 130;
+    public const int Speed = 131;
+    public const int TeamColor = 132;
+    public const int Unit = 133;
+    public const int UnitTypeId = 134;
+    public const int CurrentAvoidancePriority = 135;
+    public const int IdleAvoidancePriority = 136;
+    public const int MoveAvoidancePriority = 137;
 
-    public const int TotalComponents = 136;
+    public const int TotalComponents = 138;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -256,6 +258,7 @@ public static class GameComponentsLookup {
         "Unselected",
         "UnselectPreviouslySelectedRequest",
         "UpdateHudControlButtons",
+        "AudioClip",
         "AudioSource",
         "CreateSound",
         "Delay",
@@ -264,6 +267,7 @@ public static class GameComponentsLookup {
         "MinPitch",
         "PlaySoundRequest",
         "SoundId",
+        "Volume",
         "AllyBuffer",
         "AllyTargetId",
         "CollectAlliesRadius",
@@ -395,6 +399,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
+        typeof(Code.Gameplay.Features.Sounds.AudioClipComponent),
         typeof(Code.Gameplay.Features.Sounds.AudioSourceComponent),
         typeof(Code.Gameplay.Features.Sounds.CreateSound),
         typeof(Code.Gameplay.Features.Sounds.Delay),
@@ -403,6 +408,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Sounds.MinPitch),
         typeof(Code.Gameplay.Features.Sounds.PlaySoundRequest),
         typeof(Code.Gameplay.Features.Sounds.SoundIdComponent),
+        typeof(Code.Gameplay.Features.Sounds.Volume),
         typeof(Code.Gameplay.Features.TargetCollection.AllyBuffer),
         typeof(Code.Gameplay.Features.TargetCollection.AllyTargetId),
         typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius),

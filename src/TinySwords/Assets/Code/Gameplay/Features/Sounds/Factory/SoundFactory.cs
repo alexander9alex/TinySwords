@@ -33,14 +33,15 @@ namespace Code.Gameplay.Features.Sounds.Factory
         .AddId(_identifiers.Next())
         .AddViewPrefab(config.SoundPrefab)
         .AddWorldPosition(PositionRelativeCamera(pos))
+        .AddAudioClip(config.Clip)
+        .AddVolume(config.Volume)
         
         .With(x => x.AddMinPitch(config.MinPitch), when: config.MinPitch != 0)
         .With(x => x.AddMaxPitch(config.MaxPitch), when: config.MaxPitch != 0)
         
-        .With(x => x.AddDelay(config.Delay), when: config.Delay > 0)
-        .With(x => x.isPlaySoundRequest = true, when: config.Delay <= 0)
-        
+        .With(x => x.AddDelay(config.Delay))
         .With(x => x.isInitializationRequest = true)
+        .With(x => x.isInitializeSound = true)
         ;
     }
 

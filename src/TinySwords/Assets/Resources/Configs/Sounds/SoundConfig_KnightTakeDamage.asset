@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SoundConfig_KnightTakeDamage
   m_EditorClassIdentifier: 
   SoundId: 200
-  SoundPrefab: {fileID: 8630534347271327143, guid: b225683341dc80d468cf83792d85094e, type: 3}
+  SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
+  Clip: {fileID: 8300000, guid: 8285ff959e234204a8809d05a5fc9be7, type: 3}
+  Volume: 0.15
   Delay: 0.03
   MinPitch: 0.95
   MaxPitch: 1.05

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: SoundConfig_TorchGoblinMakeHit
   m_EditorClassIdentifier: 
   SoundId: 301
-  SoundPrefab: {fileID: 8630534347271327143, guid: be35814443d6bcf48b52f0d494c26d81, type: 3}
+  SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
+  Clip: {fileID: 8300000, guid: ba9c2a145f3eb64429e37ab7b13ef5aa, type: 3}
+  Volume: 0.1
+  Delay: 0
   MinPitch: 0.95
   MaxPitch: 1.05

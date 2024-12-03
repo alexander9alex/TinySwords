@@ -3,6 +3,7 @@ using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Sounds.Services
 {
@@ -54,7 +55,14 @@ namespace Code.Gameplay.Features.Sounds.Services
         default:
           throw new ArgumentOutOfRangeException();
       }
-      
+    }
+
+    public void PlaySound(SoundId soundId, Vector3 pos)
+    {
+      CreateEntity.Empty()
+        .AddSoundId(soundId)
+        .AddWorldPosition(pos)
+        .With(x => x.isCreateSound = true);
     }
   }
 }
