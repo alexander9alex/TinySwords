@@ -20,6 +20,7 @@ namespace Code.Gameplay.Features.Input.Services
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
     private Vector2 _cameraMoveDir;
+    private bool _actionStarted;
 
     public InputService()
     {
@@ -27,6 +28,14 @@ namespace Code.Gameplay.Features.Input.Services
       InitCommandInputMap();
 
       ChangeInputMap(InputMap.UI);
+    }
+
+    public void Tick()
+    {
+      if (GameInputMapEnabled)
+        CreateMousePositionInput();
+
+      CreateCameraMoveInput();
     }
 
     private void InitGameInputMap()
@@ -60,14 +69,6 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
     }
 
-    public void Tick()
-    {
-      if (GameInputMapEnabled)
-        CreateMousePositionInput();
-
-      CreateCameraMoveInput();
-    }
-
     public void ChangeInputMap(InputMap inputMap)
     {
       switch (inputMap)
@@ -97,6 +98,9 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void CreateCameraMoveInput()
     {
+      if (_actionStarted)
+        return;
+
       if (_cameraMoveDir == Vector2.zero)
         return;
       
@@ -107,6 +111,9 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void OnFastInteracted(InputAction.CallbackContext context)
     {
+      if (_actionStarted)
+        return;
+
       if (!ClickInGameZone(_mousePos))
         return;
 
@@ -117,11 +124,16 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void OnActionStarted(InputAction.CallbackContext context)
     {
+      if (_actionStarted)
+        return;
+      
       _actionStartedPos = _mousePos;
 
-      if (!ClickInGameZone(_mousePos))
+      if (!ClickInGameZone(_actionStartedPos))
         return;
 
+      _actionStarted = true;
+      
       CreateEntity.Empty()
         .With(x => x.isActionStarted = true)
         .AddPositionOnScreen(_mousePos);
@@ -129,8 +141,13 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void OnActionEnded(InputAction.CallbackContext context)
     {
+      if (!_actionStarted)
+        return;
+
       if (!ClickInGameZone(_actionStartedPos))
         return;
+      
+      _actionStarted = false;
 
       CreateEntity.Empty()
         .With(x => x.isActionEnded = true)
