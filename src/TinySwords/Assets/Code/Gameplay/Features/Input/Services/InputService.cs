@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Input.Services
     public InputService()
     {
       InitGameInputMap();
-      InitActionIsActiveInputMap();
+      InitCommandInputMap();
 
       ChangeInputMap(InputMap.UI);
     }
@@ -45,11 +45,11 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.Game.CameraMovement.canceled += MoveCamera;
     }
 
-    private void InitActionIsActiveInputMap()
+    private void InitCommandInputMap()
     {
-      _inputSystem.CommandIsActive.ApplyAction.canceled += ApplyCommand;
+      _inputSystem.CommandIsActive.ApplyCommand.canceled += ApplyCommand;
 
-      _inputSystem.CommandIsActive.CancelAction.canceled += CancelCommand;
+      _inputSystem.CommandIsActive.CancelCommand.canceled += CancelCommand;
 
       _inputSystem.CommandIsActive.MousePosition.started += ChangeMousePosition;
       _inputSystem.CommandIsActive.MousePosition.performed += ChangeMousePosition;

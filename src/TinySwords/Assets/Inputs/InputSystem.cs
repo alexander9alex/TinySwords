@@ -731,7 +731,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ""id"": ""cfd39a08-3ffb-464f-a4fe-f37e0de65023"",
             ""actions"": [
                 {
-                    ""name"": ""ApplyAction"",
+                    ""name"": ""ApplyCommand"",
                     ""type"": ""Button"",
                     ""id"": ""9a21d1ca-014c-4c10-a091-edf006567e84"",
                     ""expectedControlType"": """",
@@ -740,7 +740,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CancelAction"",
+                    ""name"": ""CancelCommand"",
                     ""type"": ""Button"",
                     ""id"": ""23c6f089-263b-4718-a371-ba8ce39dde33"",
                     ""expectedControlType"": """",
@@ -775,7 +775,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""ApplyAction"",
+                    ""action"": ""ApplyCommand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -786,7 +786,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""CancelAction"",
+                    ""action"": ""CancelCommand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -997,8 +997,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Game_CameraMovement = m_Game.FindAction("CameraMovement", throwIfNotFound: true);
         // CommandIsActive
         m_CommandIsActive = asset.FindActionMap("CommandIsActive", throwIfNotFound: true);
-        m_CommandIsActive_ApplyAction = m_CommandIsActive.FindAction("ApplyAction", throwIfNotFound: true);
-        m_CommandIsActive_CancelAction = m_CommandIsActive.FindAction("CancelAction", throwIfNotFound: true);
+        m_CommandIsActive_ApplyCommand = m_CommandIsActive.FindAction("ApplyCommand", throwIfNotFound: true);
+        m_CommandIsActive_CancelCommand = m_CommandIsActive.FindAction("CancelCommand", throwIfNotFound: true);
         m_CommandIsActive_MousePosition = m_CommandIsActive.FindAction("MousePosition", throwIfNotFound: true);
         m_CommandIsActive_CameraMovement = m_CommandIsActive.FindAction("CameraMovement", throwIfNotFound: true);
     }
@@ -1257,16 +1257,16 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     // CommandIsActive
     private readonly InputActionMap m_CommandIsActive;
     private List<ICommandIsActiveActions> m_CommandIsActiveActionsCallbackInterfaces = new List<ICommandIsActiveActions>();
-    private readonly InputAction m_CommandIsActive_ApplyAction;
-    private readonly InputAction m_CommandIsActive_CancelAction;
+    private readonly InputAction m_CommandIsActive_ApplyCommand;
+    private readonly InputAction m_CommandIsActive_CancelCommand;
     private readonly InputAction m_CommandIsActive_MousePosition;
     private readonly InputAction m_CommandIsActive_CameraMovement;
     public struct CommandIsActiveActions
     {
         private @InputSystem m_Wrapper;
         public CommandIsActiveActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ApplyAction => m_Wrapper.m_CommandIsActive_ApplyAction;
-        public InputAction @CancelAction => m_Wrapper.m_CommandIsActive_CancelAction;
+        public InputAction @ApplyCommand => m_Wrapper.m_CommandIsActive_ApplyCommand;
+        public InputAction @CancelCommand => m_Wrapper.m_CommandIsActive_CancelCommand;
         public InputAction @MousePosition => m_Wrapper.m_CommandIsActive_MousePosition;
         public InputAction @CameraMovement => m_Wrapper.m_CommandIsActive_CameraMovement;
         public InputActionMap Get() { return m_Wrapper.m_CommandIsActive; }
@@ -1278,12 +1278,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_CommandIsActiveActionsCallbackInterfaces.Add(instance);
-            @ApplyAction.started += instance.OnApplyAction;
-            @ApplyAction.performed += instance.OnApplyAction;
-            @ApplyAction.canceled += instance.OnApplyAction;
-            @CancelAction.started += instance.OnCancelAction;
-            @CancelAction.performed += instance.OnCancelAction;
-            @CancelAction.canceled += instance.OnCancelAction;
+            @ApplyCommand.started += instance.OnApplyCommand;
+            @ApplyCommand.performed += instance.OnApplyCommand;
+            @ApplyCommand.canceled += instance.OnApplyCommand;
+            @CancelCommand.started += instance.OnCancelCommand;
+            @CancelCommand.performed += instance.OnCancelCommand;
+            @CancelCommand.canceled += instance.OnCancelCommand;
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
@@ -1294,12 +1294,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(ICommandIsActiveActions instance)
         {
-            @ApplyAction.started -= instance.OnApplyAction;
-            @ApplyAction.performed -= instance.OnApplyAction;
-            @ApplyAction.canceled -= instance.OnApplyAction;
-            @CancelAction.started -= instance.OnCancelAction;
-            @CancelAction.performed -= instance.OnCancelAction;
-            @CancelAction.canceled -= instance.OnCancelAction;
+            @ApplyCommand.started -= instance.OnApplyCommand;
+            @ApplyCommand.performed -= instance.OnApplyCommand;
+            @ApplyCommand.canceled -= instance.OnApplyCommand;
+            @CancelCommand.started -= instance.OnCancelCommand;
+            @CancelCommand.performed -= instance.OnCancelCommand;
+            @CancelCommand.canceled -= instance.OnCancelCommand;
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
@@ -1390,8 +1390,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     }
     public interface ICommandIsActiveActions
     {
-        void OnApplyAction(InputAction.CallbackContext context);
-        void OnCancelAction(InputAction.CallbackContext context);
+        void OnApplyCommand(InputAction.CallbackContext context);
+        void OnCancelCommand(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
     }

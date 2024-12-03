@@ -709,7 +709,7 @@
             "id": "cfd39a08-3ffb-464f-a4fe-f37e0de65023",
             "actions": [
                 {
-                    "name": "ApplyAction",
+                    "name": "ApplyCommand",
                     "type": "Button",
                     "id": "9a21d1ca-014c-4c10-a091-edf006567e84",
                     "expectedControlType": "",
@@ -718,7 +718,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CancelAction",
+                    "name": "CancelCommand",
                     "type": "Button",
                     "id": "23c6f089-263b-4718-a371-ba8ce39dde33",
                     "expectedControlType": "",
@@ -753,7 +753,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ApplyAction",
+                    "action": "ApplyCommand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -764,7 +764,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "CancelAction",
+                    "action": "CancelCommand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
