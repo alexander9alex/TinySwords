@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.Sounds
     public SoundFeature(ISystemFactory systems)
     {
       Add(systems.Create<CreateSoundSystem>());
-      // Add(systems.Create<CreateSoundInPositionSystem>());
+      Add(systems.Create<CreateSoundInPositionSystem>());
 
       Add(systems.Create<PlaySoundSystem>());
     }

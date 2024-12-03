@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SoundConfig_KnightTakeDamage
   m_EditorClassIdentifier: 
   SoundId: 200
-  SoundPrefab: {fileID: 3441752702441673682, guid: 5635ac649c29c4b43b322d5fe0a11c97, type: 3}
+  SoundPrefab: {fileID: 8630534347271327143, guid: b225683341dc80d468cf83792d85094e, type: 3}

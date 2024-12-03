@@ -1,6 +1,7 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Identifiers;
+using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Sounds.Configs;
 using Code.Gameplay.Features.Sounds.Data;
@@ -12,11 +13,13 @@ namespace Code.Gameplay.Features.Sounds.Factory
   {
     private readonly IStaticDataService _staticData;
     private readonly IIdentifierService _identifiers;
+    private readonly ICameraProvider _cameraProvider;
 
-    public SoundFactory(IStaticDataService staticData, IIdentifierService identifiers)
+    public SoundFactory(IStaticDataService staticData, IIdentifierService identifiers, ICameraProvider cameraProvider)
     {
       _staticData = staticData;
       _identifiers = identifiers;
+      _cameraProvider = cameraProvider;
     }
 
     public void CreateSound(SoundId soundId) =>
@@ -29,9 +32,12 @@ namespace Code.Gameplay.Features.Sounds.Factory
       CreateEntity.Empty()
         .AddId(_identifiers.Next())
         .AddViewPrefab(config.SoundPrefab)
-        .AddWorldPosition(pos)
+        .AddWorldPosition(PositionRelativeCamera(pos))
         .With(x => x.isInitializationRequest = true)
         .With(x => x.isPlayRequest = true);
     }
+
+    private Vector3 PositionRelativeCamera(Vector2 pos) =>
+      pos.SetZ(_cameraProvider.MainCamera.transform.position.z);
   }
 }

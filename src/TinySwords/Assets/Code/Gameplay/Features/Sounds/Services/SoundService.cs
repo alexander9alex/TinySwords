@@ -10,19 +10,21 @@ namespace Code.Gameplay.Features.Sounds.Services
   {
     public void PlayTakingDamageSound(GameEntity entity)
     {
-      if (!entity.hasUnitTypeId)
+      if (!entity.hasUnitTypeId && !entity.hasWorldPosition)
         return;
+
+      GameEntity createSoundRequest = CreateEntity.Empty()
+        .AddWorldPosition(entity.WorldPosition)
+        .With(x => x.isCreateSound = true);
 
       switch (entity.UnitTypeId)
       {
         case UnitTypeId.Knight:
-          CreateEntity.Empty()
-            .With(x => x.isCreateSound = true)
+          createSoundRequest
             .AddSoundId(SoundId.KnightTakeDamage);
           break;
         case UnitTypeId.TorchGoblin:
-          CreateEntity.Empty()
-            .With(x => x.isCreateSound = true)
+          createSoundRequest
             .AddSoundId(SoundId.TorchGoblinTakeDamage);
           break;
         default:
