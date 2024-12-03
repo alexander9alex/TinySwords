@@ -89,53 +89,54 @@ public static class GameComponentsLookup {
     public const int Movable = 78;
     public const int Move = 79;
     public const int MoveAnimator = 80;
-    public const int MoveDirection = 81;
-    public const int CreatedNow = 82;
-    public const int CreateMoveIndicator = 83;
-    public const int DestructOldMoveIndicatorRequest = 84;
-    public const int MoveIndicator = 85;
-    public const int AddToNavMeshCachedSources = 86;
-    public const int BuildNavMeshAtStart = 87;
-    public const int NavMesh = 88;
-    public const int NavMeshAgent = 89;
-    public const int NavMeshCollectSourcesCache = 90;
-    public const int NavMeshCollectSources = 91;
-    public const int NavMeshRootSources = 92;
-    public const int NavMeshSurface = 93;
-    public const int NotAddedNavMeshRootSource = 94;
-    public const int TurnOnNavMeshAgent = 95;
-    public const int UpdateNavMesh = 96;
-    public const int MultipleSelectionRequest = 97;
-    public const int Selectable = 98;
-    public const int Selected = 99;
-    public const int SelectedChanged = 100;
-    public const int SelectedNow = 101;
-    public const int SelectingAnimator = 102;
-    public const int SingleSelectionRequest = 103;
-    public const int Unselected = 104;
-    public const int UnselectPreviouslySelectedRequest = 105;
-    public const int UpdateHudControlButtons = 106;
-    public const int AllyBuffer = 107;
-    public const int AllyTargetId = 108;
-    public const int CollectAlliesRadius = 109;
-    public const int CollectReachedTargetsRadius = 110;
-    public const int CollectTargetsRadius = 111;
-    public const int ReachedTargetBuffer = 112;
-    public const int TargetBuffer = 113;
-    public const int Alive = 114;
-    public const int AttackReach = 115;
-    public const int CurrentHp = 116;
-    public const int Damage = 117;
-    public const int Dead = 118;
-    public const int MaxHp = 119;
-    public const int Speed = 120;
-    public const int TeamColor = 121;
-    public const int Unit = 122;
-    public const int CurrentAvoidancePriority = 123;
-    public const int IdleAvoidancePriority = 124;
-    public const int MoveAvoidancePriority = 125;
+    public const int MoveCamera = 81;
+    public const int MoveDirection = 82;
+    public const int CreatedNow = 83;
+    public const int CreateMoveIndicator = 84;
+    public const int DestructOldMoveIndicatorRequest = 85;
+    public const int MoveIndicator = 86;
+    public const int AddToNavMeshCachedSources = 87;
+    public const int BuildNavMeshAtStart = 88;
+    public const int NavMesh = 89;
+    public const int NavMeshAgent = 90;
+    public const int NavMeshCollectSourcesCache = 91;
+    public const int NavMeshCollectSources = 92;
+    public const int NavMeshRootSources = 93;
+    public const int NavMeshSurface = 94;
+    public const int NotAddedNavMeshRootSource = 95;
+    public const int TurnOnNavMeshAgent = 96;
+    public const int UpdateNavMesh = 97;
+    public const int MultipleSelectionRequest = 98;
+    public const int Selectable = 99;
+    public const int Selected = 100;
+    public const int SelectedChanged = 101;
+    public const int SelectedNow = 102;
+    public const int SelectingAnimator = 103;
+    public const int SingleSelectionRequest = 104;
+    public const int Unselected = 105;
+    public const int UnselectPreviouslySelectedRequest = 106;
+    public const int UpdateHudControlButtons = 107;
+    public const int AllyBuffer = 108;
+    public const int AllyTargetId = 109;
+    public const int CollectAlliesRadius = 110;
+    public const int CollectReachedTargetsRadius = 111;
+    public const int CollectTargetsRadius = 112;
+    public const int ReachedTargetBuffer = 113;
+    public const int TargetBuffer = 114;
+    public const int Alive = 115;
+    public const int AttackReach = 116;
+    public const int CurrentHp = 117;
+    public const int Damage = 118;
+    public const int Dead = 119;
+    public const int MaxHp = 120;
+    public const int Speed = 121;
+    public const int TeamColor = 122;
+    public const int Unit = 123;
+    public const int CurrentAvoidancePriority = 124;
+    public const int IdleAvoidancePriority = 125;
+    public const int MoveAvoidancePriority = 126;
 
-    public const int TotalComponents = 126;
+    public const int TotalComponents = 127;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -219,6 +220,7 @@ public static class GameComponentsLookup {
         "Movable",
         "Move",
         "MoveAnimator",
+        "MoveCamera",
         "MoveDirection",
         "CreatedNow",
         "CreateMoveIndicator",
@@ -348,6 +350,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Move.Movable),
         typeof(Code.Gameplay.Features.Move.Move),
         typeof(Code.Gameplay.Features.Move.MoveAnimator),
+        typeof(Code.Gameplay.Features.Move.MoveCamera),
         typeof(Code.Gameplay.Features.Move.MoveDirection),
         typeof(Code.Gameplay.Features.MoveIndicator.CreatedNow),
         typeof(Code.Gameplay.Features.MoveIndicator.CreateMoveIndicator),

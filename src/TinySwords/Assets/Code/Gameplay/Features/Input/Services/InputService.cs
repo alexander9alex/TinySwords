@@ -19,6 +19,7 @@ namespace Code.Gameplay.Features.Input.Services
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _actionStartedPos;
+    private Vector2 _cameraMoveDir;
 
     public InputService()
     {
@@ -38,6 +39,10 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.Game.MousePosition.started += ChangeMousePosition;
       _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
       _inputSystem.Game.MousePosition.canceled += ChangeMousePosition;
+
+      _inputSystem.Game.CameraMovement.started += MoveCamera;
+      _inputSystem.Game.CameraMovement.performed += MoveCamera;
+      _inputSystem.Game.CameraMovement.canceled += MoveCamera;
     }
 
     private void InitActionIsActiveInputMap()
@@ -49,12 +54,18 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.CommandIsActive.MousePosition.started += ChangeMousePosition;
       _inputSystem.CommandIsActive.MousePosition.performed += ChangeMousePosition;
       _inputSystem.CommandIsActive.MousePosition.canceled += ChangeMousePosition;
+
+      _inputSystem.CommandIsActive.CameraMovement.started += MoveCamera;
+      _inputSystem.CommandIsActive.CameraMovement.performed += MoveCamera;
+      _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
     }
 
     public void Tick()
     {
       if (GameInputMapEnabled)
         CreateMousePositionInput();
+
+      CreateCameraMoveInput();
     }
 
     public void ChangeInputMap(InputMap inputMap)
@@ -82,6 +93,16 @@ namespace Code.Gameplay.Features.Input.Services
     {
       CreateEntity.Empty()
         .AddMousePositionOnScreen(_mousePos);
+    }
+
+    private void CreateCameraMoveInput()
+    {
+      if (_cameraMoveDir == Vector2.zero)
+        return;
+      
+      CreateEntity.Empty()
+        .With(x => x.isMoveCamera = true)
+        .AddMoveDirection(_cameraMoveDir);
     }
 
     private void OnFastInteracted(InputAction.CallbackContext context)
@@ -115,6 +136,9 @@ namespace Code.Gameplay.Features.Input.Services
         .With(x => x.isActionEnded = true)
         .AddPositionOnScreen(_mousePos);
     }
+
+    private void MoveCamera(InputAction.CallbackContext context) =>
+      _cameraMoveDir = context.ReadValue<Vector2>();
 
     private void ApplyCommand(InputAction.CallbackContext context)
     {
