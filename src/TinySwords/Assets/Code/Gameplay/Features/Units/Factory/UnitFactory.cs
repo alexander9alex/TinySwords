@@ -41,6 +41,7 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddCurrentHp(config.Hp)
         .AddMaxHp(config.Hp)
         .AddUnitAI(_unitUI)
+        .AddUnitTypeId(type)
         
         .AddAttackCooldown(0)
         .AddAttackInterval(config.AttackCooldown)

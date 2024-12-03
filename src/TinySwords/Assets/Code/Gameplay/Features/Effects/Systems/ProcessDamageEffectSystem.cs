@@ -1,15 +1,19 @@
-﻿using Entitas;
+﻿using Code.Gameplay.Features.Sounds.Services;
+using Entitas;
 
 namespace Code.Gameplay.Features.Effects.Systems
 {
   public class ProcessDamageEffectSystem : IExecuteSystem
   {
     private readonly GameContext _game;
+    private readonly ISoundService _soundService;
+    
     private readonly IGroup<GameEntity> _damageEffects;
 
-    public ProcessDamageEffectSystem(GameContext game)
+    public ProcessDamageEffectSystem(GameContext game, ISoundService soundService)
     {
       _game = game;
+      _soundService = soundService;
       _damageEffects = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.DamageEffect, GameMatcher.TargetId, GameMatcher.EffectValue));
     }
@@ -24,7 +28,10 @@ namespace Code.Gameplay.Features.Effects.Systems
         {
           target.ReplaceCurrentHp(target.CurrentHp - effect.EffectValue);
           target.isAnimateTakenDamage = true;
+
+          _soundService.PlayTakingDamageSound(target);
         }
+        
         effect.isDestructed = true;
       }
     }

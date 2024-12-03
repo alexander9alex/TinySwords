@@ -16,6 +16,7 @@ using Code.Gameplay.Features.MoveIndicator;
 using Code.Gameplay.Features.MoveInput;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
+using Code.Gameplay.Features.Sounds;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -51,6 +52,9 @@ namespace Code.Gameplay
       Add(systems.Create<HpBarFeature>());
       
       Add(systems.Create<DeathFeature>());
+      
+      Add(systems.Create<SoundFeature>());
+      
       Add(systems.Create<ProcessDestructedFeature>());
     }
   }

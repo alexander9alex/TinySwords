@@ -4,6 +4,8 @@ using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
+using Code.Gameplay.Features.Sounds.Configs;
+using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
@@ -23,5 +25,6 @@ namespace Code.Gameplay.Common.Services
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);
     CommandUIConfig GetCommandUIConfig(CommandTypeId commandTypeId);
     UnitDeathConfig GetUnitDeathConfig();
+    SoundConfig GetSoundConfig(SoundId soundId);
   }
 }

@@ -116,27 +116,32 @@ public static class GameComponentsLookup {
     public const int Unselected = 105;
     public const int UnselectPreviouslySelectedRequest = 106;
     public const int UpdateHudControlButtons = 107;
-    public const int AllyBuffer = 108;
-    public const int AllyTargetId = 109;
-    public const int CollectAlliesRadius = 110;
-    public const int CollectReachedTargetsRadius = 111;
-    public const int CollectTargetsRadius = 112;
-    public const int ReachedTargetBuffer = 113;
-    public const int TargetBuffer = 114;
-    public const int Alive = 115;
-    public const int AttackReach = 116;
-    public const int CurrentHp = 117;
-    public const int Damage = 118;
-    public const int Dead = 119;
-    public const int MaxHp = 120;
-    public const int Speed = 121;
-    public const int TeamColor = 122;
-    public const int Unit = 123;
-    public const int CurrentAvoidancePriority = 124;
-    public const int IdleAvoidancePriority = 125;
-    public const int MoveAvoidancePriority = 126;
+    public const int AudioSource = 108;
+    public const int CreateSound = 109;
+    public const int PlayRequest = 110;
+    public const int SoundId = 111;
+    public const int AllyBuffer = 112;
+    public const int AllyTargetId = 113;
+    public const int CollectAlliesRadius = 114;
+    public const int CollectReachedTargetsRadius = 115;
+    public const int CollectTargetsRadius = 116;
+    public const int ReachedTargetBuffer = 117;
+    public const int TargetBuffer = 118;
+    public const int Alive = 119;
+    public const int AttackReach = 120;
+    public const int CurrentHp = 121;
+    public const int Damage = 122;
+    public const int Dead = 123;
+    public const int MaxHp = 124;
+    public const int Speed = 125;
+    public const int TeamColor = 126;
+    public const int Unit = 127;
+    public const int UnitTypeId = 128;
+    public const int CurrentAvoidancePriority = 129;
+    public const int IdleAvoidancePriority = 130;
+    public const int MoveAvoidancePriority = 131;
 
-    public const int TotalComponents = 127;
+    public const int TotalComponents = 132;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -247,6 +252,10 @@ public static class GameComponentsLookup {
         "Unselected",
         "UnselectPreviouslySelectedRequest",
         "UpdateHudControlButtons",
+        "AudioSource",
+        "CreateSound",
+        "PlayRequest",
+        "SoundId",
         "AllyBuffer",
         "AllyTargetId",
         "CollectAlliesRadius",
@@ -263,6 +272,7 @@ public static class GameComponentsLookup {
         "Speed",
         "TeamColor",
         "Unit",
+        "UnitTypeId",
         "CurrentAvoidancePriority",
         "IdleAvoidancePriority",
         "MoveAvoidancePriority"
@@ -377,6 +387,10 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.SelectComponents.Unselected),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest),
         typeof(Code.Gameplay.Features.Select.SelectComponents.UpdateHudControlButtons),
+        typeof(Code.Gameplay.Features.Sounds.AudioSourceComponent),
+        typeof(Code.Gameplay.Features.Sounds.CreateSound),
+        typeof(Code.Gameplay.Features.Sounds.PlayRequest),
+        typeof(Code.Gameplay.Features.Sounds.SoundIdComponent),
         typeof(Code.Gameplay.Features.TargetCollection.AllyBuffer),
         typeof(Code.Gameplay.Features.TargetCollection.AllyTargetId),
         typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius),
@@ -393,6 +407,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.Speed),
         typeof(Code.Gameplay.Features.Units.TeamColorComponent),
         typeof(Code.Gameplay.Features.Units.Unit),
+        typeof(Code.Gameplay.Features.Units.UnitTypeIdComponent),
         typeof(Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority),
         typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority)

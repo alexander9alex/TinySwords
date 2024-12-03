@@ -11,6 +11,8 @@ using Code.Gameplay.Features.Death.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.MoveIndicator.Factory;
+using Code.Gameplay.Features.Sounds.Factory;
+using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
@@ -97,6 +99,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
+      Container.Bind<ISoundService>().To<SoundService>().AsSingle();
     }
 
     private void BindGameplayFactories()
@@ -105,6 +108,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IIndicatorFactory>().To<IndicatorFactory>().AsSingle();
       Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
       Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
+      Container.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
     }
 
     private void BindAI()

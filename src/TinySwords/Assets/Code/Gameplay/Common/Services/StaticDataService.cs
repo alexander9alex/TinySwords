@@ -5,6 +5,8 @@ using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
+using Code.Gameplay.Features.Sounds.Configs;
+using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
@@ -19,6 +21,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private List<LevelConfig> _levelConfigs;
     private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
+    private Dictionary<SoundId, SoundConfig> _soundConfigById;
 
     public void LoadAll()
     {
@@ -26,6 +29,7 @@ namespace Code.Gameplay.Common.Services
       LoadCastleConfigs();
       LoadLevelConfigs();
       LoadCommandUIConfigs();
+      LoadSoundConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -59,6 +63,9 @@ namespace Code.Gameplay.Common.Services
     public UnitDeathConfig GetUnitDeathConfig() =>
       Resources.Load<UnitDeathConfig>("Configs/Units/UnitDeathConfig");
 
+    public SoundConfig GetSoundConfig(SoundId soundId) =>
+      _soundConfigById[soundId];
+
     private void LoadUnitConfigs()
     {
       _unitConfigByTypeAndColor = Resources
@@ -85,6 +92,13 @@ namespace Code.Gameplay.Common.Services
       _commandUIConfigByType = Resources
         .LoadAll<CommandUIConfig>("Configs/UI/Commands")
         .ToDictionary(x => x.CommandTypeId, x => x);
+    }
+
+    private void LoadSoundConfigs()
+    {
+      _soundConfigById = Resources
+        .LoadAll<SoundConfig>("Configs/Sounds")
+        .ToDictionary(x => x.SoundId, x => x);
     }
   }
 }
