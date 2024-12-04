@@ -1,24 +1,20 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Extensions;
-using Code.Gameplay.Features.Input.Data;
-using Code.Gameplay.Features.Input.Services;
-using Code.UI.Hud.Service;
+using Code.Gameplay.Features.Command.Services;
 using Entitas;
 
 namespace Code.Gameplay.Features.Command.Systems
 {
   public class SelectCommandSystem : IExecuteSystem
   {
-    private readonly IHudService _hudService;
-    private readonly IInputService _inputService;
+    private readonly ICommandService _commandService;
 
     private readonly IGroup<GameEntity> _commands;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public SelectCommandSystem(GameContext game, IHudService hudService, IInputService inputService)
+    public SelectCommandSystem(GameContext game, ICommandService commandService)
     {
-      _hudService = hudService;
-      _inputService = inputService;
+      _commandService = commandService;
 
       _commands = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Command, GameMatcher.CommandTypeId)
@@ -29,9 +25,7 @@ namespace Code.Gameplay.Features.Command.Systems
     {
       foreach (GameEntity command in _commands.GetEntities(_buffer))
       {
-        _hudService.SelectCommand(command.CommandTypeId);
-        _inputService.ChangeInputMap(InputMap.CommandIsActive);
-
+        _commandService.SelectCommand(command);
         command.With(x => x.isSelectedCommand = true);
       }
     }

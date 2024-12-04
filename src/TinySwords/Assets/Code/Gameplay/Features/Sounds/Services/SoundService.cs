@@ -57,6 +57,9 @@ namespace Code.Gameplay.Features.Sounds.Services
       }
     }
 
+    public void PlaySound(SoundId soundId) =>
+      PlaySound(soundId, Vector3.zero);
+
     public void PlaySound(SoundId soundId, Vector3 pos)
     {
       CreateEntity.Empty()

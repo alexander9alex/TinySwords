@@ -10,6 +10,10 @@
     
     TorchGoblinTakeDamage = 300,
     TorchGoblinMakeHit = 301,
-    
+   
+    SelectCommand = 1000,
+    ApplyCommand = 1001,
+    CancelCommand = 1002,
+    IncorrectCommand = 1003,
   }
 }

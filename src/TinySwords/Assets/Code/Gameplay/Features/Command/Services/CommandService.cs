@@ -7,7 +7,12 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Input.Data;
+using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Features.Sounds.Data;
+using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Data;
+using Code.UI.Hud.Service;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
@@ -16,11 +21,37 @@ namespace Code.Gameplay.Features.Command.Services
   {
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
+    private readonly IHudService _hudService;
+    private readonly IInputService _inputService;
+    private readonly ISoundService _soundService;
 
-    public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider)
+    public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider, IHudService hudService, IInputService inputService,
+      ISoundService soundService)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
+      _hudService = hudService;
+      _inputService = inputService;
+      _soundService = soundService;
+    }
+
+    public void SelectCommand(GameEntity command)
+    {
+      _hudService.SelectCommand(command.CommandTypeId);
+      _inputService.ChangeInputMap(InputMap.CommandIsActive);
+      _soundService.PlaySound(SoundId.SelectCommand);
+    }
+
+    public void CancelCommand(GameEntity command)
+    {
+      _hudService.CancelCommand();
+      _inputService.ChangeInputMap(InputMap.Game);
+
+      CreateEntity.Empty()
+        .With(x => x.isUpdateHudControlButtons = true);
+      
+      if (!command.isProcessed)
+        _soundService.PlaySound(SoundId.CancelCommand);
     }
 
     public bool CanApplyCommand(GameEntity command, GameEntity request)
@@ -59,6 +90,10 @@ namespace Code.Gameplay.Features.Command.Services
           throw new ArgumentOutOfRangeException();
       }
 
+      _soundService.PlaySound(SoundId.ApplyCommand);
+
+      command.isProcessed = true;
+      
       CreateEntity.Empty()
         .With(x => x.isCancelCommand = true);
     }
@@ -77,7 +112,7 @@ namespace Code.Gameplay.Features.Command.Services
         target = possibleTarget;
         return true;
       }
-      
+
       return false;
     }
 

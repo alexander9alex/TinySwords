@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.UI.Hud.Service;
@@ -18,11 +19,13 @@ namespace Code.Gameplay.Features.Command.Systems
 
     private readonly IGroup<GameEntity> _selectedCommands;
     private readonly List<GameEntity> _selectedCommandsBuffer = new(1);
+    private readonly ICommandService _commandService;
 
-    public CancelCommandSystem(GameContext game, IHudService hudService, IInputService inputService)
+    public CancelCommandSystem(GameContext game, IHudService hudService, IInputService inputService, ICommandService commandService)
     {
       _hudService = hudService;
       _inputService = inputService;
+      _commandService = commandService;
 
       _cancelCommandRequests = game.GetGroup(GameMatcher.CancelCommand);
       _selectedCommands = game.GetGroup(GameMatcher.AllOf(GameMatcher.Command, GameMatcher.SelectedCommand));
@@ -33,11 +36,7 @@ namespace Code.Gameplay.Features.Command.Systems
       foreach (GameEntity request in _cancelCommandRequests.GetEntities(_cancelCommandBuffer))
       foreach (GameEntity command in _selectedCommands.GetEntities(_selectedCommandsBuffer))
       {
-        _hudService.CancelCommand();
-        _inputService.ChangeInputMap(InputMap.Game);
-
-        CreateEntity.Empty()
-          .With(x => x.isUpdateHudControlButtons = true);
+        _commandService.CancelCommand(command);
         
         command.isDestructed = true;
         request.isDestructed = true;
