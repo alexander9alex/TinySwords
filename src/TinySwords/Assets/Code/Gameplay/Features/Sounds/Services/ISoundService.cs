@@ -9,5 +9,6 @@ namespace Code.Gameplay.Features.Sounds.Services
     void PlayMakeDamageSound(GameEntity entity);
     void PlaySound(SoundId soundId);
     void PlaySound(SoundId soundId, Vector3 pos);
+    void PlaySoundDirectly(SoundId soundId);
   }
 }

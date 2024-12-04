@@ -6,6 +6,7 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Sounds.Configs;
 using Code.Gameplay.Features.Sounds.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Gameplay.Features.Sounds.Factory
 {
@@ -14,12 +15,14 @@ namespace Code.Gameplay.Features.Sounds.Factory
     private readonly IStaticDataService _staticData;
     private readonly IIdentifierService _identifiers;
     private readonly ICameraProvider _cameraProvider;
+    private readonly IInstantiator _instantiator;
 
-    public SoundFactory(IStaticDataService staticData, IIdentifierService identifiers, ICameraProvider cameraProvider)
+    public SoundFactory(IStaticDataService staticData, IIdentifierService identifiers, ICameraProvider cameraProvider, IInstantiator instantiator)
     {
       _staticData = staticData;
       _identifiers = identifiers;
       _cameraProvider = cameraProvider;
+      _instantiator = instantiator;
     }
 
     public void CreateSound(SoundId soundId) =>
@@ -43,6 +46,20 @@ namespace Code.Gameplay.Features.Sounds.Factory
         .With(x => x.isInitializationRequest = true)
         .With(x => x.isInitializeSound = true)
         ;
+    }
+
+    public void CreateSoundDirectly(SoundId soundId)
+    {
+      SoundConfig config = _staticData.GetSoundConfig(soundId);
+
+      AudioSource sound = _instantiator.InstantiatePrefabForComponent<AudioSource>(config.SoundPrefab);
+      
+      sound.clip = config.Clip;
+      sound.volume = config.Volume;
+
+      sound.Play();
+      
+      Object.Destroy(sound.gameObject, sound.clip.length);
     }
 
     private Vector3 PositionRelativeCamera(Vector2 pos) =>

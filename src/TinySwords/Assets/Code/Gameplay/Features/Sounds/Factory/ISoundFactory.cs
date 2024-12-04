@@ -7,5 +7,6 @@ namespace Code.Gameplay.Features.Sounds.Factory
   {
     void CreateSound(SoundId soundId);
     void CreateSound(SoundId soundId, Vector2 pos);
+    void CreateSoundDirectly(SoundId soundId);
   }
 }

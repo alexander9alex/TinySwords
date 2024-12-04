@@ -2,6 +2,7 @@
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Sounds.Data;
+using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ namespace Code.Gameplay.Features.Sounds.Services
 {
   class SoundService : ISoundService
   {
+    private readonly ISoundFactory _soundFactory;
+
+    public SoundService(ISoundFactory soundFactory) =>
+      _soundFactory = soundFactory;
+
     public void PlayTakingDamageSound(GameEntity entity)
     {
       if (!entity.hasUnitTypeId && !entity.hasWorldPosition)
@@ -67,5 +73,8 @@ namespace Code.Gameplay.Features.Sounds.Services
         .AddWorldPosition(pos)
         .With(x => x.isCreateSound = true);
     }
+
+    public void PlaySoundDirectly(SoundId soundId) =>
+      _soundFactory.CreateSoundDirectly(soundId);
   }
 }
