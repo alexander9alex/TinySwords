@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoveIndicatorConfig
   m_EditorClassIdentifier: 
   IndicatorPrefab: {fileID: 5837385954346343927, guid: c54190659ba775b4b8c6100faa316f35, type: 3}
-  IndicatorShowTime: 0.5
+  IndicatorShowTime: 0.6
