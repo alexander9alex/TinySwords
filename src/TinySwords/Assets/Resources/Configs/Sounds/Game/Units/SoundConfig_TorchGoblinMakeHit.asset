@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundId: 301
   SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
-  Clip: {fileID: 8300000, guid: ba9c2a145f3eb64429e37ab7b13ef5aa, type: 3}
+  Clip: {fileID: 8300000, guid: 94b6d7cce7a39254aa44a0127da1b3fe, type: 3}
   Volume: 0.1
   Delay: 0
   MinPitch: 0.95
