@@ -28,7 +28,9 @@ namespace Code.UI.Hud.Service
         return;
 
       AvailableCommandUIConfigs = _staticData.GetUnitCommandUIConfigs(commands);
-      UpdateCommandButtons?.Invoke();
+
+      if (CommandDescriptionPrefab == null)
+        UpdateCommandButtons?.Invoke();
     }
 
     public void SelectCommand(CommandTypeId commandTypeId)
