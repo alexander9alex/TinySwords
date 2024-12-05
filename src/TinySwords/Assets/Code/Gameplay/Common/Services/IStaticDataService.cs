@@ -3,6 +3,7 @@ using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
+using Code.Gameplay.Features.IncorrectCommandIndicator.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Sounds.Configs;
 using Code.Gameplay.Features.Sounds.Data;
@@ -20,6 +21,7 @@ namespace Code.Gameplay.Common.Services
     EntityBehaviour GetHighlightViewPrefab();
     MoveIndicatorConfig GetMoveIndicatorConfig();
     AttackIndicatorConfig GetAttackIndicatorConfig();
+    IncorrectCommandIndicatorConfig GetIncorrectCommandIndicatorConfig();
     CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig();
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);

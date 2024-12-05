@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
+using Code.Gameplay.Features.IncorrectCommandIndicator.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using Code.Gameplay.Features.Sounds.Configs;
 using Code.Gameplay.Features.Sounds.Data;
@@ -43,6 +44,9 @@ namespace Code.Gameplay.Common.Services
 
     public AttackIndicatorConfig GetAttackIndicatorConfig() =>
       Resources.Load<AttackIndicatorConfig>("Configs/Indicators/AttackIndicatorConfig");
+
+    public IncorrectCommandIndicatorConfig GetIncorrectCommandIndicatorConfig() =>
+      Resources.Load<IncorrectCommandIndicatorConfig>("Configs/Indicators/IncorrectCommandIndicatorConfig");
 
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];

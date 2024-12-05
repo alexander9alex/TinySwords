@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b3e19c30f04b9583e6af24b2b28780, type: 3}
-  m_Name: MoveIndicatorConfig
+  m_Script: {fileID: 11500000, guid: 5e12444c99914dfe98cd6fba54cae5fe, type: 3}
+  m_Name: IncorrectCommandIndicatorConfig
   m_EditorClassIdentifier: 
-  IndicatorPrefab: {fileID: 5837385954346343927, guid: c54190659ba775b4b8c6100faa316f35, type: 3}
-  IndicatorShowTime: 0.45
+  IndicatorPrefab: {fileID: 5837385954346343927, guid: 7445798b668997e42985c8b48b5aebcc, type: 3}
+  IndicatorShowTime: 0.4

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AttackIndicatorConfig
   m_EditorClassIdentifier: 
   IndicatorPrefab: {fileID: 5837385954346343927, guid: d1019ba131804dd48a59611f97a79c65, type: 3}
-  IndicatorShowTime: 0.5
+  IndicatorShowTime: 0.45

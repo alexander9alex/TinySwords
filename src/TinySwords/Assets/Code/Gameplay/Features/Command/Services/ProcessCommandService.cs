@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Command.Services
     {
       CreateEntity.Empty()
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isCreateMoveIndicator = true);
+        .With(x => x.isCreateIncorrectCommandIndicator = true);
     }
   }
 }

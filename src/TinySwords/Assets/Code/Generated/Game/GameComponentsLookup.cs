@@ -75,80 +75,83 @@ public static class GameComponentsLookup {
     public const int RectTransform = 64;
     public const int Size = 65;
     public const int HpBar = 66;
-    public const int ActionEnded = 67;
-    public const int ActionStarted = 68;
-    public const int EndPosition = 69;
-    public const int MousePositionOnScreen = 70;
-    public const int PositionOnScreen = 71;
-    public const int StartPosition = 72;
-    public const int ChangeEndDestinationRequest = 73;
-    public const int ConvertWhenGroup = 74;
-    public const int Destination = 75;
-    public const int EndDestination = 76;
-    public const int Idle = 77;
-    public const int LookDirection = 78;
-    public const int Movable = 79;
-    public const int Move = 80;
-    public const int MoveAnimator = 81;
-    public const int MoveCamera = 82;
-    public const int MoveDirection = 83;
-    public const int CreatedNow = 84;
-    public const int CreateMoveIndicator = 85;
-    public const int DestructOldMoveIndicatorRequest = 86;
-    public const int MoveIndicator = 87;
-    public const int AddToNavMeshCachedSources = 88;
-    public const int BuildNavMeshAtStart = 89;
-    public const int NavMesh = 90;
-    public const int NavMeshAgent = 91;
-    public const int NavMeshCollectSourcesCache = 92;
-    public const int NavMeshCollectSources = 93;
-    public const int NavMeshRootSources = 94;
-    public const int NavMeshSurface = 95;
-    public const int NotAddedNavMeshRootSource = 96;
-    public const int TurnOnNavMeshAgent = 97;
-    public const int UpdateNavMesh = 98;
-    public const int MultipleSelectionRequest = 99;
-    public const int Selectable = 100;
-    public const int Selected = 101;
-    public const int SelectedChanged = 102;
-    public const int SelectedNow = 103;
-    public const int SelectingAnimator = 104;
-    public const int SingleSelectionRequest = 105;
-    public const int Unselected = 106;
-    public const int UnselectPreviouslySelectedRequest = 107;
-    public const int UpdateHudControlButtons = 108;
-    public const int AudioClip = 109;
-    public const int AudioSource = 110;
-    public const int CreateSound = 111;
-    public const int Delay = 112;
-    public const int InitializeSound = 113;
-    public const int MaxPitch = 114;
-    public const int MinPitch = 115;
-    public const int PlaySoundRequest = 116;
-    public const int SoundId = 117;
-    public const int Volume = 118;
-    public const int AllyBuffer = 119;
-    public const int AllyTargetId = 120;
-    public const int CollectAlliesRadius = 121;
-    public const int CollectReachedTargetsRadius = 122;
-    public const int CollectTargetsRadius = 123;
-    public const int ReachedTargetBuffer = 124;
-    public const int TargetBuffer = 125;
-    public const int Alive = 126;
-    public const int AttackReach = 127;
-    public const int CurrentHp = 128;
-    public const int Damage = 129;
-    public const int Dead = 130;
-    public const int MaxHp = 131;
-    public const int Speed = 132;
-    public const int TeamColor = 133;
-    public const int Unit = 134;
-    public const int UnitTypeId = 135;
-    public const int CurrentAvoidancePriority = 136;
-    public const int IdleAvoidancePriority = 137;
-    public const int MoveAvoidancePriority = 138;
+    public const int CreateIncorrectCommandIndicator = 67;
+    public const int DestructOldIncorrectCommandIndicatorRequest = 68;
+    public const int IncorrectCommandIndicator = 69;
+    public const int ActionEnded = 70;
+    public const int ActionStarted = 71;
+    public const int EndPosition = 72;
+    public const int MousePositionOnScreen = 73;
+    public const int PositionOnScreen = 74;
+    public const int StartPosition = 75;
+    public const int ChangeEndDestinationRequest = 76;
+    public const int ConvertWhenGroup = 77;
+    public const int Destination = 78;
+    public const int EndDestination = 79;
+    public const int Idle = 80;
+    public const int LookDirection = 81;
+    public const int Movable = 82;
+    public const int Move = 83;
+    public const int MoveAnimator = 84;
+    public const int MoveCamera = 85;
+    public const int MoveDirection = 86;
+    public const int CreatedNow = 87;
+    public const int CreateMoveIndicator = 88;
+    public const int DestructOldMoveIndicatorRequest = 89;
+    public const int MoveIndicator = 90;
+    public const int AddToNavMeshCachedSources = 91;
+    public const int BuildNavMeshAtStart = 92;
+    public const int NavMesh = 93;
+    public const int NavMeshAgent = 94;
+    public const int NavMeshCollectSourcesCache = 95;
+    public const int NavMeshCollectSources = 96;
+    public const int NavMeshRootSources = 97;
+    public const int NavMeshSurface = 98;
+    public const int NotAddedNavMeshRootSource = 99;
+    public const int TurnOnNavMeshAgent = 100;
+    public const int UpdateNavMesh = 101;
+    public const int MultipleSelectionRequest = 102;
+    public const int Selectable = 103;
+    public const int Selected = 104;
+    public const int SelectedChanged = 105;
+    public const int SelectedNow = 106;
+    public const int SelectingAnimator = 107;
+    public const int SingleSelectionRequest = 108;
+    public const int Unselected = 109;
+    public const int UnselectPreviouslySelectedRequest = 110;
+    public const int UpdateHudControlButtons = 111;
+    public const int AudioClip = 112;
+    public const int AudioSource = 113;
+    public const int CreateSound = 114;
+    public const int Delay = 115;
+    public const int InitializeSound = 116;
+    public const int MaxPitch = 117;
+    public const int MinPitch = 118;
+    public const int PlaySoundRequest = 119;
+    public const int SoundId = 120;
+    public const int Volume = 121;
+    public const int AllyBuffer = 122;
+    public const int AllyTargetId = 123;
+    public const int CollectAlliesRadius = 124;
+    public const int CollectReachedTargetsRadius = 125;
+    public const int CollectTargetsRadius = 126;
+    public const int ReachedTargetBuffer = 127;
+    public const int TargetBuffer = 128;
+    public const int Alive = 129;
+    public const int AttackReach = 130;
+    public const int CurrentHp = 131;
+    public const int Damage = 132;
+    public const int Dead = 133;
+    public const int MaxHp = 134;
+    public const int Speed = 135;
+    public const int TeamColor = 136;
+    public const int Unit = 137;
+    public const int UnitTypeId = 138;
+    public const int CurrentAvoidancePriority = 139;
+    public const int IdleAvoidancePriority = 140;
+    public const int MoveAvoidancePriority = 141;
 
-    public const int TotalComponents = 139;
+    public const int TotalComponents = 142;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -218,6 +221,9 @@ public static class GameComponentsLookup {
         "RectTransform",
         "Size",
         "HpBar",
+        "CreateIncorrectCommandIndicator",
+        "DestructOldIncorrectCommandIndicatorRequest",
+        "IncorrectCommandIndicator",
         "ActionEnded",
         "ActionStarted",
         "EndPosition",
@@ -360,6 +366,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Highlight.RectTransformComponent),
         typeof(Code.Gameplay.Features.Highlight.Size),
         typeof(Code.Gameplay.Features.HpBars.HpBarComponent),
+        typeof(Code.Gameplay.Features.IncorrectCommandIndicator.CreateIncorrectCommandIndicator),
+        typeof(Code.Gameplay.Features.IncorrectCommandIndicator.DestructOldIncorrectCommandIndicatorRequest),
+        typeof(Code.Gameplay.Features.IncorrectCommandIndicator.IncorrectCommandIndicator),
         typeof(Code.Gameplay.Features.Input.ActionEnded),
         typeof(Code.Gameplay.Features.Input.ActionStarted),
         typeof(Code.Gameplay.Features.Input.EndPosition),

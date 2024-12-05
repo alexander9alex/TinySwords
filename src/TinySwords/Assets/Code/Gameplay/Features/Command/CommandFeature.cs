@@ -13,9 +13,9 @@ namespace Code.Gameplay.Features.Command
       Add(systems.Create<ApplyCommandSystem>());
       Add(systems.Create<CancelCommandSystem>());
 
-      Add(systems.Create<ProcessMoveCommandSystem>());
-      Add(systems.Create<ProcessMoveWithAttackCommandSystem>());
-      Add(systems.Create<ProcessAimedAttackCommandSystem>());
+      Add(systems.Create<ProcessMoveCommandSystem>()); // todo: refactor
+      Add(systems.Create<ProcessMoveWithAttackCommandSystem>()); // todo: refactor
+      Add(systems.Create<ProcessAimedAttackCommandSystem>()); // todo: refactor
 
       Add(systems.Create<ProcessIncorrectAimedAttackCommandSystem>());
       

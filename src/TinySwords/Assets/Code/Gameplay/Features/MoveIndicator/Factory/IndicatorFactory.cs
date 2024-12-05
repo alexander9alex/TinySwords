@@ -1,6 +1,7 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.IncorrectCommandIndicator.Configs;
 using Code.Gameplay.Features.MoveIndicator.Configs;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Code.Gameplay.Features.MoveIndicator.Factory
 
     public GameEntity CreateMoveIndicator(Vector3 pos)
     {
-      MoveIndicatorConfig config = _staticData.GetMoveIndicatorConfig();
+      MoveIndicatorConfig config = _staticData.GetMoveIndicatorConfig(); // todo: refactor configs
 
       return CreateEntity.Empty()
         .AddViewPrefab(config.IndicatorPrefab)
@@ -34,6 +35,18 @@ namespace Code.Gameplay.Features.MoveIndicator.Factory
         .AddWorldPosition(pos.RemoveZ())
         .AddSelfDestructTimer(config.IndicatorShowTime)
         .With(x => x.isAttackIndicator = true)
+        .With(x => x.isInitializationRequest = true);
+    }
+
+    public GameEntity CreateIncorrectCommandIndicator(Vector3 pos)
+    {
+      IncorrectCommandIndicatorConfig config = _staticData.GetIncorrectCommandIndicatorConfig();
+
+      return CreateEntity.Empty()
+        .AddViewPrefab(config.IndicatorPrefab)
+        .AddWorldPosition(pos.RemoveZ())
+        .AddSelfDestructTimer(config.IndicatorShowTime)
+        .With(x => x.isIncorrectCommandIndicator = true)
         .With(x => x.isInitializationRequest = true);
     }
   }
