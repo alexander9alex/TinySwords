@@ -42,7 +42,7 @@ namespace Code.UI.Hud.Service
       UpdateCommandDescription?.Invoke();
     }
 
-    public void ApplyCommand(CommandTypeId commandTypeId)
+    public void ClickByCommand(CommandTypeId commandTypeId)
     {
       CreateEntity.Empty()
         .AddCommandTypeId(commandTypeId)

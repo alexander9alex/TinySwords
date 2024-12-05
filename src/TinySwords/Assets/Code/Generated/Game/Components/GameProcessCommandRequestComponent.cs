@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherProcessCommand;
+    static Entitas.IMatcher<GameEntity> _matcherProcessCommandRequest;
 
-    public static Entitas.IMatcher<GameEntity> ProcessCommand {
+    public static Entitas.IMatcher<GameEntity> ProcessCommandRequest {
         get {
-            if (_matcherProcessCommand == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ProcessCommand);
+            if (_matcherProcessCommandRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ProcessCommandRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherProcessCommand = matcher;
+                _matcherProcessCommandRequest = matcher;
             }
 
-            return _matcherProcessCommand;
+            return _matcherProcessCommandRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Command.ProcessCommand processCommandComponent = new Code.Gameplay.Features.Command.ProcessCommand();
+    static readonly Code.Gameplay.Features.Command.ProcessCommandRequest processCommandRequestComponent = new Code.Gameplay.Features.Command.ProcessCommandRequest();
 
-    public bool isProcessCommand {
-        get { return HasComponent(GameComponentsLookup.ProcessCommand); }
+    public bool isProcessCommandRequest {
+        get { return HasComponent(GameComponentsLookup.ProcessCommandRequest); }
         set {
-            if (value != isProcessCommand) {
-                var index = GameComponentsLookup.ProcessCommand;
+            if (value != isProcessCommandRequest) {
+                var index = GameComponentsLookup.ProcessCommandRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : processCommandComponent;
+                            : processCommandRequestComponent;
 
                     AddComponent(index, component);
                 } else {

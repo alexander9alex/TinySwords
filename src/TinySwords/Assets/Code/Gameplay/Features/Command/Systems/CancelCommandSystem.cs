@@ -1,19 +1,11 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Services;
-using Code.Gameplay.Features.Input.Data;
-using Code.Gameplay.Features.Input.Services;
-using Code.UI.Hud.Service;
 using Entitas;
 
 namespace Code.Gameplay.Features.Command.Systems
 {
   public class CancelCommandSystem : IExecuteSystem
   {
-    private readonly IHudService _hudService;
-    private readonly IInputService _inputService;
-
     private readonly IGroup<GameEntity> _cancelCommandRequests;
     private readonly List<GameEntity> _cancelCommandBuffer = new(1);
 
@@ -21,10 +13,8 @@ namespace Code.Gameplay.Features.Command.Systems
     private readonly List<GameEntity> _selectedCommandsBuffer = new(1);
     private readonly ICommandService _commandService;
 
-    public CancelCommandSystem(GameContext game, IHudService hudService, IInputService inputService, ICommandService commandService)
+    public CancelCommandSystem(GameContext game, ICommandService commandService)
     {
-      _hudService = hudService;
-      _inputService = inputService;
       _commandService = commandService;
 
       _cancelCommandRequests = game.GetGroup(GameMatcher.CancelCommand);

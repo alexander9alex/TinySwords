@@ -24,6 +24,7 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly IHudService _hudService;
     private readonly IInputService _inputService;
     private readonly ISoundService _soundService;
+    private readonly SelectableCommandService _selectableCommandService;
 
     public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider, IHudService hudService, IInputService inputService,
       ISoundService soundService)
@@ -40,6 +41,8 @@ namespace Code.Gameplay.Features.Command.Services
       _hudService.SelectCommand(command.CommandTypeId);
       _inputService.ChangeInputMap(InputMap.CommandIsActive);
       _soundService.PlaySound(SoundId.SelectCommand);
+      
+      command.isSelectedCommand = true;
     }
 
     public void CancelCommand(GameEntity command)
@@ -49,7 +52,7 @@ namespace Code.Gameplay.Features.Command.Services
 
       CreateEntity.Empty()
         .With(x => x.isUpdateHudControlButtons = true);
-      
+
       if (!command.isProcessed)
         _soundService.PlaySound(SoundId.CancelCommand);
     }
@@ -73,29 +76,28 @@ namespace Code.Gameplay.Features.Command.Services
       GameEntity entity = CreateEntity.Empty()
         .AddCommandTypeId(command.CommandTypeId)
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isProcessCommand = true);
+        .With(x => x.isProcessCommandRequest = true);
 
-      switch (command.CommandTypeId)
-      {
-        case CommandTypeId.Move:
-          entity.isMoveCommand = true;
-          break;
-        case CommandTypeId.MoveWithAttack:
-          entity.isMoveWithAttackCommand = true;
-          break;
-        case CommandTypeId.AimedAttack:
-          entity.isAimedAttackCommand = true;
-          break;
-        default:
-          throw new ArgumentOutOfRangeException();
-      }
+      SetCommandType(entity, command.CommandTypeId);
 
       _soundService.PlaySound(SoundId.ApplyCommand);
 
       command.isProcessed = true;
-      
+
       CreateEntity.Empty()
         .With(x => x.isCancelCommand = true);
+    }
+
+    public void IncorrectCommand(GameEntity command, GameEntity request)
+    {
+      GameEntity entity = CreateEntity.Empty()
+        .AddCommandTypeId(command.CommandTypeId)
+        .AddPositionOnScreen(request.PositionOnScreen)
+        .With(x => x.isProcessIncorrectCommandRequest = true);
+
+      SetCommandType(entity, command.CommandTypeId);
+
+      _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 
     public bool CanProcessAimedAttack(out GameEntity target, GameEntity request)
@@ -123,6 +125,9 @@ namespace Code.Gameplay.Features.Command.Services
       selected.ReplaceAimedTargetId(target.Id);
     }
 
+    public bool CommandCompletedOnSelectable(GameEntity selectable) =>
+      _selectableCommandService.CommandCompleted(selectable);
+
     private static void RemovePreviousCommand(GameEntity selected)
     {
       if (!selected.hasCommandTypeId)
@@ -131,6 +136,24 @@ namespace Code.Gameplay.Features.Command.Services
       CreateEntity.Empty()
         .AddCommandTypeId(selected.CommandTypeId)
         .With(x => x.isRemovePreviousCommand = true);
+    }
+
+    private static void SetCommandType(GameEntity entity, CommandTypeId commandTypeId)
+    {
+      switch (commandTypeId)
+      {
+        case CommandTypeId.Move:
+          entity.isMoveCommand = true;
+          break;
+        case CommandTypeId.MoveWithAttack:
+          entity.isMoveWithAttackCommand = true;
+          break;
+        case CommandTypeId.AimedAttack:
+          entity.isAimedAttackCommand = true;
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
     }
 
     private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)

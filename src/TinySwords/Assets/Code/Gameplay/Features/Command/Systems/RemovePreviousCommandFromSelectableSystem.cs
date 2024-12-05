@@ -4,14 +4,14 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Command.Systems
 {
-  public class RemovePreviousCommandSystem : IExecuteSystem
+  public class RemovePreviousCommandFromSelectableSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _removePreviousCommandRequests;
     private readonly List<GameEntity> _buffer = new(32);
     
     private readonly IGroup<GameEntity> _selected;
     
-    public RemovePreviousCommandSystem(GameContext game)
+    public RemovePreviousCommandFromSelectableSystem(GameContext game)
     {
       _removePreviousCommandRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.RemovePreviousCommand, GameMatcher.CommandTypeId));

@@ -98,8 +98,11 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ITimeService>().To<TimeService>().AsSingle();
       Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
-      Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<ISoundService>().To<SoundService>().AsSingle();
+      
+      Container.Bind<ICommandService>().To<CommandService>().AsSingle();
+      Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
+      Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
     }
 
     private void BindGameplayFactories()

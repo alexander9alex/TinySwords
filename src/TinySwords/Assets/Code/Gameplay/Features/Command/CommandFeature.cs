@@ -7,7 +7,7 @@ namespace Code.Gameplay.Features.Command
   {
     public CommandFeature(ISystemFactory systems)
     {
-      Add(systems.Create<RemoveCompletedCommandSystem>());
+      Add(systems.Create<RemoveCompletedCommandFromSelectableSystem>()); // todo: move?
       
       Add(systems.Create<SelectCommandSystem>());
       Add(systems.Create<ApplyCommandSystem>());
@@ -17,9 +17,13 @@ namespace Code.Gameplay.Features.Command
       Add(systems.Create<ProcessMoveWithAttackCommandSystem>());
       Add(systems.Create<ProcessAimedAttackCommandSystem>());
 
-      Add(systems.Create<RemovePreviousCommandSystem>());
+      Add(systems.Create<ProcessIncorrectAimedAttackCommandSystem>());
+      
+      Add(systems.Create<RemovePreviousCommandFromSelectableSystem>()); // todo: move?
 
       Add(systems.Create<CleanupApplyCommandRequestSystem>());
+      Add(systems.Create<CleanupProcessCommandRequestSystem>());
+      Add(systems.Create<CleanupProcessIncorrectCommandSystem>());
     }
   }
 }

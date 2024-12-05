@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.Command.Systems
 {
   public class ProcessMoveWithAttackCommandSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _updateCommandRequests;
+    private readonly IGroup<GameEntity> _processCommandRequests;
     private readonly List<GameEntity> _requestsBuffer = new(1);
 
     private readonly IGroup<GameEntity> _selected;
@@ -18,18 +18,17 @@ namespace Code.Gameplay.Features.Command.Systems
 
     public ProcessMoveWithAttackCommandSystem(GameContext game)
     {
-      _updateCommandRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ProcessCommand, GameMatcher.MoveWithAttackCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
+      _processCommandRequests = game.GetGroup(GameMatcher
+        .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.MoveWithAttackCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
 
       _selected = game.GetGroup(GameMatcher.AllOf(GameMatcher.Selected, GameMatcher.Alive));
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _updateCommandRequests.GetEntities(_requestsBuffer))
+      foreach (GameEntity request in _processCommandRequests.GetEntities(_requestsBuffer))
       {
         ProcessCommand(request);
-        request.isDestructed = true;
       }
     }
 

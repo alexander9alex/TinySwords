@@ -14,7 +14,7 @@ namespace Code.UI.Hud.Service
     GameObject CommandDescriptionPrefab { get; }
     void UpdateAvailableCommands(List<CommandTypeId> commands);
     void SelectCommand(CommandTypeId commandTypeId);
-    void ApplyCommand(CommandTypeId commandTypeId);
+    void ClickByCommand(CommandTypeId commandTypeId);
     void CancelCommand();
   }
 }

@@ -38,7 +38,7 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
             .AddPositionOnScreen(request.PositionOnScreen)
             .AddCommandTypeId(CommandTypeId.Move)
             .With(x => x.isMoveCommand = true)
-            .With(x => x.isProcessCommand = true);
+            .With(x => x.isProcessCommandRequest = true);
 
           _soundService.PlaySound(SoundId.ApplyCommand); // todo: change interaction logic (through command service? make interaction service)
           

@@ -79,7 +79,7 @@ namespace Code.UI.Hud
       {
         Button button = _hudFactory.CreateControlButton(config, CommandLayout);
         _spawnedButtons.Add(button.gameObject);
-        button.onClick.AddListener(() => _hudService.ApplyCommand(config.CommandTypeId));
+        button.onClick.AddListener(() => _hudService.ClickByCommand(config.CommandTypeId));
       }
     }
 

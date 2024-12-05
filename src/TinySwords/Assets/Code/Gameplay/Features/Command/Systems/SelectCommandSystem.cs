@@ -26,7 +26,6 @@ namespace Code.Gameplay.Features.Command.Systems
       foreach (GameEntity command in _commands.GetEntities(_buffer))
       {
         _commandService.SelectCommand(command);
-        command.With(x => x.isSelectedCommand = true);
       }
     }
   }
