@@ -2,6 +2,7 @@
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Services;
+using Code.Gameplay.Features.Indicators.Data;
 using Entitas;
 
 namespace Code.Gameplay.Features.Command.Systems
@@ -46,9 +47,10 @@ namespace Code.Gameplay.Features.Command.Systems
         .With(x => x.isChangeEndDestinationRequest = true);
 
       CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.Attack)
         .AddWorldPosition(target.WorldPosition)
         .AddTargetId(target.Id)
-        .With(x => x.isCreateAttackIndicator = true);
+        .With(x => x.isCreateIndicator = true);
     }
   }
 }

@@ -4,8 +4,8 @@ using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
-using Code.Gameplay.Features.IncorrectCommandIndicator.Configs;
-using Code.Gameplay.Features.MoveIndicator.Configs;
+using Code.Gameplay.Features.Indicators.Configs;
+using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Sounds.Configs;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Configs;
@@ -23,6 +23,7 @@ namespace Code.Gameplay.Common.Services
     private List<LevelConfig> _levelConfigs;
     private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
     private Dictionary<SoundId, SoundConfig> _soundConfigById;
+    private Dictionary<IndicatorTypeId, IndicatorConfig> _indicatorConfigByType;
 
     public void LoadAll()
     {
@@ -31,6 +32,7 @@ namespace Code.Gameplay.Common.Services
       LoadLevelConfigs();
       LoadCommandUIConfigs();
       LoadSoundConfigs();
+      LoadIndicatorConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -39,14 +41,8 @@ namespace Code.Gameplay.Common.Services
     public EntityBehaviour GetHighlightViewPrefab() =>
       Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
 
-    public MoveIndicatorConfig GetMoveIndicatorConfig() =>
-      Resources.Load<MoveIndicatorConfig>("Configs/Indicators/MoveIndicatorConfig");
-
-    public AttackIndicatorConfig GetAttackIndicatorConfig() =>
-      Resources.Load<AttackIndicatorConfig>("Configs/Indicators/AttackIndicatorConfig");
-
-    public IncorrectCommandIndicatorConfig GetIncorrectCommandIndicatorConfig() =>
-      Resources.Load<IncorrectCommandIndicatorConfig>("Configs/Indicators/IncorrectCommandIndicatorConfig");
+    public IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId) =>
+      _indicatorConfigByType[typeId];
 
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];
@@ -103,6 +99,13 @@ namespace Code.Gameplay.Common.Services
       _soundConfigById = Resources
         .LoadAll<SoundConfig>("Configs/Sounds")
         .ToDictionary(x => x.SoundId, x => x);
+    }
+
+    private void LoadIndicatorConfigs()
+    {
+      _indicatorConfigByType = Resources
+        .LoadAll<IndicatorConfig>("Configs/Indicators")
+        .ToDictionary(x => x.IndicatorTypeId, x => x);
     }
   }
 }

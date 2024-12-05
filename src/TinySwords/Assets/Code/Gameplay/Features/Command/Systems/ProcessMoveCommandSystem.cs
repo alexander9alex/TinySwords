@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Indicators.Data;
 using Entitas;
 
 namespace Code.Gameplay.Features.Command.Systems
@@ -40,8 +41,9 @@ namespace Code.Gameplay.Features.Command.Systems
         .With(x => x.isConvertWhenGroup = true);
 
       CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.Move)
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isCreateMoveIndicator = true);
+        .With(x => x.isCreateIndicator = true);
     }
 
     private static void ProcessCommand(GameEntity selected, GameEntity request)

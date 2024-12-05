@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Constants;
+using Code.Gameplay.Features.Indicators.Data;
 using Entitas;
 using UnityEngine;
 
@@ -43,8 +44,9 @@ namespace Code.Gameplay.Features.Command.Systems
         .With(x => x.isConvertWhenGroup = true);
 
       CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.Move)
         .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isCreateMoveIndicator = true);
+        .With(x => x.isCreateIndicator = true);
     }
     
     private static void ProcessCommand(GameEntity selected, GameEntity request)

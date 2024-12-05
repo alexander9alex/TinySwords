@@ -1,5 +1,4 @@
 ﻿using Code.Gameplay.Features.AI;
-using Code.Gameplay.Features.AttackIndicator;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.Command;
@@ -10,10 +9,9 @@ using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Focus;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.HpBars;
-using Code.Gameplay.Features.IncorrectCommandIndicator;
+using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
-using Code.Gameplay.Features.MoveIndicator;
 using Code.Gameplay.Features.MoveInput;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
@@ -42,13 +40,9 @@ namespace Code.Gameplay
       Add(systems.Create<ProcessMoveInputFeature>());
       Add(systems.Create<AIFeature>());
 
-
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());
-      
-      Add(systems.Create<MoveIndicatorFeature>());
-      Add(systems.Create<AttackIndicatorFeature>());
-      Add(systems.Create<IncorrectCommandIndicatorFeature>()); // todo: move to indicator feature
+      Add(systems.Create<IndicatorFeature>());
       
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());

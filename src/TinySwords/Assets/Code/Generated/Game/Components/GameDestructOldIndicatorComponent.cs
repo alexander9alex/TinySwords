@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherFollowToTarget;
+    static Entitas.IMatcher<GameEntity> _matcherDestructOldIndicator;
 
-    public static Entitas.IMatcher<GameEntity> FollowToTarget {
+    public static Entitas.IMatcher<GameEntity> DestructOldIndicator {
         get {
-            if (_matcherFollowToTarget == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.FollowToTarget);
+            if (_matcherDestructOldIndicator == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.DestructOldIndicator);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherFollowToTarget = matcher;
+                _matcherDestructOldIndicator = matcher;
             }
 
-            return _matcherFollowToTarget;
+            return _matcherDestructOldIndicator;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Indicators.FollowToTarget followToTargetComponent = new Code.Gameplay.Features.Indicators.FollowToTarget();
+    static readonly Code.Gameplay.Features.Indicators.DestructOldIndicator destructOldIndicatorComponent = new Code.Gameplay.Features.Indicators.DestructOldIndicator();
 
-    public bool isFollowToTarget {
-        get { return HasComponent(GameComponentsLookup.FollowToTarget); }
+    public bool isDestructOldIndicator {
+        get { return HasComponent(GameComponentsLookup.DestructOldIndicator); }
         set {
-            if (value != isFollowToTarget) {
-                var index = GameComponentsLookup.FollowToTarget;
+            if (value != isDestructOldIndicator) {
+                var index = GameComponentsLookup.DestructOldIndicator;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : followToTargetComponent;
+                            : destructOldIndicatorComponent;
 
                     AddComponent(index, component);
                 } else {

@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherFollowToTarget;
+    static Entitas.IMatcher<GameEntity> _matcherCreateIndicator;
 
-    public static Entitas.IMatcher<GameEntity> FollowToTarget {
+    public static Entitas.IMatcher<GameEntity> CreateIndicator {
         get {
-            if (_matcherFollowToTarget == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.FollowToTarget);
+            if (_matcherCreateIndicator == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CreateIndicator);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherFollowToTarget = matcher;
+                _matcherCreateIndicator = matcher;
             }
 
-            return _matcherFollowToTarget;
+            return _matcherCreateIndicator;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Indicators.FollowToTarget followToTargetComponent = new Code.Gameplay.Features.Indicators.FollowToTarget();
+    static readonly Code.Gameplay.Features.Indicators.CreateIndicator createIndicatorComponent = new Code.Gameplay.Features.Indicators.CreateIndicator();
 
-    public bool isFollowToTarget {
-        get { return HasComponent(GameComponentsLookup.FollowToTarget); }
+    public bool isCreateIndicator {
+        get { return HasComponent(GameComponentsLookup.CreateIndicator); }
         set {
-            if (value != isFollowToTarget) {
-                var index = GameComponentsLookup.FollowToTarget;
+            if (value != isCreateIndicator) {
+                var index = GameComponentsLookup.CreateIndicator;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : followToTargetComponent;
+                            : createIndicatorComponent;
 
                     AddComponent(index, component);
                 } else {
