@@ -47,6 +47,20 @@ namespace Code.Gameplay.Features.Command.Services
       entity.RemoveCommandTypeId();
     }
 
+    private void RemoveMoveWithAttackCommand(GameEntity entity) =>
+      RemoveMoveCommand(entity);
+
+    private void RemoveAimedAttackCommand(GameEntity entity)
+    {
+      if (entity.hasAimedTargetId)
+        entity.RemoveAimedTargetId();
+
+      entity.RemoveCommandTypeId();
+
+      if (entity.hasEndDestination)
+        entity.RemoveEndDestination();
+    }
+
     private bool MoveCommandCompleted(GameEntity entity) =>
       !entity.hasEndDestination;
 
@@ -61,20 +75,6 @@ namespace Code.Gameplay.Features.Command.Services
       GameEntity target = _gameContext.GetEntityWithId(entity.AimedTargetId);
 
       return target == null || target.isDead;
-    }
-
-    private void RemoveMoveWithAttackCommand(GameEntity entity) =>
-      RemoveMoveCommand(entity);
-
-    private void RemoveAimedAttackCommand(GameEntity entity)
-    {
-      if (entity.hasAimedTargetId)
-        entity.RemoveAimedTargetId();
-
-      entity.RemoveCommandTypeId();
-
-      if (entity.hasEndDestination)
-        entity.RemoveEndDestination();
     }
   }
 }

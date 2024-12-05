@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.Command.Systems
         .AllOf(GameMatcher.RemovePreviousCommand, GameMatcher.CommandTypeId));
       
       _selected = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selected, GameMatcher.Alive));
+        .AllOf(GameMatcher.Selected, GameMatcher.Alive, GameMatcher.CommandTypeId));
     }
 
     public void Execute()
