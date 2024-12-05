@@ -7,6 +7,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Sounds.Data;
@@ -41,7 +42,7 @@ namespace Code.Gameplay.Features.Command.Services
       _hudService.SelectCommand(command.CommandTypeId);
       _inputService.ChangeInputMap(InputMap.CommandIsActive);
       _soundService.PlaySound(SoundId.SelectCommand);
-      
+
       command.isSelectedCommand = true;
     }
 
@@ -125,8 +126,13 @@ namespace Code.Gameplay.Features.Command.Services
       selected.ReplaceAimedTargetId(target.Id);
     }
 
-    public bool CommandCompletedOnSelectable(GameEntity selectable) =>
-      _selectableCommandService.CommandCompleted(selectable);
+    public void ProcessIncorrectAimedAttack(GameEntity request)
+    {
+      CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.IncorrectCommand)
+        .AddPositionOnScreen(request.PositionOnScreen)
+        .With(x => x.isCreateIndicator = true);
+    }
 
     private static void RemovePreviousCommand(GameEntity selected)
     {

@@ -9,5 +9,6 @@
     void IncorrectCommand(GameEntity command, GameEntity request);
     bool CanProcessAimedAttack(out GameEntity target, GameEntity request);
     void ProcessAimedAttack(GameEntity request, GameEntity selected, GameEntity target);
+    void ProcessIncorrectAimedAttack(GameEntity request);
   }
 }

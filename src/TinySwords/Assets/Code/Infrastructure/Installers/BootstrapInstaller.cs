@@ -101,7 +101,6 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ISoundService>().To<SoundService>().AsSingle();
       
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
-      Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
     }
 
