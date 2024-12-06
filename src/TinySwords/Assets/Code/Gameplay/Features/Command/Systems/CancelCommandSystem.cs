@@ -24,13 +24,18 @@ namespace Code.Gameplay.Features.Command.Systems
     public void Execute()
     {
       foreach (GameEntity request in _cancelCommandRequests.GetEntities(_cancelCommandBuffer))
-      foreach (GameEntity command in _selectedCommands.GetEntities(_selectedCommandsBuffer))
       {
-        _commandService.CancelCommand(command);
+        foreach (GameEntity command in _selectedCommands.GetEntities(_selectedCommandsBuffer))
+          CancelAndDestructCommand(command);
         
-        command.isDestructed = true;
         request.isDestructed = true;
       }
+    }
+
+    private void CancelAndDestructCommand(GameEntity command)
+    {
+      _commandService.CancelCommand(command.isProcessed);
+      command.isDestructed = true;
     }
   }
 }

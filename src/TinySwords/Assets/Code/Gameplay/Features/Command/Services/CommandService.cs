@@ -37,16 +37,14 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService = soundService;
     }
 
-    public void SelectCommand(GameEntity command)
+    public void SelectCommand(CommandTypeId command)
     {
-      _hudService.SelectCommand(command.CommandTypeId);
+      _hudService.SelectCommand(command);
       _inputService.ChangeInputMap(InputMap.CommandIsActive);
       _soundService.PlaySound(SoundId.SelectCommand);
-
-      command.isSelectedCommand = true;
     }
 
-    public void CancelCommand(GameEntity command)
+    public void CancelCommand(bool isCommandProcessed)
     {
       _hudService.CancelCommand();
       _inputService.ChangeInputMap(InputMap.Game);
@@ -54,13 +52,13 @@ namespace Code.Gameplay.Features.Command.Services
       CreateEntity.Empty()
         .With(x => x.isUpdateHudControlButtons = true);
 
-      if (!command.isProcessed)
+      if (!isCommandProcessed)
         _soundService.PlaySound(SoundId.CancelCommand);
     }
 
-    public bool CanApplyCommand(GameEntity command, GameEntity request)
+    public bool CanApplyCommand(CommandTypeId command, GameEntity request)
     {
-      switch (command.CommandTypeId)
+      switch (command)
       {
         case CommandTypeId.Move:
         case CommandTypeId.MoveWithAttack:
@@ -72,32 +70,38 @@ namespace Code.Gameplay.Features.Command.Services
       }
     }
 
-    public void ApplyCommand(GameEntity command, GameEntity request)
+    public void ApplyCommand(CommandTypeId command, GameEntity request)
     {
-      GameEntity entity = CreateEntity.Empty()
-        .AddCommandTypeId(command.CommandTypeId)
-        .AddPositionOnScreen(request.PositionOnScreen)
-        .With(x => x.isProcessCommandRequest = true);
-
-      SetCommandTypeId(entity, command.CommandTypeId);
-
-      _soundService.PlaySound(SoundId.ApplyCommand);
-
-      command.isProcessed = true;
-
+      CreateProcessCommandRequest(command, request);
+      
       CreateEntity.Empty()
         .With(x => x.isCancelCommand = true);
     }
 
-    public void IncorrectCommand(GameEntity command, GameEntity request)
+    public void CreateProcessCommandRequest(CommandTypeId command, GameEntity request)
     {
       GameEntity entity = CreateEntity.Empty()
-        .AddCommandTypeId(command.CommandTypeId)
+        .AddCommandTypeId(command)
+        .AddPositionOnScreen(request.PositionOnScreen)
+        .With(x => x.isProcessCommandRequest = true);
+
+      SetCommandTypeId(entity, command);
+      
+      _soundService.PlaySound(SoundId.ApplyCommand);
+    }
+
+    public void ProcessIncorrectCommand(CommandTypeId command, GameEntity request) =>
+      CreateProcessIncorrectCommandRequest(command, request);
+
+    private void CreateProcessIncorrectCommandRequest(CommandTypeId command, GameEntity request)
+    {
+      GameEntity entity = CreateEntity.Empty()
+        .AddCommandTypeId(command)
         .AddPositionOnScreen(request.PositionOnScreen)
         .With(x => x.isProcessIncorrectCommandRequest = true);
 
-      SetCommandTypeId(entity, command.CommandTypeId);
-
+      SetCommandTypeId(entity, command);
+      
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 

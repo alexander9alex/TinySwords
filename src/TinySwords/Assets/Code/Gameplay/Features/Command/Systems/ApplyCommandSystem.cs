@@ -25,12 +25,13 @@ namespace Code.Gameplay.Features.Command.Systems
       foreach (GameEntity request in _applyCommandRequests)
       foreach (GameEntity command in _selectedCommands.GetEntities(_buffer))
       {
-        if (_commandService.CanApplyCommand(command, request))
-          _commandService.ApplyCommand(command, request);
+        if (_commandService.CanApplyCommand(command.CommandTypeId, request))
+        {
+          _commandService.ApplyCommand(command.CommandTypeId, request);
+          command.isProcessed = true;
+        }
         else
-          _commandService.IncorrectCommand(command, request);
-        
-        
+          _commandService.ProcessIncorrectCommand(command.CommandTypeId, request);
       }
     }
   }

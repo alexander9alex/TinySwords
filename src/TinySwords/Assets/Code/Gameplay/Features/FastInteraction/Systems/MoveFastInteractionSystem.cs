@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Features.FastInteraction.Services;
+using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Command.Services;
 using Entitas;
 
 namespace Code.Gameplay.Features.FastInteraction.Systems
 {
   public class MoveFastInteractionSystem : IExecuteSystem
   {
-    private readonly IFastInteractionService _fastInteractionService;
+    private readonly ICommandService _commandService;
 
     private readonly IGroup<GameEntity> _fastInteractionRequests;
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public MoveFastInteractionSystem(GameContext game, IFastInteractionService fastInteractionService)
+    public MoveFastInteractionSystem(GameContext game, ICommandService commandService)
     {
-      _fastInteractionService = fastInteractionService;
+      _commandService = commandService;
 
       _fastInteractionRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.FastInteraction, GameMatcher.PositionOnScreen)
@@ -27,31 +28,31 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     {
       foreach (GameEntity request in _fastInteractionRequests.GetEntities(_buffer))
       {
-        if (CantMoveSelected())
+        if (CanNotMakeMove(request))
           return;
 
-        _fastInteractionService.MoveSelected(request);
-          
+        _commandService.CreateProcessCommandRequest(CommandTypeId.Move, request);
+
         request.isProcessed = true;
       }
     }
 
-    private bool AllSelectedIsUnits()
+    private bool AllSelectedCanMove()
     {
       foreach (GameEntity selected in _selected)
       {
-        if (!selected.isUnit)
+        if (!selected.isMovable)
           return false;
       }
 
       return true;
     }
 
-    private bool CantMoveSelected() =>
-      !CanMoveSelected();
+    private bool CanNotMakeMove(GameEntity request) =>
+      !_commandService.CanApplyCommand(CommandTypeId.Move, request) || !SelectedCanMove();
 
-    private bool CanMoveSelected() =>
-      HasSelected() && AllSelectedIsUnits();
+    private bool SelectedCanMove() =>
+      HasSelected() && AllSelectedCanMove();
 
     private bool HasSelected() =>
       _selected.count > 0;
