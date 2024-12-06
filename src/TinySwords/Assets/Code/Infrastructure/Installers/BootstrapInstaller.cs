@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
+using Code.Gameplay.Features.FastInteraction.Services;
 using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
@@ -99,6 +100,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
       Container.Bind<ISoundService>().To<SoundService>().AsSingle();
+      Container.Bind<IFastInteractionService>().To<FastInteractionService>().AsSingle();
       
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();

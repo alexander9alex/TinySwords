@@ -29,6 +29,8 @@ namespace Code.Gameplay.Features.Command.Systems
           _commandService.ApplyCommand(command, request);
         else
           _commandService.IncorrectCommand(command, request);
+        
+        
       }
     }
   }

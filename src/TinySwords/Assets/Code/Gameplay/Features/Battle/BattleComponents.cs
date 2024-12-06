@@ -5,6 +5,7 @@ namespace Code.Gameplay.Features.Battle
 {
   [Game] public class AttackRequest : IComponent { }
   [Game] public class CanAttack : IComponent { }
+  [Game] public class CanAttackNow : IComponent { }
   [Game] public class Attacking : IComponent { }
   [Game] public class NotAttacking : IComponent { }
   [Game] public class MakeHit : IComponent { }

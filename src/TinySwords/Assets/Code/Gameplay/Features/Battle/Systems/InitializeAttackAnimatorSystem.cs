@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Battle.Systems
     public InitializeAttackAnimatorSystem(GameContext game)
     {
       _attackAnimator = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AttackAnimator, GameMatcher.InitializationRequest, GameMatcher.Unit, GameMatcher.Id));
+        .AllOf(GameMatcher.Unit, GameMatcher.CanAttack, GameMatcher.InitializationRequest, GameMatcher.AttackAnimator, GameMatcher.Id));
     }
 
     public void Execute()

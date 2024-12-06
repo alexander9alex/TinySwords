@@ -22,9 +22,9 @@ namespace Code.Gameplay.Features.Battle.Systems
       {
         GameEntity unit = _game.GetEntityWithId(request.CasterId);
 
-        if (unit != null && unit.isAlive && unit.isCanAttack)
+        if (unit is { isAlive: true, isCanAttack: true, isCanAttackNow: true })
         {
-          unit.isCanAttack = false;
+          unit.isCanAttackNow = false;
           unit.isNotAttacking = false;
           unit.isAttacking = true;
 

@@ -7,8 +7,9 @@ namespace Code.Gameplay.Features.FastInteraction
   {
     public FastInteractionFeature(ISystemFactory systems)
     {
-      Add(systems.Create<UnitMoveFastInteractionSystem>());
-      
+      Add(systems.Create<AimedAttackFastInteractionSystem>());
+      Add(systems.Create<MoveFastInteractionSystem>());
+
       Add(systems.Create<CleanupFastInteractionInputSystem>());
     }
   }

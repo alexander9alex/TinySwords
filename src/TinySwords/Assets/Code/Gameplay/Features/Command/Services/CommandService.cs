@@ -79,7 +79,7 @@ namespace Code.Gameplay.Features.Command.Services
         .AddPositionOnScreen(request.PositionOnScreen)
         .With(x => x.isProcessCommandRequest = true);
 
-      SetCommandType(entity, command.CommandTypeId);
+      SetCommandTypeId(entity, command.CommandTypeId);
 
       _soundService.PlaySound(SoundId.ApplyCommand);
 
@@ -96,7 +96,7 @@ namespace Code.Gameplay.Features.Command.Services
         .AddPositionOnScreen(request.PositionOnScreen)
         .With(x => x.isProcessIncorrectCommandRequest = true);
 
-      SetCommandType(entity, command.CommandTypeId);
+      SetCommandTypeId(entity, command.CommandTypeId);
 
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
@@ -144,7 +144,7 @@ namespace Code.Gameplay.Features.Command.Services
         .With(x => x.isRemovePreviousCommand = true);
     }
 
-    private static void SetCommandType(GameEntity entity, CommandTypeId commandTypeId)
+    private static void SetCommandTypeId(GameEntity entity, CommandTypeId commandTypeId)
     {
       switch (commandTypeId)
       {

@@ -14,8 +14,8 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       _time = time;
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AttackCooldown, GameMatcher.NotAttacking)
-        .NoneOf(GameMatcher.CanAttack));
+        .AllOf(GameMatcher.CanAttack, GameMatcher.AttackCooldown, GameMatcher.NotAttacking)
+        .NoneOf(GameMatcher.CanAttackNow));
     }
 
     public void Execute()
@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.Battle.Systems
         entity.ReplaceAttackCooldown(entity.AttackCooldown - _time.DeltaTime);
 
         if (entity.AttackCooldown <= 0)
-          entity.isCanAttack = true;
+          entity.isCanAttackNow = true;
       }
     }
   }
