@@ -48,10 +48,14 @@ namespace Code.Gameplay.Features.Units.Factory
         .AddAttackReach(config.AttackReach)
 
         .AddMakeDecisionTimer(0)
+        .AddTimeSinceLastDecision(1)
+        
         .AddMakeDecisionInterval(config.MakeDecisionInterval)
 
         .AddTargetBuffer(new List<int>())
         .AddCollectTargetsRadius(config.CollectTargetRadius)
+        .AddCollectTargetTimer(0)
+        .AddCollectTargetInterval(0.5f)
 
         .AddReachedTargetBuffer(new List<int>())
         .AddCollectReachedTargetsRadius(config.AttackReach)

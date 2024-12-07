@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.MakeDecisionRequest,
+          GameMatcher.CollectTargets,
           GameMatcher.CollectReachedTargetsRadius,
           GameMatcher.ReachedTargetBuffer,
           GameMatcher.WorldPosition,
@@ -30,20 +30,21 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
-        List<int> targets = new();
-        
+        List<int> reachedTargets = new();
+
         foreach (GameEntity target in GetTargetsInRadius(entity))
         {
-          if (!target.isAlive || !target.hasTeamColor || !target.hasId)
-            continue;
-          
-          if (entity.TeamColor == target.TeamColor)
+          if (!target.isAlive || !target.hasTeamColor || !target.hasId || entity.TeamColor == target.TeamColor)
             continue;
 
-          targets.Add(target.Id);
+          reachedTargets.Add(target.Id);
         }
 
-        entity.ReplaceReachedTargetBuffer(targets);
+        if (!new HashSet<int>(reachedTargets).SetEquals(entity.ReachedTargetBuffer))
+        {
+          entity.ReplaceReachedTargetBuffer(reachedTargets);
+          entity.ReplaceMakeDecisionTimer(0);
+        }
       }
     }
 

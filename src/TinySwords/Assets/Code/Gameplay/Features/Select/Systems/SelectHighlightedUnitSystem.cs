@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Select.Systems
     {
       foreach (GameEntity request in _createMultipleSelectionRequests.GetEntities(_buffer))
       foreach (GameEntity highlight in _highlights)
-      foreach (GameEntity entity in GetHighlightedUnits(highlight))
+      foreach (GameEntity entity in GetHighlightedSelectables(highlight))
       {
         if (entity.isSelectable)
         {
@@ -54,13 +54,13 @@ namespace Code.Gameplay.Features.Select.Systems
       }
     }
 
-    private IEnumerable<GameEntity> GetHighlightedUnits(GameEntity highlight)
+    private IEnumerable<GameEntity> GetHighlightedSelectables(GameEntity highlight)
     {
       return _physicsService.BoxCast(
         _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),
         highlight.Size / PixelsPerUnit,
         GameConstants.SelectionLayerMask)
-        .Where(entity => entity.isUnit);
+        .Where(entity => entity.isSelectable);
     }
   }
 }

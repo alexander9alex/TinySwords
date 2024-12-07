@@ -30,8 +30,8 @@ namespace Code.Gameplay.UtilityAI.Brains
         { When.ActionIsMoveToTarget, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Move to Nearest Target" },
         { When.ActionIsMoveToTarget, GetInput.CanReachToTarget, Score.IfFalseThen(+20), "Can not Reach to Target" },
         
-        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfTrueThen(-100), "Has not Target" },
-        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfFalseThen(+20), "Has Target" },
+        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfTrueThen(-100), "Has Target" },
+        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfFalseThen(+20), "Has not Target" },
         
         { When.ActionIsAttack, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
         { When.ActionIsAttack, GetInput.IsAimedTarget, Score.IfTrueThen(+150), "Aimed Target" },

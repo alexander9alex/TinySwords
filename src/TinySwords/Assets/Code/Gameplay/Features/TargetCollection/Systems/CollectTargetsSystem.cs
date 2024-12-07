@@ -3,6 +3,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Entitas;
 using ModestTree;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.TargetCollection.Systems
 {
@@ -18,7 +19,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.MakeDecisionRequest,
+          GameMatcher.CollectTargets,
           GameMatcher.CollectTargetsRadius,
           GameMatcher.TargetBuffer,
           GameMatcher.WorldPosition,
@@ -43,8 +44,12 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
           targets.Add(target.Id);
         }
-        
-        entity.ReplaceTargetBuffer(targets);
+
+        if (!new HashSet<int>(targets).SetEquals(entity.TargetBuffer))
+        {
+          entity.ReplaceTargetBuffer(targets);
+          entity.ReplaceMakeDecisionTimer(0);
+        }
       }
     }
 

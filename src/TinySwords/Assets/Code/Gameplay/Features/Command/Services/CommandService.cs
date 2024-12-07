@@ -128,6 +128,8 @@ namespace Code.Gameplay.Features.Command.Services
       RemovePreviousCommand(selected);
       selected.ReplaceCommandTypeId(request.CommandTypeId);
       selected.ReplaceAimedTargetId(target.Id);
+      selected.ReplaceMakeDecisionTimer(0);
+      selected.ReplaceTimeSinceLastDecision(1);
     }
 
     public void ProcessIncorrectAimedAttack(GameEntity request)

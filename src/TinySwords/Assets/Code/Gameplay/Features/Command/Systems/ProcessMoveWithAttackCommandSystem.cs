@@ -53,6 +53,8 @@ namespace Code.Gameplay.Features.Command.Systems
     {
       RemovePreviousCommand(selected);
       selected.ReplaceCommandTypeId(request.CommandTypeId);
+      selected.ReplaceMakeDecisionTimer(0);
+      selected.ReplaceTimeSinceLastDecision(1);
     }
     
     private static void RemovePreviousCommand(GameEntity selected)

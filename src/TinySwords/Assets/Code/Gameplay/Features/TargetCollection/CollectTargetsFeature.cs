@@ -7,9 +7,10 @@ namespace Code.Gameplay.Features.TargetCollection
   {
     public CollectTargetsFeature(ISystemFactory systems)
     {
+      Add(systems.Create<TickToCollectTargetTimerSystem>());
+
       Add(systems.Create<CollectTargetsSystem>());
       Add(systems.Create<CollectReachedTargetsSystem>());
-      Add(systems.Create<CollectAlliesSystem>());
     }
   }
 }

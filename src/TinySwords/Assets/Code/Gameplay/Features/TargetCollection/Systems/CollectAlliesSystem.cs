@@ -34,10 +34,7 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
         
         foreach (GameEntity ally in GetAlliesInRadius(entity))
         {
-          if (!ally.isAlive || !ally.hasTeamColor || !ally.hasId)
-            continue;
-          
-          if (entity.TeamColor != ally.TeamColor)
+          if (!ally.isAlive || !ally.hasId || !ally.hasTeamColor || entity.TeamColor != ally.TeamColor)
             continue;
 
           allies.Add(ally.Id);

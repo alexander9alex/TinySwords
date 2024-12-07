@@ -25,7 +25,10 @@ namespace Code.Gameplay.Features.Battle.Systems
         entity.ReplaceAttackCooldown(entity.AttackCooldown - _time.DeltaTime);
 
         if (entity.AttackCooldown <= 0)
+        {
           entity.isCanAttackNow = true;
+          entity.ReplaceMakeDecisionTimer(0);
+        }
       }
     }
   }
