@@ -93,7 +93,7 @@ namespace Code.Gameplay.Features.Input.Services
     private void CreateMousePositionInput()
     {
       CreateEntity.Empty()
-        .AddMousePositionOnScreen(_mousePos);
+        .AddMouseScreenPosition(_mousePos);
     }
 
     private void CreateCameraMoveInput()

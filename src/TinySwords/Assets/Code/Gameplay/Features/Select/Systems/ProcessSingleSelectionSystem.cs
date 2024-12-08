@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Select.Systems
         .AllOf(GameMatcher.SingleSelectionRequest)
         .NoneOf(GameMatcher.Processed));
 
-      _mousePositions = game.GetGroup(GameMatcher.MousePositionOnScreen);
+      _mousePositions = game.GetGroup(GameMatcher.MouseScreenPosition);
     }
 
     public void Execute()
@@ -36,7 +36,7 @@ namespace Code.Gameplay.Features.Select.Systems
       foreach (GameEntity request in _singleSelectionRequests.GetEntities(_buffer))
       foreach (GameEntity mousePosition in _mousePositions)
       {
-        List<GameEntity> selectableEntities = GetSelectableEntitiesFromPosition(mousePosition.MousePositionOnScreen);
+        List<GameEntity> selectableEntities = GetSelectableEntitiesFromPosition(mousePosition.MouseScreenPosition);
 
         if (selectableEntities.Count > 0)
         {

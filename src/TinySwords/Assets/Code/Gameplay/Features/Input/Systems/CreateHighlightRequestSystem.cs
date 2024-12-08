@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Input.Systems
           GameMatcher.ScreenPosition)
         .NoneOf(GameMatcher.Processed));
 
-      _mousePositions = game.GetGroup(GameMatcher.MousePositionOnScreen);
+      _mousePositions = game.GetGroup(GameMatcher.MouseScreenPosition);
 
       _highlights = game.GetGroup(GameMatcher.Highlight);
     }
@@ -35,12 +35,12 @@ namespace Code.Gameplay.Features.Input.Systems
         if (_highlights.count > 0)
           return;
 
-        if (Vector2.Distance(started.ScreenPosition, mousePos.MousePositionOnScreen) >= GameConstants.SelectionClickDelta)
+        if (Vector2.Distance(started.ScreenPosition, mousePos.MouseScreenPosition) >= GameConstants.SelectionClickDelta)
         {
           CreateEntity.Empty()
             .With(x => x.isCreateHighlightRequest = true)
             .AddStartPosition(started.ScreenPosition)
-            .AddEndPosition(mousePos.MousePositionOnScreen);
+            .AddEndPosition(mousePos.MouseScreenPosition);
 
           started.isProcessed = true;
         }

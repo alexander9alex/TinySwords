@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Input.Systems
 
     public CreateFocusRequestSystem(GameContext game)
     {
-      _mousePositions = game.GetGroup(GameMatcher.MousePositionOnScreen);
+      _mousePositions = game.GetGroup(GameMatcher.MouseScreenPosition);
     }
 
     public void Execute()
@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Input.Systems
       foreach (GameEntity mousePos in _mousePositions.GetEntities(_buffer))
       {
         CreateEntity.Empty()
-          .AddScreenPosition(mousePos.MousePositionOnScreen)
+          .AddScreenPosition(mousePos.MouseScreenPosition)
           .With(x => x.isFocusRequest = true);
       }
     }

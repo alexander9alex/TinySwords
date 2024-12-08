@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Input.Systems
           GameMatcher.ScreenPosition,
           GameMatcher.Processed));
 
-      _mousePositions = game.GetGroup(GameMatcher.MousePositionOnScreen);
+      _mousePositions = game.GetGroup(GameMatcher.MouseScreenPosition);
 
       _highlights = game.GetGroup(GameMatcher.Highlight);
     }
@@ -29,7 +29,7 @@ namespace Code.Gameplay.Features.Input.Systems
       {
         highlight
           .ReplaceStartPosition(started.ScreenPosition)
-          .ReplaceEndPosition(mousePos.MousePositionOnScreen);
+          .ReplaceEndPosition(mousePos.MouseScreenPosition);
       }
     }
   }
