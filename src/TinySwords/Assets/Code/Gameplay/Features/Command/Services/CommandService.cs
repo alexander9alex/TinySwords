@@ -56,7 +56,7 @@ namespace Code.Gameplay.Features.Command.Services
         _soundService.PlaySound(SoundId.CancelCommand);
     }
 
-    public bool CanApplyCommand(CommandTypeId command, GameEntity request)
+    public bool CanApplyCommand(CommandTypeId command, Vector2 screenPos)
     {
       switch (command)
       {
@@ -64,25 +64,17 @@ namespace Code.Gameplay.Features.Command.Services
         case CommandTypeId.MoveWithAttack:
           return true;
         case CommandTypeId.AimedAttack:
-          return CanApplyAimedAttackCommand(request);
+          return CanApplyAimedAttackCommand(screenPos);
         default:
           throw new ArgumentOutOfRangeException();
       }
     }
 
-    public void ApplyCommand(CommandTypeId command, GameEntity request)
-    {
-      CreateProcessCommandRequest(command, request);
-      
-      CreateEntity.Empty()
-        .With(x => x.isCancelCommand = true);
-    }
-
-    public void CreateProcessCommandRequest(CommandTypeId command, GameEntity request)
+    public void ApplyCommand(CommandTypeId command, Vector2 screenPos)
     {
       GameEntity entity = CreateEntity.Empty()
         .AddCommandTypeId(command)
-        .AddPositionOnScreen(request.PositionOnScreen)
+        .AddPositionOnScreen(screenPos)
         .With(x => x.isProcessCommandRequest = true);
 
       SetCommandTypeId(entity, command);
@@ -90,10 +82,7 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService.PlaySound(SoundId.ApplyCommand);
     }
 
-    public void ProcessIncorrectCommand(CommandTypeId command, GameEntity request) =>
-      CreateProcessIncorrectCommandRequest(command, request);
-
-    private void CreateProcessIncorrectCommandRequest(CommandTypeId command, GameEntity request)
+    public void ProcessIncorrectCommand(CommandTypeId command, GameEntity request)
     {
       GameEntity entity = CreateEntity.Empty()
         .AddCommandTypeId(command)
@@ -105,11 +94,11 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 
-    public bool CanProcessAimedAttack(out GameEntity target, GameEntity request)
+    public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos)
     {
       target = null;
 
-      List<GameEntity> targets = GetTargetsToAimedAttack(request.PositionOnScreen);
+      List<GameEntity> targets = GetTargetsToAimedAttack(screenPos);
 
       foreach (GameEntity possibleTarget in targets)
       {
@@ -123,20 +112,20 @@ namespace Code.Gameplay.Features.Command.Services
       return false;
     }
 
-    public void ProcessAimedAttack(GameEntity request, GameEntity selected, GameEntity target)
+    public void ProcessAimedAttack(GameEntity selected, GameEntity target)
     {
       RemovePreviousCommand(selected);
-      selected.ReplaceCommandTypeId(request.CommandTypeId);
+      selected.ReplaceCommandTypeId(CommandTypeId.AimedAttack);
       selected.ReplaceAimedTargetId(target.Id);
       selected.ReplaceMakeDecisionTimer(0);
       selected.ReplaceTimeSinceLastDecision(1);
     }
 
-    public void ProcessIncorrectAimedAttack(GameEntity request)
+    public void ProcessIncorrectAimedAttack(Vector2 screenPos)
     {
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.IncorrectCommand)
-        .AddPositionOnScreen(request.PositionOnScreen)
+        .AddPositionOnScreen(screenPos)
         .With(x => x.isCreateIndicator = true);
     }
 
@@ -177,8 +166,8 @@ namespace Code.Gameplay.Features.Command.Services
         .ToList();
     }
 
-    private bool CanApplyAimedAttackCommand(GameEntity request) =>
-      CanProcessAimedAttack(out _, request);
+    private bool CanApplyAimedAttackCommand(Vector2 screenPos) =>
+      CanProcessAimedAttack(out _, screenPos);
 
     private static bool TargetIsNotSuitable(GameEntity possibleTarget) =>
       !TargetIsSuitable(possibleTarget);

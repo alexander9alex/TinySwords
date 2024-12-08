@@ -36,11 +36,11 @@ namespace Code.Gameplay.Features.Command.Systems
 
     private void ProcessAimedAttack(GameEntity request)
     {
-      if (!_commandService.CanProcessAimedAttack(out GameEntity target, request))
+      if (!_commandService.CanProcessAimedAttack(out GameEntity target, request.PositionOnScreen))
         return;
 
       foreach (GameEntity selected in _selected.GetEntities(_selectedBuffer))
-        _commandService.ProcessAimedAttack(request, selected, target);
+        _commandService.ProcessAimedAttack(selected, target);
         
       CreateEntity.Empty()
         .AddWorldPosition(target.WorldPosition)

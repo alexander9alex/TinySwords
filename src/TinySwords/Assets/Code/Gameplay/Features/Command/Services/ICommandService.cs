@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Command.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
 {
@@ -6,12 +7,11 @@ namespace Code.Gameplay.Features.Command.Services
   {
     void SelectCommand(CommandTypeId command);
     void CancelCommand(bool isCommandProcessed);
-    bool CanApplyCommand(CommandTypeId command, GameEntity request);
-    void ApplyCommand(CommandTypeId command, GameEntity request);
+    bool CanApplyCommand(CommandTypeId command, Vector2 screenPos);
+    void ApplyCommand(CommandTypeId command, Vector2 screenPos);
     void ProcessIncorrectCommand(CommandTypeId command, GameEntity request);
-    bool CanProcessAimedAttack(out GameEntity target, GameEntity request);
-    void ProcessAimedAttack(GameEntity request, GameEntity selected, GameEntity target);
-    void ProcessIncorrectAimedAttack(GameEntity request);
-    void CreateProcessCommandRequest(CommandTypeId command, GameEntity request);
+    bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos);
+    void ProcessAimedAttack(GameEntity selected, GameEntity target);
+    void ProcessIncorrectAimedAttack(Vector2 screenPos);
   }
 }

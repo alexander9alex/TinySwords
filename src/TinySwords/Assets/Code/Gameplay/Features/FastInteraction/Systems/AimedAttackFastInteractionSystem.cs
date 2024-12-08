@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Command.Services;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.FastInteraction.Systems
 {
@@ -28,10 +29,10 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     {
       foreach (GameEntity request in _fastInteractionRequests.GetEntities(_buffer))
       {
-        if (CanNotMakeAimedAttack(request))
+        if (CanNotMakeAimedAttack(request.PositionOnScreen))
           return;
 
-        _commandService.CreateProcessCommandRequest(CommandTypeId.AimedAttack, request);
+        _commandService.ApplyCommand(CommandTypeId.AimedAttack, request.PositionOnScreen);
 
         request.isProcessed = true;
       }
@@ -48,8 +49,8 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
       return true;
     }
 
-    private bool CanNotMakeAimedAttack(GameEntity request) =>
-      !_commandService.CanApplyCommand(CommandTypeId.AimedAttack, request) || !SelectedCanAttack();
+    private bool CanNotMakeAimedAttack(Vector2 screenPos) =>
+      !_commandService.CanApplyCommand(CommandTypeId.AimedAttack, screenPos) || !SelectedCanAttack();
 
     private bool SelectedCanAttack() =>
       HasSelected() && AllSelectedCanAttack();

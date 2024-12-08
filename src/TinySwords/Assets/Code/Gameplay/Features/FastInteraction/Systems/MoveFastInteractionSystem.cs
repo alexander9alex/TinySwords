@@ -2,6 +2,7 @@
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Command.Services;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.FastInteraction.Systems
 {
@@ -28,10 +29,10 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     {
       foreach (GameEntity request in _fastInteractionRequests.GetEntities(_buffer))
       {
-        if (CanNotMakeMove(request))
+        if (CanNotMakeMove(request.PositionOnScreen))
           return;
 
-        _commandService.CreateProcessCommandRequest(CommandTypeId.Move, request);
+        _commandService.ApplyCommand(CommandTypeId.Move, request.PositionOnScreen);
 
         request.isProcessed = true;
       }
@@ -48,8 +49,8 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
       return true;
     }
 
-    private bool CanNotMakeMove(GameEntity request) =>
-      !_commandService.CanApplyCommand(CommandTypeId.Move, request) || !SelectedCanMove();
+    private bool CanNotMakeMove(Vector2 screenPos) =>
+      !_commandService.CanApplyCommand(CommandTypeId.Move, screenPos) || !SelectedCanMove();
 
     private bool SelectedCanMove() =>
       HasSelected() && AllSelectedCanMove();

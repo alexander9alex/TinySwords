@@ -3,12 +3,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.FastInteraction.Systems
 {
-  public class CleanupFastInteractionInputSystem : ICleanupSystem
+  public class CleanupFastInteractionRequestSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _fastInteractionRequests;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public CleanupFastInteractionInputSystem(GameContext game)
+    public CleanupFastInteractionRequestSystem(GameContext game)
     {
       _fastInteractionRequests = game.GetGroup(GameMatcher.FastInteraction);
     }

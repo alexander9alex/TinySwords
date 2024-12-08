@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Command.Systems
     {
       foreach (GameEntity request in _processIncorrectCommandRequests)
       {
-        _commandService.ProcessIncorrectAimedAttack(request);
+        _commandService.ProcessIncorrectAimedAttack(request.PositionOnScreen);
       }
     }
   }

@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.FastInteraction
       Add(systems.Create<AimedAttackFastInteractionSystem>());
       Add(systems.Create<MoveFastInteractionSystem>());
 
-      Add(systems.Create<CleanupFastInteractionInputSystem>());
+      Add(systems.Create<CleanupFastInteractionRequestSystem>());
     }
   }
 }

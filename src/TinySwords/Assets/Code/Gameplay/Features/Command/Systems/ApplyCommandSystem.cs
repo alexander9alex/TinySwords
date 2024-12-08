@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Services;
 using Entitas;
 
@@ -25,14 +27,23 @@ namespace Code.Gameplay.Features.Command.Systems
       foreach (GameEntity request in _applyCommandRequests)
       foreach (GameEntity command in _selectedCommands.GetEntities(_buffer))
       {
-        if (_commandService.CanApplyCommand(command.CommandTypeId, request))
-        {
-          _commandService.ApplyCommand(command.CommandTypeId, request);
-          command.isProcessed = true;
-        }
+        if (_commandService.CanApplyCommand(command.CommandTypeId, request.PositionOnScreen))
+          ApplyCommand(command, request);
         else
-          _commandService.ProcessIncorrectCommand(command.CommandTypeId, request);
+          ProcessIncorrectCommand(command, request);
       }
     }
+
+    private void ApplyCommand(GameEntity command, GameEntity request)
+    {
+      _commandService.ApplyCommand(command.CommandTypeId, request.PositionOnScreen);
+      command.isProcessed = true;
+          
+      CreateEntity.Empty()
+        .With(x => x.isCancelCommand = true);
+    }
+
+    private void ProcessIncorrectCommand(GameEntity command, GameEntity request) =>
+      _commandService.ProcessIncorrectCommand(command.CommandTypeId, request);
   }
 }
