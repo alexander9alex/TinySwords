@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Input.Systems
       _actionEnded = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.ActionEnded,
-          GameMatcher.PositionOnScreen)
+          GameMatcher.ScreenPosition)
         .NoneOf(GameMatcher.Processed));
     }
 

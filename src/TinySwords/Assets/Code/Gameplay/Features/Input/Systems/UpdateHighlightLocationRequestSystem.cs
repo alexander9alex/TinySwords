@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Input.Systems
       _actionStarted = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.ActionStarted,
-          GameMatcher.PositionOnScreen,
+          GameMatcher.ScreenPosition,
           GameMatcher.Processed));
 
       _mousePositions = game.GetGroup(GameMatcher.MousePositionOnScreen);
@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.Input.Systems
       foreach (GameEntity highlight in _highlights)
       {
         highlight
-          .ReplaceStartPosition(started.PositionOnScreen)
+          .ReplaceStartPosition(started.ScreenPosition)
           .ReplaceEndPosition(mousePos.MousePositionOnScreen);
       }
     }

@@ -21,7 +21,7 @@ namespace Code.Gameplay.Features.Command.Systems
       _commandService = commandService;
 
       _processCommandRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.AimedAttackCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.AimedAttackCommand, GameMatcher.CommandTypeId, GameMatcher.ScreenPosition));
 
       _selected = game.GetGroup(GameMatcher.AllOf(GameMatcher.Selected, GameMatcher.Alive));
     }
@@ -36,7 +36,7 @@ namespace Code.Gameplay.Features.Command.Systems
 
     private void ProcessAimedAttack(GameEntity request)
     {
-      if (!_commandService.CanProcessAimedAttack(out GameEntity target, request.PositionOnScreen))
+      if (!_commandService.CanProcessAimedAttack(out GameEntity target, request.ScreenPosition))
         return;
 
       foreach (GameEntity selected in _selected.GetEntities(_selectedBuffer))

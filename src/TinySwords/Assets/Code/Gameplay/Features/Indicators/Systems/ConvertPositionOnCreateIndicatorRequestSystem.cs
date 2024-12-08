@@ -14,15 +14,15 @@ namespace Code.Gameplay.Features.Indicators.Systems
     {
       _cameraProvider = cameraProvider;
       _changeEndDestinationRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.CreateIndicator, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.CreateIndicator, GameMatcher.ScreenPosition));
     }
 
     public void Execute()
     {
       foreach (GameEntity request in _changeEndDestinationRequests.GetEntities(_buffer))
       {
-        request.ReplaceWorldPosition(_cameraProvider.MainCamera.ScreenToWorldPoint(request.PositionOnScreen));
-        request.RemovePositionOnScreen();
+        request.ReplaceWorldPosition(_cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition));
+        request.RemoveScreenPosition();
       }
     }
   }

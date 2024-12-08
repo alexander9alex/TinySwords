@@ -119,7 +119,7 @@ namespace Code.Gameplay.Features.Input.Services
 
       CreateEntity.Empty()
         .With(x => x.isFastInteraction = true)
-        .AddPositionOnScreen(_mousePos);
+        .AddScreenPosition(_mousePos);
     }
 
     private void OnActionStarted(InputAction.CallbackContext context)
@@ -136,7 +136,7 @@ namespace Code.Gameplay.Features.Input.Services
       
       CreateEntity.Empty()
         .With(x => x.isActionStarted = true)
-        .AddPositionOnScreen(_mousePos);
+        .AddScreenPosition(_mousePos);
     }
 
     private void OnActionEnded(InputAction.CallbackContext context)
@@ -151,7 +151,7 @@ namespace Code.Gameplay.Features.Input.Services
 
       CreateEntity.Empty()
         .With(x => x.isActionEnded = true)
-        .AddPositionOnScreen(_mousePos);
+        .AddScreenPosition(_mousePos);
     }
 
     private void MoveCamera(InputAction.CallbackContext context) =>
@@ -164,14 +164,14 @@ namespace Code.Gameplay.Features.Input.Services
 
       CreateEntity.Empty()
         .With(x => x.isApplyCommand = true)
-        .AddPositionOnScreen(_mousePos);
+        .AddScreenPosition(_mousePos);
     }
 
     private void CancelCommand(InputAction.CallbackContext context)
     {
       CreateEntity.Empty()
         .With(x => x.isCancelCommand = true)
-        .AddPositionOnScreen(_mousePos);
+        .AddScreenPosition(_mousePos);
     }
 
     private void ChangeMousePosition(InputAction.CallbackContext context) =>

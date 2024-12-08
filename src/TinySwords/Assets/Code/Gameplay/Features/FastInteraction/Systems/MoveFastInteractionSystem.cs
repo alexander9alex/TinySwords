@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
       _commandService = commandService;
 
       _fastInteractionRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.FastInteraction, GameMatcher.PositionOnScreen)
+        .AllOf(GameMatcher.FastInteraction, GameMatcher.ScreenPosition)
         .NoneOf(GameMatcher.Processed));
 
       _selected = game.GetGroup(GameMatcher.Selected);
@@ -29,10 +29,10 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     {
       foreach (GameEntity request in _fastInteractionRequests.GetEntities(_buffer))
       {
-        if (CanNotMakeMove(request.PositionOnScreen))
+        if (CanNotMakeMove(request.ScreenPosition))
           return;
 
-        _commandService.ApplyCommand(CommandTypeId.Move, request.PositionOnScreen);
+        _commandService.ApplyCommand(CommandTypeId.Move, request.ScreenPosition);
 
         request.isProcessed = true;
       }

@@ -16,13 +16,13 @@ namespace Code.Gameplay.Features.Input.Systems
       _actionStarted = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.ActionStarted,
-          GameMatcher.PositionOnScreen,
+          GameMatcher.ScreenPosition,
           GameMatcher.Processed));
 
       _actionEnded = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.ActionEnded,
-          GameMatcher.PositionOnScreen,
+          GameMatcher.ScreenPosition,
           GameMatcher.Processed));
     }
 

@@ -74,7 +74,7 @@ namespace Code.Gameplay.Features.Command.Services
     {
       GameEntity entity = CreateEntity.Empty()
         .AddCommandTypeId(command)
-        .AddPositionOnScreen(screenPos)
+        .AddScreenPosition(screenPos)
         .With(x => x.isProcessCommandRequest = true);
 
       SetCommandTypeId(entity, command);
@@ -86,7 +86,7 @@ namespace Code.Gameplay.Features.Command.Services
     {
       GameEntity entity = CreateEntity.Empty()
         .AddCommandTypeId(command)
-        .AddPositionOnScreen(request.PositionOnScreen)
+        .AddScreenPosition(request.ScreenPosition)
         .With(x => x.isProcessIncorrectCommandRequest = true);
 
       SetCommandTypeId(entity, command);
@@ -125,7 +125,7 @@ namespace Code.Gameplay.Features.Command.Services
     {
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.IncorrectCommand)
-        .AddPositionOnScreen(screenPos)
+        .AddScreenPosition(screenPos)
         .With(x => x.isCreateIndicator = true);
     }
 

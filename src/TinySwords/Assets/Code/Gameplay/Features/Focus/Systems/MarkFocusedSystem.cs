@@ -19,14 +19,14 @@ namespace Code.Gameplay.Features.Focus.Systems
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
       _focusRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.FocusRequest, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.FocusRequest, GameMatcher.ScreenPosition));
     }
 
     public void Execute()
     {
       foreach (GameEntity request in _focusRequests)
       {
-        List<GameEntity> focusingEntities = GetFocusingEntitiesFromPosition(request.PositionOnScreen);
+        List<GameEntity> focusingEntities = GetFocusingEntitiesFromPosition(request.ScreenPosition);
         
         if (focusingEntities.Count > 0)
           FocusEntity(focusingEntities.First());

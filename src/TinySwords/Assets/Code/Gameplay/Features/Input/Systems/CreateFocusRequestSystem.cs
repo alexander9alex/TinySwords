@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.Input.Systems
       foreach (GameEntity mousePos in _mousePositions.GetEntities(_buffer))
       {
         CreateEntity.Empty()
-          .AddPositionOnScreen(mousePos.MousePositionOnScreen)
+          .AddScreenPosition(mousePos.MousePositionOnScreen)
           .With(x => x.isFocusRequest = true);
       }
     }

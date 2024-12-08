@@ -14,15 +14,15 @@ namespace Code.Gameplay.Features.MoveInput.Systems
     {
       _cameraProvider = cameraProvider;
       _changeEndDestinationRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.ChangeEndDestinationRequest, GameMatcher.ScreenPosition));
     }
 
     public void Execute()
     {
       foreach (GameEntity request in _changeEndDestinationRequests.GetEntities(_buffer))
       {
-        request.ReplaceWorldPosition(_cameraProvider.MainCamera.ScreenToWorldPoint(request.PositionOnScreen));
-        request.RemovePositionOnScreen();
+        request.ReplaceWorldPosition(_cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition));
+        request.RemoveScreenPosition();
       }
     }
   }

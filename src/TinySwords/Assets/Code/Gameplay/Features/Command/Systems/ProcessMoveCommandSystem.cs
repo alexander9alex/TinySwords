@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.Command.Systems
     public ProcessMoveCommandSystem(GameContext game)
     {
       _processCommandRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.MoveCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.MoveCommand, GameMatcher.CommandTypeId, GameMatcher.ScreenPosition));
 
       _selected = game.GetGroup(GameMatcher.AllOf(GameMatcher.Selected, GameMatcher.Alive));
     }
@@ -36,13 +36,13 @@ namespace Code.Gameplay.Features.Command.Systems
         ProcessCommand(selected, request);
 
       CreateEntity.Empty()
-        .AddPositionOnScreen(request.PositionOnScreen)
+        .AddScreenPosition(request.ScreenPosition)
         .With(x => x.isChangeEndDestinationRequest = true)
         .With(x => x.isConvertWhenGroup = true);
 
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.Move)
-        .AddPositionOnScreen(request.PositionOnScreen)
+        .AddScreenPosition(request.ScreenPosition)
         .With(x => x.isCreateIndicator = true);
     }
 

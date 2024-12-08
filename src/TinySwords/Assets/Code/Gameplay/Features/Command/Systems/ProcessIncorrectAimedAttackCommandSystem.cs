@@ -13,14 +13,14 @@ namespace Code.Gameplay.Features.Command.Systems
       _commandService = commandService;
       
       _processIncorrectCommandRequests = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ProcessIncorrectCommandRequest, GameMatcher.AimedAttackCommand, GameMatcher.CommandTypeId, GameMatcher.PositionOnScreen));
+        .AllOf(GameMatcher.ProcessIncorrectCommandRequest, GameMatcher.AimedAttackCommand, GameMatcher.CommandTypeId, GameMatcher.ScreenPosition));
     }
 
     public void Execute()
     {
       foreach (GameEntity request in _processIncorrectCommandRequests)
       {
-        _commandService.ProcessIncorrectAimedAttack(request.PositionOnScreen);
+        _commandService.ProcessIncorrectAimedAttack(request.ScreenPosition);
       }
     }
   }

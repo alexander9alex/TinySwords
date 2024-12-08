@@ -83,7 +83,7 @@ public static class GameComponentsLookup {
     public const int ActionStarted = 72;
     public const int EndPosition = 73;
     public const int MousePositionOnScreen = 74;
-    public const int PositionOnScreen = 75;
+    public const int ScreenPosition = 75;
     public const int StartPosition = 76;
     public const int ChangeEndDestinationRequest = 77;
     public const int ConvertWhenGroup = 78;
@@ -229,7 +229,7 @@ public static class GameComponentsLookup {
         "ActionStarted",
         "EndPosition",
         "MousePositionOnScreen",
-        "PositionOnScreen",
+        "ScreenPosition",
         "StartPosition",
         "ChangeEndDestinationRequest",
         "ConvertWhenGroup",
@@ -374,7 +374,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.ActionStarted),
         typeof(Code.Gameplay.Features.Input.EndPosition),
         typeof(Code.Gameplay.Features.Input.MousePositionOnScreen),
-        typeof(Code.Gameplay.Features.Input.PositionOnScreen),
+        typeof(Code.Gameplay.Features.Input.ScreenPosition),
         typeof(Code.Gameplay.Features.Input.StartPosition),
         typeof(Code.Gameplay.Features.Move.ChangeEndDestinationRequest),
         typeof(Code.Gameplay.Features.Move.ConvertWhenGroup),
