@@ -13,7 +13,8 @@ namespace Code.Gameplay.Constants
     public const float UnitMinRadius = 0.7f;
     public const float CameraSpeed = 0.2f;
     public const float StoppingDistance = 0.01f;
-    public const TeamColor PlayerTeamColor = TeamColor.Blue;
+    public const float MinLastTimeToMakeNewDecision = 0.25f;
+    public const TeamColor UserTeamColor = TeamColor.Blue;
 
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static int FocusLayerMask => SelectionLayerMask;

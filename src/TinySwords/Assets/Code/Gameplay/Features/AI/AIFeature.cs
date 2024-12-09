@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.AI
     public AIFeature(ISystemFactory systems)
     {
       Add(systems.Create<TickToMakeDecisionTimerSystem>());
+      Add(systems.Create<MakeDecisionNowSystem>());
       
       Add(systems.Create<CollectAlliesSystem>());
 

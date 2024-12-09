@@ -53,9 +53,7 @@ namespace Code.Gameplay.Features.Command.Systems
     private static void ReplaceUserCommand(GameEntity selected, int targetId)
     {
       selected.ReplaceUserCommand(GetAimedAttackUserCommand(targetId));
-
-      selected.ReplaceMakeDecisionTimer(0);
-      selected.ReplaceTimeSinceLastDecision(1); // todo: refactor time since last decision
+      selected.isMakeDecisionNowRequest = true;
     }
 
     private static UserCommand GetAimedAttackUserCommand(int targetId)

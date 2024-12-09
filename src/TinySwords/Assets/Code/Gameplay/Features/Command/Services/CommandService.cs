@@ -154,6 +154,6 @@ namespace Code.Gameplay.Features.Command.Services
       !TargetIsSuitable(possibleTarget);
 
     private static bool TargetIsSuitable(GameEntity target) =>
-      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != GameConstants.PlayerTeamColor;
+      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != GameConstants.UserTeamColor;
   }
 }

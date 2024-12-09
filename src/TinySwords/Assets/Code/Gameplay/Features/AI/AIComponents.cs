@@ -5,6 +5,7 @@ using Entitas;
 namespace Code.Gameplay.Features.AI
 {
   [Game] public class MakeDecisionRequest : IComponent { }
+  [Game] public class MakeDecisionNowRequest : IComponent { }
   [Game] public class MakeDecisionTimer : IComponent { public float Value; }
   [Game] public class TimeSinceLastDecision : IComponent { public float Value; }
   [Game] public class MakeDecisionInterval : IComponent { public float Value; }

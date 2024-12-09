@@ -62,9 +62,7 @@ namespace Code.Gameplay.Features.Command.Systems
     private static void ReplaceUserCommand(GameEntity selected, Vector2 pos)
     {
       selected.ReplaceUserCommand(GetMoveUserCommand(pos));
-
-      selected.ReplaceMakeDecisionTimer(0);
-      selected.ReplaceTimeSinceLastDecision(1); // todo: refactor time since last decision
+      selected.isMakeDecisionNowRequest = true;
     }
 
     private static UserCommand GetMoveUserCommand(Vector2 pos)
