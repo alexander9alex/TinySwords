@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Units.Data;
 using Entitas;
@@ -27,7 +26,7 @@ namespace Code.Gameplay.Features.Battle.Systems
       }
     }
 
-    private void ProcessUnitDecision(GameEntity unit)
+    private void ProcessUnitDecision(GameEntity unit) // todo: create decision service
     {
       UnitDecision decision = unit.UnitDecision;
 
@@ -36,14 +35,16 @@ namespace Code.Gameplay.Features.Battle.Systems
         case UnitDecisionTypeId.Stay:
           MakeStayDecision(unit);
           break;
-        case UnitDecisionTypeId.MoveToEndDestination:
-          MakeMoveToEndDestinationDecision(unit, decision);
+        case UnitDecisionTypeId.Move:
+          MakeMoveDecision(unit, decision);
           break;
         case UnitDecisionTypeId.MoveToTarget:
         case UnitDecisionTypeId.MoveToAllyTarget:
+        case UnitDecisionTypeId.MoveToAimedTarget:
           MakeMoveToTargetDecision(unit, decision);
           break;
         case UnitDecisionTypeId.Attack:
+        case UnitDecisionTypeId.AttackAimedTarget:
           MakeAttackDecision(unit, decision);
           break;
         default:
@@ -57,20 +58,21 @@ namespace Code.Gameplay.Features.Battle.Systems
         unit.ReplaceDestination(unit.WorldPosition);
     }
 
-    private void MakeMoveToEndDestinationDecision(GameEntity unit, UnitDecision decision) =>
+    private void MakeMoveDecision(GameEntity unit, UnitDecision decision) =>
       unit.ReplaceDestination(decision.Destination);
 
     private void MakeMoveToTargetDecision(GameEntity unit, UnitDecision decision) =>
-      unit.ReplaceDestination(decision.Destination);
+      unit.ReplaceTargetId(decision.TargetId)
+        .With(x => x.isFollowToTarget = true);
 
     private void MakeAttackDecision(GameEntity unit, UnitDecision decision)
     {
+      if (!unit.isCanAttackNow)
+        return;
+
       unit.ReplaceDestination(unit.WorldPosition);
       unit.ReplaceTargetId(decision.TargetId);
-
-      CreateEntity.Empty()
-        .AddCasterId(unit.Id)
-        .With(x => x.isAttackRequest = true);
+      unit.isAttackRequest = true;
     }
   }
 }

@@ -8,5 +8,5 @@ namespace Code.Gameplay.Features.Indicators
   [Game] public class CreateIndicator : IComponent { }
   [Game] public class DestructOldIndicator : IComponent { }
   [Game] public class IndicatorTypeIdComponent : IComponent { public IndicatorTypeId Value; }
-  [Game] public class FollowToTarget : IComponent { }
+  [Game] public class TeleportationToTarget : IComponent { }
 }

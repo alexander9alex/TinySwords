@@ -12,7 +12,6 @@ using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
-using Code.Gameplay.Features.MoveInput;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
@@ -38,7 +37,6 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
-      Add(systems.Create<ProcessMoveInputFeature>());
       Add(systems.Create<CollectTargetsFeature>());
       Add(systems.Create<AIFeature>());
 

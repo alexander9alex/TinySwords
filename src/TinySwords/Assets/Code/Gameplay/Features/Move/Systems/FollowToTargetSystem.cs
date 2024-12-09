@@ -4,25 +4,25 @@ namespace Code.Gameplay.Features.Move.Systems
 {
   public class FollowToTargetSystem : IExecuteSystem
   {
-    private readonly IGroup<GameEntity> _followers;
+    private readonly IGroup<GameEntity> _entities;
     private readonly GameContext _game;
 
     public FollowToTargetSystem(GameContext game)
     {
       _game = game;
-      
-      _followers = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.FollowToTarget, GameMatcher.TargetId, GameMatcher.Transform));
+      _entities = game.GetGroup(GameMatcher.AllOf(GameMatcher.FollowToTarget, GameMatcher.TargetId, GameMatcher.Alive, GameMatcher.NotAttacking));
     }
 
     public void Execute()
     {
-      foreach (GameEntity follower in _followers)
+      foreach (GameEntity entity in _entities)
       {
-        GameEntity target = _game.GetEntityWithId(follower.TargetId);
+        GameEntity target = _game.GetEntityWithId(entity.TargetId);
 
-        if (target is { hasWorldPosition: true })
-          follower.Transform.position = target.WorldPosition;
+        if (target is not { hasWorldPosition: true })
+          continue;
+
+        entity.ReplaceDestination(target.WorldPosition);
       }
     }
   }

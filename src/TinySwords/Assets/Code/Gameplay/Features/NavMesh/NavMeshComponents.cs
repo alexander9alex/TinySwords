@@ -16,5 +16,4 @@ namespace Code.Gameplay.Features.NavMesh
   [Game] public class UpdateNavMesh : IComponent { }
   [Game] public class NotAddedNavMeshRootSource : IComponent { }
   [Game] public class AddToNavMeshCachedSources : IComponent { }
-  
 }

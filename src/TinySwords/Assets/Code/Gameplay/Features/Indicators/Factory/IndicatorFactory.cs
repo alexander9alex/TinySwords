@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.Indicators.Factory
 
       indicator
         .AddTargetId(request.TargetId)
-        .With(x => x.isFollowToTarget = true);
+        .With(x => x.isTeleportationToTarget = true);
     }
   }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
@@ -41,19 +42,25 @@ namespace Code.Gameplay.UtilityAI
 
     private IEnumerable<UnitDecision> GetAvailableDecisions(GameEntity unit)
     {
-      yield return StayDecision(unit);
+      yield return StayDecision();
 
-      if (unit.hasEndDestination)
-        yield return MoveToEndDestinationDecision(unit);
+      foreach (UnitDecision decision in MoveDecisions(unit))
+        yield return decision;
 
-      foreach (UnitDecision moveToTargetDecision in MoveToTargetDecisions(unit))
-        yield return moveToTargetDecision;
+      foreach (UnitDecision decision in MoveToTargetDecisions(unit))
+        yield return decision;
 
-      foreach (UnitDecision moveToAllyTargetDecision in MoveToAlliesTargetDecisions(unit))
-        yield return moveToAllyTargetDecision;
+      foreach (UnitDecision decision in MoveToAlliesTargetDecisions(unit))
+        yield return decision;
 
-      foreach (UnitDecision unitDecision in AttackTargetDecisions(unit))
-        yield return unitDecision;
+      foreach (UnitDecision decision in MoveToAimedTargetDecisions(unit))
+        yield return decision;
+
+      foreach (UnitDecision decision in AttackTargetDecisions(unit))
+        yield return decision;
+
+      foreach (UnitDecision decision in AttackAimedTargetDecisions(unit))
+        yield return decision;
     }
 
     private float? CalculateScore(GameEntity unit, UnitDecision decision)
@@ -69,6 +76,15 @@ namespace Code.Gameplay.UtilityAI
       return scores.Select(x => x.Score).SumOrNull();
     }
 
+    private IEnumerable<UnitDecision> MoveDecisions(GameEntity unit)
+    {
+      if (!unit.hasUserCommand || !unit.UserCommand.WorldPosition.HasValue)
+        yield break;
+
+      if (unit.UserCommand.CommandTypeId is CommandTypeId.Move or CommandTypeId.MoveWithAttack)
+        yield return MoveDecision(unit);
+    }
+
     private IEnumerable<UnitDecision> MoveToTargetDecisions(GameEntity unit)
     {
       if (!unit.hasTargetBuffer || unit.TargetBuffer.Count == 0)
@@ -76,7 +92,7 @@ namespace Code.Gameplay.UtilityAI
 
       GameEntity nearestTarget = unit.TargetBuffer
         .Select(targetId => _gameContext.GetEntityWithId(targetId))
-        .OrderByDescending(target => Vector2.Distance(unit.WorldPosition, target.WorldPosition))
+        .OrderBy(target => Vector2.Distance(unit.WorldPosition, target.WorldPosition))
         .First(target => target.isAlive);
 
       yield return MoveToTargetDecision(nearestTarget);
@@ -128,35 +144,56 @@ namespace Code.Gameplay.UtilityAI
         yield return MoveToAllyTargetDecision(target);
     }
 
+    private IEnumerable<UnitDecision> MoveToAimedTargetDecisions(GameEntity unit)
+    {
+      if (!unit.hasUserCommand || unit.UserCommand.CommandTypeId != CommandTypeId.AimedAttack || !unit.UserCommand.TargetId.HasValue)
+        yield break;
+
+      GameEntity aimedTarget = _gameContext.GetEntityWithId(unit.UserCommand.TargetId.Value);
+
+      if (aimedTarget is { isAlive: true })
+        yield return MoveToAimedTargetDecision(aimedTarget);
+    }
+
     private IEnumerable<UnitDecision> AttackTargetDecisions(GameEntity unit)
     {
       if (!unit.hasReachedTargetBuffer)
         yield break;
 
-      foreach (int reachedTargetId in unit.ReachedTargetBuffer)
+      foreach (int targetId in unit.ReachedTargetBuffer)
       {
-        GameEntity target = _gameContext.GetEntityWithId(reachedTargetId);
+        GameEntity target = _gameContext.GetEntityWithId(targetId);
 
         if (target is { isAlive: true })
-          yield return AttackTargetDecision(reachedTargetId);
+          yield return AttackTargetDecision(target);
       }
     }
 
-    private UnitDecision StayDecision(GameEntity unit)
+    private IEnumerable<UnitDecision> AttackAimedTargetDecisions(GameEntity unit)
+    {
+      if (!unit.hasUserCommand || unit.UserCommand.CommandTypeId != CommandTypeId.AimedAttack || !unit.UserCommand.TargetId.HasValue)
+        yield break;
+
+      GameEntity aimedTarget = _gameContext.GetEntityWithId(unit.UserCommand.TargetId.Value);
+
+      if (aimedTarget is { isAlive: true })
+        yield return AttackAimedTargetDecision(aimedTarget);
+    }
+
+    private UnitDecision StayDecision()
     {
       return new UnitDecision
       {
-        UnitDecisionTypeId = UnitDecisionTypeId.Stay,
-        Destination = unit.WorldPosition
+        UnitDecisionTypeId = UnitDecisionTypeId.Stay
       };
     }
 
-    private UnitDecision MoveToEndDestinationDecision(GameEntity unit)
+    private UnitDecision MoveDecision(GameEntity unit)
     {
       return new UnitDecision
       {
-        UnitDecisionTypeId = UnitDecisionTypeId.MoveToEndDestination,
-        Destination = unit.EndDestination
+        UnitDecisionTypeId = UnitDecisionTypeId.Move,
+        Destination = unit.UserCommand.WorldPosition.Value
       };
     }
 
@@ -165,7 +202,7 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToTarget,
-        Destination = target.WorldPosition
+        TargetId = target.Id
       };
     }
 
@@ -174,20 +211,34 @@ namespace Code.Gameplay.UtilityAI
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.MoveToAllyTarget,
-        Destination = target.WorldPosition,
         TargetId = target.Id
       };
     }
 
-    private UnitDecision AttackTargetDecision(int targetId)
+    private UnitDecision MoveToAimedTargetDecision(GameEntity target)
     {
-      GameEntity target = _gameContext.GetEntityWithId(targetId);
+      return new UnitDecision
+      {
+        UnitDecisionTypeId = UnitDecisionTypeId.MoveToAimedTarget,
+        TargetId = target.Id
+      };
+    }
 
+    private UnitDecision AttackTargetDecision(GameEntity target)
+    {
       return new UnitDecision
       {
         UnitDecisionTypeId = UnitDecisionTypeId.Attack,
-        Destination = target.WorldPosition,
-        TargetId = targetId
+        TargetId = target.Id
+      };
+    }
+
+    private UnitDecision AttackAimedTargetDecision(GameEntity target)
+    {
+      return new UnitDecision
+      {
+        UnitDecisionTypeId = UnitDecisionTypeId.AttackAimedTarget,
+        TargetId = target.Id
       };
     }
 

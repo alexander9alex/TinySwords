@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateMoveDirectionSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.NavMeshAgent, GameMatcher.MoveDirection));
+        .AllOf(GameMatcher.NavMeshAgent, GameMatcher.MoveDirection, GameMatcher.Alive, GameMatcher.NotAttacking));
     }
 
     public void Execute()

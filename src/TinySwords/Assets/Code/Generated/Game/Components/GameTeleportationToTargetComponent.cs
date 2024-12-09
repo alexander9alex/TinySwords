@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherChangeEndDestinationRequest;
+    static Entitas.IMatcher<GameEntity> _matcherTeleportationToTarget;
 
-    public static Entitas.IMatcher<GameEntity> ChangeEndDestinationRequest {
+    public static Entitas.IMatcher<GameEntity> TeleportationToTarget {
         get {
-            if (_matcherChangeEndDestinationRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.ChangeEndDestinationRequest);
+            if (_matcherTeleportationToTarget == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.TeleportationToTarget);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherChangeEndDestinationRequest = matcher;
+                _matcherTeleportationToTarget = matcher;
             }
 
-            return _matcherChangeEndDestinationRequest;
+            return _matcherTeleportationToTarget;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Move.ChangeEndDestinationRequest changeEndDestinationRequestComponent = new Code.Gameplay.Features.Move.ChangeEndDestinationRequest();
+    static readonly Code.Gameplay.Features.Indicators.TeleportationToTarget teleportationToTargetComponent = new Code.Gameplay.Features.Indicators.TeleportationToTarget();
 
-    public bool isChangeEndDestinationRequest {
-        get { return HasComponent(GameComponentsLookup.ChangeEndDestinationRequest); }
+    public bool isTeleportationToTarget {
+        get { return HasComponent(GameComponentsLookup.TeleportationToTarget); }
         set {
-            if (value != isChangeEndDestinationRequest) {
-                var index = GameComponentsLookup.ChangeEndDestinationRequest;
+            if (value != isTeleportationToTarget) {
+                var index = GameComponentsLookup.TeleportationToTarget;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : changeEndDestinationRequestComponent;
+                            : teleportationToTargetComponent;
 
                     AddComponent(index, component);
                 } else {

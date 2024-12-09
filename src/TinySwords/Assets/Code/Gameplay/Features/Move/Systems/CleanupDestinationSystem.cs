@@ -13,7 +13,11 @@ namespace Code.Gameplay.Features.Move.Systems
 
     public CleanupDestinationSystem(GameContext game)
     {
-      _entities = game.GetGroup(GameMatcher.AllOf(GameMatcher.NavMeshAgent, GameMatcher.WorldPosition, GameMatcher.Destination));
+      _entities = game.GetGroup(GameMatcher
+        .AllOf(
+          GameMatcher.NavMeshAgent,
+          GameMatcher.WorldPosition,
+          GameMatcher.Destination));
     }
 
     public void Cleanup()

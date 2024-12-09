@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator selectingAnimator { get { return (Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator)GetComponent(GameComponentsLookup.SelectingAnimator); } }
+    public Code.Gameplay.Features.Select.SelectingAnimator selectingAnimator { get { return (Code.Gameplay.Features.Select.SelectingAnimator)GetComponent(GameComponentsLookup.SelectingAnimator); } }
     public Code.Gameplay.Features.Select.Animators.ISelectingAnimator SelectingAnimator { get { return selectingAnimator.Value; } }
     public bool hasSelectingAnimator { get { return HasComponent(GameComponentsLookup.SelectingAnimator); } }
 
     public GameEntity AddSelectingAnimator(Code.Gameplay.Features.Select.Animators.ISelectingAnimator newValue) {
         var index = GameComponentsLookup.SelectingAnimator;
-        var component = (Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator));
+        var component = (Code.Gameplay.Features.Select.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Select.SelectingAnimator));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceSelectingAnimator(Code.Gameplay.Features.Select.Animators.ISelectingAnimator newValue) {
         var index = GameComponentsLookup.SelectingAnimator;
-        var component = (Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Select.SelectComponents.SelectingAnimator));
+        var component = (Code.Gameplay.Features.Select.SelectingAnimator)CreateComponent(index, typeof(Code.Gameplay.Features.Select.SelectingAnimator));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

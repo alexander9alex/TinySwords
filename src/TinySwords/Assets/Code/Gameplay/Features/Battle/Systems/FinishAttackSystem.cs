@@ -20,13 +20,13 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       foreach (GameEntity request in _finishAttackRequests.GetEntities(_buffer))
       {
-        GameEntity unit = _game.GetEntityWithId(request.CasterId);
+        GameEntity caster = _game.GetEntityWithId(request.CasterId);
 
-        unit.isAttacking = false;
-        unit.isNotAttacking = true;
+        caster.isAttacking = false;
+        caster.isNotAttacking = true;
         
-        if (unit.hasAttackInterval)
-          unit.ReplaceAttackCooldown(unit.AttackInterval);
+        if (caster.hasAttackInterval)
+          caster.ReplaceAttackCooldown(caster.AttackInterval);
 
         request.isDestructed = true;
       }

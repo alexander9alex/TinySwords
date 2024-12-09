@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       _game = game;
       _units = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Unit, GameMatcher.CanAttack, GameMatcher.AnimateAttackRequest, GameMatcher.AttackAnimator, GameMatcher.TargetId));
+        .AllOf(GameMatcher.CanAttack, GameMatcher.AnimateAttackRequest, GameMatcher.AttackAnimator, GameMatcher.TargetId));
     }
 
     public void Execute()

@@ -15,7 +15,7 @@ namespace Code.Gameplay.Features.Command.Systems
       _selectableCommandService = selectableCommandService;
 
       _selectable = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Selectable, GameMatcher.CommandTypeId));
+        .AllOf(GameMatcher.Selectable, GameMatcher.UserCommand));
     }
 
     public void Execute()

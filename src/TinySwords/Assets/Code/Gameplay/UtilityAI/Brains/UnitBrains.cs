@@ -19,26 +19,22 @@ namespace Code.Gameplay.UtilityAI.Brains
 
       _convolutions = new()
       {
-        { When.ActionIsStay, GetInput.HasEndDestination, Score.IfFalseThen(+10), "Has not End Destination" },
+        { When.DecisionIsStay, GetInput.HasEndDestination, Score.IfFalseThen(+10), "Has not End Destination" },
         
-        { When.ActionIsMoveToEndDestination, GetInput.HasEndDestination, Score.IfTrueThen(+10), "Has End Destination" },
-        { When.ActionIsMoveToEndDestination, GetInput.HasTarget, Score.IfFalseThen(+30), "Has Not Target" },
-        { When.ActionIsMoveToEndDestination, GetInput.MoveToAimedTarget, Score.IfTrueThen(+150), "Move to Aimed Target" },
+        { When.DecisionIsMove, GetInput.UserCommandIsMove, Score.IfTrueThen(+1000), "User Command is Move" },
+        { When.DecisionIsMove, GetInput.HasEndDestination, Score.IfTrueThen(+15), "Has End Destination" },
         
-        { When.ActionIsMoveToTarget, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
-        { When.ActionIsMoveToTarget, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
-        { When.ActionIsMoveToTarget, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Move to Nearest Target" },
-        { When.ActionIsMoveToTarget, GetInput.CanReachToTarget, Score.IfFalseThen(+20), "Can not Reach to Target" },
+        { When.DecisionIsMoveToTarget, GetInput.HasTargets, Score.IfTrueThen(+20), "Has Targets" },
+        { When.DecisionIsMoveToTarget, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Move to Nearest Target" },
         
-        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfTrueThen(-100), "Has Target" },
-        { When.ActionIsMoveToAllyTarget, GetInput.HasTarget, Score.IfFalseThen(+20), "Has not Target" },
+        { When.DecisionIsMoveToAllyTarget, GetInput.HasTargets, Score.IfFalseThen(+20), "Has not own Targets" },
         
-        { When.ActionIsAttack, GetInput.CommandIsMove, Score.IfTrueThen(-1000), "Command is Move" },
-        { When.ActionIsAttack, GetInput.IsAimedTarget, Score.IfTrueThen(+150), "Aimed Target" },
-        { When.ActionIsAttack, GetInput.HasTarget, Score.IfTrueThen(+20), "Has Target" },
-        { When.ActionIsAttack, GetInput.PercentageDistanceToTarget, Score.ScaledByReversed(50), "Distance to Target" },
-        { When.ActionIsAttack, GetInput.CanReachToTarget, Score.IfTrueThen(+20), "Can Reach to Target" },
-        { When.ActionIsAttack, GetInput.PercentageReachToTarget, Score.ScaledByReversed(50), "Attack Nearest Target" },
+        { When.DecisionIsMoveToAimedTarget, GetInput.CanReachToTarget, Score.IfFalseThen(+1000), "Can not Reach to Target" },
+        
+        { When.DecisionIsAttack, GetInput.CanReachToTarget, Score.IfTrueThen(+100), "Can Reach to Target" },
+        { When.DecisionIsAttack, GetInput.PercentageDistanceToReachedTarget, Score.ScaledByReversed(50), "Attack Nearest Target" },
+        
+        { When.DecisionIsAttackAimedTarget, GetInput.CanReachToTarget, Score.IfTrueThen(+1500), "Can Reach to Target" },
         
         // todo if target is unit => +100
         // todo if target is building => +50

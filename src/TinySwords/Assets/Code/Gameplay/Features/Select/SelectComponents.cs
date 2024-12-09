@@ -3,8 +3,6 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Select
 {
-  public class SelectComponents
-  {
     [Game] public class Selected : IComponent { }
     [Game] public class Unselected : IComponent { }
     [Game] public class SelectedNow : IComponent { }
@@ -15,5 +13,4 @@ namespace Code.Gameplay.Features.Select
     [Game] public class MultipleSelectionRequest : IComponent { }
     [Game] public class UpdateHudControlButtons : IComponent { }
     [Game] public class SelectingAnimator : IComponent { public ISelectingAnimator Value; }
-  }
 }

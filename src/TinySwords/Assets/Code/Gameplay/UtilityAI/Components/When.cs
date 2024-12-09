@@ -4,19 +4,25 @@ namespace Code.Gameplay.UtilityAI.Components
 {
   public class When
   {
-    public bool ActionIsStay(GameEntity unit, UnitDecision decision) =>
+    public bool DecisionIsStay(GameEntity unit, UnitDecision decision) =>
       decision.UnitDecisionTypeId == UnitDecisionTypeId.Stay;
 
-    public bool ActionIsMoveToEndDestination(GameEntity unit, UnitDecision decision) =>
-      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToEndDestination;
+    public bool DecisionIsMove(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.Move;
 
-    public bool ActionIsMoveToTarget(GameEntity unit, UnitDecision decision) =>
+    public bool DecisionIsMoveToTarget(GameEntity unit, UnitDecision decision) =>
       decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToTarget;
 
-    public bool ActionIsAttack(GameEntity unit, UnitDecision decision) =>
+    public bool DecisionIsMoveToAllyTarget(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToAllyTarget;
+
+    public bool DecisionIsMoveToAimedTarget(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToAimedTarget;
+
+    public bool DecisionIsAttack(GameEntity unit, UnitDecision decision) =>
       decision.UnitDecisionTypeId == UnitDecisionTypeId.Attack;
 
-    public bool ActionIsMoveToAllyTarget(GameEntity unit, UnitDecision decision) =>
-      decision.UnitDecisionTypeId == UnitDecisionTypeId.MoveToAllyTarget;
+    public bool DecisionIsAttackAimedTarget(GameEntity unit, UnitDecision decision) =>
+      decision.UnitDecisionTypeId == UnitDecisionTypeId.AttackAimedTarget;
   }
 }

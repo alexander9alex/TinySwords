@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateMovementStateSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MoveDirection));
+        .AllOf(GameMatcher.MoveDirection, GameMatcher.Alive));
     }
 
     public void Execute()

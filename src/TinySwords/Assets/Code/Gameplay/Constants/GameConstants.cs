@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Units.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Constants
@@ -11,6 +12,8 @@ namespace Code.Gameplay.Constants
     public static float FocusRadius => ClickRadius;
     public const float UnitMinRadius = 0.7f;
     public const float CameraSpeed = 0.2f;
+    public const float StoppingDistance = 0.01f;
+    public const TeamColor PlayerTeamColor = TeamColor.Blue;
 
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static int FocusLayerMask => SelectionLayerMask;

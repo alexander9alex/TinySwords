@@ -6,6 +6,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Effects.Data;
 using Code.Gameplay.Features.Sounds.Services;
+using Code.Gameplay.Features.Units.Data;
 using Entitas;
 using ModestTree;
 
@@ -73,11 +74,12 @@ namespace Code.Gameplay.Features.Battle.Systems
           unit.WorldPosition.ToVector2() + unit.LookDirection * unit.AttackReach,
           unit.AttackReach / 2,
           GameConstants.UnitsAndBuildingsLayerMask)
+        .Where(entity => entity.hasTeamColor && entity.TeamColor != unit.TeamColor)
         .Select(entity => entity.Id)
         .ToList();
     }
 
     private static bool CasterNotValid(GameEntity caster) =>
-      !caster.hasWorldPosition || !caster.hasLookDirection || !caster.hasAttackReach || !caster.hasDamage;
+      !caster.hasWorldPosition || !caster.hasLookDirection || !caster.hasAttackReach || !caster.hasDamage || !caster.hasTargetId;
   }
 }

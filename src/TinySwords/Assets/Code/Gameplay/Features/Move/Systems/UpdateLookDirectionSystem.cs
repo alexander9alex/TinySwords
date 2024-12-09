@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateLookDirectionSystem(GameContext game)
     {
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.MoveAnimator, GameMatcher.LookDirection));
+        .AllOf(GameMatcher.MoveAnimator, GameMatcher.LookDirection, GameMatcher.Alive, GameMatcher.NotAttacking));
     }
 
     public void Execute()

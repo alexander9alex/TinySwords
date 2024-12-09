@@ -14,7 +14,8 @@ namespace Code.Gameplay.Features.Move.Registrars
       Entity.AddNavMeshAgent(NavMeshAgent)
         .AddCurrentAvoidancePriority(NavMeshAgent.avoidancePriority)
         .AddIdleAvoidancePriority(NavMeshAgent.avoidancePriority)
-        .AddMoveAvoidancePriority(MoveAvoidancePriority);
+        .AddMoveAvoidancePriority(MoveAvoidancePriority)
+        ;
     }
 
     public override void UnregisterComponents()

@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest unselectPreviouslySelectedRequestComponent = new Code.Gameplay.Features.Select.SelectComponents.UnselectPreviouslySelectedRequest();
+    static readonly Code.Gameplay.Features.Select.UnselectPreviouslySelectedRequest unselectPreviouslySelectedRequestComponent = new Code.Gameplay.Features.Select.UnselectPreviouslySelectedRequest();
 
     public bool isUnselectPreviouslySelectedRequest {
         get { return HasComponent(GameComponentsLookup.UnselectPreviouslySelectedRequest); }

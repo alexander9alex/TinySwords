@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.15
       objectReference: {fileID: 0}
+    - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752529674717942869, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880232655974497433, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4847912186616274848, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
     - {fileID: 9178764250356365506, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}

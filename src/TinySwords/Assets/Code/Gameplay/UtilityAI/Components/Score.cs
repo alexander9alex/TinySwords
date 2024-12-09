@@ -11,6 +11,6 @@ namespace Code.Gameplay.UtilityAI.Components
       (ifFalse, _) => ifFalse == 0 ? value : 0;
 
     public Func<float, GameEntity, float> ScaledByReversed(float scaled) =>
-      (input, _) => (1 - input) * scaled;
+      (percentageInput, _) => scaled - percentageInput * scaled;
   }
 }

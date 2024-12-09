@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.AI.Systems
 
     public void Execute()
     {
-      foreach (GameEntity entity in _entities)
+      foreach (GameEntity entity in _entities) // todo: change momentary decision logic
       {
         entity.ReplaceMakeDecisionTimer(entity.MakeDecisionTimer - _time.DeltaTime);
         entity.ReplaceTimeSinceLastDecision(entity.TimeSinceLastDecision + _time.DeltaTime);

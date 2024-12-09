@@ -8,7 +8,7 @@ namespace Code.Gameplay.UtilityAI.Components
   public class GetInput
   {
     private const float False = 0;
-    private const float True = 1;
+    public const float True = 1;
 
     private readonly GameContext _game;
 
@@ -17,69 +17,96 @@ namespace Code.Gameplay.UtilityAI.Components
       _game = game;
     }
 
-    public float HasEndDestination(GameEntity unit, UnitDecision decision) =>
-      unit.hasEndDestination ? True : False;
+    public float HasEndDestination(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasUserCommand)
+        return False;
+
+      return unit.UserCommand.WorldPosition.HasValue
+        ? True
+        : False;
+    }
 
     public float PercentageDistanceToTarget(GameEntity unit, UnitDecision decision)
     {
       if (!unit.hasTargetBuffer || unit.TargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasCollectTargetsRadius)
         return 0;
 
-      return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.CollectTargetsRadius + 0.1f);
+      GameEntity target = _game.GetEntityWithId(decision.TargetId);
+
+      float distance = Vector2.Distance(unit.WorldPosition, target.WorldPosition);
+      return distance / (unit.CollectTargetsRadius + 1);
     }
 
-    public float HasTarget(GameEntity unit, UnitDecision decision) =>
+    public float HasTargets(GameEntity unit, UnitDecision decision) =>
       unit.hasTargetBuffer && !unit.TargetBuffer.IsEmpty() ? True : False;
 
-    public float CanReachToTarget(GameEntity unit, UnitDecision decision) =>
-      unit.hasReachedTargetBuffer && !unit.ReachedTargetBuffer.IsEmpty() ? True : False;
+    public float CanReachToTarget(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasReachedTargetBuffer || unit.ReachedTargetBuffer.IsEmpty())
+        return False;
 
-    public float PercentageReachToTarget(GameEntity unit, UnitDecision decision)
+      GameEntity target = _game.GetEntityWithId(decision.TargetId);
+
+      if (target is not { isAlive: true })
+        return False;
+
+      return unit.ReachedTargetBuffer.Contains(decision.TargetId)
+        ? True
+        : False;
+    }
+
+    public float PercentageDistanceToReachedTarget(GameEntity unit, UnitDecision decision)
     {
       if (!unit.hasReachedTargetBuffer || unit.ReachedTargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasAttackReach)
         return 1;
+      
+      GameEntity target = _game.GetEntityWithId(decision.TargetId);
 
-      return Vector2.Distance(unit.WorldPosition, decision.Destination) / (unit.AttackReach + 0.1f);
+      return Vector2.Distance(unit.WorldPosition, target.WorldPosition) / (unit.AttackReach + 1);
     }
 
-    public float CommandIsMove(GameEntity unit, UnitDecision decision)
+    public float UserCommandIsMove(GameEntity unit, UnitDecision decision)
     {
-      if (!unit.hasCommandTypeId)
+      if (!unit.hasUserCommand)
         return False;
 
-      return unit.CommandTypeId == CommandTypeId.Move
+      return unit.UserCommand.CommandTypeId == CommandTypeId.Move
+        ? True
+        : False;
+    }
+
+    public float UserCommandIsAimedAttack(GameEntity unit, UnitDecision decision)
+    {
+      if (!unit.hasUserCommand)
+        return False;
+
+      return unit.UserCommand.CommandTypeId == CommandTypeId.AimedAttack
         ? True
         : False;
     }
 
     public float MoveToAimedTarget(GameEntity unit, UnitDecision decision)
     {
-      if (!unit.hasCommandTypeId || !unit.hasAimedTargetId)
+      if (!unit.hasUserCommand)
         return False;
 
-      if (unit.CommandTypeId != CommandTypeId.AimedAttack)
+      if (unit.UserCommand.CommandTypeId != CommandTypeId.AimedAttack || !unit.UserCommand.TargetId.HasValue)
         return False;
 
-      GameEntity aimedTarget = _game.GetEntityWithId(unit.AimedTargetId);
+      GameEntity aimedTarget = _game.GetEntityWithId(unit.UserCommand.TargetId.Value);
 
       if (aimedTarget is not { hasWorldPosition: true })
         return False;
 
-      float distance = Vector2.Distance(aimedTarget.WorldPosition, decision.Destination);
-      return distance <= 0.25f
+      return Vector2.Distance(aimedTarget.WorldPosition, decision.Destination) <= 0.25f
         ? True
         : False;
     }
 
     public float IsAimedTarget(GameEntity unit, UnitDecision decision)
     {
-      if (!unit.hasCommandTypeId || !unit.hasAimedTargetId)
-        return False;
-
-      if (unit.CommandTypeId != CommandTypeId.AimedAttack)
-        return False;
-
-      return unit.AimedTargetId == decision.TargetId
+      return unit.UserCommand.TargetId == decision.TargetId
         ? True
         : False;
     }

@@ -1,5 +1,7 @@
 ﻿using System;
+using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Command.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
 {
@@ -12,7 +14,7 @@ namespace Code.Gameplay.Features.Command.Services
 
     public bool CommandCompleted(GameEntity selectable)
     {
-      return selectable.CommandTypeId switch
+      return selectable.UserCommand.CommandTypeId switch
       {
         CommandTypeId.Move => MoveCommandCompleted(selectable),
         CommandTypeId.MoveWithAttack => MoveWithAttackCommandCompleted(selectable),
@@ -23,57 +25,18 @@ namespace Code.Gameplay.Features.Command.Services
 
     public void RemoveCommand(GameEntity selectable)
     {
-      switch (selectable.CommandTypeId)
-      {
-        case CommandTypeId.Move: 
-          RemoveMoveCommand(selectable);
-          break;
-        case CommandTypeId.MoveWithAttack:
-          RemoveMoveWithAttackCommand(selectable);
-          break;
-        case CommandTypeId.AimedAttack:
-          RemoveAimedAttackCommand(selectable);
-          break;
-        default:
-          throw new ArgumentOutOfRangeException();
-      }
-    }
-
-    private void RemoveMoveCommand(GameEntity entity)
-    {
-      if (entity.hasEndDestination)
-        entity.RemoveEndDestination();
-
-      entity.RemoveCommandTypeId();
-    }
-
-    private void RemoveMoveWithAttackCommand(GameEntity entity) =>
-      RemoveMoveCommand(entity);
-
-    private void RemoveAimedAttackCommand(GameEntity entity)
-    {
-      if (entity.hasAimedTargetId)
-        entity.RemoveAimedTargetId();
-
-      entity.RemoveCommandTypeId();
-
-      if (entity.hasEndDestination)
-        entity.RemoveEndDestination();
+      selectable.RemoveUserCommand();
     }
 
     private bool MoveCommandCompleted(GameEntity entity) =>
-      !entity.hasEndDestination;
+      Vector2.Distance(entity.UserCommand.WorldPosition.Value, entity.WorldPosition) <= GameConstants.StoppingDistance;
 
     private bool MoveWithAttackCommandCompleted(GameEntity entity) =>
       MoveCommandCompleted(entity);
 
     private bool AimedAttackCommandCompleted(GameEntity entity)
     {
-      if (!entity.hasAimedTargetId)
-        return true;
-
-      GameEntity target = _gameContext.GetEntityWithId(entity.AimedTargetId);
-
+      GameEntity target = _gameContext.GetEntityWithId(entity.UserCommand.TargetId.Value);
       return target == null || target.isDead;
     }
   }

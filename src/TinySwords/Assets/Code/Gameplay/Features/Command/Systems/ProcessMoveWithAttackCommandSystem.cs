@@ -2,8 +2,10 @@
 using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
-using Code.Gameplay.Constants;
+using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Indicators.Data;
+using Code.Gameplay.Features.Move.Services;
 using Entitas;
 using UnityEngine;
 
@@ -11,14 +13,20 @@ namespace Code.Gameplay.Features.Command.Systems
 {
   public class ProcessMoveWithAttackCommandSystem : IExecuteSystem
   {
+    private readonly IBattleFormationService _battleFormationService;
+    private readonly ICameraProvider _cameraProvider;
+    
     private readonly IGroup<GameEntity> _processCommandRequests;
     private readonly List<GameEntity> _requestsBuffer = new(1);
 
     private readonly IGroup<GameEntity> _selected;
     private readonly List<GameEntity> _selectedBuffer = new(32);
 
-    public ProcessMoveWithAttackCommandSystem(GameContext game)
+    public ProcessMoveWithAttackCommandSystem(GameContext game, ICameraProvider cameraProvider, IBattleFormationService battleFormationService)
     {
+      _cameraProvider = cameraProvider;
+      _battleFormationService = battleFormationService;
+
       _processCommandRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ProcessCommandRequest, GameMatcher.MoveWithAttackCommand, GameMatcher.CommandTypeId, GameMatcher.ScreenPosition));
 
@@ -35,36 +43,40 @@ namespace Code.Gameplay.Features.Command.Systems
 
     private void ProcessCommand(GameEntity request)
     {
+      List<Vector2> battleFormationPositions = _battleFormationService
+        .GetSquareBattleFormation(WorldPosition(request), _selected.count)
+        .ToList();
+      
       foreach (GameEntity selected in _selected.GetEntities(_selectedBuffer))
-        ProcessCommand(selected, request);
-        
-      CreateEntity.Empty()
-        .AddScreenPosition(request.ScreenPosition)
-        .With(x => x.isChangeEndDestinationRequest = true)
-        .With(x => x.isConvertWhenGroup = true);
+      {
+        ReplaceUserCommand(selected, battleFormationPositions[0]);
+        battleFormationPositions.RemoveAt(0);
+      }
 
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.Move)
         .AddScreenPosition(request.ScreenPosition)
         .With(x => x.isCreateIndicator = true);
     }
-    
-    private static void ProcessCommand(GameEntity selected, GameEntity request)
+
+    private static void ReplaceUserCommand(GameEntity selected, Vector2 pos)
     {
-      RemovePreviousCommand(selected);
-      selected.ReplaceCommandTypeId(request.CommandTypeId);
-      selected.ReplaceMakeDecisionTimer(0);
-      selected.ReplaceTimeSinceLastDecision(1);
-    }
-    
-    private static void RemovePreviousCommand(GameEntity selected)
-    {
-      if (!selected.hasCommandTypeId)
-        return;
+      selected.ReplaceUserCommand(GetMoveWithAttackUserCommand(pos));
       
-      CreateEntity.Empty()
-        .AddCommandTypeId(selected.CommandTypeId)
-        .With(x => x.isRemovePreviousCommand = true);
+      selected.ReplaceMakeDecisionTimer(0);
+      selected.ReplaceTimeSinceLastDecision(1); // todo: refactor time since last decision
     }
+
+    private static UserCommand GetMoveWithAttackUserCommand(Vector2 pos)
+    {
+      return new UserCommand()
+      {
+        CommandTypeId = CommandTypeId.MoveWithAttack,
+        WorldPosition = pos
+      };
+    }
+
+    private Vector3 WorldPosition(GameEntity request) =>
+      _cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition);
   }
 }

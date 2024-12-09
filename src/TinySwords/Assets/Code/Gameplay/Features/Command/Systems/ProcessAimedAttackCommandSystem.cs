@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Indicators.Data;
 using Entitas;
@@ -40,17 +41,30 @@ namespace Code.Gameplay.Features.Command.Systems
         return;
 
       foreach (GameEntity selected in _selected.GetEntities(_selectedBuffer))
-        _commandService.ProcessAimedAttack(selected, target);
-        
-      CreateEntity.Empty()
-        .AddWorldPosition(target.WorldPosition)
-        .With(x => x.isChangeEndDestinationRequest = true);
+        ReplaceUserCommand(selected, target.Id);
 
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.Attack)
         .AddWorldPosition(target.WorldPosition)
         .AddTargetId(target.Id)
         .With(x => x.isCreateIndicator = true);
+    }
+
+    private static void ReplaceUserCommand(GameEntity selected, int targetId)
+    {
+      selected.ReplaceUserCommand(GetAimedAttackUserCommand(targetId));
+
+      selected.ReplaceMakeDecisionTimer(0);
+      selected.ReplaceTimeSinceLastDecision(1); // todo: refactor time since last decision
+    }
+
+    private static UserCommand GetAimedAttackUserCommand(int targetId)
+    {
+      return new UserCommand()
+      {
+        CommandTypeId = CommandTypeId.AimedAttack,
+        TargetId = targetId
+      };
     }
   }
 }

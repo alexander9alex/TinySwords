@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7218152853136370546, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7218152853136370546, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765808273595722036, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: YOffsetRelativeCenter
+      value: 0.325
+      objectReference: {fileID: 0}
     - target: {fileID: 2062871423326038689, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
       propertyPath: m_Name
       value: Unit_BlueKnight
@@ -68,6 +80,22 @@ PrefabInstance:
       propertyPath: SpriteRenderer
       value: 
       objectReference: {fileID: 9200867455917175486}
+    - target: {fileID: 8201827767557434432, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.335
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588830129350029450, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752529674717942869, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880232655974497433, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

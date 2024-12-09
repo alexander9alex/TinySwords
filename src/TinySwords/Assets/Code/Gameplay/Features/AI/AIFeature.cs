@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.AI
       Add(systems.Create<CollectAlliesSystem>());
 
       Add(systems.Create<UnitMakeDecisionSystem>());
+      Add(systems.Create<RemoveAllUnitDecisionsSystem>());
       Add(systems.Create<ProcessUnitDecisionSystem>());
     }
   }

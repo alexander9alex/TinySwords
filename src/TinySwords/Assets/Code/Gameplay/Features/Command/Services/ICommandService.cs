@@ -11,7 +11,6 @@ namespace Code.Gameplay.Features.Command.Services
     void ApplyCommand(CommandTypeId command, Vector2 screenPos);
     void ProcessIncorrectCommand(CommandTypeId command, GameEntity request);
     bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos);
-    void ProcessAimedAttack(GameEntity selected, GameEntity target);
     void ProcessIncorrectAimedAttack(Vector2 screenPos);
   }
 }

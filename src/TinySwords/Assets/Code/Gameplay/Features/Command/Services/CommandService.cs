@@ -111,16 +111,7 @@ namespace Code.Gameplay.Features.Command.Services
 
       return false;
     }
-
-    public void ProcessAimedAttack(GameEntity selected, GameEntity target)
-    {
-      RemovePreviousCommand(selected);
-      selected.ReplaceCommandTypeId(CommandTypeId.AimedAttack);
-      selected.ReplaceAimedTargetId(target.Id);
-      selected.ReplaceMakeDecisionTimer(0);
-      selected.ReplaceTimeSinceLastDecision(1);
-    }
-
+    
     public void ProcessIncorrectAimedAttack(Vector2 screenPos)
     {
       CreateEntity.Empty()
@@ -128,17 +119,7 @@ namespace Code.Gameplay.Features.Command.Services
         .AddScreenPosition(screenPos)
         .With(x => x.isCreateIndicator = true);
     }
-
-    private static void RemovePreviousCommand(GameEntity selected)
-    {
-      if (!selected.hasCommandTypeId)
-        return;
-
-      CreateEntity.Empty()
-        .AddCommandTypeId(selected.CommandTypeId)
-        .With(x => x.isRemovePreviousCommand = true);
-    }
-
+    
     private static void SetCommandTypeId(GameEntity entity, CommandTypeId commandTypeId)
     {
       switch (commandTypeId)
@@ -173,6 +154,6 @@ namespace Code.Gameplay.Features.Command.Services
       !TargetIsSuitable(possibleTarget);
 
     private static bool TargetIsSuitable(GameEntity target) =>
-      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != TeamColor.Blue;
+      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != GameConstants.PlayerTeamColor;
   }
 }

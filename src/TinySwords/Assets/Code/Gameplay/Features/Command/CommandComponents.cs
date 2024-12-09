@@ -14,5 +14,5 @@ namespace Code.Gameplay.Features.Command
   [Game] public class ProcessCommandRequest : IComponent { }
   [Game] public class ProcessIncorrectCommandRequest : IComponent { }
   [Game] public class CommandTypeIdComponent : IComponent { public CommandTypeId Value; }
-  [Game] public class AimedTargetId : IComponent { public int Value; }
-  }
+  [Game] public class UserCommandComponent : IComponent { public UserCommand Value; }
+}

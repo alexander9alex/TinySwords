@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.AI.Systems
     public UnitMakeDecisionSystem(GameContext game)
     {
       _units = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Unit, GameMatcher.MakeDecisionRequest, GameMatcher.UnitAI));
+        .AllOf(GameMatcher.Unit, GameMatcher.MakeDecisionRequest, GameMatcher.UnitAI, GameMatcher.Alive, GameMatcher.NotAttacking));
     }
 
     public void Execute()
