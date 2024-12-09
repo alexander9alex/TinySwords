@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.AI.Services;
 using Entitas;
 
-namespace Code.Gameplay.Features.Battle.Systems
+namespace Code.Gameplay.Features.AI.Systems
 {
   public class RemoveAllUnitDecisionsSystem : IExecuteSystem
   {
+    private readonly IDecisionService _decisionService;
+    
     private readonly IGroup<GameEntity> _units;
     private readonly List<GameEntity> _buffer = new(32);
 
-    public RemoveAllUnitDecisionsSystem(GameContext game)
+    public RemoveAllUnitDecisionsSystem(GameContext game, IDecisionService decisionService)
     {
+      _decisionService = decisionService;
       _units = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.Unit, GameMatcher.UnitDecision));
     }
@@ -18,20 +22,8 @@ namespace Code.Gameplay.Features.Battle.Systems
     {
       foreach (GameEntity unit in _units.GetEntities(_buffer))
       {
-        RemoveUnitDecisions(unit);
+        _decisionService.RemoveUnitDecisions(unit);
       }
-    }
-
-    private void RemoveUnitDecisions(GameEntity unit)
-    {
-      if (unit.hasDestination)
-        unit.ReplaceDestination(unit.WorldPosition);
-
-      if (unit.hasTargetId)
-        unit.RemoveTargetId();
-      
-      unit.isFollowToTarget = false;
-      unit.isAttackRequest = false;
     }
   }
 }

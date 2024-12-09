@@ -1,32 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Units.Data;
-using Entitas;
 
-namespace Code.Gameplay.Features.Battle.Systems
+namespace Code.Gameplay.Features.AI.Services
 {
-  public class ProcessUnitDecisionSystem : IExecuteSystem
+  class DecisionService : IDecisionService
   {
-    private readonly IGroup<GameEntity> _units;
-    private readonly List<GameEntity> _buffer = new(32);
-
-    public ProcessUnitDecisionSystem(GameContext game)
-    {
-      _units = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Unit, GameMatcher.UnitDecision));
-    }
-
-    public void Execute()
-    {
-      foreach (GameEntity unit in _units.GetEntities(_buffer))
-      {
-        ProcessUnitDecision(unit);
-        unit.RemoveUnitDecision();
-      }
-    }
-
-    private void ProcessUnitDecision(GameEntity unit) // todo: create decision service
+    public void ProcessUnitDecision(GameEntity unit)
     {
       UnitDecision decision = unit.UnitDecision;
 
@@ -50,6 +30,18 @@ namespace Code.Gameplay.Features.Battle.Systems
         default:
           throw new ArgumentOutOfRangeException();
       }
+    }
+
+    public void RemoveUnitDecisions(GameEntity unit)
+    {
+      if (unit.hasDestination)
+        unit.ReplaceDestination(unit.WorldPosition);
+
+      if (unit.hasTargetId)
+        unit.RemoveTargetId();
+
+      unit.isFollowToTarget = false;
+      unit.isAttackRequest = false;
     }
 
     private static void MakeStayDecision(GameEntity unit)

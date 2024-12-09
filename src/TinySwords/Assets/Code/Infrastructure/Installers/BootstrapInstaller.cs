@@ -4,6 +4,7 @@ using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Command.Services;
@@ -101,6 +102,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
       Container.Bind<ISoundService>().To<SoundService>().AsSingle();
       Container.Bind<IBattleFormationService>().To<BattleFormationService>().AsSingle();
+      Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
       
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
