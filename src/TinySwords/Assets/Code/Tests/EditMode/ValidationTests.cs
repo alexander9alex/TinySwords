@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -10,34 +11,31 @@ namespace Code.Tests.EditMode
 {
   public class ValidationTests
   {
+    private const string ScenesDirPath = "Assets/Scenes";
+
     [Test]
     public void ValidationTestsSimplePasses()
     {
-      FindMissingComponents();
-    }
-
-    private const string ScenesDirPath = "Assets/Scenes";
-
-    private static void FindMissingComponents()
-    {
-      Debug.Log("Searching for missing components...");
+      bool missingComponentsDetected = false;
 
       foreach (Scene scene in OpenProjectScenes())
       foreach (GameObject gameObject in AllGameObjects(scene))
         if (HasMissingScripts(gameObject))
-          Debug.LogError($"Game object {gameObject.name} from scene {scene.name} has missing component(s)");
+        {
+          missingComponentsDetected = true;
+          Debug.LogWarning($"Game object {gameObject.name} from scene {scene.name} has missing component(s)");
+        }
 
-      bool HasMissingScripts(GameObject gameObject) =>
-        GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
-      
-      Debug.Log("Searching for missing components has been completed!");
+      Assert.That(missingComponentsDetected, Is.False);
     }
 
     private static IEnumerable<Scene> OpenProjectScenes()
     {
       IEnumerable<string> scenePaths = AssetDatabase
-        .FindAssets("t:Scene", new[] {
-          ScenesDirPath })
+        .FindAssets("t:Scene", new[]
+        {
+          ScenesDirPath
+        })
         .Select(AssetDatabase.GUIDToAssetPath);
 
       foreach (string scenePath in scenePaths)
@@ -73,5 +71,8 @@ namespace Code.Tests.EditMode
           gameObjectQueue.Enqueue(child.gameObject);
       }
     }
+
+    private bool HasMissingScripts(GameObject gameObject) =>
+      GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
   }
 }
