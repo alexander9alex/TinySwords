@@ -14,7 +14,7 @@ namespace Code.Tools
     [MenuItem("Tools/Validation/Missing Components")]
     public static void FindMissingComponents()
     {
-      Debug.Log("Hello from Validator!");
+      Debug.Log("Searching for missing components...");
 
       IEnumerable<string> scenePaths = AssetDatabase
         .FindAssets("t:Scene", new[] { ScenesDirPath })
@@ -22,9 +22,11 @@ namespace Code.Tools
 
       foreach (string scenePath in scenePaths)
       {
-        if (SceneManager.GetSceneByPath(scenePath).isLoaded)
+        Scene scene = SceneManager.GetSceneByPath(scenePath);
+
+        if (scene.isLoaded)
         {
-          FindMissingComponents(SceneManager.GetSceneByPath(scenePath));
+          FindMissingComponents(scene);
         }
         else
         {
