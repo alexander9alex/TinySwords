@@ -16,6 +16,19 @@ namespace Code.Tools
     {
       Debug.Log("Searching for missing components...");
 
+      foreach (Scene scene in OpenProjectScenes())
+      foreach (GameObject gameObject in AllGameObjects(scene))
+        if (HasMissingScripts(gameObject))
+          Debug.LogError($"Game object {gameObject.name} from scene {scene.name} has missing component(s)");
+
+      bool HasMissingScripts(GameObject gameObject) =>
+        GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
+      
+      Debug.Log("Searching for missing components has been completed!");
+    }
+
+    private static IEnumerable<Scene> OpenProjectScenes()
+    {
       IEnumerable<string> scenePaths = AssetDatabase
         .FindAssets("t:Scene", new[] { ScenesDirPath })
         .Select(AssetDatabase.GUIDToAssetPath);
@@ -26,18 +39,20 @@ namespace Code.Tools
 
         if (scene.isLoaded)
         {
-          FindMissingComponents(scene);
+          yield return scene;
         }
         else
         {
           Scene openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
-          FindMissingComponents(openedScene);
+
+          yield return openedScene;
+
           EditorSceneManager.CloseScene(openedScene, removeScene: true);
         }
       }
     }
 
-    private static void FindMissingComponents(Scene scene)
+    private static IEnumerable<GameObject> AllGameObjects(Scene scene)
     {
       Queue<GameObject> gameObjectQueue = new(scene.GetRootGameObjects());
 
@@ -45,19 +60,11 @@ namespace Code.Tools
       {
         GameObject gameObject = gameObjectQueue.Dequeue();
 
-        FindMissingComponents(gameObject, scene);
+        yield return gameObject;
 
         foreach (Transform child in gameObject.transform)
           gameObjectQueue.Enqueue(child.gameObject);
       }
-    }
-
-    private static void FindMissingComponents(GameObject gameObject, Scene scene)
-    {
-      bool hasMissingScripts = GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
-
-      if (hasMissingScripts)
-        Debug.LogError($"Game object {gameObject.name} from scene {scene.name} has missing component(s)");
     }
   }
 }
