@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +9,29 @@ namespace Code.Tools
 {
   public abstract class Validator
   {
+    private const string ScenesDirPath = "Assets/Scenes";
+
+    [MenuItem("Tools/Validation/~ Iterate Scenes")]
+    public static void IterateScenes()
+    {
+      IEnumerable<string> scenePaths = AssetDatabase.FindAssets("t:Scene", new[] { ScenesDirPath })
+        .Select(AssetDatabase.GUIDToAssetPath);
+
+      foreach (string scenePath in scenePaths)
+      {
+        if (SceneManager.GetSceneByPath(scenePath).isLoaded)
+        {
+          Debug.Log(SceneManager.GetSceneByPath(scenePath).name);
+        }
+        else
+        {
+          Scene openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+          Debug.Log(openedScene.name);
+          EditorSceneManager.CloseScene(openedScene, removeScene: true);
+        }
+      }
+    }
+
     [MenuItem("Tools/Validation/Missing Components")]
     public static void FindMissingComponents()
     {
