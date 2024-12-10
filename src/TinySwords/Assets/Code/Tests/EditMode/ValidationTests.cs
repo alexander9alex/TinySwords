@@ -16,17 +16,13 @@ namespace Code.Tests.EditMode
     [Test]
     public void ValidationTestsSimplePasses()
     {
-      bool missingComponentsDetected = false;
+      IEnumerable<string> errors =
+        from scene in OpenProjectScenes()
+        from gameObject in AllGameObjects(scene)
+        where HasMissingScripts(gameObject)
+        select $"Game object {gameObject.name} from scene {scene.name} has missing component(s)";
 
-      foreach (Scene scene in OpenProjectScenes())
-      foreach (GameObject gameObject in AllGameObjects(scene))
-        if (HasMissingScripts(gameObject))
-        {
-          missingComponentsDetected = true;
-          Debug.LogWarning($"Game object {gameObject.name} from scene {scene.name} has missing component(s)");
-        }
-
-      Assert.That(missingComponentsDetected, Is.False);
+      Assert.That(errors, Is.Empty);
     }
 
     private static IEnumerable<Scene> OpenProjectScenes()
