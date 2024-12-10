@@ -19,7 +19,7 @@ namespace Code.Tools
       while (gameObjectQueue.Count > 0)
       {
         GameObject gameObject = gameObjectQueue.Dequeue();
-        
+
         FindMissingComponents(gameObject);
 
         foreach (Transform child in gameObject.transform)
@@ -27,7 +27,12 @@ namespace Code.Tools
       }
     }
 
-    private static void FindMissingComponents(GameObject gameObject) =>
-      Debug.Log(gameObject.name);
+    private static void FindMissingComponents(GameObject gameObject)
+    {
+      bool hasMissingScripts = GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
+
+      if (hasMissingScripts)
+        Debug.LogWarning($"Game object {gameObject.name} has missing component(s)");
+    }
   }
 }
