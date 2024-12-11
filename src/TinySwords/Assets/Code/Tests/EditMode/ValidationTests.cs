@@ -13,25 +13,27 @@ namespace Code.Tests.EditMode
   {
     private const string ScenesDirPath = "Assets/Scenes";
 
-    [Test]
-    public void AllGameObjectsShouldNotHaveMissingScripts()
+    [TestCase("Assets/Scenes/Boot.unity")]
+    [TestCase("Assets/Scenes/Game.unity")]
+    [TestCase("Assets/Scenes/MainMenu.unity")]
+    public void AllGameObjectsShouldNotHaveMissingScripts(string scenePath)
     {
-      IEnumerable<string> errors =
-        from scene in OpenProjectScenes()
-        from gameObject in AllGameObjects(scene)
-        where HasMissingScripts(gameObject)
-        select $"Game object {gameObject.name} from scene {scene.name} has missing component(s)";
+      Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
 
-      errors.Should().BeEmpty();
+      List<string> gameObjectsWithMissingScripts = AllGameObjects(scene)
+        .Where(HasMissingScripts)
+        .Select(gameObject => gameObject.name)
+        .ToList();
+
+      EditorSceneManager.CloseScene(scene, removeScene: true);
+
+      gameObjectsWithMissingScripts.Should().BeEmpty();
     }
 
     private static IEnumerable<Scene> OpenProjectScenes()
     {
       IEnumerable<string> scenePaths = AssetDatabase
-        .FindAssets("t:Scene", new[]
-        {
-          ScenesDirPath
-        })
+        .FindAssets("t:Scene", new[] { ScenesDirPath })
         .Select(AssetDatabase.GUIDToAssetPath);
 
       foreach (string scenePath in scenePaths)
