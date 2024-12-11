@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -21,7 +22,7 @@ namespace Code.Tests.EditMode
         where HasMissingScripts(gameObject)
         select $"Game object {gameObject.name} from scene {scene.name} has missing component(s)";
 
-      Assert.That(errors, Is.Empty);
+      errors.Should().BeEmpty();
     }
 
     private static IEnumerable<Scene> OpenProjectScenes()
