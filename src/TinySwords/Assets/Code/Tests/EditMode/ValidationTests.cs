@@ -13,9 +13,7 @@ namespace Code.Tests.EditMode
   {
     private const string ScenesDirPath = "Assets/Scenes";
 
-    [TestCase("Assets/Scenes/Boot.unity")]
-    [TestCase("Assets/Scenes/Game.unity")]
-    [TestCase("Assets/Scenes/MainMenu.unity")]
+    [TestCaseSource(nameof(AllScenesPaths))]
     public void AllGameObjectsShouldNotHaveMissingScripts(string scenePath)
     {
       Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
@@ -30,29 +28,11 @@ namespace Code.Tests.EditMode
       gameObjectsWithMissingScripts.Should().BeEmpty();
     }
 
-    private static IEnumerable<Scene> OpenProjectScenes()
+    private static IEnumerable<string> AllScenesPaths()
     {
-      IEnumerable<string> scenePaths = AssetDatabase
+      return AssetDatabase
         .FindAssets("t:Scene", new[] { ScenesDirPath })
         .Select(AssetDatabase.GUIDToAssetPath);
-
-      foreach (string scenePath in scenePaths)
-      {
-        Scene scene = SceneManager.GetSceneByPath(scenePath);
-
-        if (scene.isLoaded)
-        {
-          yield return scene;
-        }
-        else
-        {
-          Scene openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
-
-          yield return openedScene;
-
-          EditorSceneManager.CloseScene(openedScene, removeScene: true);
-        }
-      }
     }
 
     private static IEnumerable<GameObject> AllGameObjects(Scene scene)
