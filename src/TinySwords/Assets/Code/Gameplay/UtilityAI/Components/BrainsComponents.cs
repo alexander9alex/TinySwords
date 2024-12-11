@@ -1,6 +1,6 @@
 namespace Code.Gameplay.UtilityAI.Components
 {
-  class BrainsComponents : IBrainsComponents
+  public class BrainsComponents : IBrainsComponents
   {
     public When When { get; }
     public GetInput GetInput { get; }
