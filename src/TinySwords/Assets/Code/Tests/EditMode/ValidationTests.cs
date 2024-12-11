@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -14,7 +13,7 @@ namespace Code.Tests.EditMode
     private const string ScenesDirPath = "Assets/Scenes";
 
     [Test]
-    public void ValidationTestsSimplePasses()
+    public void AllGameObjectsShouldNotHaveMissingScripts()
     {
       IEnumerable<string> errors =
         from scene in OpenProjectScenes()
