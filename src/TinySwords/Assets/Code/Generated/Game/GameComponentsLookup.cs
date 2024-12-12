@@ -135,23 +135,24 @@ public static class GameComponentsLookup {
     public const int CollectTargets = 124;
     public const int CollectTargetsRadius = 125;
     public const int CollectTargetTimer = 126;
-    public const int ReachedTargetBuffer = 127;
-    public const int TargetBuffer = 128;
-    public const int Alive = 129;
-    public const int AttackReach = 130;
-    public const int CurrentHp = 131;
-    public const int Damage = 132;
-    public const int Dead = 133;
-    public const int MaxHp = 134;
-    public const int Speed = 135;
-    public const int TeamColor = 136;
-    public const int Unit = 137;
-    public const int UnitTypeId = 138;
-    public const int CurrentAvoidancePriority = 139;
-    public const int IdleAvoidancePriority = 140;
-    public const int MoveAvoidancePriority = 141;
+    public const int NotifyAlliesAboutTarget = 127;
+    public const int ReachedTargetBuffer = 128;
+    public const int TargetBuffer = 129;
+    public const int Alive = 130;
+    public const int AttackReach = 131;
+    public const int CurrentHp = 132;
+    public const int Damage = 133;
+    public const int Dead = 134;
+    public const int MaxHp = 135;
+    public const int Speed = 136;
+    public const int TeamColor = 137;
+    public const int Unit = 138;
+    public const int UnitTypeId = 139;
+    public const int CurrentAvoidancePriority = 140;
+    public const int IdleAvoidancePriority = 141;
+    public const int MoveAvoidancePriority = 142;
 
-    public const int TotalComponents = 142;
+    public const int TotalComponents = 143;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -281,6 +282,7 @@ public static class GameComponentsLookup {
         "CollectTargets",
         "CollectTargetsRadius",
         "CollectTargetTimer",
+        "NotifyAlliesAboutTarget",
         "ReachedTargetBuffer",
         "TargetBuffer",
         "Alive",
@@ -426,6 +428,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargets),
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRadius),
         typeof(Code.Gameplay.Features.TargetCollection.CollectTargetTimer),
+        typeof(Code.Gameplay.Features.TargetCollection.NotifyAlliesAboutTarget),
         typeof(Code.Gameplay.Features.TargetCollection.ReachedTargetBuffer),
         typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer),
         typeof(Code.Gameplay.Features.Units.Alive),

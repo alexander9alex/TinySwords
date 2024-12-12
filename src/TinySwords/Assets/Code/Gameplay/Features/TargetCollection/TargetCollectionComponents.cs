@@ -15,4 +15,5 @@ namespace Code.Gameplay.Features.TargetCollection
   [Game] public class CollectAlliesRadius : IComponent { public float Value; }
   [Game] public class AllyBuffer : IComponent { public List<int> Value; }
   [Game] public class AllyTargetId : IComponent { public int Value; }
+  [Game] public class NotifyAlliesAboutTarget : IComponent { }
 }
