@@ -1,5 +1,4 @@
-﻿using Code.Common.Entities;
-using Code.Common.Extensions;
+﻿using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI;
@@ -60,7 +59,7 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = UnitAI(gameContext);
 
       GameEntity unit = gameContext.CreateEntity()
-        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one});
+        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one });
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
@@ -94,6 +93,60 @@ namespace Code.Tests.EditMode
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
+    }
+
+    [Test]
+    public void WhenUnitHasAimedAttackUserCommandAndUnreachableTarget_ThenUnitAIShouldMakeMoveToAimedTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity enemy = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.one * 3)
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = enemy.Id })
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new() { enemy.Id })
+        .AddCollectTargetsRadius(1f)
+        .AddReachedTargetBuffer(new());
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToAimedTarget);
+    }
+
+    [Test]
+    public void WhenUnitHasAimedAttackUserCommandAndReachableTarget_ThenUnitAIShouldMakeAttackAimedTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity enemy = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.one)
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = enemy.Id })
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new() { enemy.Id })
+        .AddCollectTargetsRadius(3f)
+        .AddReachedTargetBuffer(new() { enemy.Id });
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.AttackAimedTarget);
     }
 
     [Test]
