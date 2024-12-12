@@ -40,14 +40,16 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
+      Vector2 endDestination = Vector2.one;
       GameEntity unit = gameContext.CreateEntity()
-        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one });
+        .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = endDestination });
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Move);
+      decision.Destination.Should().Be(endDestination);
     }
 
     [Test]
@@ -58,14 +60,16 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
+      Vector2 endDestination = Vector2.one;
       GameEntity unit = gameContext.CreateEntity()
-        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one });
+        .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = endDestination });
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Move);
+      decision.Destination.Should().Be(endDestination);
     }
 
     [Test]
@@ -76,14 +80,14 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity enemy = gameContext.CreateEntity()
+      GameEntity target = gameContext.CreateEntity()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
-        .AddTargetBuffer(new() { enemy.Id })
+        .AddTargetBuffer(new() { target.Id })
         .AddCollectTargetsRadius(3f)
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
@@ -93,6 +97,7 @@ namespace Code.Tests.EditMode
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
+      decision.TargetId.Should().Be(target.Id);
     }
 
     [Test]
@@ -103,15 +108,15 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity enemy = gameContext.CreateEntity()
+      GameEntity target = gameContext.CreateEntity()
         .AddId(0)
         .AddWorldPosition(Vector2.one * 3)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
-        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = enemy.Id })
+        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = target.Id })
         .AddWorldPosition(Vector2.zero)
-        .AddTargetBuffer(new() { enemy.Id })
+        .AddTargetBuffer(new() { target.Id })
         .AddCollectTargetsRadius(1f)
         .AddReachedTargetBuffer(new());
 
@@ -120,6 +125,7 @@ namespace Code.Tests.EditMode
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToAimedTarget);
+      decision.TargetId.Should().Be(target.Id);
     }
 
     [Test]
@@ -130,23 +136,24 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity enemy = gameContext.CreateEntity()
+      GameEntity target = gameContext.CreateEntity()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
-        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = enemy.Id })
+        .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = target.Id })
         .AddWorldPosition(Vector2.zero)
-        .AddTargetBuffer(new() { enemy.Id })
+        .AddTargetBuffer(new() { target.Id })
         .AddCollectTargetsRadius(3f)
-        .AddReachedTargetBuffer(new() { enemy.Id });
+        .AddReachedTargetBuffer(new() { target.Id });
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.AttackAimedTarget);
+      decision.TargetId.Should().Be(target.Id);
     }
 
     [Test]
@@ -157,19 +164,19 @@ namespace Code.Tests.EditMode
       GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity nearestEnemy = gameContext.CreateEntity()
+      GameEntity nearestTarget = gameContext.CreateEntity()
         .AddId(0)
         .AddWorldPosition(Vector2.right)
         .With(x => x.isAlive = true);
 
-      GameEntity furtherEnemy = gameContext.CreateEntity()
+      GameEntity furtherTarget = gameContext.CreateEntity()
         .AddId(1)
         .AddWorldPosition(Vector2.right * 2)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
-        .AddTargetBuffer(new() { nearestEnemy.Id, furtherEnemy.Id })
+        .AddTargetBuffer(new() { nearestTarget.Id, furtherTarget.Id })
         .AddCollectTargetsRadius(3f)
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
@@ -178,7 +185,8 @@ namespace Code.Tests.EditMode
       UnitDecision decision = unitAI.MakeBestDecision(unit);
 
       // Assert
-      decision.TargetId.Value.Should().Be(nearestEnemy.Id);
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
+      decision.TargetId.Value.Should().Be(nearestTarget.Id);
     }
 
     private static IUnitAI UnitAI(GameContext gameContext)
