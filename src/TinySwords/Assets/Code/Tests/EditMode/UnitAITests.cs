@@ -86,7 +86,7 @@ namespace Code.Tests.EditMode
       UnitDecision decision = unitAI.MakeBestDecision(unit);
 
       // Assert
-      decision.TargetId.Should().Be(nearestEnemy.Id);
+      decision.TargetId.Value.Should().Be(nearestEnemy.Id);
     }
 
     private static IUnitAI UnitAI(GameContext gameContext)
