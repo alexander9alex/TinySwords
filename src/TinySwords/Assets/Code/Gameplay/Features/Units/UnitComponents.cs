@@ -15,4 +15,5 @@ namespace Code.Gameplay.Features.Units
   [Game] public class TeamColorComponent : IComponent { public TeamColor Value; }
   [Game] public class UnitTypeIdComponent : IComponent { public UnitTypeId Value; }
   [Game] public class LegsPosition : IComponent { public Vector2 Value; }
+  [Game] public class OffsetPositionByLegs : IComponent { }
 }

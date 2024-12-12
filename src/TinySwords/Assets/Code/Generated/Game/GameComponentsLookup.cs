@@ -145,15 +145,16 @@ public static class GameComponentsLookup {
     public const int Dead = 134;
     public const int LegsPosition = 135;
     public const int MaxHp = 136;
-    public const int Speed = 137;
-    public const int TeamColor = 138;
-    public const int Unit = 139;
-    public const int UnitTypeId = 140;
-    public const int CurrentAvoidancePriority = 141;
-    public const int IdleAvoidancePriority = 142;
-    public const int MoveAvoidancePriority = 143;
+    public const int OffsetPositionByLegs = 137;
+    public const int Speed = 138;
+    public const int TeamColor = 139;
+    public const int Unit = 140;
+    public const int UnitTypeId = 141;
+    public const int CurrentAvoidancePriority = 142;
+    public const int IdleAvoidancePriority = 143;
+    public const int MoveAvoidancePriority = 144;
 
-    public const int TotalComponents = 144;
+    public const int TotalComponents = 145;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -293,6 +294,7 @@ public static class GameComponentsLookup {
         "Dead",
         "LegsPosition",
         "MaxHp",
+        "OffsetPositionByLegs",
         "Speed",
         "TeamColor",
         "Unit",
@@ -440,6 +442,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.Dead),
         typeof(Code.Gameplay.Features.Units.LegsPosition),
         typeof(Code.Gameplay.Features.Units.MaxHp),
+        typeof(Code.Gameplay.Features.Units.OffsetPositionByLegs),
         typeof(Code.Gameplay.Features.Units.Speed),
         typeof(Code.Gameplay.Features.Units.TeamColorComponent),
         typeof(Code.Gameplay.Features.Units.Unit),
