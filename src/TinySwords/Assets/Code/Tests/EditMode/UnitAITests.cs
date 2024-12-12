@@ -1,5 +1,6 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
@@ -30,6 +31,42 @@ namespace Code.Tests.EditMode
 
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Stay);
+    }
+
+    [Test]
+    public void WhenUnitHasMoveUserCommand_ThenUnitAIShouldMakeMoveDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one });
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Move);
+    }
+
+    [Test]
+    public void WhenUnitHasMoveWithAttackUserCommand_ThenUnitAIShouldMakeMoveDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new UserCommand() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = Vector2.one});
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Move);
     }
 
     [Test]
