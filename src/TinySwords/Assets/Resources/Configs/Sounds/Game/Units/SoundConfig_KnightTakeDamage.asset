@@ -15,7 +15,7 @@ MonoBehaviour:
   SoundId: 200
   SoundPrefab: {fileID: 3441752702441673682, guid: 5cf24ddb13a3a2945a1c0ab1b20679dd, type: 3}
   Clip: {fileID: 8300000, guid: 8285ff959e234204a8809d05a5fc9be7, type: 3}
-  Volume: 0.15
+  Volume: 0.25
   Delay: 0.03
   MinPitch: 0.95
   MaxPitch: 1.05
