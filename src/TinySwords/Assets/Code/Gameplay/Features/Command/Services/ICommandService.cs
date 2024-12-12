@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Command.Data;
+using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
@@ -12,5 +13,6 @@ namespace Code.Gameplay.Features.Command.Services
     void ProcessIncorrectCommand(CommandTypeId command, GameEntity request);
     bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos);
     void ProcessIncorrectAimedAttack(Vector2 screenPos);
+    void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected);
   }
 }

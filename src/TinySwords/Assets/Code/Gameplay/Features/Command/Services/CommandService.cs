@@ -10,10 +10,12 @@ using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Features.Move.Services;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Data;
 using Code.UI.Hud.Service;
+using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
@@ -26,15 +28,18 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly IInputService _inputService;
     private readonly ISoundService _soundService;
     private readonly SelectableCommandService _selectableCommandService;
+    private readonly IBattleFormationService _battleFormationService;
+    private readonly List<GameEntity> _selectedBuffer = new(32);
 
     public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider, IHudService hudService, IInputService inputService,
-      ISoundService soundService)
+      ISoundService soundService, IBattleFormationService battleFormationService)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
       _hudService = hudService;
       _inputService = inputService;
       _soundService = soundService;
+      _battleFormationService = battleFormationService;
     }
 
     public void SelectCommand(CommandTypeId command)
@@ -78,7 +83,7 @@ namespace Code.Gameplay.Features.Command.Services
         .With(x => x.isProcessCommandRequest = true);
 
       SetCommandTypeId(entity, command);
-      
+
       _soundService.PlaySound(SoundId.ApplyCommand);
     }
 
@@ -90,7 +95,7 @@ namespace Code.Gameplay.Features.Command.Services
         .With(x => x.isProcessIncorrectCommandRequest = true);
 
       SetCommandTypeId(entity, command);
-      
+
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 
@@ -111,7 +116,7 @@ namespace Code.Gameplay.Features.Command.Services
 
       return false;
     }
-    
+
     public void ProcessIncorrectAimedAttack(Vector2 screenPos)
     {
       CreateEntity.Empty()
@@ -119,7 +124,25 @@ namespace Code.Gameplay.Features.Command.Services
         .AddScreenPosition(screenPos)
         .With(x => x.isCreateIndicator = true);
     }
-    
+
+    public void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected)
+    {
+      List<Vector2> battleFormationPositions = _battleFormationService
+        .GetSquareBattleFormation(WorldPosition(request), selected.count)
+        .ToList();
+
+      foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
+      {
+        ReplaceUserCommand(entity, battleFormationPositions[0]);
+        battleFormationPositions.RemoveAt(0);
+      }
+
+      CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.Move)
+        .AddScreenPosition(request.ScreenPosition)
+        .With(x => x.isCreateIndicator = true);
+    }
+
     private static void SetCommandTypeId(GameEntity entity, CommandTypeId commandTypeId)
     {
       switch (commandTypeId)
@@ -138,6 +161,21 @@ namespace Code.Gameplay.Features.Command.Services
       }
     }
 
+    private static void ReplaceUserCommand(GameEntity selected, Vector2 pos)
+    {
+      selected.ReplaceUserCommand(GetMoveUserCommand(pos));
+      selected.isMakeDecisionNowRequest = true;
+    }
+
+    private static UserCommand GetMoveUserCommand(Vector2 pos)
+    {
+      return new UserCommand
+      {
+        CommandTypeId = CommandTypeId.Move,
+        WorldPosition = pos
+      };
+    }
+
     private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)
     {
       return _physicsService.CircleCast(
@@ -146,6 +184,9 @@ namespace Code.Gameplay.Features.Command.Services
         .OrderBy(entity => entity.Transform.position.y)
         .ToList();
     }
+
+    private Vector3 WorldPosition(GameEntity request) =>
+      _cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition);
 
     private bool CanApplyAimedAttackCommand(Vector2 screenPos) =>
       CanProcessAimedAttack(out _, screenPos);
