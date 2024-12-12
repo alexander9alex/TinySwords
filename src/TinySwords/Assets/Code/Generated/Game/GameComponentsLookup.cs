@@ -143,7 +143,7 @@ public static class GameComponentsLookup {
     public const int CurrentHp = 132;
     public const int Damage = 133;
     public const int Dead = 134;
-    public const int LegsPosition = 135;
+    public const int LegsPositionOffset = 135;
     public const int MaxHp = 136;
     public const int OffsetPositionByLegs = 137;
     public const int Speed = 138;
@@ -292,7 +292,7 @@ public static class GameComponentsLookup {
         "CurrentHp",
         "Damage",
         "Dead",
-        "LegsPosition",
+        "LegsPositionOffset",
         "MaxHp",
         "OffsetPositionByLegs",
         "Speed",
@@ -440,7 +440,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.CurrentHp),
         typeof(Code.Gameplay.Features.Units.Damage),
         typeof(Code.Gameplay.Features.Units.Dead),
-        typeof(Code.Gameplay.Features.Units.LegsPosition),
+        typeof(Code.Gameplay.Features.Units.LegsPositionOffset),
         typeof(Code.Gameplay.Features.Units.MaxHp),
         typeof(Code.Gameplay.Features.Units.OffsetPositionByLegs),
         typeof(Code.Gameplay.Features.Units.Speed),

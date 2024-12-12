@@ -3,17 +3,18 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Registrars
 {
-  public class LegsPositionRegistrar : EntityComponentRegistrar
+  public class LegsPositionOffsetRegistrar : EntityComponentRegistrar
   {
+    public Transform CenterPosition;
     public Transform LegsPosition;
 
     public override void RegisterComponents() =>
-      Entity.AddLegsPosition(LegsPosition.position);
+      Entity.AddLegsPositionOffset(LegsPosition.position - CenterPosition.position);
 
     public override void UnregisterComponents()
     {
-      if (Entity.hasLegsPosition)
-        Entity.RemoveLegsPosition();
+      if (Entity.hasLegsPositionOffset)
+        Entity.RemoveLegsPositionOffset();
     }
   }
 }

@@ -18,6 +18,8 @@ namespace Code.Gameplay.Features.Command
       Add(systems.Create<ProcessAimedAttackCommandSystem>());
       Add(systems.Create<ProcessIncorrectAimedAttackCommandSystem>());
       
+      Add(systems.Create<OffsetPositionByLegsSystem>());
+      
       Add(systems.Create<CleanupApplyCommandRequestSystem>());
       Add(systems.Create<CleanupProcessCommandRequestSystem>());
       Add(systems.Create<CleanupProcessIncorrectCommandSystem>());

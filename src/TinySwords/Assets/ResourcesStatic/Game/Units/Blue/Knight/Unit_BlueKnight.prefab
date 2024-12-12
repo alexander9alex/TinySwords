@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityBehaviour: {fileID: 3841485622853786287}
+  CenterPosition: {fileID: 3936267994451542419}
   LegsPosition: {fileID: 1497310618230657958}
 --- !u!114 &3841485622853786287 stripped
 MonoBehaviour:
@@ -188,6 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123557e73f1740f3bf6947069c033851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3936267994451542419 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3755063440252525448, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}
+  m_PrefabInstance: {fileID: 197248741731260955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6252767976431750082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6087336141347869145, guid: f75bdfec29b6cd14f93243c50716018f, type: 3}

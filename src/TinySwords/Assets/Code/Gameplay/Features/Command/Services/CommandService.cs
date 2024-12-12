@@ -160,6 +160,7 @@ namespace Code.Gameplay.Features.Command.Services
         battleFormationPositions.RemoveAt(0);
 
         entity.isMakeDecisionNowRequest = true;
+        entity.isOffsetPositionByLegs = true;
       }
 
       CreateEntity.Empty()
