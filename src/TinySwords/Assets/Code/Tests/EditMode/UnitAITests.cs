@@ -48,6 +48,7 @@ namespace Code.Tests.EditMode
       GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { enemy.Id })
+        .AddCollectTargetsRadius(3f)
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
 
@@ -68,17 +69,18 @@ namespace Code.Tests.EditMode
 
       GameEntity nearestEnemy = gameContext.CreateEntity()
         .AddId(0)
-        .AddWorldPosition(Vector2.one)
+        .AddWorldPosition(Vector2.right)
         .With(x => x.isAlive = true);
 
       GameEntity furtherEnemy = gameContext.CreateEntity()
         .AddId(1)
-        .AddWorldPosition(Vector2.one * 2)
+        .AddWorldPosition(Vector2.right * 2)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { nearestEnemy.Id, furtherEnemy.Id })
+        .AddCollectTargetsRadius(3f)
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
 
