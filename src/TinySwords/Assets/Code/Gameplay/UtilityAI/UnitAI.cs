@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.UtilityAI
 {
-  class UnitAI : IUnitAI
+  public class UnitAI : IUnitAI
   {
     private readonly IEnumerable<IUtilityFunction> _utilityFunctions;
     private readonly GameContext _gameContext;

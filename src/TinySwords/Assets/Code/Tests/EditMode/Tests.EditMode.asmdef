@@ -4,7 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Tools"
+        "Code"
     ],
     "includePlatforms": [
         "Editor"
@@ -14,7 +14,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll",
-        "FluentAssertions.dll"
+        "FluentAssertions.dll",
+        "Entitas.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

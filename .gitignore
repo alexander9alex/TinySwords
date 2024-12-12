@@ -79,3 +79,8 @@ src/TinySwords/CustomGenerators/KSyndicate.CustomGenerators.Plugins/bin
 # Temporary auto-generated Android Assets
 /src/TinySwords/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /src/TinySwords/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Unit testing dependencies
+/UnitTestingDependencies/obj
+/UnitTestingDependencies/bin
+!/UnitTestingDependencies/*.csproj

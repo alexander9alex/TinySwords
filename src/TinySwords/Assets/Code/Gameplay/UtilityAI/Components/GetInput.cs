@@ -8,7 +8,7 @@ namespace Code.Gameplay.UtilityAI.Components
   public class GetInput
   {
     private const float False = 0;
-    public const float True = 1;
+    private const float True = 1;
 
     private readonly GameContext _game;
 
@@ -32,7 +32,7 @@ namespace Code.Gameplay.UtilityAI.Components
       if (!unit.hasTargetBuffer || unit.TargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasCollectTargetsRadius)
         return 0;
 
-      GameEntity target = _game.GetEntityWithId(decision.TargetId);
+      GameEntity target = _game.GetEntityWithId(decision.TargetId.Value);
 
       float distance = Vector2.Distance(unit.WorldPosition, target.WorldPosition);
       return distance / (unit.CollectTargetsRadius + 1);
@@ -46,12 +46,12 @@ namespace Code.Gameplay.UtilityAI.Components
       if (!unit.hasReachedTargetBuffer || unit.ReachedTargetBuffer.IsEmpty())
         return False;
 
-      GameEntity target = _game.GetEntityWithId(decision.TargetId);
+      GameEntity target = _game.GetEntityWithId(decision.TargetId.Value);
 
       if (target is not { isAlive: true })
         return False;
 
-      return unit.ReachedTargetBuffer.Contains(decision.TargetId)
+      return unit.ReachedTargetBuffer.Contains(decision.TargetId.Value)
         ? True
         : False;
     }
@@ -61,7 +61,7 @@ namespace Code.Gameplay.UtilityAI.Components
       if (!unit.hasReachedTargetBuffer || unit.ReachedTargetBuffer.IsEmpty() || !unit.hasWorldPosition || !unit.hasAttackReach)
         return 1;
       
-      GameEntity target = _game.GetEntityWithId(decision.TargetId);
+      GameEntity target = _game.GetEntityWithId(decision.TargetId.Value);
 
       return Vector2.Distance(unit.WorldPosition, target.WorldPosition) / (unit.AttackReach + 1);
     }
@@ -99,7 +99,7 @@ namespace Code.Gameplay.UtilityAI.Components
       if (aimedTarget is not { hasWorldPosition: true })
         return False;
 
-      return Vector2.Distance(aimedTarget.WorldPosition, decision.Destination) <= 0.25f
+      return Vector2.Distance(aimedTarget.WorldPosition, decision.Destination.Value) <= 0.25f
         ? True
         : False;
     }

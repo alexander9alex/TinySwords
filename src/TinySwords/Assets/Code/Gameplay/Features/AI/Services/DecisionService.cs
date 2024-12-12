@@ -51,10 +51,10 @@ namespace Code.Gameplay.Features.AI.Services
     }
 
     private void MakeMoveDecision(GameEntity unit, UnitDecision decision) =>
-      unit.ReplaceDestination(decision.Destination);
+      unit.ReplaceDestination(decision.Destination.Value);
 
     private void MakeMoveToTargetDecision(GameEntity unit, UnitDecision decision) =>
-      unit.ReplaceTargetId(decision.TargetId)
+      unit.ReplaceTargetId(decision.TargetId.Value)
         .With(x => x.isFollowToTarget = true);
 
     private void MakeAttackDecision(GameEntity unit, UnitDecision decision)
@@ -63,7 +63,7 @@ namespace Code.Gameplay.Features.AI.Services
         return;
 
       unit.ReplaceDestination(unit.WorldPosition);
-      unit.ReplaceTargetId(decision.TargetId);
+      unit.ReplaceTargetId(decision.TargetId.Value);
       unit.isAttackRequest = true;
     }
   }
