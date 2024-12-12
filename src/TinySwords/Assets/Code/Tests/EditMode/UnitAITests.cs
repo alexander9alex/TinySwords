@@ -41,10 +41,10 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = UnitAI(gameContext);
 
       GameEntity enemy = gameContext.CreateEntity()
-          .AddId(0)
-          .AddWorldPosition(Vector2.one)
-          .With(x => x.isAlive = true);
-      
+        .AddId(0)
+        .AddWorldPosition(Vector2.one)
+        .With(x => x.isAlive = true);
+
       GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { enemy.Id })
@@ -58,14 +58,45 @@ namespace Code.Tests.EditMode
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
     }
 
+    [Test]
+    public void WhenUnitHas2Targets_ThenUnitAIShouldMakeMoveToNearestTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity nearestEnemy = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.one)
+        .With(x => x.isAlive = true);
+
+      GameEntity furtherEnemy = gameContext.CreateEntity()
+        .AddId(1)
+        .AddWorldPosition(Vector2.one * 2)
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new() { nearestEnemy.Id, furtherEnemy.Id })
+        .AddReachedTargetBuffer(new())
+        .AddAllyBuffer(new());
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.TargetId.Should().Be(nearestEnemy.Id);
+    }
+
     private static IUnitAI UnitAI(GameContext gameContext)
     {
       When when = new();
       GetInput getInput = new(gameContext);
       Score score = new();
-      
+
       BrainsComponents brainsComponents = new(when, getInput, score);
-      
+
       UnitBrains unitBrains = new(brainsComponents);
       IUnitAI unitAI = new UnitAI(unitBrains, gameContext);
       return unitAI;
