@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features.Units.Data;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Units
 {
@@ -13,4 +14,5 @@ namespace Code.Gameplay.Features.Units
   [Game] public class AttackReach : IComponent { public float Value; }
   [Game] public class TeamColorComponent : IComponent { public TeamColor Value; }
   [Game] public class UnitTypeIdComponent : IComponent { public UnitTypeId Value; }
+  [Game] public class LegsPosition : IComponent { public Vector2 Value; }
 }
