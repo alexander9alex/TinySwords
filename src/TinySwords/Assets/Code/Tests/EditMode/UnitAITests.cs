@@ -15,7 +15,7 @@ namespace Code.Tests.EditMode
     {
       // Arrange
       GameContext gameContext = Contexts.sharedInstance.game;
-      UnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = UnitAI(gameContext);
 
       GameEntity unit = CreateEntity.Empty()
         .AddTargetBuffer(new())
@@ -29,7 +29,7 @@ namespace Code.Tests.EditMode
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Stay);
     }
 
-    private static UnitAI UnitAI(GameContext gameContext)
+    private static IUnitAI UnitAI(GameContext gameContext)
     {
       When when = new();
       GetInput getInput = new(gameContext);
@@ -38,7 +38,7 @@ namespace Code.Tests.EditMode
       BrainsComponents brainsComponents = new(when, getInput, score);
       
       UnitBrains unitBrains = new(brainsComponents);
-      UnitAI unitAI = new(unitBrains, gameContext);
+      IUnitAI unitAI = new UnitAI(unitBrains, gameContext);
       return unitAI;
     }
   }
