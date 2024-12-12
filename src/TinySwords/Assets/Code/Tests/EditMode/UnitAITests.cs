@@ -73,6 +73,64 @@ namespace Code.Tests.EditMode
     }
 
     [Test]
+    public void WhenUnitHasMoveUserCommandAndTarget_ThenUnitAIShouldMakeMoveDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity target = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.one)
+        .With(x => x.isAlive = true);
+
+      Vector2 endDestination = Vector2.one;
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.Move, WorldPosition = endDestination })
+        .AddWorldPosition(Vector3.zero)
+        .AddTargetBuffer(new() { target.Id })
+        .AddCollectTargetsRadius(3f)
+        .AddReachedTargetBuffer(new());
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Move);
+      decision.Destination.Should().Be(endDestination);
+    }
+
+    [Test]
+    public void WhenUnitHasMoveWithAttackUserCommandAndTarget_ThenUnitAIShouldMakeMoveToTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity target = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.one)
+        .With(x => x.isAlive = true);
+
+      Vector2 endDestination = Vector2.one;
+      GameEntity unit = gameContext.CreateEntity()
+        .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = endDestination })
+        .AddWorldPosition(Vector3.zero)
+        .AddTargetBuffer(new() { target.Id })
+        .AddCollectTargetsRadius(3f)
+        .AddReachedTargetBuffer(new());
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
+      decision.TargetId.Should().Be(target.Id);
+    }
+
+    [Test]
     public void WhenUnitHasTarget_ThenUnitAIShouldMakeMoveToTargetDecision()
     {
       // Arrange
