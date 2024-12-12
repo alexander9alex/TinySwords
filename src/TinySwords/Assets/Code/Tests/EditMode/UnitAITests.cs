@@ -16,10 +16,11 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasNotUserCommandAndTargetsAndAllies_ThenUnitAIShouldMakeStayDecision()
     {
       // Arrange
-      GameContext gameContext = Contexts.sharedInstance.game;
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity unit = CreateEntity.Empty()
+      GameEntity unit = gameContext.CreateEntity()
         .AddTargetBuffer(new())
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
@@ -35,15 +36,16 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasTarget_ThenUnitAIShouldMakeMoveToTargetDecision()
     {
       // Arrange
-      GameContext gameContext = Contexts.sharedInstance.game;
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
       IUnitAI unitAI = UnitAI(gameContext);
 
-      GameEntity enemy = CreateEntity.Empty()
+      GameEntity enemy = gameContext.CreateEntity()
           .AddId(0)
           .AddWorldPosition(Vector2.one)
           .With(x => x.isAlive = true);
       
-      GameEntity unit = CreateEntity.Empty()
+      GameEntity unit = gameContext.CreateEntity()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { enemy.Id })
         .AddReachedTargetBuffer(new())
