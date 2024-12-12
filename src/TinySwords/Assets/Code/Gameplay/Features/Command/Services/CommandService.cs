@@ -130,6 +130,24 @@ namespace Code.Gameplay.Features.Command.Services
     public void ProcessMoveWithAttackCommand(GameEntity request, IGroup<GameEntity> selected) =>
       ProcessMoveCommand(selected, request.ScreenPosition, GetMoveWithAttackUserCommand);
 
+    public void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected)
+    {
+      if (!CanProcessAimedAttack(out GameEntity target, request.ScreenPosition))
+        return;
+
+      foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
+      {
+        entity.ReplaceUserCommand(GetAimedAttackUserCommand(target.Id));
+        entity.isMakeDecisionNowRequest = true;
+      }
+
+      CreateEntity.Empty()
+        .AddIndicatorTypeId(IndicatorTypeId.Attack)
+        .AddWorldPosition(target.WorldPosition)
+        .AddTargetId(target.Id)
+        .With(x => x.isCreateIndicator = true);
+    }
+
     private void ProcessMoveCommand(IGroup<GameEntity> selected, Vector2 screenPos, Func<Vector2, UserCommand> getUserCommand)
     {
       List<Vector2> battleFormationPositions = _battleFormationService
@@ -143,7 +161,7 @@ namespace Code.Gameplay.Features.Command.Services
 
         entity.isMakeDecisionNowRequest = true;
       }
-      
+
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.Move)
         .AddScreenPosition(screenPos)
@@ -192,6 +210,15 @@ namespace Code.Gameplay.Features.Command.Services
       {
         CommandTypeId = CommandTypeId.Move,
         WorldPosition = pos
+      };
+    }
+
+    private static UserCommand GetAimedAttackUserCommand(int targetId)
+    {
+      return new UserCommand
+      {
+        CommandTypeId = CommandTypeId.AimedAttack,
+        TargetId = targetId
       };
     }
 

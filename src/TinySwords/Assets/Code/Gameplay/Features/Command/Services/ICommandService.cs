@@ -15,5 +15,6 @@ namespace Code.Gameplay.Features.Command.Services
     void ProcessIncorrectAimedAttack(Vector2 screenPos);
     void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected);
     void ProcessMoveWithAttackCommand(GameEntity request, IGroup<GameEntity> selected);
+    void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected);
   }
 }
