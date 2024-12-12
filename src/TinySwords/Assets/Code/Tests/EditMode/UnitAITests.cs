@@ -208,8 +208,9 @@ namespace Code.Tests.EditMode
         .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = aimedTarget.Id })
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { reachableTarget.Id, aimedTarget.Id })
-        .AddCollectTargetsRadius(2f)
-        .AddReachedTargetBuffer(new() { reachableTarget.Id });
+        .AddCollectTargetsRadius(4f)
+        .AddReachedTargetBuffer(new() { reachableTarget.Id })
+        .AddCollectReachedTargetsRadius(2f);
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
@@ -237,7 +238,8 @@ namespace Code.Tests.EditMode
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { target.Id })
         .AddCollectTargetsRadius(3f)
-        .AddReachedTargetBuffer(new() { target.Id });
+        .AddReachedTargetBuffer(new() { target.Id })
+        .AddCollectReachedTargetsRadius(2f);
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
@@ -262,7 +264,7 @@ namespace Code.Tests.EditMode
 
       GameEntity reachableTarget = gameContext.CreateEntity()
         .AddId(1)
-        .AddWorldPosition(Vector2.one * 0.5f)
+        .AddWorldPosition(Vector2.right * 0.5f)
         .With(x => x.isAlive = true);
 
       GameEntity unit = gameContext.CreateEntity()
@@ -270,7 +272,8 @@ namespace Code.Tests.EditMode
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { aimedTarget.Id, reachableTarget.Id })
         .AddCollectTargetsRadius(3f)
-        .AddReachedTargetBuffer(new() { aimedTarget.Id, reachableTarget.Id });
+        .AddReachedTargetBuffer(new() { aimedTarget.Id, reachableTarget.Id })
+        .AddCollectReachedTargetsRadius(2f);
 
       // Act
       UnitDecision decision = unitAI.MakeBestDecision(unit);
@@ -311,6 +314,39 @@ namespace Code.Tests.EditMode
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToTarget);
       decision.TargetId.Value.Should().Be(nearestTarget.Id);
+    }
+
+    [Test]
+    public void WhenUnitHasUnreachableTargetAndReachableTarget_ThenUnitAIShouldMakeAttackDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity reachableTarget = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.up * 2)
+        .With(x => x.isAlive = true);
+
+      GameEntity unreachableTarget = gameContext.CreateEntity()
+        .AddId(1)
+        .AddWorldPosition(Vector2.down * 4)
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new() { unreachableTarget.Id, reachableTarget.Id })
+        .AddCollectTargetsRadius(5f)
+        .AddReachedTargetBuffer(new() { reachableTarget.Id })
+        .AddCollectReachedTargetsRadius(3f);
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.Attack);
+      decision.TargetId.Value.Should().Be(reachableTarget.Id);
     }
 
     private static IUnitAI UnitAI(GameContext gameContext)
