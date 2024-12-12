@@ -48,7 +48,7 @@ namespace Code.Gameplay.Features.AI.Systems
     {
       return _physicsService.CircleCast(
         entity.WorldPosition,
-        entity.CollectReachedTargetsRadius,
+        entity.CollectAlliesRadius,
         GameConstants.UnitsAndBuildingsLayerMask);
     }
   }

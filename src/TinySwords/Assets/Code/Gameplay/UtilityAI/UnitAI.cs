@@ -107,7 +107,7 @@ namespace Code.Gameplay.UtilityAI
       {
         GameEntity ally = _gameContext.GetEntityWithId(allyId);
 
-        if (ally is not { isAlive: true, hasTargetBuffer: true })
+        if (ally is not { isAlive: true })
           continue;
 
         foreach (UnitDecision moveToAllyTargetDecision in MoveToAllyTargetDecisions(ally))
@@ -117,7 +117,7 @@ namespace Code.Gameplay.UtilityAI
 
     private IEnumerable<UnitDecision> MoveToAllyTargetDecisions(GameEntity ally)
     {
-      if (ally.TargetBuffer.Count > 0)
+      if (ally.hasTargetBuffer && ally.TargetBuffer.Count > 0)
       {
         foreach (int targetId in ally.TargetBuffer)
         {
@@ -242,7 +242,7 @@ namespace Code.Gameplay.UtilityAI
       };
     }
 
-    private void PrintDecision(UnitDecision decision, IEnumerable<ScoreFactor> scores)
+    private void PrintDecision(UnitDecision decision, List<ScoreFactor> scores)
     {
       Debug.Log("----------------");
 

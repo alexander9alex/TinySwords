@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Common.Extensions;
+﻿using System.Collections.Generic;
 using Code.Gameplay.Features.AI.Services;
-using Code.Gameplay.Features.Units.Data;
 using Entitas;
 
 namespace Code.Gameplay.Features.AI.Systems

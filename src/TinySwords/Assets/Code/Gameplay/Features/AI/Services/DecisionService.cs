@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Units.Data;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.AI.Services
 {
@@ -19,9 +20,11 @@ namespace Code.Gameplay.Features.AI.Services
           MakeMoveDecision(unit, decision);
           break;
         case UnitDecisionTypeId.MoveToTarget:
-        case UnitDecisionTypeId.MoveToAllyTarget:
         case UnitDecisionTypeId.MoveToAimedTarget:
           MakeMoveToTargetDecision(unit, decision);
+          break;
+        case UnitDecisionTypeId.MoveToAllyTarget:
+          MakeMoveToAllyTargetDecision(unit, decision);
           break;
         case UnitDecisionTypeId.Attack:
         case UnitDecisionTypeId.AttackAimedTarget:
@@ -40,6 +43,9 @@ namespace Code.Gameplay.Features.AI.Services
       if (unit.hasTargetId)
         unit.RemoveTargetId();
 
+      if (unit.hasAllyTargetId)
+        unit.RemoveAllyTargetId();
+
       unit.isFollowToTarget = false;
       unit.isAttackRequest = false;
     }
@@ -48,6 +54,12 @@ namespace Code.Gameplay.Features.AI.Services
     {
       if (unit.hasDestination)
         unit.ReplaceDestination(unit.WorldPosition);
+    }
+
+    private void MakeMoveToAllyTargetDecision(GameEntity unit, UnitDecision decision)
+    {
+      MakeMoveToTargetDecision(unit, decision);
+      unit.ReplaceAllyTargetId(decision.TargetId.Value);
     }
 
     private void MakeMoveDecision(GameEntity unit, UnitDecision decision) =>
