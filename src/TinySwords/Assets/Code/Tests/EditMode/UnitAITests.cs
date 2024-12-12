@@ -349,6 +349,77 @@ namespace Code.Tests.EditMode
       decision.TargetId.Value.Should().Be(reachableTarget.Id);
     }
 
+    [Test]
+    public void WhenUnitHasAllyWithTarget_ThenUnitAIShouldMakeMoveToAllyTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity target = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.right * 4)
+        .With(x => x.isAlive = true);
+
+      GameEntity ally = gameContext.CreateEntity()
+        .AddId(1)
+        .AddWorldPosition(Vector2.right * 2)
+        .AddTargetBuffer(new() { target.Id })
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new())
+        .AddCollectTargetsRadius(3f)
+        .AddReachedTargetBuffer(new())
+        .AddAllyBuffer(new() { ally.Id })
+        .AddCollectAlliesRadius(3f);
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToAllyTarget);
+      decision.TargetId.Value.Should().Be(target.Id);
+    }
+
+    [Test]
+    public void WhenUnitHasAllyWithAllyTargetId_ThenUnitAIShouldMakeMoveToAllyTargetDecision()
+    {
+      // Arrange
+      Contexts contexts = new();
+      GameContext gameContext = contexts.game;
+      IUnitAI unitAI = UnitAI(gameContext);
+
+      GameEntity target = gameContext.CreateEntity()
+        .AddId(0)
+        .AddWorldPosition(Vector2.right * 4)
+        .With(x => x.isAlive = true);
+
+      GameEntity ally = gameContext.CreateEntity()
+        .AddId(1)
+        .AddWorldPosition(Vector2.right * 2)
+        .AddTargetBuffer(new())
+        .AddAllyTargetId(target.Id)
+        .With(x => x.isAlive = true);
+
+      GameEntity unit = gameContext.CreateEntity()
+        .AddWorldPosition(Vector2.zero)
+        .AddTargetBuffer(new())
+        .AddCollectTargetsRadius(3f)
+        .AddReachedTargetBuffer(new())
+        .AddAllyBuffer(new() { ally.Id })
+        .AddCollectAlliesRadius(3f);
+
+      // Act
+      UnitDecision decision = unitAI.MakeBestDecision(unit);
+
+      // Assert
+      decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToAllyTarget);
+      decision.TargetId.Value.Should().Be(target.Id);
+    }
+
     private static IUnitAI UnitAI(GameContext gameContext)
     {
       When when = new();
