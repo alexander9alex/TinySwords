@@ -67,7 +67,8 @@ namespace Code.Gameplay.Features.AI.Services
 
     private void MakeMoveToTargetDecision(GameEntity unit, UnitDecision decision) =>
       unit.ReplaceTargetId(decision.TargetId.Value)
-        .With(x => x.isFollowToTarget = true);
+        .With(x => x.isFollowToTarget = true)
+        .With(x => x.isNotifyAlliesAboutTarget = true);
 
     private void MakeAttackDecision(GameEntity unit, UnitDecision decision)
     {

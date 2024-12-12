@@ -31,7 +31,7 @@ namespace Code.Gameplay.Features.AI.Systems
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
       {
         List<int> allies = new();
-        
+
         foreach (GameEntity ally in GetAlliesInRadius(entity))
         {
           if (!ally.isAlive || !ally.hasId || !ally.hasTeamColor || entity.TeamColor != ally.TeamColor)
