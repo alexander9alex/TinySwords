@@ -13,7 +13,6 @@ using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Move.Services;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Services;
-using Code.Gameplay.Features.Units.Data;
 using Code.UI.Hud.Service;
 using Entitas;
 using UnityEngine;
@@ -125,21 +124,29 @@ namespace Code.Gameplay.Features.Command.Services
         .With(x => x.isCreateIndicator = true);
     }
 
-    public void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected)
+    public void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected) =>
+      ProcessMoveCommand(selected, request.ScreenPosition, GetMoveUserCommand);
+
+    public void ProcessMoveWithAttackCommand(GameEntity request, IGroup<GameEntity> selected) =>
+      ProcessMoveCommand(selected, request.ScreenPosition, GetMoveWithAttackUserCommand);
+
+    private void ProcessMoveCommand(IGroup<GameEntity> selected, Vector2 screenPos, Func<Vector2, UserCommand> getUserCommand)
     {
       List<Vector2> battleFormationPositions = _battleFormationService
-        .GetSquareBattleFormation(WorldPosition(request), selected.count)
+        .GetSquareBattleFormation(WorldPosition(screenPos), selected.count)
         .ToList();
 
       foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
       {
-        ReplaceUserCommand(entity, battleFormationPositions[0]);
+        entity.ReplaceUserCommand(getUserCommand(battleFormationPositions[0]));
         battleFormationPositions.RemoveAt(0);
-      }
 
+        entity.isMakeDecisionNowRequest = true;
+      }
+      
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.Move)
-        .AddScreenPosition(request.ScreenPosition)
+        .AddScreenPosition(screenPos)
         .With(x => x.isCreateIndicator = true);
     }
 
@@ -161,10 +168,22 @@ namespace Code.Gameplay.Features.Command.Services
       }
     }
 
-    private static void ReplaceUserCommand(GameEntity selected, Vector2 pos)
+    private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)
     {
-      selected.ReplaceUserCommand(GetMoveUserCommand(pos));
-      selected.isMakeDecisionNowRequest = true;
+      return _physicsService.CircleCast(
+          _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
+          GameConstants.ClickRadius, GameConstants.UnitsAndBuildingsLayerMask)
+        .OrderBy(entity => entity.Transform.position.y)
+        .ToList();
+    }
+
+    private static UserCommand GetMoveWithAttackUserCommand(Vector2 pos)
+    {
+      return new UserCommand
+      {
+        CommandTypeId = CommandTypeId.MoveWithAttack,
+        WorldPosition = pos
+      };
     }
 
     private static UserCommand GetMoveUserCommand(Vector2 pos)
@@ -176,17 +195,8 @@ namespace Code.Gameplay.Features.Command.Services
       };
     }
 
-    private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)
-    {
-      return _physicsService.CircleCast(
-          _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
-          GameConstants.ClickRadius, GameConstants.UnitsAndBuildingsLayerMask)
-        .OrderBy(entity => entity.Transform.position.y)
-        .ToList();
-    }
-
-    private Vector3 WorldPosition(GameEntity request) =>
-      _cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition);
+    private Vector3 WorldPosition(Vector2 screenPos) =>
+      _cameraProvider.MainCamera.ScreenToWorldPoint(screenPos);
 
     private bool CanApplyAimedAttackCommand(Vector2 screenPos) =>
       CanProcessAimedAttack(out _, screenPos);
