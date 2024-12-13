@@ -13,6 +13,7 @@ using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
+using Code.Gameplay.Features.ProcessCommand;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
 using Code.Gameplay.Features.TargetCollection;
@@ -30,6 +31,7 @@ namespace Code.Gameplay
       Add(systems.Create<InputFeature>());
       Add(systems.Create<FastInteractionFeature>());
       Add(systems.Create<CommandFeature>());
+      Add(systems.Create<ProcessCommandFeature>());
 
       Add(systems.Create<HighlightFeature>());
       Add(systems.Create<SelectFeature>());

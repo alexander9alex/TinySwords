@@ -2,7 +2,7 @@
 using Code.Gameplay.Features.Command.Services;
 using Entitas;
 
-namespace Code.Gameplay.Features.Command.Systems
+namespace Code.Gameplay.Features.ProcessCommand.Systems
 {
   public class ProcessAimedAttackCommandSystem : IExecuteSystem
   {

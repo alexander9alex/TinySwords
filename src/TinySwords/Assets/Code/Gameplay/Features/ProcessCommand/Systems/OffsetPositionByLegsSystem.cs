@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.Command.Systems
+namespace Code.Gameplay.Features.ProcessCommand.Systems
 {
   public class OffsetPositionByLegsSystem : IExecuteSystem
   {
