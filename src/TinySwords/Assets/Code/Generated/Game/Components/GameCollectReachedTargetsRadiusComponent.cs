@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.NearestEntitiesCollection;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectReachedTargetsRadius;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius collectReachedTargetsRadius { get { return (Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius)GetComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
+    public CollectReachedTargetsRadius collectReachedTargetsRadius { get { return (CollectReachedTargetsRadius)GetComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
     public float CollectReachedTargetsRadius { get { return collectReachedTargetsRadius.Value; } }
     public bool hasCollectReachedTargetsRadius { get { return HasComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
 
     public GameEntity AddCollectReachedTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectReachedTargetsRadius;
-        var component = (Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius));
+        var component = (CollectReachedTargetsRadius)CreateComponent(index, typeof(CollectReachedTargetsRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectReachedTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectReachedTargetsRadius;
-        var component = (Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius));
+        var component = (CollectReachedTargetsRadius)CreateComponent(index, typeof(CollectReachedTargetsRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

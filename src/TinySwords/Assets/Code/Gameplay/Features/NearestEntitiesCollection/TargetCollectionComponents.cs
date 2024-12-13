@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.TargetCollection
+namespace Code.Gameplay.Features.NearestEntitiesCollection
 {
   [Game] public class CollectTargetsRadius : IComponent { public float Value; }
   [Game] public class TargetBuffer : IComponent { public List<int> Value; }

@@ -1,7 +1,7 @@
 ﻿using Code.Gameplay.Services;
 using Entitas;
 
-namespace Code.Gameplay.Features.TargetCollection.Systems
+namespace Code.Gameplay.Features.NearestEntitiesCollection.Systems
 {
   public class TickToCollectTargetTimerSystem : IExecuteSystem
   {

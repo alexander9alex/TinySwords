@@ -2,10 +2,8 @@
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Entitas;
-using ModestTree;
-using UnityEngine;
 
-namespace Code.Gameplay.Features.TargetCollection.Systems
+namespace Code.Gameplay.Features.NearestEntitiesCollection.Systems
 {
   public class CollectTargetsSystem : IExecuteSystem
   {

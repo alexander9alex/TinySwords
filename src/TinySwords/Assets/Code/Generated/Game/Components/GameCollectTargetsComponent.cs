@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.NearestEntitiesCollection;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectTargets;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.TargetCollection.CollectTargets collectTargetsComponent = new Code.Gameplay.Features.TargetCollection.CollectTargets();
+    static readonly CollectTargets collectTargetsComponent = new CollectTargets();
 
     public bool isCollectTargets {
         get { return HasComponent(GameComponentsLookup.CollectTargets); }

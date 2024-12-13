@@ -13,10 +13,10 @@ using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
+using Code.Gameplay.Features.NearestEntitiesCollection;
 using Code.Gameplay.Features.ProcessCommand;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
-using Code.Gameplay.Features.TargetCollection;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -39,7 +39,7 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
-      Add(systems.Create<CollectTargetsFeature>());
+      Add(systems.Create<CollectNearestEntitiesFeature>());
       Add(systems.Create<AIFeature>());
 
       Add(systems.Create<NavMeshFeature>());

@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.NearestEntitiesCollection;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectAlliesRadius;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.TargetCollection.CollectAlliesRadius collectAlliesRadius { get { return (Code.Gameplay.Features.TargetCollection.CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
+    public CollectAlliesRadius collectAlliesRadius { get { return (CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
     public float CollectAlliesRadius { get { return collectAlliesRadius.Value; } }
     public bool hasCollectAlliesRadius { get { return HasComponent(GameComponentsLookup.CollectAlliesRadius); } }
 
     public GameEntity AddCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (Code.Gameplay.Features.TargetCollection.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius));
+        var component = (CollectAlliesRadius)CreateComponent(index, typeof(CollectAlliesRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (Code.Gameplay.Features.TargetCollection.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius));
+        var component = (CollectAlliesRadius)CreateComponent(index, typeof(CollectAlliesRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

@@ -3,7 +3,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Entitas;
 
-namespace Code.Gameplay.Features.TargetCollection.Systems
+namespace Code.Gameplay.Features.NearestEntitiesCollection.Systems
 {
   public class CollectReachedTargetsSystem : IExecuteSystem
   {

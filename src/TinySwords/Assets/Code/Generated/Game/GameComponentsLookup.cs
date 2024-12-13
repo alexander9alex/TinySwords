@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.NearestEntitiesCollection;
+
 public static class GameComponentsLookup {
 
     public const int Destructed = 0;
@@ -424,17 +427,17 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Sounds.PlaySoundRequest),
         typeof(Code.Gameplay.Features.Sounds.SoundIdComponent),
         typeof(Code.Gameplay.Features.Sounds.Volume),
-        typeof(Code.Gameplay.Features.TargetCollection.AllyBuffer),
-        typeof(Code.Gameplay.Features.TargetCollection.AllyTargetId),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectAlliesRadius),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectReachedTargetsRadius),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetInterval),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectTargets),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetsRadius),
-        typeof(Code.Gameplay.Features.TargetCollection.CollectTargetTimer),
-        typeof(Code.Gameplay.Features.TargetCollection.NotifyAlliesAboutTarget),
-        typeof(Code.Gameplay.Features.TargetCollection.ReachedTargetBuffer),
-        typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer),
+        typeof(AllyBuffer),
+        typeof(AllyTargetId),
+        typeof(CollectAlliesRadius),
+        typeof(CollectReachedTargetsRadius),
+        typeof(CollectTargetInterval),
+        typeof(CollectTargets),
+        typeof(CollectTargetsRadius),
+        typeof(CollectTargetTimer),
+        typeof(NotifyAlliesAboutTarget),
+        typeof(ReachedTargetBuffer),
+        typeof(TargetBuffer),
         typeof(Code.Gameplay.Features.Units.Alive),
         typeof(Code.Gameplay.Features.Units.AttackReach),
         typeof(Code.Gameplay.Features.Units.CurrentHp),

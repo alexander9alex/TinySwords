@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.NearestEntitiesCollection;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherTargetBuffer;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.TargetCollection.TargetBuffer targetBuffer { get { return (Code.Gameplay.Features.TargetCollection.TargetBuffer)GetComponent(GameComponentsLookup.TargetBuffer); } }
+    public TargetBuffer targetBuffer { get { return (TargetBuffer)GetComponent(GameComponentsLookup.TargetBuffer); } }
     public System.Collections.Generic.List<int> TargetBuffer { get { return targetBuffer.Value; } }
     public bool hasTargetBuffer { get { return HasComponent(GameComponentsLookup.TargetBuffer); } }
 
     public GameEntity AddTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.TargetBuffer;
-        var component = (Code.Gameplay.Features.TargetCollection.TargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer));
+        var component = (TargetBuffer)CreateComponent(index, typeof(TargetBuffer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.TargetBuffer;
-        var component = (Code.Gameplay.Features.TargetCollection.TargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.TargetCollection.TargetBuffer));
+        var component = (TargetBuffer)CreateComponent(index, typeof(TargetBuffer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
