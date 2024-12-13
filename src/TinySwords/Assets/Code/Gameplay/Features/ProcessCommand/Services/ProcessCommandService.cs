@@ -40,7 +40,8 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
 
     public void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected)
     {
-      GameEntity target = _gameContext.GetEntityWithId(request.TargetId);
+      if (!HasTargetInScreenPosition(out GameEntity target, request.ScreenPosition))
+        return;
 
       foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
       {
@@ -63,7 +64,10 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
         .With(x => x.isCreateIndicator = true);
     }
 
-    public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos)
+    public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos) =>
+      HasTargetInScreenPosition(out target, screenPos);
+
+    private bool HasTargetInScreenPosition(out GameEntity target, Vector2 screenPos)
     {
       target = null;
 
