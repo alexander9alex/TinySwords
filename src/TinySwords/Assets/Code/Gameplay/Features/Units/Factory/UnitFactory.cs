@@ -75,20 +75,23 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isUnfocused = true)
         ;
 
-      switch (type)
+      switch (type, color)
       {
-        case UnitTypeId.Knight:
-          CreateKnight(unit);
+        case (UnitTypeId.Knight, TeamColor.Blue):
+          CreateBlueKnight(unit);
           break;
-        case UnitTypeId.TorchGoblin:
-          CreateTorchGoblin(unit);
+        case (UnitTypeId.Knight, TeamColor.White):
+          CreateWhiteKnight(unit);
+          break;
+        case (UnitTypeId.TorchGoblin, TeamColor.Red):
+          CreateRedTorchGoblin(unit);
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(type), type, null);
       }
     }
 
-    private void CreateKnight(GameEntity unit)
+    private void CreateBlueKnight(GameEntity unit)
     {
       unit
         .AddAllUnitCommandTypeIds(new()
@@ -102,7 +105,12 @@ namespace Code.Gameplay.Features.Units.Factory
         ;
     }
 
-    private void CreateTorchGoblin(GameEntity unit)
+    private void CreateWhiteKnight(GameEntity unit)
+    {
+      
+    }
+
+    private void CreateRedTorchGoblin(GameEntity unit)
     {
       
     }
