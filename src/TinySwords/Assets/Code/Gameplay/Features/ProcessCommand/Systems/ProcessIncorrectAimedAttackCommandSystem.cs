@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.Features.Command.Services;
+﻿using Code.Gameplay.Features.ProcessCommand.Services;
 using Entitas;
 
 namespace Code.Gameplay.Features.ProcessCommand.Systems
@@ -6,11 +6,11 @@ namespace Code.Gameplay.Features.ProcessCommand.Systems
   public class ProcessIncorrectAimedAttackCommandSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _processIncorrectCommandRequests;
-    private readonly ICommandService _commandService;
+    private readonly IProcessCommandService _processCommandService;
 
-    public ProcessIncorrectAimedAttackCommandSystem(GameContext game, ICommandService commandService)
+    public ProcessIncorrectAimedAttackCommandSystem(GameContext game, IProcessCommandService processCommandService)
     {
-      _commandService = commandService;
+      _processCommandService = processCommandService;
       
       _processIncorrectCommandRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ProcessIncorrectCommandRequest, GameMatcher.AimedAttackCommand, GameMatcher.CommandTypeId, GameMatcher.ScreenPosition));
@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Systems
     {
       foreach (GameEntity request in _processIncorrectCommandRequests)
       {
-        _commandService.ProcessIncorrectAimedAttack(request.ScreenPosition);
+        _processCommandService.ProcessIncorrectAimedAttack(request.ScreenPosition);
       }
     }
   }

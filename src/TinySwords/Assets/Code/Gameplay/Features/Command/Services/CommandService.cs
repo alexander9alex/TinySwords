@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.Move.Services;
+using Code.Gameplay.Features.ProcessCommand.Services;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.UI.Hud.Service;
@@ -29,9 +30,10 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly SelectableCommandService _selectableCommandService;
     private readonly IBattleFormationService _battleFormationService;
     private readonly List<GameEntity> _selectedBuffer = new(32);
+    private readonly IProcessCommandService _processCommandService;
 
     public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider, IHudService hudService, IInputService inputService,
-      ISoundService soundService, IBattleFormationService battleFormationService)
+      ISoundService soundService, IBattleFormationService battleFormationService, IProcessCommandService processCommandService)
     {
       _physicsService = physicsService;
       _cameraProvider = cameraProvider;
@@ -39,6 +41,7 @@ namespace Code.Gameplay.Features.Command.Services
       _inputService = inputService;
       _soundService = soundService;
       _battleFormationService = battleFormationService;
+      _processCommandService = processCommandService;
     }
 
     public void SelectCommand(CommandTypeId command)
@@ -98,76 +101,7 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 
-    public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos)
-    {
-      target = null;
-
-      List<GameEntity> targets = GetTargetsToAimedAttack(screenPos);
-
-      foreach (GameEntity possibleTarget in targets)
-      {
-        if (TargetIsNotSuitable(possibleTarget))
-          continue;
-
-        target = possibleTarget;
-        return true;
-      }
-
-      return false;
-    }
-
-    public void ProcessIncorrectAimedAttack(Vector2 screenPos)
-    {
-      CreateEntity.Empty()
-        .AddIndicatorTypeId(IndicatorTypeId.IncorrectCommand)
-        .AddScreenPosition(screenPos)
-        .With(x => x.isCreateIndicator = true);
-    }
-
-    public void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected) =>
-      ProcessMoveCommand(selected, request.ScreenPosition, GetMoveUserCommand);
-
-    public void ProcessMoveWithAttackCommand(GameEntity request, IGroup<GameEntity> selected) =>
-      ProcessMoveCommand(selected, request.ScreenPosition, GetMoveWithAttackUserCommand);
-
-    public void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected)
-    {
-      if (!CanProcessAimedAttack(out GameEntity target, request.ScreenPosition))
-        return;
-
-      foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
-      {
-        entity.ReplaceUserCommand(GetAimedAttackUserCommand(target.Id));
-        entity.isMakeDecisionNowRequest = true;
-      }
-
-      CreateEntity.Empty()
-        .AddIndicatorTypeId(IndicatorTypeId.Attack)
-        .AddWorldPosition(target.WorldPosition)
-        .AddTargetId(target.Id)
-        .With(x => x.isCreateIndicator = true);
-    }
-
-    private void ProcessMoveCommand(IGroup<GameEntity> selected, Vector2 screenPos, Func<Vector2, UserCommand> getUserCommand)
-    {
-      List<Vector2> battleFormationPositions = _battleFormationService
-        .GetSquareBattleFormation(WorldPosition(screenPos), selected.count)
-        .ToList();
-
-      foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
-      {
-        entity.ReplaceUserCommand(getUserCommand(battleFormationPositions[0]));
-        battleFormationPositions.RemoveAt(0);
-
-        entity.isMakeDecisionNowRequest = true;
-        entity.isOffsetPositionByLegs = true;
-      }
-
-      CreateEntity.Empty()
-        .AddIndicatorTypeId(IndicatorTypeId.Move)
-        .AddScreenPosition(screenPos)
-        .With(x => x.isCreateIndicator = true);
-    }
+    
 
     private static void SetCommandTypeId(GameEntity entity, CommandTypeId commandTypeId)
     {
@@ -186,53 +120,8 @@ namespace Code.Gameplay.Features.Command.Services
           throw new ArgumentOutOfRangeException();
       }
     }
-
-    private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)
-    {
-      return _physicsService.CircleCast(
-          _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
-          GameConstants.ClickRadius, GameConstants.UnitsAndBuildingsLayerMask)
-        .OrderBy(entity => entity.Transform.position.y)
-        .ToList();
-    }
-
-    private static UserCommand GetMoveWithAttackUserCommand(Vector2 pos)
-    {
-      return new UserCommand
-      {
-        CommandTypeId = CommandTypeId.MoveWithAttack,
-        WorldPosition = pos
-      };
-    }
-
-    private static UserCommand GetMoveUserCommand(Vector2 pos)
-    {
-      return new UserCommand
-      {
-        CommandTypeId = CommandTypeId.Move,
-        WorldPosition = pos
-      };
-    }
-
-    private static UserCommand GetAimedAttackUserCommand(int targetId)
-    {
-      return new UserCommand
-      {
-        CommandTypeId = CommandTypeId.AimedAttack,
-        TargetId = targetId
-      };
-    }
-
-    private Vector3 WorldPosition(Vector2 screenPos) =>
-      _cameraProvider.MainCamera.ScreenToWorldPoint(screenPos);
-
+    
     private bool CanApplyAimedAttackCommand(Vector2 screenPos) =>
-      CanProcessAimedAttack(out _, screenPos);
-
-    private static bool TargetIsNotSuitable(GameEntity possibleTarget) =>
-      !TargetIsSuitable(possibleTarget);
-
-    private static bool TargetIsSuitable(GameEntity target) =>
-      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != GameConstants.UserTeamColor;
+      _processCommandService.CanProcessAimedAttack(out _, screenPos);
   }
 }
