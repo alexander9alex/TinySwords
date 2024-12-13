@@ -2,7 +2,7 @@
 {
   public interface ISelectableCommandService
   {
-    bool CommandCompleted(GameEntity selectable);
+    bool IsCommandCompleted(GameEntity selectable);
     void RemoveCommand(GameEntity selectable);
   }
 }

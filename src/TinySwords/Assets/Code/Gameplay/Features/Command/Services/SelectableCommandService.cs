@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Command.Services
     public SelectableCommandService(GameContext gameContext) =>
       _gameContext = gameContext;
 
-    public bool CommandCompleted(GameEntity selectable)
+    public bool IsCommandCompleted(GameEntity selectable)
     {
       return selectable.UserCommand.CommandTypeId switch
       {
@@ -23,10 +23,8 @@ namespace Code.Gameplay.Features.Command.Services
       };
     }
 
-    public void RemoveCommand(GameEntity selectable)
-    {
+    public void RemoveCommand(GameEntity selectable) =>
       selectable.RemoveUserCommand();
-    }
 
     private bool MoveCommandCompleted(GameEntity entity) =>
       Vector2.Distance(entity.UserCommand.WorldPosition.Value, entity.WorldPosition) <= GameConstants.StoppingDistance;

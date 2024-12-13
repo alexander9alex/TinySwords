@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Command.Systems
     {
       foreach (GameEntity selectable in _selectable.GetEntities(_buffer))
       {
-        if (_selectableCommandService.CommandCompleted(selectable))
+        if (_selectableCommandService.IsCommandCompleted(selectable))
           _selectableCommandService.RemoveCommand(selectable);
       }
     }
