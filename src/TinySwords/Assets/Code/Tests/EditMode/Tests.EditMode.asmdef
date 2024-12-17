@@ -15,6 +15,7 @@
     "precompiledReferences": [
         "nunit.framework.dll",
         "FluentAssertions.dll",
+        "NSubstitute.dll",
         "Entitas.dll"
     ],
     "autoReferenced": false,
