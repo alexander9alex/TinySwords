@@ -30,50 +30,49 @@ namespace Code.Gameplay.Features.Units.Factory
       UnitConfig config = _staticDataService.GetUnitConfig(type, color);
 
       GameEntity unit = CreateEntity.Empty()
-        .AddId(_identifiers.Next())
-        .AddViewPrefab(config.UnitPrefab)
-        .AddWorldPosition(pos)
-        .AddMoveDirection(Vector2.zero)
-        .AddLookDirection(Vector2.zero)
-        .AddTeamColor(color)
-        .AddSpeed(config.Speed)
-        .AddDamage(config.Damage)
-        .AddCurrentHp(config.Hp)
-        .AddMaxHp(config.Hp)
-        .AddUnitAI(_unitUI)
-        .AddUnitTypeId(type)
-        
-        .AddAttackCooldown(0)
-        .AddAttackInterval(config.AttackCooldown)
-        .AddAttackReach(config.AttackReach)
+          .AddId(_identifiers.Next())
+          .AddViewPrefab(config.UnitPrefab)
+          .AddWorldPosition(pos)
+          .AddMoveDirection(Vector2.zero)
+          .AddLookDirection(Vector2.zero)
+          .AddTeamColor(color)
+          .AddSpeed(config.Speed)
+          .AddDamage(config.Damage)
+          .AddCurrentHp(config.Hp)
+          .AddMaxHp(config.Hp)
+          .AddUnitAI(_unitUI)
+          .AddUnitTypeId(type)
+          
+          .AddAttackCooldown(0)
+          .AddAttackInterval(config.AttackCooldown)
+          .AddAttackReach(config.AttackReach)
+          
+          .AddVisibleEntityBuffer(new())
+          .AddVisionRadius(config.VisionRadius)
+          .AddUpdateFieldOfVisionTimer(0)
+          .AddUpdateFieldOfVisionInterval(config.UpdateFieldOfVisionInterval)
+          .AddTimeSinceLastVisionUpdated(0)
+          
+          .AddTargetBuffer(new List<int>())
+          .AddCollectTargetsRadius(config.CollectTargetRadius)
 
-        .AddMakeDecisionTimer(0)
-        .AddTimeSinceLastDecision(1)
-        
-        .AddMakeDecisionInterval(config.MakeDecisionInterval)
+          .AddReachedTargetBuffer(new List<int>())
+          .AddCollectReachedTargetsRadius(config.AttackReach)
 
-        .AddTargetBuffer(new List<int>())
-        .AddCollectTargetsRadius(config.CollectTargetRadius)
-        .AddCollectTargetTimer(0)
-        .AddCollectTargetInterval(0.5f)
-
-        .AddReachedTargetBuffer(new List<int>())
-        .AddCollectReachedTargetsRadius(config.AttackReach)
-
-        .AddAllyBuffer(new List<int>())
-        .AddCollectAlliesRadius(config.CollectAlliesRadius)
-        
-        .With(x => x.isUnit = true)
-        .With(x => x.isIdle = true)
-        .With(x => x.isInitializationRequest = true)
-        .With(x => x.isMovable = true)
-        .With(x => x.isCanAttack = true)
-        .With(x => x.isNotAttacking = true)
-        .With(x => x.isCanAttackNow = true)
-        .With(x => x.isAlive = true)
-        .With(x => x.isFocusing = true)
-        .With(x => x.isUnfocused = true)
-        ;
+          .AddAllyBuffer(new List<int>())
+          .AddCollectAlliesRadius(config.CollectAlliesRadius)
+          
+          .With(x => x.isUnit = true)
+          .With(x => x.isIdle = true)
+          .With(x => x.isInitializationRequest = true)
+          .With(x => x.isMovable = true)
+          .With(x => x.isCanAttack = true)
+          .With(x => x.isNotAttacking = true)
+          .With(x => x.isCanAttackNow = true)
+          .With(x => x.isAlive = true)
+          .With(x => x.isFocusing = true)
+          .With(x => x.isUnfocused = true)
+          ;
 
       switch (type, color)
       {

@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectAlliesRadius;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public CollectAlliesRadius collectAlliesRadius { get { return (CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
+    public Code.Gameplay.Features.AI.CollectAlliesRadius collectAlliesRadius { get { return (Code.Gameplay.Features.AI.CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
     public float CollectAlliesRadius { get { return collectAlliesRadius.Value; } }
     public bool hasCollectAlliesRadius { get { return HasComponent(GameComponentsLookup.CollectAlliesRadius); } }
 
     public GameEntity AddCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (CollectAlliesRadius)CreateComponent(index, typeof(CollectAlliesRadius));
+        var component = (Code.Gameplay.Features.AI.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectAlliesRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (CollectAlliesRadius)CreateComponent(index, typeof(CollectAlliesRadius));
+        var component = (Code.Gameplay.Features.AI.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectAlliesRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

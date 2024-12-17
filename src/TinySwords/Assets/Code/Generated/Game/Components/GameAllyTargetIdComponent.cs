@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherAllyTargetId;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public AllyTargetId allyTargetId { get { return (AllyTargetId)GetComponent(GameComponentsLookup.AllyTargetId); } }
+    public Code.Gameplay.Features.AI.AllyTargetId allyTargetId { get { return (Code.Gameplay.Features.AI.AllyTargetId)GetComponent(GameComponentsLookup.AllyTargetId); } }
     public int AllyTargetId { get { return allyTargetId.Value; } }
     public bool hasAllyTargetId { get { return HasComponent(GameComponentsLookup.AllyTargetId); } }
 
     public GameEntity AddAllyTargetId(int newValue) {
         var index = GameComponentsLookup.AllyTargetId;
-        var component = (AllyTargetId)CreateComponent(index, typeof(AllyTargetId));
+        var component = (Code.Gameplay.Features.AI.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyTargetId));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAllyTargetId(int newValue) {
         var index = GameComponentsLookup.AllyTargetId;
-        var component = (AllyTargetId)CreateComponent(index, typeof(AllyTargetId));
+        var component = (Code.Gameplay.Features.AI.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyTargetId));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

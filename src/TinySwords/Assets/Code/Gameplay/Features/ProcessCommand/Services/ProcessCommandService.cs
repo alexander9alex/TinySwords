@@ -46,7 +46,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
       foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
       {
         entity.ReplaceUserCommand(GetAimedAttackUserCommand(target.Id));
-        entity.isMakeDecisionNowRequest = true;
+        entity.isUpdateFieldOfVisionNowRequest = true;
       }
 
       CreateEntity.Empty()
@@ -96,7 +96,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
         entity.ReplaceUserCommand(getUserCommand(battleFormationPositions[0]));
         battleFormationPositions.RemoveAt(0);
 
-        entity.isMakeDecisionNowRequest = true;
+        entity.isUpdateFieldOfVisionNowRequest = true;
         entity.isOffsetPositionByLegs = true;
       }
 

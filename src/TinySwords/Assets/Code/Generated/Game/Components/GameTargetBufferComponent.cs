@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherTargetBuffer;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public TargetBuffer targetBuffer { get { return (TargetBuffer)GetComponent(GameComponentsLookup.TargetBuffer); } }
+    public Code.Gameplay.Features.AI.TargetBuffer targetBuffer { get { return (Code.Gameplay.Features.AI.TargetBuffer)GetComponent(GameComponentsLookup.TargetBuffer); } }
     public System.Collections.Generic.List<int> TargetBuffer { get { return targetBuffer.Value; } }
     public bool hasTargetBuffer { get { return HasComponent(GameComponentsLookup.TargetBuffer); } }
 
     public GameEntity AddTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.TargetBuffer;
-        var component = (TargetBuffer)CreateComponent(index, typeof(TargetBuffer));
+        var component = (Code.Gameplay.Features.AI.TargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.TargetBuffer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.TargetBuffer;
-        var component = (TargetBuffer)CreateComponent(index, typeof(TargetBuffer));
+        var component = (Code.Gameplay.Features.AI.TargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.TargetBuffer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

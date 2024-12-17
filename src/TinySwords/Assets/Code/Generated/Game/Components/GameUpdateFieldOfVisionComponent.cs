@@ -6,22 +6,19 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherCollectTargets;
+    static Entitas.IMatcher<GameEntity> _matcherUpdateFieldOfVision;
 
-    public static Entitas.IMatcher<GameEntity> CollectTargets {
+    public static Entitas.IMatcher<GameEntity> UpdateFieldOfVision {
         get {
-            if (_matcherCollectTargets == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CollectTargets);
+            if (_matcherUpdateFieldOfVision == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UpdateFieldOfVision);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherCollectTargets = matcher;
+                _matcherUpdateFieldOfVision = matcher;
             }
 
-            return _matcherCollectTargets;
+            return _matcherUpdateFieldOfVision;
         }
     }
 }
@@ -36,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly CollectTargets collectTargetsComponent = new CollectTargets();
+    static readonly Code.Gameplay.Features.AI.UpdateFieldOfVision updateFieldOfVisionComponent = new Code.Gameplay.Features.AI.UpdateFieldOfVision();
 
-    public bool isCollectTargets {
-        get { return HasComponent(GameComponentsLookup.CollectTargets); }
+    public bool isUpdateFieldOfVision {
+        get { return HasComponent(GameComponentsLookup.UpdateFieldOfVision); }
         set {
-            if (value != isCollectTargets) {
-                var index = GameComponentsLookup.CollectTargets;
+            if (value != isUpdateFieldOfVision) {
+                var index = GameComponentsLookup.UpdateFieldOfVision;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : collectTargetsComponent;
+                            : updateFieldOfVisionComponent;
 
                     AddComponent(index, component);
                 } else {

@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherMakeDecisionNowRequest;
+    static Entitas.IMatcher<GameEntity> _matcherUpdateFieldOfVisionNowRequest;
 
-    public static Entitas.IMatcher<GameEntity> MakeDecisionNowRequest {
+    public static Entitas.IMatcher<GameEntity> UpdateFieldOfVisionNowRequest {
         get {
-            if (_matcherMakeDecisionNowRequest == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.MakeDecisionNowRequest);
+            if (_matcherUpdateFieldOfVisionNowRequest == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.UpdateFieldOfVisionNowRequest);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherMakeDecisionNowRequest = matcher;
+                _matcherUpdateFieldOfVisionNowRequest = matcher;
             }
 
-            return _matcherMakeDecisionNowRequest;
+            return _matcherUpdateFieldOfVisionNowRequest;
         }
     }
 }
@@ -33,18 +33,18 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.AI.MakeDecisionNowRequest makeDecisionNowRequestComponent = new Code.Gameplay.Features.AI.MakeDecisionNowRequest();
+    static readonly Code.Gameplay.Features.AI.UpdateFieldOfVisionNowRequest updateFieldOfVisionNowRequestComponent = new Code.Gameplay.Features.AI.UpdateFieldOfVisionNowRequest();
 
-    public bool isMakeDecisionNowRequest {
-        get { return HasComponent(GameComponentsLookup.MakeDecisionNowRequest); }
+    public bool isUpdateFieldOfVisionNowRequest {
+        get { return HasComponent(GameComponentsLookup.UpdateFieldOfVisionNowRequest); }
         set {
-            if (value != isMakeDecisionNowRequest) {
-                var index = GameComponentsLookup.MakeDecisionNowRequest;
+            if (value != isUpdateFieldOfVisionNowRequest) {
+                var index = GameComponentsLookup.UpdateFieldOfVisionNowRequest;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : makeDecisionNowRequestComponent;
+                            : updateFieldOfVisionNowRequestComponent;
 
                     AddComponent(index, component);
                 } else {

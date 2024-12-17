@@ -13,7 +13,6 @@ using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
-using Code.Gameplay.Features.NearestEntitiesCollection;
 using Code.Gameplay.Features.ProcessCommand;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
@@ -39,7 +38,6 @@ namespace Code.Gameplay
       
       Add(systems.Create<BuildFeature>());
 
-      Add(systems.Create<CollectNearestEntitiesFeature>());
       Add(systems.Create<AIFeature>());
 
       Add(systems.Create<NavMeshFeature>());

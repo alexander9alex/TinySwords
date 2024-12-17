@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectTargetsRadius;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public CollectTargetsRadius collectTargetsRadius { get { return (CollectTargetsRadius)GetComponent(GameComponentsLookup.CollectTargetsRadius); } }
+    public Code.Gameplay.Features.AI.CollectTargetsRadius collectTargetsRadius { get { return (Code.Gameplay.Features.AI.CollectTargetsRadius)GetComponent(GameComponentsLookup.CollectTargetsRadius); } }
     public float CollectTargetsRadius { get { return collectTargetsRadius.Value; } }
     public bool hasCollectTargetsRadius { get { return HasComponent(GameComponentsLookup.CollectTargetsRadius); } }
 
     public GameEntity AddCollectTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectTargetsRadius;
-        var component = (CollectTargetsRadius)CreateComponent(index, typeof(CollectTargetsRadius));
+        var component = (Code.Gameplay.Features.AI.CollectTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectTargetsRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectTargetsRadius;
-        var component = (CollectTargetsRadius)CreateComponent(index, typeof(CollectTargetsRadius));
+        var component = (Code.Gameplay.Features.AI.CollectTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectTargetsRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

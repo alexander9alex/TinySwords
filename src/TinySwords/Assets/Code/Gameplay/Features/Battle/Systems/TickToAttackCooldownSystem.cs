@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.Battle.Systems
         if (entity.AttackCooldown <= 0)
         {
           entity.isCanAttackNow = true;
-          entity.ReplaceMakeDecisionTimer(0);
+          entity.ReplaceUpdateFieldOfVisionTimer(0);
         }
       }
     }

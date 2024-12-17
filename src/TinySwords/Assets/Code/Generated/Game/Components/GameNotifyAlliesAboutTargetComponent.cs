@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherNotifyAlliesAboutTarget;
@@ -36,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly NotifyAlliesAboutTarget notifyAlliesAboutTargetComponent = new NotifyAlliesAboutTarget();
+    static readonly Code.Gameplay.Features.AI.NotifyAlliesAboutTarget notifyAlliesAboutTargetComponent = new Code.Gameplay.Features.AI.NotifyAlliesAboutTarget();
 
     public bool isNotifyAlliesAboutTarget {
         get { return HasComponent(GameComponentsLookup.NotifyAlliesAboutTarget); }

@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherReachedTargetBuffer;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public ReachedTargetBuffer reachedTargetBuffer { get { return (ReachedTargetBuffer)GetComponent(GameComponentsLookup.ReachedTargetBuffer); } }
+    public Code.Gameplay.Features.AI.ReachedTargetBuffer reachedTargetBuffer { get { return (Code.Gameplay.Features.AI.ReachedTargetBuffer)GetComponent(GameComponentsLookup.ReachedTargetBuffer); } }
     public System.Collections.Generic.List<int> ReachedTargetBuffer { get { return reachedTargetBuffer.Value; } }
     public bool hasReachedTargetBuffer { get { return HasComponent(GameComponentsLookup.ReachedTargetBuffer); } }
 
     public GameEntity AddReachedTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.ReachedTargetBuffer;
-        var component = (ReachedTargetBuffer)CreateComponent(index, typeof(ReachedTargetBuffer));
+        var component = (Code.Gameplay.Features.AI.ReachedTargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.ReachedTargetBuffer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceReachedTargetBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.ReachedTargetBuffer;
-        var component = (ReachedTargetBuffer)CreateComponent(index, typeof(ReachedTargetBuffer));
+        var component = (Code.Gameplay.Features.AI.ReachedTargetBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.ReachedTargetBuffer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

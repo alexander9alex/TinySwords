@@ -1,26 +1,25 @@
 ﻿using System.Collections.Generic;
-using Code.Gameplay.Common.Physics;
-using Code.Gameplay.Constants;
 using Entitas;
 
 namespace Code.Gameplay.Features.AI.Systems
 {
   public class CollectAlliesSystem : IExecuteSystem
   {
-    private readonly IPhysicsService _physicsService;
+    private readonly GameContext _game;
+
     private readonly IGroup<GameEntity> _entities;
     private readonly List<GameEntity> _buffer = new(32);
 
-    public CollectAlliesSystem(GameContext game, IPhysicsService physicsService)
+    public CollectAlliesSystem(GameContext game)
     {
-      _physicsService = physicsService;
+      _game = game;
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
           GameMatcher.MakeDecisionRequest,
+          GameMatcher.VisibleEntityBuffer,
           GameMatcher.CollectAlliesRadius,
           GameMatcher.AllyBuffer,
-          GameMatcher.WorldPosition,
           GameMatcher.TeamColor,
           GameMatcher.Alive
         ));
@@ -32,24 +31,30 @@ namespace Code.Gameplay.Features.AI.Systems
       {
         List<int> allies = new();
 
-        foreach (GameEntity ally in GetAlliesInRadius(entity))
+        foreach ((int id, float distance) allyParams in entity.VisibleEntityBuffer)
         {
-          if (!ally.isAlive || !ally.hasId || !ally.hasTeamColor || entity.TeamColor != ally.TeamColor)
-            continue;
+          GameEntity ally = _game.GetEntityWithId(allyParams.id);
 
-          allies.Add(ally.Id);
+          if (AllyIsSuitable(entity, ally, allyParams.distance))
+            allies.Add(ally.Id);
         }
 
         entity.ReplaceAllyBuffer(allies);
       }
     }
 
-    private IEnumerable<GameEntity> GetAlliesInRadius(GameEntity entity)
+    private bool AllyIsSuitable(GameEntity entity, GameEntity ally, float distanceToAlly)
     {
-      return _physicsService.CircleCast(
-        entity.WorldPosition,
-        entity.CollectAlliesRadius,
-        GameConstants.UnitsAndBuildingsLayerMask);
+      if (distanceToAlly > entity.CollectAlliesRadius)
+        return false;
+
+      if (ally is not { isAlive: true, hasTeamColor: true, hasId: true })
+        return false;
+
+      if (entity.TeamColor != ally.TeamColor)
+        return false;
+
+      return true;
     }
   }
 }

@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.AI.Systems
           GameEntity ally = _game.GetEntityWithId(allyId);
 
           if (NotHaveTargetsAndAllyTargets(ally))
-            ally.isMakeDecisionNowRequest = true;
+            ally.isUpdateFieldOfVisionNowRequest = true;
         }
 
         entity.isNotifyAlliesAboutTarget = false;

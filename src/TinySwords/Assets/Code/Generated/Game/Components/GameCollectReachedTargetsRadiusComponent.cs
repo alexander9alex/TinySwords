@@ -6,9 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Code.Gameplay.Features.NearestEntitiesCollection;
-
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCollectReachedTargetsRadius;
@@ -36,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public CollectReachedTargetsRadius collectReachedTargetsRadius { get { return (CollectReachedTargetsRadius)GetComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
+    public Code.Gameplay.Features.AI.CollectReachedTargetsRadius collectReachedTargetsRadius { get { return (Code.Gameplay.Features.AI.CollectReachedTargetsRadius)GetComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
     public float CollectReachedTargetsRadius { get { return collectReachedTargetsRadius.Value; } }
     public bool hasCollectReachedTargetsRadius { get { return HasComponent(GameComponentsLookup.CollectReachedTargetsRadius); } }
 
     public GameEntity AddCollectReachedTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectReachedTargetsRadius;
-        var component = (CollectReachedTargetsRadius)CreateComponent(index, typeof(CollectReachedTargetsRadius));
+        var component = (Code.Gameplay.Features.AI.CollectReachedTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectReachedTargetsRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -50,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectReachedTargetsRadius(float newValue) {
         var index = GameComponentsLookup.CollectReachedTargetsRadius;
-        var component = (CollectReachedTargetsRadius)CreateComponent(index, typeof(CollectReachedTargetsRadius));
+        var component = (Code.Gameplay.Features.AI.CollectReachedTargetsRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectReachedTargetsRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
