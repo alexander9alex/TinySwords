@@ -7,7 +7,7 @@ namespace Code.Infrastructure.Views.Factory
   {
     private readonly IInstantiator _instantiator;
     private readonly Vector3 _farAway = new(9999, 9999, 9999);
-    private Transform Parent => _parent ??= new GameObject("EntityParent").transform;
+    private Transform Parent => _parent ??= new GameObject("EntityViewParent").transform;
     private Transform _parent;
 
     public EntityViewFactory(IInstantiator instantiator) =>
