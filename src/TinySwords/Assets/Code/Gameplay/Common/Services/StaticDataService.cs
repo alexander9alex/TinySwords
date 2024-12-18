@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
 {
-  class StaticDataService : IStaticDataService
+  public class StaticDataService : IStaticDataService
   {
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Factory
 {
-  class UnitFactory : IUnitFactory
+  public class UnitFactory : IUnitFactory
   {
     private readonly IStaticDataService _staticDataService;
     private readonly IIdentifierService _identifiers;

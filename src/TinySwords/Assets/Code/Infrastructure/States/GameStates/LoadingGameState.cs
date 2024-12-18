@@ -2,7 +2,6 @@ using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
-using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
@@ -42,7 +41,7 @@ namespace Code.Infrastructure.States.GameStates
       _inputService.ChangeInputMap(InputMap.Game);
 
       _levelFactory.CreateLevel();
-      
+
       _gameStateMachine.Enter<GameLoopState>();
     }
   }

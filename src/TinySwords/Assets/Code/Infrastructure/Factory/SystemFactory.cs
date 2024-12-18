@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Code.Infrastructure.Factory
 {
-  class SystemFactory : ISystemFactory
+  public class SystemFactory : ISystemFactory
   {
     private readonly DiContainer _container;
 

@@ -4,7 +4,6 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Features.Units.Markers;
 using Code.Gameplay.Level.Configs;
-using Code.Infrastructure.Views;
 using UnityEngine;
 
 namespace Code.Gameplay.Level.Factory

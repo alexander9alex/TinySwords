@@ -2,7 +2,7 @@
 
 namespace Code.Gameplay.Services
 {
-  class TimeService : ITimeService
+  public class TimeService : ITimeService
   {
     public float DeltaTime => Time.deltaTime;
   }

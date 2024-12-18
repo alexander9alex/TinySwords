@@ -1,6 +1,6 @@
 namespace Code.Gameplay.Common.Identifiers
 {
-  class IdentifierService : IIdentifierService
+  public class IdentifierService : IIdentifierService
   {
     private int _lastId = 1;
 
