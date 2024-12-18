@@ -3,7 +3,7 @@ using Code.Common.Extensions;
 
 namespace Code.Gameplay.Features.Battle.Services
 {
-  class AttackAnimationService : IAttackAnimationService
+  public class AttackAnimationService : IAttackAnimationService
   {
     public void UnitMakeHit(int unitId)
     {

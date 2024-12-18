@@ -4,12 +4,18 @@ using System.Linq;
 using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.Units.Animators;
+using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
+using Code.Gameplay.UtilityAI;
+using Code.Gameplay.UtilityAI.Brains;
+using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 using Code.Infrastructure.Views.Factory;
@@ -71,6 +77,37 @@ namespace Code.Tests.PlayMode
         .Should().HaveCount(1);
     }
 
+    [UnityTest]
+    public IEnumerator WhenCreateBlueKnight_ThenUnitShouldBeSpawnOnScene()
+    {
+      // Arrange
+      BindUnitAI();
+      
+      Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+      Container.Resolve<IStaticDataService>().LoadAll();
+      
+      Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
+
+      EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
+      yield return null;
+
+      BindViewFeature bindViewFeature = Container.Resolve<ISystemFactory>().Create<BindViewFeature>();
+      bindViewFeature.Initialize();
+
+      Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
+      IUnitFactory unitFactory = Container.Resolve<IUnitFactory>();
+
+      // Act
+      unitFactory.CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      bindViewFeature.Execute();
+      yield return null;
+
+      // Assert
+      AllGameObjects(SceneManager.GetActiveScene())
+        .Where(x => x.GetComponent<KnightAnimator>())
+        .Should().HaveCount(1);
+    }
+
     [TearDown]
     public void TearDown()
     {
@@ -83,6 +120,17 @@ namespace Code.Tests.PlayMode
 
       processDestructedFeature.Execute();
       processDestructedFeature.Cleanup();
+    }
+
+    private void BindUnitAI()
+    {
+      Container.Bind<When>().To<When>().AsSingle();
+      Container.Bind<GetInput>().To<GetInput>().AsSingle();
+      Container.Bind<Score>().To<Score>().AsSingle();
+      Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
+
+      Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
+      Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }
 
     private static IEnumerable<GameObject> AllGameObjects(Scene scene)
