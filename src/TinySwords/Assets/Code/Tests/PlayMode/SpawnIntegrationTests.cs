@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Code.Gameplay.Common.Collisions;
-using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Services;
-using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Animators;
 using Code.Gameplay.Features.Units.Data;
@@ -12,13 +9,9 @@ using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Factory;
-using Code.Gameplay.Services;
-using Code.Gameplay.UtilityAI;
-using Code.Gameplay.UtilityAI.Brains;
-using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
-using Code.Infrastructure.Views.Factory;
+using Code.Tests.Tools;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -27,35 +20,42 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using Zenject;
+using static Code.Tests.Tools.Constants;
 
 namespace Code.Tests.PlayMode
 {
   public class SpawnIntegrationTests : ZenjectUnitTestFixture
   {
-    private const string EmptyTestScenePath = "Assets/Scenes/ForTesting/EmptyScene.unity";
-
     [SetUp]
     public void InstallBindings()
     {
-      Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
-      Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
-      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+      Bind.GameContext(Container);
+      Bind.SystemFactory(Container);
+      Bind.TimeService(Container);
 
-      Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
-      Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
-      Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
+      Bind.IdentifierService(Container);
+      Bind.EntityViewFactory(Container);
+
+      Bind.CollisionRegistryStub(Container);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+      Destruct.AllEntities(
+        Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(),
+        Container.Resolve<GameContext>());
     }
 
     [UnityTest]
     public IEnumerator WhenCreateLevel_ThenLevelShouldBeSpawnOnScene()
     {
       // Arrange
-      IUnitFactory unitFactoryStub = Substitute.For<IUnitFactory>();
-      Container.Bind<IUnitFactory>().FromInstance(unitFactoryStub).AsSingle();
+      Bind.UnitFactoryStub(Container);
+      Bind.LevelFactory(Container);
 
-      IStaticDataService staticData = Substitute.For<IStaticDataService>();
-      staticData.GetLevelConfig().Returns(Resources.Load<LevelConfig>("Editor/ForTests/EmptyLevelConfig"));
-      Container.Bind<IStaticDataService>().FromInstance(staticData).AsSingle();
+      IStaticDataService staticDataStub = Bind.StaticDataServiceStub(Container);
+      staticDataStub.GetLevelConfig().Returns(Resources.Load<LevelConfig>(EmptyLevelConfigPath));
 
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
@@ -63,7 +63,6 @@ namespace Code.Tests.PlayMode
       BindViewFeature bindViewFeature = Container.Resolve<ISystemFactory>().Create<BindViewFeature>();
       bindViewFeature.Initialize();
 
-      Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       ILevelFactory levelFactory = Container.Resolve<ILevelFactory>();
 
       // Act
@@ -81,12 +80,12 @@ namespace Code.Tests.PlayMode
     public IEnumerator WhenCreateBlueKnight_ThenUnitShouldBeSpawnOnScene()
     {
       // Arrange
-      BindUnitAI();
+      Bind.UnitAI(Container);
+      Bind.AttackAnimationService(Container);
+      Bind.StaticDataService(Container);
+      Bind.UnitFactory(Container);
       
-      Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       Container.Resolve<IStaticDataService>().LoadAll();
-      
-      Container.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
 
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
@@ -94,7 +93,6 @@ namespace Code.Tests.PlayMode
       BindViewFeature bindViewFeature = Container.Resolve<ISystemFactory>().Create<BindViewFeature>();
       bindViewFeature.Initialize();
 
-      Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
       IUnitFactory unitFactory = Container.Resolve<IUnitFactory>();
 
       // Act
@@ -106,31 +104,6 @@ namespace Code.Tests.PlayMode
       AllGameObjects(SceneManager.GetActiveScene())
         .Where(x => x.GetComponent<KnightAnimator>())
         .Should().HaveCount(1);
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-      GameContext gameContext = Container.Resolve<GameContext>();
-
-      ProcessDestructedFeature processDestructedFeature = Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>();
-
-      foreach (GameEntity entity in gameContext.GetEntities())
-        entity.isDestructed = true;
-
-      processDestructedFeature.Execute();
-      processDestructedFeature.Cleanup();
-    }
-
-    private void BindUnitAI()
-    {
-      Container.Bind<When>().To<When>().AsSingle();
-      Container.Bind<GetInput>().To<GetInput>().AsSingle();
-      Container.Bind<Score>().To<Score>().AsSingle();
-      Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
-
-      Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
-      Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }
 
     private static IEnumerable<GameObject> AllGameObjects(Scene scene)

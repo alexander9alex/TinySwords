@@ -1,11 +1,19 @@
-﻿using Code.Gameplay.Services;
+﻿using Code.Gameplay.Common.Collisions;
+using Code.Gameplay.Common.Identifiers;
+using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.Battle.Services;
+using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Level.Factory;
+using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Factory;
+using Code.Infrastructure.Views.Factory;
+using NSubstitute;
 using Zenject;
 
-namespace Code.Tests.TestTools
+namespace Code.Tests.Tools
 {
   public static class Bind
   {
@@ -26,9 +34,44 @@ namespace Code.Tests.TestTools
     public static void SystemFactory(DiContainer diContainer) =>
       diContainer.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
 
-    public static void TimeService(DiContainer diContainer)
-    {
+    public static void TimeService(DiContainer diContainer) =>
       diContainer.Bind<ITimeService>().To<TimeService>().AsSingle();
+
+    public static void IdentifierService(DiContainer diContainer) =>
+      diContainer.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+
+    public static void EntityViewFactory(DiContainer diContainer) =>
+      diContainer.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
+
+    public static void UnitFactory(DiContainer diContainer) =>
+      diContainer.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
+
+    public static void UnitFactoryStub(DiContainer diContainer)
+    {
+      IUnitFactory unitFactoryStub = Substitute.For<IUnitFactory>();
+      diContainer.Bind<IUnitFactory>().FromInstance(unitFactoryStub).AsSingle();
     }
+
+    public static void StaticDataService(DiContainer diContainer) =>
+      diContainer.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+
+    public static IStaticDataService StaticDataServiceStub(DiContainer diContainer)
+    {
+      IStaticDataService staticDataStub = Substitute.For<IStaticDataService>();
+      diContainer.Bind<IStaticDataService>().FromInstance(staticDataStub).AsSingle();
+      return staticDataStub;
+    }
+
+    public static void AttackAnimationService(DiContainer diContainer) =>
+      diContainer.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
+
+    public static void CollisionRegistryStub(DiContainer diContainer)
+    {
+      ICollisionRegistry collisionRegistryStub = Substitute.For<ICollisionRegistry>();
+      diContainer.Bind<ICollisionRegistry>().FromInstance(collisionRegistryStub).AsSingle();
+    }
+
+    public static void LevelFactory(DiContainer diContainer) =>
+      diContainer.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
   }
 }

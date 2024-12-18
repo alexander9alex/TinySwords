@@ -11,7 +11,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "Entitas.dll",
-        "Entitas.VisualDebugging.Unity.dll"
+        "Entitas.VisualDebugging.Unity.dll",
+        "NSubstitute.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [],

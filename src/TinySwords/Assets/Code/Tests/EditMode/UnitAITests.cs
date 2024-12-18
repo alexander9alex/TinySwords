@@ -5,7 +5,6 @@ using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.UtilityAI;
 using Code.Infrastructure.Factory;
-using Code.Tests.TestTools;
 using Code.Tests.Tools;
 using FluentAssertions;
 using NUnit.Framework;
@@ -29,7 +28,9 @@ namespace Code.Tests.EditMode
       Bind.SystemFactory(Container);
       Bind.TimeService(Container);
 
-      Destruct.AllEntities(Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(), Container.Resolve<GameContext>());
+      Destruct.AllEntities(
+        Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(),
+        Container.Resolve<GameContext>());
     }
 
     [Test]
