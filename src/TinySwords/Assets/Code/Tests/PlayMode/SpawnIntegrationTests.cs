@@ -33,11 +33,11 @@ namespace Code.Tests.PlayMode
     {
       Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
       Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
+      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+
       Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
-      Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
       Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
-      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
     }
 
     [UnityTest]
@@ -48,17 +48,18 @@ namespace Code.Tests.PlayMode
       Container.Bind<IUnitFactory>().FromInstance(unitFactoryStub).AsSingle();
 
       IStaticDataService staticData = Substitute.For<IStaticDataService>();
-      staticData.GetLevelConfig().Returns(Resources.Load<LevelConfig>("Editor/ForTests/LevelConfig"));
+      staticData.GetLevelConfig().Returns(Resources.Load<LevelConfig>("Editor/ForTests/EmptyLevelConfig"));
       Container.Bind<IStaticDataService>().FromInstance(staticData).AsSingle();
-      
+
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
 
       BindViewFeature bindViewFeature = Container.Resolve<ISystemFactory>().Create<BindViewFeature>();
       bindViewFeature.Initialize();
-      
+
+      Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
       ILevelFactory levelFactory = Container.Resolve<ILevelFactory>();
-      
+
       // Act
       levelFactory.CreateLevel();
       bindViewFeature.Execute();

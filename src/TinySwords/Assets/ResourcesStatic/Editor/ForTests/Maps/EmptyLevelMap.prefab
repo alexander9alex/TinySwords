@@ -37375,7 +37375,7 @@ GameObject:
   - component: {fileID: 2113220392298316763}
   - component: {fileID: -4867352460267953590}
   m_Layer: 0
-  m_Name: LevelMap
+  m_Name: EmptyLevelMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
