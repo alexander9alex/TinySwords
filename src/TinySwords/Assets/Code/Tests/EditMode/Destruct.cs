@@ -1,0 +1,16 @@
+﻿using Code.Gameplay.Features.Destruct;
+
+namespace Code.Tests.EditMode
+{
+  public static class Destruct
+  {
+    public static void AllEntities(ProcessDestructedFeature processDestructedFeature, GameContext gameContext)
+    {
+      foreach (GameEntity entity in gameContext.GetEntities())
+        entity.isDestructed = true;
+
+      processDestructedFeature.Execute();
+      processDestructedFeature.Cleanup();
+    }
+  }
+}

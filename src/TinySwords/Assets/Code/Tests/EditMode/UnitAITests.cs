@@ -3,10 +3,7 @@ using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Data;
-using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
-using Code.Gameplay.UtilityAI.Brains;
-using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Factory;
 using FluentAssertions;
 using NUnit.Framework;
@@ -20,30 +17,17 @@ namespace Code.Tests.EditMode
     [SetUp]
     public void InstallBindings()
     {
-      Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
-
-      Container.Bind<When>().To<When>().AsSingle();
-      Container.Bind<GetInput>().To<GetInput>().AsSingle();
-      Container.Bind<Score>().To<Score>().AsSingle();
-      Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
-
-      Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
-      Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
+      Bind.GameContext(Container);
+      Bind.UnitAI(Container);
     }
 
     [TearDown]
     public void TearDown()
     {
-      Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
-      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+      Bind.SystemFactory(Container);
+      Bind.TimeService(Container);
 
-      ProcessDestructedFeature processDestructedFeature = Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>();
-
-      foreach (GameEntity entity in Container.Resolve<GameContext>().GetEntities())
-        entity.isDestructed = true;
-
-      processDestructedFeature.Execute();
-      processDestructedFeature.Cleanup();
+      Destruct.AllEntities(Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(), Container.Resolve<GameContext>());
     }
 
     [Test]
