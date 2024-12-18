@@ -5,7 +5,7 @@ using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Factory;
 using Zenject;
 
-namespace Code.Tests.EditMode
+namespace Code.Tests.TestTools
 {
   public static class Bind
   {

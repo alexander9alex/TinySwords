@@ -1,6 +1,6 @@
 ﻿using Code.Gameplay.Features.Destruct;
 
-namespace Code.Tests.EditMode
+namespace Code.Tests.Tools
 {
   public static class Destruct
   {

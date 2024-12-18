@@ -1,29 +1,20 @@
 {
-    "name": "Tests.PlayMode",
+    "name": "Tests.Tools",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Code",
-        "Zenject",
-        "Zenject-TestFramework",
-        "Tests.Tools"
+        "GUID:097fef94fc715cf408d983432e967f2e",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll",
-        "FluentAssertions.dll",
-        "NSubstitute.dll",
         "Entitas.dll",
         "Entitas.VisualDebugging.Unity.dll"
     ],
     "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }
