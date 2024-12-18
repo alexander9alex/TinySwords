@@ -1,26 +1,58 @@
-﻿using Code.Common.Extensions;
+﻿using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
+using Code.Infrastructure.Factory;
 using FluentAssertions;
 using NUnit.Framework;
 using UnityEngine;
+using Zenject;
 
 namespace Code.Tests.EditMode
 {
-  public class UnitAITests
+  public class UnitAITests : ZenjectUnitTestFixture
   {
+    [SetUp]
+    public void InstallBindings()
+    {
+      Container.Bind<GameContext>().FromInstance(Contexts.sharedInstance.game).AsSingle();
+
+      Container.Bind<When>().To<When>().AsSingle();
+      Container.Bind<GetInput>().To<GetInput>().AsSingle();
+      Container.Bind<Score>().To<Score>().AsSingle();
+      Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
+
+      Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
+      Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+      Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
+      Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+
+      ProcessDestructedFeature processDestructedFeature = Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>();
+
+      foreach (GameEntity entity in Container.Resolve<GameContext>().GetEntities())
+        entity.isDestructed = true;
+
+      processDestructedFeature.Execute();
+      processDestructedFeature.Cleanup();
+    }
+
     [Test]
     public void WhenUnitHasNotUserCommandAndTargetsAndAllies_ThenUnitAIShouldMakeStayDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddTargetBuffer(new())
         .AddReachedTargetBuffer(new())
         .AddAllyBuffer(new());
@@ -36,12 +68,10 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasMoveUserCommand_ThenUnitAIShouldMakeMoveDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       Vector2 endDestination = Vector2.one;
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = endDestination });
 
       // Act
@@ -58,7 +88,7 @@ namespace Code.Tests.EditMode
       // Arrange
       Contexts contexts = new();
       GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       Vector2 endDestination = Vector2.one;
       GameEntity unit = gameContext.CreateEntity()
@@ -76,17 +106,15 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasMoveUserCommandAndTarget_ThenUnitAIShouldMakeMoveDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
       Vector2 endDestination = Vector2.one;
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.Move, WorldPosition = endDestination })
         .AddWorldPosition(Vector3.zero)
         .AddTargetBuffer(new() { target.Id })
@@ -105,17 +133,15 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasMoveWithAttackUserCommandAndTarget_ThenUnitAIShouldMakeMoveToTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
       Vector2 endDestination = Vector2.one;
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new UserCommand { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = endDestination })
         .AddWorldPosition(Vector3.zero)
         .AddTargetBuffer(new() { target.Id })
@@ -134,16 +160,14 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasTarget_ThenUnitAIShouldMakeMoveToTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { target.Id })
         .AddCollectTargetsRadius(3f)
@@ -162,16 +186,14 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAimedAttackUserCommandAndUnreachableTarget_ThenUnitAIShouldMakeMoveToAimedTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one * 3)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = target.Id })
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { target.Id })
@@ -190,21 +212,19 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAimedAttackUserCommandAndUnreachableAimedTargetAndReachableTarget_ThenUnitAIShouldMakeMoveToAimedTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity aimedTarget = gameContext.CreateEntity()
+      GameEntity aimedTarget = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one * 3)
         .With(x => x.isAlive = true);
 
-      GameEntity reachableTarget = gameContext.CreateEntity()
+      GameEntity reachableTarget = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.left)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = aimedTarget.Id })
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { reachableTarget.Id, aimedTarget.Id })
@@ -224,16 +244,14 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAimedAttackUserCommandAndReachableTarget_ThenUnitAIShouldMakeAttackAimedTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = target.Id })
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { target.Id })
@@ -253,21 +271,19 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAimedAttackUserCommandAndReachableAimedTargetAndReachableTarget_ThenUnitAIShouldMakeAttackAimedTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity aimedTarget = gameContext.CreateEntity()
+      GameEntity aimedTarget = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.one)
         .With(x => x.isAlive = true);
 
-      GameEntity reachableTarget = gameContext.CreateEntity()
+      GameEntity reachableTarget = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.right * 0.5f)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = aimedTarget.Id })
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { aimedTarget.Id, reachableTarget.Id })
@@ -287,21 +303,19 @@ namespace Code.Tests.EditMode
     public void WhenUnitHas2Targets_ThenUnitAIShouldMakeMoveToNearestTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity nearestTarget = gameContext.CreateEntity()
+      GameEntity nearestTarget = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.right)
         .With(x => x.isAlive = true);
 
-      GameEntity furtherTarget = gameContext.CreateEntity()
+      GameEntity furtherTarget = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.right * 2)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { nearestTarget.Id, furtherTarget.Id })
         .AddCollectTargetsRadius(3f)
@@ -320,21 +334,19 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasUnreachableTargetAndReachableTarget_ThenUnitAIShouldMakeAttackDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity reachableTarget = gameContext.CreateEntity()
+      GameEntity reachableTarget = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.up * 2)
         .With(x => x.isAlive = true);
 
-      GameEntity unreachableTarget = gameContext.CreateEntity()
+      GameEntity unreachableTarget = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.down * 4)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new() { unreachableTarget.Id, reachableTarget.Id })
         .AddCollectTargetsRadius(5f)
@@ -353,22 +365,20 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAllyWithTarget_ThenUnitAIShouldMakeMoveToAllyTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.right * 4)
         .With(x => x.isAlive = true);
 
-      GameEntity ally = gameContext.CreateEntity()
+      GameEntity ally = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.right * 2)
         .AddTargetBuffer(new() { target.Id })
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new())
         .AddCollectTargetsRadius(3f)
@@ -388,23 +398,21 @@ namespace Code.Tests.EditMode
     public void WhenUnitHasAllyWithAllyTargetId_ThenUnitAIShouldMakeMoveToAllyTargetDecision()
     {
       // Arrange
-      Contexts contexts = new();
-      GameContext gameContext = contexts.game;
-      IUnitAI unitAI = UnitAI(gameContext);
+      IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
-      GameEntity target = gameContext.CreateEntity()
+      GameEntity target = CreateEntity.Empty()
         .AddId(0)
         .AddWorldPosition(Vector2.right * 4)
         .With(x => x.isAlive = true);
 
-      GameEntity ally = gameContext.CreateEntity()
+      GameEntity ally = CreateEntity.Empty()
         .AddId(1)
         .AddWorldPosition(Vector2.right * 2)
         .AddTargetBuffer(new())
         .AddAllyTargetId(target.Id)
         .With(x => x.isAlive = true);
 
-      GameEntity unit = gameContext.CreateEntity()
+      GameEntity unit = CreateEntity.Empty()
         .AddWorldPosition(Vector2.zero)
         .AddTargetBuffer(new())
         .AddCollectTargetsRadius(3f)
@@ -418,19 +426,6 @@ namespace Code.Tests.EditMode
       // Assert
       decision.UnitDecisionTypeId.Should().Be(UnitDecisionTypeId.MoveToAllyTarget);
       decision.TargetId.Value.Should().Be(target.Id);
-    }
-
-    private static IUnitAI UnitAI(GameContext gameContext)
-    {
-      When when = new();
-      GetInput getInput = new(gameContext);
-      Score score = new();
-
-      BrainsComponents brainsComponents = new(when, getInput, score);
-
-      UnitBrains unitBrains = new(brainsComponents);
-      IUnitAI unitAI = new UnitAI(unitBrains, gameContext);
-      return unitAI;
     }
   }
 }

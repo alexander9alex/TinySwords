@@ -4,7 +4,9 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Code"
+        "Code",
+        "Zenject",
+        "Zenject-TestFramework"
     ],
     "includePlatforms": [
         "Editor"
@@ -16,7 +18,8 @@
         "nunit.framework.dll",
         "FluentAssertions.dll",
         "NSubstitute.dll",
-        "Entitas.dll"
+        "Entitas.dll",
+        "Entitas.VisualDebugging.Unity.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
