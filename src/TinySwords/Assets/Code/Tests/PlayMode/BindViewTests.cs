@@ -24,7 +24,7 @@ using static Code.Tests.Tools.Constants;
 
 namespace Code.Tests.PlayMode
 {
-  public class SpawnIntegrationTests : ZenjectUnitTestFixture
+  public class BindViewTests : ZenjectUnitTestFixture
   {
     [SetUp]
     public void InstallBindings()
