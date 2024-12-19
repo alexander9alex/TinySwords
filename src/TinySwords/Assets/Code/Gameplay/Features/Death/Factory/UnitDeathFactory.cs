@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Death.Factory
 {
-  class UnitDeathFactory : IUnitDeathFactory
+  public class UnitDeathFactory : IUnitDeathFactory
   {
     private readonly IStaticDataService _staticData;
     private readonly IIdentifierService _identifiers;

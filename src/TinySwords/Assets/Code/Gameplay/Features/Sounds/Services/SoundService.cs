@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Sounds.Services
 {
-  class SoundService : ISoundService
+  public class SoundService : ISoundService
   {
     private readonly ISoundFactory _soundFactory;
 

@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.Units.Factory
       _unitUI = unitUI;
     }
 
-    public void CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos)
+    public GameEntity CreateUnit(UnitTypeId type, TeamColor color, Vector3 pos)
     {
       UnitConfig config = _staticDataService.GetUnitConfig(type, color);
 
@@ -88,6 +88,8 @@ namespace Code.Gameplay.Features.Units.Factory
         default:
           throw new ArgumentOutOfRangeException(nameof(type), type, null);
       }
+
+      return unit;
     }
 
     private void CreateBlueKnight(GameEntity unit)

@@ -1,7 +1,14 @@
 ﻿using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.Identifiers;
+using Code.Gameplay.Common.Physics;
+using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
+using Code.Gameplay.Features.Death.Factory;
+using Code.Gameplay.Features.Indicators.Factory;
+using Code.Gameplay.Features.Sounds.Factory;
+using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
@@ -65,6 +72,9 @@ namespace Code.Tests.Tools
     public static void AttackAnimationService(DiContainer diContainer) =>
       diContainer.Bind<IAttackAnimationService>().To<AttackAnimationService>().AsSingle();
 
+    public static void CollisionRegistry(DiContainer diContainer) =>
+      diContainer.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
+
     public static void CollisionRegistryStub(DiContainer diContainer)
     {
       ICollisionRegistry collisionRegistryStub = Substitute.For<ICollisionRegistry>();
@@ -73,5 +83,26 @@ namespace Code.Tests.Tools
 
     public static void LevelFactory(DiContainer diContainer) =>
       diContainer.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
+
+    public static void PhysicsService(DiContainer diContainer) =>
+      diContainer.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
+
+    public static void DecisionService(DiContainer diContainer) =>
+      diContainer.Bind<IDecisionService>().To<DecisionService>().AsSingle();
+
+    public static void CameraProvider(DiContainer diContainer) =>
+      diContainer.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
+
+    public static void IndicatorFactory(DiContainer diContainer) =>
+      diContainer.Bind<IIndicatorFactory>().To<IndicatorFactory>().AsSingle();
+
+    public static void SoundService(DiContainer diContainer) =>
+      diContainer.Bind<ISoundService>().To<SoundService>().AsSingle();
+
+    public static void SoundFactory(DiContainer diContainer) =>
+      diContainer.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
+
+    public static void UnitDeathFactory(DiContainer diContainer) =>
+      diContainer.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
   }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Indicators.Factory
 {
-  class IndicatorFactory : IIndicatorFactory
+  public class IndicatorFactory : IIndicatorFactory
   {
     private readonly IStaticDataService _staticData;
     private readonly ICameraProvider _cameraProvider;

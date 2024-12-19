@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.AI.Services
 {
-  class DecisionService : IDecisionService
+  public class DecisionService : IDecisionService
   {
     public void ProcessUnitDecision(GameEntity unit)
     {

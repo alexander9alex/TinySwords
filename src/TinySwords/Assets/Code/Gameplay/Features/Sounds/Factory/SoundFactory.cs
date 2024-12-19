@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Sounds.Factory
 {
-  class SoundFactory : ISoundFactory
+  public class SoundFactory : ISoundFactory
   {
     private readonly IStaticDataService _staticData;
     private readonly IIdentifierService _identifiers;

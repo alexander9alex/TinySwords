@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Common.Providers
 {
-  class CameraProvider : ICameraProvider
+  public class CameraProvider : ICameraProvider
   {
     public Camera MainCamera { get; private set; }
 
