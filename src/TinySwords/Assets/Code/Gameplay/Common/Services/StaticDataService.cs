@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
+using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Code.Gameplay.Common.Services
   {
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
     private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
-    private List<LevelConfig> _levelConfigs;
+    private Dictionary<LevelId, LevelConfig> _levelConfigById;
     private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
     private Dictionary<SoundId, SoundConfig> _soundConfigById;
     private Dictionary<IndicatorTypeId, IndicatorConfig> _indicatorConfigByType;
@@ -47,8 +48,8 @@ namespace Code.Gameplay.Common.Services
     public CastleConfig GetCastleConfig(TeamColor color) =>
       _castleConfigByColor[color];
 
-    public LevelConfig GetLevelConfig() =>
-      _levelConfigs[0];
+    public LevelConfig GetLevelConfig(LevelId levelId) =>
+      _levelConfigById[levelId];
 
     public List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands)
     {
@@ -82,9 +83,9 @@ namespace Code.Gameplay.Common.Services
 
     private void LoadLevelConfigs()
     {
-      _levelConfigs = Resources
+      _levelConfigById = Resources
         .LoadAll<LevelConfig>("Configs/Levels")
-        .ToList();
+        .ToDictionary(x => x.LevelId, x => x);
     }
 
     private void LoadCommandUIConfigs()

@@ -1,7 +1,9 @@
-﻿namespace Code.Gameplay.Level.Factory
+﻿using Code.Gameplay.Level.Data;
+
+namespace Code.Gameplay.Level.Factory
 {
   public interface ILevelFactory
   {
-    void CreateLevel();
+    void CreateLevel(LevelId levelId);
   }
 }

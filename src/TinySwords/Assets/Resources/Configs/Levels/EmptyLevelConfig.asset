@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2491de816ec94fd7bca9ec42dbb0bccc, type: 3}
   m_Name: EmptyLevelConfig
   m_EditorClassIdentifier: 
+  LevelId: 200
   MapPrefab: {fileID: 2113220392298316763, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
   LevelMap: {fileID: 6746565119539317206, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}

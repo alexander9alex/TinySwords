@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level;
 using Code.Gameplay.Level.Configs;
+using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
@@ -32,11 +33,13 @@ namespace Code.Tests.PlayMode
       Bind.GameContext(Container);
       Bind.SystemFactory(Container);
       Bind.TimeService(Container);
-
+      Bind.StaticDataService(Container);
       Bind.IdentifierService(Container);
       Bind.EntityViewFactory(Container);
 
       Bind.CollisionRegistryStub(Container);
+      
+      Container.Resolve<IStaticDataService>().LoadAll();
     }
 
     [TearDown]
@@ -54,9 +57,6 @@ namespace Code.Tests.PlayMode
       Bind.UnitFactoryStub(Container);
       Bind.LevelFactory(Container);
 
-      IStaticDataService staticDataStub = Bind.StaticDataServiceStub(Container);
-      staticDataStub.GetLevelConfig().Returns(Resources.Load<LevelConfig>(EmptyLevelConfigPath));
-
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
 
@@ -66,7 +66,7 @@ namespace Code.Tests.PlayMode
       ILevelFactory levelFactory = Container.Resolve<ILevelFactory>();
 
       // Act
-      levelFactory.CreateLevel();
+      levelFactory.CreateLevel(LevelId.Empty);
       bindViewFeature.Execute();
       yield return null;
 
@@ -82,11 +82,8 @@ namespace Code.Tests.PlayMode
       // Arrange
       Bind.UnitAI(Container);
       Bind.AttackAnimationService(Container);
-      Bind.StaticDataService(Container);
       Bind.UnitFactory(Container);
       
-      Container.Resolve<IStaticDataService>().LoadAll();
-
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
 

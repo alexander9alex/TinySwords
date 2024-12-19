@@ -4,6 +4,7 @@ using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Factory;
@@ -60,7 +61,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       // Arrange
       ITimeService timeService = Container.Resolve<ITimeService>();
 
-      Container.Resolve<ILevelFactory>().CreateLevel();
+      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
       
       Vector2 destinationPosition = new(2, 1);
 

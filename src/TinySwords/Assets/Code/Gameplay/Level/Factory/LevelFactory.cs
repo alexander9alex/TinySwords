@@ -4,6 +4,7 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Features.Units.Markers;
 using Code.Gameplay.Level.Configs;
+using Code.Gameplay.Level.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Level.Factory
@@ -19,9 +20,9 @@ namespace Code.Gameplay.Level.Factory
       _unitFactory = unitFactory;
     }
 
-    public void CreateLevel()
+    public void CreateLevel(LevelId levelId)
     {
-      LevelConfig config = _staticData.GetLevelConfig();
+      LevelConfig config = _staticData.GetLevelConfig(levelId);
 
       CreateEntity.Empty()
         .AddViewPrefab(config.MapPrefab)

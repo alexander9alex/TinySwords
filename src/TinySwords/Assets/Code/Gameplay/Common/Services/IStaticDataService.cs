@@ -10,6 +10,7 @@ using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
+using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Views;
 
 namespace Code.Gameplay.Common.Services
@@ -21,7 +22,7 @@ namespace Code.Gameplay.Common.Services
     EntityBehaviour GetHighlightViewPrefab();
     IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId);
     CastleConfig GetCastleConfig(TeamColor color);
-    LevelConfig GetLevelConfig();
+    LevelConfig GetLevelConfig(LevelId levelId);
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);
     CommandUIConfig GetCommandUIConfig(CommandTypeId commandTypeId);
     UnitDeathConfig GetUnitDeathConfig();
