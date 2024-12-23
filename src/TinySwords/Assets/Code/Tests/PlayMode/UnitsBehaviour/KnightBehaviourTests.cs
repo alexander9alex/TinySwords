@@ -49,6 +49,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.LevelFactory(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
+      Container.Resolve<ITimeService>().TimeScale = 10;
     }
 
     [TearDown]
@@ -74,7 +75,6 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       
       ITimeService timeService = Container.Resolve<ITimeService>();
-      timeService.TimeScale = 10;
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
@@ -98,6 +98,43 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       // Assert
       Vector2.Distance(knight.WorldPosition, destinationPosition).Should().BeLessThanOrEqualTo(MaxPositionDelta);
+    }
+
+    [UnityTest]
+    public IEnumerator WhenUnitHasTarget_ThenUnitShouldMoveToTargetAndHitHim()
+    {
+      // Arrange
+      EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
+      yield return null;
+
+      BindNavMesh();
+      
+      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+
+      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      knight.ReplaceWorldPosition(new Vector3(0, 0));
+      
+      GameEntity goblin = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, Vector3.zero);
+      goblin.ReplaceWorldPosition(new Vector3(1, 0));
+      
+      ITimeService timeService = Container.Resolve<ITimeService>();
+
+      UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
+      unitBehaviourFeature.Initialize();
+
+      // Act
+      float timer = 0;
+
+      while (timer <= 5)
+      {
+        unitBehaviourFeature.Execute();
+        unitBehaviourFeature.Cleanup();
+        yield return null;
+        timer += timeService.DeltaTime;
+      }
+
+      // Assert
+      goblin.CurrentHp.Should().BeLessThan(goblin.MaxHp);
     }
 
     private void BindNavMesh()
