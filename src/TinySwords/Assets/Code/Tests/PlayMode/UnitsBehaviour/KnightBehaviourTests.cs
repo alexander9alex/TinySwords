@@ -178,6 +178,48 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
+    public IEnumerator WhenUnitHasMoveCommandInDirectionNextToTarget_ThenUnitShouldMoveToEndDestination()
+    {
+      // Arrange
+      EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
+      yield return null;
+
+      BindNavMesh();
+
+      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+
+      ITimeService timeService = Container.Resolve<ITimeService>();
+
+      Vector2 destinationPosition = new(-3, 2);
+
+      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.Move, WorldPosition = destinationPosition });
+
+      UnitConfig knightConfig = Container.Resolve<IStaticDataService>().GetUnitConfig(UnitTypeId.Knight, TeamColor.Blue);
+
+      GameEntity goblin = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, Vector3.zero);
+      goblin.ReplaceWorldPosition(new Vector3(-3, 2 - knightConfig.AttackReach / 2));
+
+      UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
+      unitBehaviourFeature.Initialize();
+
+      // Act
+      float timer = 0;
+
+      while (knight.hasUserCommand && timer <= 10)
+      {
+        unitBehaviourFeature.Execute();
+        unitBehaviourFeature.Cleanup();
+        yield return null;
+        timer += timeService.DeltaTime;
+      }
+
+      // Assert
+      goblin.isAlive.Should().Be(true);
+      Vector2.Distance(knight.WorldPosition, destinationPosition).Should().BeLessOrEqualTo(MaxPositionDelta);
+    }
+
+    [UnityTest]
     public IEnumerator WhenUnitHasAimedAttackCommand_ThenUnitShouldMoveToTargetAndKillHim()
     {
       // Arrange
