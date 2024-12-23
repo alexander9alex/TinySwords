@@ -63,7 +63,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
-    public IEnumerator WhenUnitHasMoveCommand_ThenUnitShouldMoveToEndDestination()
+    public IEnumerator WhenKnightHasMoveCommand_ThenKnightShouldMoveToEndDestination()
     {
       // Arrange
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
@@ -99,7 +99,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
-    public IEnumerator WhenUnitHasTarget_ThenUnitShouldMoveToTargetAndHitHim()
+    public IEnumerator WhenKnightHasTarget_ThenKnightShouldMoveToTargetAndHitHim()
     {
       // Arrange
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
@@ -136,7 +136,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
-    public IEnumerator WhenUnitHasMoveWithAttackCommandInDirectionNextToTarget_ThenUnitShouldMoveToTargetAndKillHimAndMoveToEndDestination()
+    public IEnumerator WhenKnightHasMoveWithAttackCommandInDirectionNextToTarget_ThenKnightShouldMoveToTargetAndKillHimAndMoveToEndDestination()
     {
       // Arrange
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
@@ -178,7 +178,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
-    public IEnumerator WhenUnitHasMoveCommandInDirectionNextToTarget_ThenUnitShouldMoveToEndDestination()
+    public IEnumerator WhenKnightHasMoveCommandInDirectionNextToTarget_ThenKnightShouldMoveToEndDestination()
     {
       // Arrange
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
@@ -220,7 +220,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     }
 
     [UnityTest]
-    public IEnumerator WhenUnitHasAimedAttackCommand_ThenUnitShouldMoveToTargetAndKillHim()
+    public IEnumerator WhenKnightHasAimedAttackCommand_ThenKnightShouldMoveToTargetAndKillHim()
     {
       // Arrange
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
