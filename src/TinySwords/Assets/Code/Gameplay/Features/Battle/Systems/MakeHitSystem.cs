@@ -6,7 +6,6 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Effects.Data;
 using Code.Gameplay.Features.Sounds.Services;
-using Code.Gameplay.Features.Units.Data;
 using Entitas;
 using ModestTree;
 
@@ -80,6 +79,9 @@ namespace Code.Gameplay.Features.Battle.Systems
     }
 
     private static bool CasterNotValid(GameEntity caster) =>
-      !caster.hasWorldPosition || !caster.hasLookDirection || !caster.hasAttackReach || !caster.hasDamage || !caster.hasTargetId;
+      !CasterIsValid(caster);
+
+    private static bool CasterIsValid(GameEntity caster) =>
+      caster is { hasWorldPosition: true, hasLookDirection: true, hasAttackReach: true, hasDamage: true, hasTargetId: true, isAlive: true };
   }
 }
