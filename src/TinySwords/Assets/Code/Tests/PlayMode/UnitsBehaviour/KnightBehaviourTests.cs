@@ -74,6 +74,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       
       ITimeService timeService = Container.Resolve<ITimeService>();
+      timeService.TimeScale = 10;
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
