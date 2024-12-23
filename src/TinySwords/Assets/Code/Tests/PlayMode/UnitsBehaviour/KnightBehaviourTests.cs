@@ -72,24 +72,20 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       
       Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
 
-      Vector2 destinationPosition = new(2, 1);
-      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
-      
       ITimeService timeService = Container.Resolve<ITimeService>();
+
+      Vector2 destinationPosition = new(2, 1);
+      
+      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.Move, WorldPosition = destinationPosition });
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
-      unitBehaviourFeature.Execute();
-      unitBehaviourFeature.Cleanup();
-
-      knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.Move, WorldPosition = destinationPosition });
-      unitBehaviourFeature.Execute();
-      unitBehaviourFeature.Cleanup();
-
+      
       // Act
       float timer = 0;
 
-      while (knight.hasDestination && timer <= 3)
+      while (knight.hasUserCommand && timer <= 3)
       {
         unitBehaviourFeature.Execute();
         unitBehaviourFeature.Cleanup();
