@@ -17,6 +17,7 @@ using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.ProcessCommand;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
+using Code.Gameplay.Features.Units;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -41,6 +42,7 @@ namespace Code.Gameplay
 
       Add(systems.Create<CollectEntitiesFeature>());
       Add(systems.Create<AIFeature>());
+      Add(systems.Create<UnitsFeature>());
 
       Add(systems.Create<NavMeshFeature>());
       Add(systems.Create<MoveFeature>());

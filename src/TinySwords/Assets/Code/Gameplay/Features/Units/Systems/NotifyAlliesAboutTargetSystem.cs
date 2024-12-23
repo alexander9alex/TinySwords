@@ -2,7 +2,7 @@
 using Entitas;
 using ModestTree;
 
-namespace Code.Gameplay.Features.AI.Systems
+namespace Code.Gameplay.Features.Units.Systems
 {
   public class NotifyAlliesAboutTargetSystem : IExecuteSystem
   {

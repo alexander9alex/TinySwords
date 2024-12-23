@@ -10,8 +10,6 @@ namespace Code.Gameplay.Features.AI
       Add(systems.Create<UnitMakeDecisionSystem>());
       Add(systems.Create<RemoveAllUnitDecisionsSystem>());
       Add(systems.Create<ProcessUnitDecisionSystem>());
-
-      Add(systems.Create<NotifyAlliesAboutTargetSystem>());
     }
   }
 }
