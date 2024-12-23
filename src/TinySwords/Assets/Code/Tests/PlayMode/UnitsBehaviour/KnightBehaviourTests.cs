@@ -69,19 +69,19 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       yield return null;
 
       BindNavMesh();
-      
+
       Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 
       Vector2 destinationPosition = new(2, 1);
-      
+
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.Move, WorldPosition = destinationPosition });
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
-      
+
       // Act
       float timer = 0;
 
@@ -105,15 +105,15 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       yield return null;
 
       BindNavMesh();
-      
+
       Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
 
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       knight.ReplaceWorldPosition(new Vector3(0, 0));
-      
+
       GameEntity goblin = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, Vector3.zero);
       goblin.ReplaceWorldPosition(new Vector3(1, 0));
-      
+
       ITimeService timeService = Container.Resolve<ITimeService>();
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
@@ -133,7 +133,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       // Assert
       goblin.CurrentHp.Should().BeLessThan(goblin.MaxHp);
     }
-    
+
     [UnityTest]
     public IEnumerator WhenUnitHasMoveWithAttackCommandInDirectionNextToTarget_ThenUnitShouldMoveToTargetAndKillHimAndMoveToEndDestination()
     {
@@ -142,18 +142,18 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       yield return null;
 
       BindNavMesh();
-      
+
       Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 
       Vector2 destinationPosition = new(4, 0);
-      
+
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.MoveWithAttack, WorldPosition = destinationPosition });
 
       UnitConfig knightConfig = Container.Resolve<IStaticDataService>().GetUnitConfig(UnitTypeId.Knight, TeamColor.Blue);
-              
+
       GameEntity goblin = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, Vector3.zero);
       goblin.ReplaceWorldPosition(new Vector3(3, knightConfig.AttackReach / 2));
 
@@ -176,6 +176,42 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Vector2.Distance(knight.WorldPosition, destinationPosition).Should().BeLessOrEqualTo(MaxPositionDelta);
     }
 
+    [UnityTest]
+    public IEnumerator WhenUnitHasAimedAttackCommand_ThenUnitShouldMoveToTargetAndKillHim()
+    {
+      // Arrange
+      EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
+      yield return null;
+
+      BindNavMesh();
+
+      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+
+      ITimeService timeService = Container.Resolve<ITimeService>();
+
+      GameEntity goblin = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.TorchGoblin, TeamColor.Red, Vector3.zero);
+      goblin.ReplaceWorldPosition(new Vector3(-4, -2));
+
+      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.AimedAttack, TargetId = goblin.Id });
+
+      UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
+      unitBehaviourFeature.Initialize();
+
+      // Act
+      float timer = 0;
+
+      while (knight.hasUserCommand && timer <= 30)
+      {
+        unitBehaviourFeature.Execute();
+        unitBehaviourFeature.Cleanup();
+        yield return null;
+        timer += timeService.DeltaTime;
+      }
+
+      // Assert
+      goblin.isAlive.Should().Be(false);
+    }
 
     private void BindNavMesh()
     {
