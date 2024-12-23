@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
+using static Code.Gameplay.Constants.GameConstants;
 
 namespace Code.Gameplay.Features.AI.Systems
 {
@@ -45,16 +46,31 @@ namespace Code.Gameplay.Features.AI.Systems
 
     private bool TargetIsSuitable(GameEntity entity, GameEntity target, float distanceToTarget)
     {
-      if (distanceToTarget > entity.CollectReachedTargetsRadius)
+      if (EntityIsUnreachable(entity.CollectReachedTargetsRadius, distanceToTarget))
         return false;
 
-      if (target is not { isAlive: true, hasTeamColor: true, hasId: true })
+      if (TargetIsNotValid(target))
         return false;
 
-      if (entity.TeamColor == target.TeamColor)
+      if (SameTeamColor(entity, target))
+        return false;
+
+      if (IsAlly(entity, target))
         return false;
 
       return true;
     }
+
+    private static bool IsAlly(GameEntity entity, GameEntity target) =>
+      AllyTeamColor[entity.TeamColor] == target.TeamColor;
+
+    private static bool SameTeamColor(GameEntity entity, GameEntity target) =>
+      entity.TeamColor == target.TeamColor;
+
+    private static bool TargetIsNotValid(GameEntity target) =>
+      target is not { isAlive: true, hasTeamColor: true, hasId: true };
+
+    private static bool EntityIsUnreachable(float collectTargetRadius, float distanceToTarget) =>
+      distanceToTarget > collectTargetRadius;
   }
 }

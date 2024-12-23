@@ -27,5 +27,12 @@ namespace Code.Gameplay.Constants
       CommandTypeId.MoveWithAttack,
       CommandTypeId.AimedAttack,
     };
+
+    public static readonly Dictionary<TeamColor, TeamColor> AllyTeamColor = new()
+    {
+      { TeamColor.Blue, TeamColor.White },
+      { TeamColor.White, TeamColor.Blue },
+      { TeamColor.Red, TeamColor.Red },
+    };
   }
 }
