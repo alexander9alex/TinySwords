@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.AllyTargetId allyTargetId { get { return (Code.Gameplay.Features.AI.AllyTargetId)GetComponent(GameComponentsLookup.AllyTargetId); } }
+    public Code.Gameplay.Features.CollectEntities.AllyTargetId allyTargetId { get { return (Code.Gameplay.Features.CollectEntities.AllyTargetId)GetComponent(GameComponentsLookup.AllyTargetId); } }
     public int AllyTargetId { get { return allyTargetId.Value; } }
     public bool hasAllyTargetId { get { return HasComponent(GameComponentsLookup.AllyTargetId); } }
 
     public GameEntity AddAllyTargetId(int newValue) {
         var index = GameComponentsLookup.AllyTargetId;
-        var component = (Code.Gameplay.Features.AI.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyTargetId));
+        var component = (Code.Gameplay.Features.CollectEntities.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.AllyTargetId));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAllyTargetId(int newValue) {
         var index = GameComponentsLookup.AllyTargetId;
-        var component = (Code.Gameplay.Features.AI.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyTargetId));
+        var component = (Code.Gameplay.Features.CollectEntities.AllyTargetId)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.AllyTargetId));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

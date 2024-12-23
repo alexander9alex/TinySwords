@@ -5,7 +5,7 @@ using Code.Gameplay.Constants;
 using Entitas;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.AI.Systems
+namespace Code.Gameplay.Features.CollectEntities.Systems
 {
   public class UpdateFieldOfVisionSystem : IExecuteSystem
   {

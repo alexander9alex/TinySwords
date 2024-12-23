@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.AllyBuffer allyBuffer { get { return (Code.Gameplay.Features.AI.AllyBuffer)GetComponent(GameComponentsLookup.AllyBuffer); } }
+    public Code.Gameplay.Features.CollectEntities.AllyBuffer allyBuffer { get { return (Code.Gameplay.Features.CollectEntities.AllyBuffer)GetComponent(GameComponentsLookup.AllyBuffer); } }
     public System.Collections.Generic.List<int> AllyBuffer { get { return allyBuffer.Value; } }
     public bool hasAllyBuffer { get { return HasComponent(GameComponentsLookup.AllyBuffer); } }
 
     public GameEntity AddAllyBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.AllyBuffer;
-        var component = (Code.Gameplay.Features.AI.AllyBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyBuffer));
+        var component = (Code.Gameplay.Features.CollectEntities.AllyBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.AllyBuffer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAllyBuffer(System.Collections.Generic.List<int> newValue) {
         var index = GameComponentsLookup.AllyBuffer;
-        var component = (Code.Gameplay.Features.AI.AllyBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.AllyBuffer));
+        var component = (Code.Gameplay.Features.CollectEntities.AllyBuffer)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.AllyBuffer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

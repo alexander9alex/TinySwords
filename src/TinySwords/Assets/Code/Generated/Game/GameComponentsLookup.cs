@@ -18,39 +18,39 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 7;
     public const int Transform = 8;
     public const int WorldPosition = 9;
-    public const int AllyBuffer = 10;
-    public const int AllyTargetId = 11;
-    public const int CollectAlliesRadius = 12;
-    public const int CollectReachedTargetsRadius = 13;
-    public const int CollectTargetsRadius = 14;
-    public const int MakeDecisionRequest = 15;
-    public const int NotifyAlliesAboutTarget = 16;
-    public const int ReachedTargetBuffer = 17;
-    public const int TargetBuffer = 18;
-    public const int TimeSinceLastVisionUpdated = 19;
-    public const int UnitAI = 20;
-    public const int UnitDecision = 21;
-    public const int UpdateFieldOfVision = 22;
-    public const int UpdateFieldOfVisionInterval = 23;
-    public const int UpdateFieldOfVisionNowRequest = 24;
-    public const int UpdateFieldOfVisionTimer = 25;
-    public const int VisibleEntityBuffer = 26;
-    public const int VisionRadius = 27;
-    public const int AnimateAttackRequest = 28;
-    public const int AnimationSpeedChanger = 29;
-    public const int AttackAnimator = 30;
-    public const int AttackCooldown = 31;
-    public const int Attacking = 32;
-    public const int AttackInterval = 33;
-    public const int AttackRequest = 34;
-    public const int CanAttack = 35;
-    public const int CanAttackNow = 36;
-    public const int FinishAttack = 37;
-    public const int MakeHit = 38;
-    public const int NotAttacking = 39;
-    public const int Building = 40;
-    public const int BuildTypeId = 41;
-    public const int Castle = 42;
+    public const int MakeDecisionRequest = 10;
+    public const int NotifyAlliesAboutTarget = 11;
+    public const int UnitAI = 12;
+    public const int UnitDecision = 13;
+    public const int AnimateAttackRequest = 14;
+    public const int AnimationSpeedChanger = 15;
+    public const int AttackAnimator = 16;
+    public const int AttackCooldown = 17;
+    public const int Attacking = 18;
+    public const int AttackInterval = 19;
+    public const int AttackRequest = 20;
+    public const int CanAttack = 21;
+    public const int CanAttackNow = 22;
+    public const int FinishAttack = 23;
+    public const int MakeHit = 24;
+    public const int NotAttacking = 25;
+    public const int Building = 26;
+    public const int BuildTypeId = 27;
+    public const int Castle = 28;
+    public const int AllyBuffer = 29;
+    public const int AllyTargetId = 30;
+    public const int CollectAlliesRadius = 31;
+    public const int CollectReachedTargetsRadius = 32;
+    public const int CollectTargetsRadius = 33;
+    public const int ReachedTargetBuffer = 34;
+    public const int TargetBuffer = 35;
+    public const int TimeSinceLastVisionUpdated = 36;
+    public const int UpdateFieldOfVision = 37;
+    public const int UpdateFieldOfVisionInterval = 38;
+    public const int UpdateFieldOfVisionNowRequest = 39;
+    public const int UpdateFieldOfVisionTimer = 40;
+    public const int VisibleEntityBuffer = 41;
+    public const int VisionRadius = 42;
     public const int AimedAttackCommand = 43;
     public const int ApplyCommand = 44;
     public const int CancelCommand = 45;
@@ -168,24 +168,10 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "Transform",
         "WorldPosition",
-        "AllyBuffer",
-        "AllyTargetId",
-        "CollectAlliesRadius",
-        "CollectReachedTargetsRadius",
-        "CollectTargetsRadius",
         "MakeDecisionRequest",
         "NotifyAlliesAboutTarget",
-        "ReachedTargetBuffer",
-        "TargetBuffer",
-        "TimeSinceLastVisionUpdated",
         "UnitAI",
         "UnitDecision",
-        "UpdateFieldOfVision",
-        "UpdateFieldOfVisionInterval",
-        "UpdateFieldOfVisionNowRequest",
-        "UpdateFieldOfVisionTimer",
-        "VisibleEntityBuffer",
-        "VisionRadius",
         "AnimateAttackRequest",
         "AnimationSpeedChanger",
         "AttackAnimator",
@@ -201,6 +187,20 @@ public static class GameComponentsLookup {
         "Building",
         "BuildTypeId",
         "Castle",
+        "AllyBuffer",
+        "AllyTargetId",
+        "CollectAlliesRadius",
+        "CollectReachedTargetsRadius",
+        "CollectTargetsRadius",
+        "ReachedTargetBuffer",
+        "TargetBuffer",
+        "TimeSinceLastVisionUpdated",
+        "UpdateFieldOfVision",
+        "UpdateFieldOfVisionInterval",
+        "UpdateFieldOfVisionNowRequest",
+        "UpdateFieldOfVisionTimer",
+        "VisibleEntityBuffer",
+        "VisionRadius",
         "AimedAttackCommand",
         "ApplyCommand",
         "CancelCommand",
@@ -317,24 +317,10 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.WorldPosition),
-        typeof(Code.Gameplay.Features.AI.AllyBuffer),
-        typeof(Code.Gameplay.Features.AI.AllyTargetId),
-        typeof(Code.Gameplay.Features.AI.CollectAlliesRadius),
-        typeof(Code.Gameplay.Features.AI.CollectReachedTargetsRadius),
-        typeof(Code.Gameplay.Features.AI.CollectTargetsRadius),
         typeof(Code.Gameplay.Features.AI.MakeDecisionRequest),
         typeof(Code.Gameplay.Features.AI.NotifyAlliesAboutTarget),
-        typeof(Code.Gameplay.Features.AI.ReachedTargetBuffer),
-        typeof(Code.Gameplay.Features.AI.TargetBuffer),
-        typeof(Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated),
         typeof(Code.Gameplay.Features.AI.UnitAIComponent),
         typeof(Code.Gameplay.Features.AI.UnitDecisionComponent),
-        typeof(Code.Gameplay.Features.AI.UpdateFieldOfVision),
-        typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval),
-        typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionNowRequest),
-        typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer),
-        typeof(Code.Gameplay.Features.AI.VisibleEntityBuffer),
-        typeof(Code.Gameplay.Features.AI.VisionRadius),
         typeof(Code.Gameplay.Features.Battle.AnimateAttackRequest),
         typeof(Code.Gameplay.Features.Battle.AnimationSpeedChanger),
         typeof(Code.Gameplay.Features.Battle.AttackAnimator),
@@ -350,6 +336,20 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Build.Building),
         typeof(Code.Gameplay.Features.Build.BuildTypeIdComponent),
         typeof(Code.Gameplay.Features.Build.Castle),
+        typeof(Code.Gameplay.Features.CollectEntities.AllyBuffer),
+        typeof(Code.Gameplay.Features.CollectEntities.AllyTargetId),
+        typeof(Code.Gameplay.Features.CollectEntities.CollectAlliesRadius),
+        typeof(Code.Gameplay.Features.CollectEntities.CollectReachedTargetsRadius),
+        typeof(Code.Gameplay.Features.CollectEntities.CollectTargetsRadius),
+        typeof(Code.Gameplay.Features.CollectEntities.ReachedTargetBuffer),
+        typeof(Code.Gameplay.Features.CollectEntities.TargetBuffer),
+        typeof(Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated),
+        typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVision),
+        typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval),
+        typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionNowRequest),
+        typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer),
+        typeof(Code.Gameplay.Features.CollectEntities.VisibleEntityBuffer),
+        typeof(Code.Gameplay.Features.CollectEntities.VisionRadius),
         typeof(Code.Gameplay.Features.Command.AimedAttackCommand),
         typeof(Code.Gameplay.Features.Command.ApplyCommand),
         typeof(Code.Gameplay.Features.Command.CancelCommand),

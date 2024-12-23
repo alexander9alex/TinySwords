@@ -7,14 +7,6 @@ namespace Code.Gameplay.Features.AI
   {
     public AIFeature(ISystemFactory systems)
     {
-      Add(systems.Create<TickToUpdateFieldOfVisionTimerSystem>());
-      Add(systems.Create<UpdateFieldOfVisionNowSystem>());
-      Add(systems.Create<UpdateFieldOfVisionSystem>());
-      
-      Add(systems.Create<CollectTargetsSystem>());
-      Add(systems.Create<CollectReachedTargetsSystem>());
-      Add(systems.Create<CollectAlliesSystem>());
-
       Add(systems.Create<UnitMakeDecisionSystem>());
       Add(systems.Create<RemoveAllUnitDecisionsSystem>());
       Add(systems.Create<ProcessUnitDecisionSystem>());

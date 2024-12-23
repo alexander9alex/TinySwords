@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.VisionRadius visionRadius { get { return (Code.Gameplay.Features.AI.VisionRadius)GetComponent(GameComponentsLookup.VisionRadius); } }
+    public Code.Gameplay.Features.CollectEntities.VisionRadius visionRadius { get { return (Code.Gameplay.Features.CollectEntities.VisionRadius)GetComponent(GameComponentsLookup.VisionRadius); } }
     public float VisionRadius { get { return visionRadius.Value; } }
     public bool hasVisionRadius { get { return HasComponent(GameComponentsLookup.VisionRadius); } }
 
     public GameEntity AddVisionRadius(float newValue) {
         var index = GameComponentsLookup.VisionRadius;
-        var component = (Code.Gameplay.Features.AI.VisionRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.VisionRadius));
+        var component = (Code.Gameplay.Features.CollectEntities.VisionRadius)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.VisionRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceVisionRadius(float newValue) {
         var index = GameComponentsLookup.VisionRadius;
-        var component = (Code.Gameplay.Features.AI.VisionRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.VisionRadius));
+        var component = (Code.Gameplay.Features.CollectEntities.VisionRadius)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.VisionRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

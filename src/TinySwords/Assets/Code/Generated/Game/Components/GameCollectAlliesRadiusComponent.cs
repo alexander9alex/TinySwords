@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.CollectAlliesRadius collectAlliesRadius { get { return (Code.Gameplay.Features.AI.CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
+    public Code.Gameplay.Features.CollectEntities.CollectAlliesRadius collectAlliesRadius { get { return (Code.Gameplay.Features.CollectEntities.CollectAlliesRadius)GetComponent(GameComponentsLookup.CollectAlliesRadius); } }
     public float CollectAlliesRadius { get { return collectAlliesRadius.Value; } }
     public bool hasCollectAlliesRadius { get { return HasComponent(GameComponentsLookup.CollectAlliesRadius); } }
 
     public GameEntity AddCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (Code.Gameplay.Features.AI.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectAlliesRadius));
+        var component = (Code.Gameplay.Features.CollectEntities.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.CollectAlliesRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCollectAlliesRadius(float newValue) {
         var index = GameComponentsLookup.CollectAlliesRadius;
-        var component = (Code.Gameplay.Features.AI.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.AI.CollectAlliesRadius));
+        var component = (Code.Gameplay.Features.CollectEntities.CollectAlliesRadius)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.CollectAlliesRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

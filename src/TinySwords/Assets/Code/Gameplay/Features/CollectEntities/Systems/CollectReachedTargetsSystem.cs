@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Entitas;
 using static Code.Gameplay.Constants.GameConstants;
 
-namespace Code.Gameplay.Features.AI.Systems
+namespace Code.Gameplay.Features.CollectEntities.Systems
 {
   public class CollectReachedTargetsSystem : IExecuteSystem
   {

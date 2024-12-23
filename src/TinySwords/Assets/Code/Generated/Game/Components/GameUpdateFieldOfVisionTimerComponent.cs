@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer updateFieldOfVisionTimer { get { return (Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer)GetComponent(GameComponentsLookup.UpdateFieldOfVisionTimer); } }
+    public Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer updateFieldOfVisionTimer { get { return (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer)GetComponent(GameComponentsLookup.UpdateFieldOfVisionTimer); } }
     public float UpdateFieldOfVisionTimer { get { return updateFieldOfVisionTimer.Value; } }
     public bool hasUpdateFieldOfVisionTimer { get { return HasComponent(GameComponentsLookup.UpdateFieldOfVisionTimer); } }
 
     public GameEntity AddUpdateFieldOfVisionTimer(float newValue) {
         var index = GameComponentsLookup.UpdateFieldOfVisionTimer;
-        var component = (Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer));
+        var component = (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceUpdateFieldOfVisionTimer(float newValue) {
         var index = GameComponentsLookup.UpdateFieldOfVisionTimer;
-        var component = (Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer)CreateComponent(index, typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionTimer));
+        var component = (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionTimer));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

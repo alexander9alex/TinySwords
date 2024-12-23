@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.AI.UpdateFieldOfVision updateFieldOfVisionComponent = new Code.Gameplay.Features.AI.UpdateFieldOfVision();
+    static readonly Code.Gameplay.Features.CollectEntities.UpdateFieldOfVision updateFieldOfVisionComponent = new Code.Gameplay.Features.CollectEntities.UpdateFieldOfVision();
 
     public bool isUpdateFieldOfVision {
         get { return HasComponent(GameComponentsLookup.UpdateFieldOfVision); }

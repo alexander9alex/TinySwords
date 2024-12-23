@@ -3,7 +3,7 @@ using Code.Gameplay.Constants;
 using Code.Gameplay.Services;
 using Entitas;
 
-namespace Code.Gameplay.Features.AI.Systems
+namespace Code.Gameplay.Features.CollectEntities.Systems
 {
   public class TickToUpdateFieldOfVisionTimerSystem : IExecuteSystem
   {

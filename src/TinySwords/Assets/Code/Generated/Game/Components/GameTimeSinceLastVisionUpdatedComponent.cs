@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated timeSinceLastVisionUpdated { get { return (Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated)GetComponent(GameComponentsLookup.TimeSinceLastVisionUpdated); } }
+    public Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated timeSinceLastVisionUpdated { get { return (Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated)GetComponent(GameComponentsLookup.TimeSinceLastVisionUpdated); } }
     public float TimeSinceLastVisionUpdated { get { return timeSinceLastVisionUpdated.Value; } }
     public bool hasTimeSinceLastVisionUpdated { get { return HasComponent(GameComponentsLookup.TimeSinceLastVisionUpdated); } }
 
     public GameEntity AddTimeSinceLastVisionUpdated(float newValue) {
         var index = GameComponentsLookup.TimeSinceLastVisionUpdated;
-        var component = (Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated)CreateComponent(index, typeof(Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated));
+        var component = (Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceTimeSinceLastVisionUpdated(float newValue) {
         var index = GameComponentsLookup.TimeSinceLastVisionUpdated;
-        var component = (Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated)CreateComponent(index, typeof(Code.Gameplay.Features.AI.TimeSinceLastVisionUpdated));
+        var component = (Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.TimeSinceLastVisionUpdated));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

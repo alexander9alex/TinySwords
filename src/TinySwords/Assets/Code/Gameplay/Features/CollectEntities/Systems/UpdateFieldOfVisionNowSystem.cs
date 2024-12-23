@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entitas;
 
-namespace Code.Gameplay.Features.AI.Systems
+namespace Code.Gameplay.Features.CollectEntities.Systems
 {
   public class UpdateFieldOfVisionNowSystem : IExecuteSystem
   {

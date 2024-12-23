@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features.AI;
 using Code.Gameplay.Features.Battle;
+using Code.Gameplay.Features.CollectEntities;
 using Code.Gameplay.Features.Command;
 using Code.Gameplay.Features.Command.Systems;
 using Code.Gameplay.Features.Death;
@@ -22,6 +23,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       
       Add(systems.Create<RemoveCompletedCommandFromSelectableSystem>());
       
+      Add(systems.Create<CollectEntitiesFeature>());
       Add(systems.Create<AIFeature>());
 
       Add(systems.Create<NavMeshFeature>());

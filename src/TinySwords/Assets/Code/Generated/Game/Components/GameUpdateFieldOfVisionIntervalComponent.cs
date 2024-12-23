@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval updateFieldOfVisionInterval { get { return (Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval)GetComponent(GameComponentsLookup.UpdateFieldOfVisionInterval); } }
+    public Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval updateFieldOfVisionInterval { get { return (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval)GetComponent(GameComponentsLookup.UpdateFieldOfVisionInterval); } }
     public float UpdateFieldOfVisionInterval { get { return updateFieldOfVisionInterval.Value; } }
     public bool hasUpdateFieldOfVisionInterval { get { return HasComponent(GameComponentsLookup.UpdateFieldOfVisionInterval); } }
 
     public GameEntity AddUpdateFieldOfVisionInterval(float newValue) {
         var index = GameComponentsLookup.UpdateFieldOfVisionInterval;
-        var component = (Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval)CreateComponent(index, typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval));
+        var component = (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceUpdateFieldOfVisionInterval(float newValue) {
         var index = GameComponentsLookup.UpdateFieldOfVisionInterval;
-        var component = (Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval)CreateComponent(index, typeof(Code.Gameplay.Features.AI.UpdateFieldOfVisionInterval));
+        var component = (Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval)CreateComponent(index, typeof(Code.Gameplay.Features.CollectEntities.UpdateFieldOfVisionInterval));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
