@@ -22,9 +22,12 @@ namespace Code.Gameplay.Features.Battle.Systems
       {
         GameEntity caster = _game.GetEntityWithId(request.CasterId);
 
+        if (caster == null)
+          return;
+
         caster.isAttacking = false;
         caster.isNotAttacking = true;
-        
+
         if (caster.hasAttackInterval)
           caster.ReplaceAttackCooldown(caster.AttackInterval);
 
