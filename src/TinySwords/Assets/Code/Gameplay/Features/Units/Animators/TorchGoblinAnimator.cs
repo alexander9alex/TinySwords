@@ -1,4 +1,5 @@
-﻿using Code.Gameplay.Constants;
+﻿using System;
+using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Battle.Animators;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Move.Animators;
@@ -7,9 +8,10 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Units.Animators
 {
-  public class TorchGoblinAnimator : MonoBehaviour, IMoveAnimator, IAttackAnimator
+  public class TorchGoblinAnimator : MonoBehaviour, IMoveAnimator, IAttackAnimator, IAnimationSpeedChanger
   {
     private const float FlipXMinValue = 0.1f;
+    private static readonly int AnimationsSpeed = Animator.StringToHash("AnimationsSpeed");
 
     public Animator Animator;
     public SpriteRenderer SpriteRenderer;
@@ -17,6 +19,7 @@ namespace Code.Gameplay.Features.Units.Animators
 
     private IAttackAnimationService _attackAnimationService;
     private int _unitId;
+    private float _animationsSpeed = 1;
 
     [Inject]
     private void Construct(IAttackAnimationService attackService) =>
@@ -46,7 +49,7 @@ namespace Code.Gameplay.Features.Units.Animators
 
       LookDirection = dir.normalized;
     }
-    
+
     public void UnitMakeHit() =>
       _attackAnimationService.UnitMakeHit(_unitId);
 
@@ -69,6 +72,15 @@ namespace Code.Gameplay.Features.Units.Animators
     {
       if (Mathf.Abs(dir.x) > FlipXMinValue)
         SpriteRenderer.flipX = dir.x < 0;
+    }
+
+    public void ChangeSpeed(float speed)
+    {
+      if (Math.Abs(_animationsSpeed - speed) <= float.Epsilon)
+        return;
+
+      _animationsSpeed = speed;
+      Animator.SetFloat(AnimationsSpeed, speed);
     }
   }
 }

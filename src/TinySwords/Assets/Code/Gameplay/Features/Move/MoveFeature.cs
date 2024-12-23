@@ -19,6 +19,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<UpdateMoveDirectionSystem>());
       Add(systems.Create<UpdateMovementStateSystem>());
 
+      Add(systems.Create<CalculateAnimationSpeedSystem>());
       Add(systems.Create<AnimateIdleSystem>());
       Add(systems.Create<AnimateMoveSystem>());
       Add(systems.Create<UpdateLookDirectionSystem>());

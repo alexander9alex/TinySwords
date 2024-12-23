@@ -10,7 +10,8 @@ namespace Code.Gameplay.Features.Units.Registrars
     {
       Entity
         .AddMoveAnimator(TorchGoblinAnimator)
-        .AddAttackAnimator(TorchGoblinAnimator);
+        .AddAttackAnimator(TorchGoblinAnimator)
+        .AddAnimationSpeedChanger(TorchGoblinAnimator);
     }
 
     public override void UnregisterComponents()
@@ -20,6 +21,9 @@ namespace Code.Gameplay.Features.Units.Registrars
 
       if (Entity.hasAttackAnimator)
         Entity.RemoveAttackAnimator();
+
+      if (Entity.hasAnimationSpeedChanger)
+        Entity.RemoveAnimationSpeedChanger();
     }
   }
 }

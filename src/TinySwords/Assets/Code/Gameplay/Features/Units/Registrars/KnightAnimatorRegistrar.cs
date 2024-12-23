@@ -11,7 +11,8 @@ namespace Code.Gameplay.Features.Units.Registrars
       Entity
         .AddSelectingAnimator(KnightAnimator)
         .AddMoveAnimator(KnightAnimator)
-        .AddAttackAnimator(KnightAnimator);
+        .AddAttackAnimator(KnightAnimator)
+        .AddAnimationSpeedChanger(KnightAnimator);
     }
 
     public override void UnregisterComponents()
@@ -24,6 +25,9 @@ namespace Code.Gameplay.Features.Units.Registrars
       
       if (Entity.hasAttackAnimator)
         Entity.RemoveAttackAnimator();
+
+      if (Entity.hasAnimationSpeedChanger)
+        Entity.RemoveAnimationSpeedChanger();
     }
   }
 }
