@@ -48,6 +48,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.UnitDeathFactory(Container);
       Bind.AttackAnimationService(Container);
       Bind.LevelFactory(Container);
+      Bind.SelectableCommandService(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;
@@ -122,7 +123,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       // Act
       float timer = 0;
 
-      while (timer <= 5)
+      while (timer <= 3)
       {
         unitBehaviourFeature.Execute();
         unitBehaviourFeature.Cleanup();

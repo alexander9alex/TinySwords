@@ -1,5 +1,7 @@
 ﻿using Code.Gameplay.Features.AI;
 using Code.Gameplay.Features.Battle;
+using Code.Gameplay.Features.Command;
+using Code.Gameplay.Features.Command.Systems;
 using Code.Gameplay.Features.Death;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
@@ -17,6 +19,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     public UnitBehaviourFeature(ISystemFactory systems)
     {
       Add(systems.Create<BindViewFeature>());
+      
+      Add(systems.Create<RemoveCompletedCommandFromSelectableSystem>());
       
       Add(systems.Create<AIFeature>());
 

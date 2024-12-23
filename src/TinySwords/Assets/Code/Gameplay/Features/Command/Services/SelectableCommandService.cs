@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
 {
-  class SelectableCommandService : ISelectableCommandService
+  public class SelectableCommandService : ISelectableCommandService
   {
     private readonly GameContext _gameContext;
 
