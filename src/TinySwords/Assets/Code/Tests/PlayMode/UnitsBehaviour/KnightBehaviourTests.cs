@@ -202,11 +202,13 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
+      unitBehaviourFeature.Execute();
+      unitBehaviourFeature.Cleanup();
 
       // Act
       float timer = 0;
 
-      while (knight.hasUserCommand && timer <= 10)
+      while (knight.hasDestination && timer <= 10)
       {
         unitBehaviourFeature.Execute();
         unitBehaviourFeature.Cleanup();
