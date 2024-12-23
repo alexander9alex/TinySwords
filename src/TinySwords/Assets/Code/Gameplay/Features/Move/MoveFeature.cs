@@ -12,6 +12,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<FollowToTargetSystem>());
       Add(systems.Create<TeleportToTargetSystem>());
       Add(systems.Create<MoveToDestinationSystem>());
+      Add(systems.Create<CalculateSpeedSystem>());
 
       Add(systems.Create<UpdateWorldPositionSystem>());
 

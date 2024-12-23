@@ -3,5 +3,6 @@
   public interface ITimeService
   {
     float DeltaTime { get; }
+    int TimeScale { get; set; }
   }
 }

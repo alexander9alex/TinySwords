@@ -9,7 +9,7 @@ namespace Code.Infrastructure.Views
     {
       Add(systems.Create<BindEntityViewFromPrefabSystem>());
       Add(systems.Create<InitViewPositionSystem>());
-      Add(systems.Create<InitUnitSpeedSystem>());
+      Add(systems.Create<InitSpeedSystem>());
       
       Add(systems.Create<CleanupInitializeMarkerSystem>());
     }
