@@ -15,6 +15,7 @@ namespace Code.Gameplay.Constants
     public const float StoppingDistance = 0.01f;
     public const float MinLastTimeToUpdateFieldOfVision = 0.25f;
     public const TeamColor UserTeamColor = TeamColor.Blue;
+    public const TeamColor HostileEnemyColor = TeamColor.Red;
 
     public static readonly int SelectionLayerMask = LayerMask.GetMask("Unit", "Building");
     public static int FocusLayerMask => SelectionLayerMask;

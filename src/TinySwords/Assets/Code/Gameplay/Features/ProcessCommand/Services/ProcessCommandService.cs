@@ -40,7 +40,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
 
     public void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected)
     {
-      if (!HasTargetInScreenPosition(out GameEntity target, request.ScreenPosition))
+      if (!HasHostileTargetInScreenPosition(out GameEntity target, request.ScreenPosition))
         return;
 
       foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
@@ -65,9 +65,9 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     }
 
     public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos) =>
-      HasTargetInScreenPosition(out target, screenPos);
+      HasHostileTargetInScreenPosition(out target, screenPos);
 
-    private bool HasTargetInScreenPosition(out GameEntity target, Vector2 screenPos)
+    private bool HasHostileTargetInScreenPosition(out GameEntity target, Vector2 screenPos)
     {
       target = null;
 
@@ -149,6 +149,6 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
       !TargetIsSuitable(possibleTarget);
 
     private static bool TargetIsSuitable(GameEntity target) =>
-      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor != GameConstants.UserTeamColor;
+      target.hasId && target.hasTransform && target.hasWorldPosition && target.hasTeamColor && target.TeamColor == GameConstants.HostileEnemyColor;
   }
 }

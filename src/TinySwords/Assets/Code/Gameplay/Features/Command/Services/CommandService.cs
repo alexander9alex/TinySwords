@@ -1,46 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
-using Code.Gameplay.Common.Physics;
-using Code.Gameplay.Common.Providers;
-using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Command.Data;
-using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
-using Code.Gameplay.Features.Move.Services;
 using Code.Gameplay.Features.ProcessCommand.Services;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.UI.Hud.Service;
-using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Services
 {
   class CommandService : ICommandService
   {
-    private readonly IPhysicsService _physicsService;
-    private readonly ICameraProvider _cameraProvider;
     private readonly IHudService _hudService;
     private readonly IInputService _inputService;
     private readonly ISoundService _soundService;
     private readonly SelectableCommandService _selectableCommandService;
-    private readonly IBattleFormationService _battleFormationService;
-    private readonly List<GameEntity> _selectedBuffer = new(32);
     private readonly IProcessCommandService _processCommandService;
 
-    public CommandService(IPhysicsService physicsService, ICameraProvider cameraProvider, IHudService hudService, IInputService inputService,
-      ISoundService soundService, IBattleFormationService battleFormationService, IProcessCommandService processCommandService)
+    public CommandService(IHudService hudService, IInputService inputService, ISoundService soundService, IProcessCommandService processCommandService)
     {
-      _physicsService = physicsService;
-      _cameraProvider = cameraProvider;
       _hudService = hudService;
       _inputService = inputService;
       _soundService = soundService;
-      _battleFormationService = battleFormationService;
       _processCommandService = processCommandService;
     }
 
