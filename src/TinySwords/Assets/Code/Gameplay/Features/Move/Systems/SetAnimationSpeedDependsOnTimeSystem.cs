@@ -3,12 +3,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Move.Systems
 {
-  public class CalculateAnimationSpeedSystem : IExecuteSystem
+  public class SetAnimationSpeedDependsOnTimeSystem : IExecuteSystem
   {
     private readonly ITimeService _time;
     private readonly IGroup<GameEntity> _entities;
 
-    public CalculateAnimationSpeedSystem(GameContext game, ITimeService time)
+    public SetAnimationSpeedDependsOnTimeSystem(GameContext game, ITimeService time)
     {
       _time = time;
       _entities = game.GetGroup(GameMatcher
@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Move.Systems
     {
       foreach (GameEntity entity in _entities)
       {
-        entity.AnimationSpeedChanger.ChangeSpeed(entity.Speed * _time.TimeScale);
+        entity.AnimationSpeedChanger.ChangeSpeed(_time.TimeScale);
       }
     }
   }
