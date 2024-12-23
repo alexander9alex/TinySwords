@@ -8,18 +8,22 @@ namespace Code.Common.Entities
   public class SelfInitializedEntityView : MonoBehaviour
   {
     public EntityBehaviour EntityBehaviour;
-    
+
     private IIdentifierService _identifiers;
 
     [Inject]
-    private void Construct(IIdentifierService identifiers) => 
+    private void Construct(IIdentifierService identifiers)
+    {
       _identifiers = identifiers;
 
-    private void Awake()
+      Initialize();
+    }
+
+    private void Initialize()
     {
       GameEntity entity = CreateEntity.Empty()
         .AddId(_identifiers.Next());
-      
+
       EntityBehaviour.SetEntity(entity);
     }
   }

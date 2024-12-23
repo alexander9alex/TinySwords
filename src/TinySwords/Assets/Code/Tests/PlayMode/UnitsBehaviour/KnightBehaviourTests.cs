@@ -1,7 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Code.Common.Entities;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
+using Code.Gameplay.Features.NavMesh.Registrars;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Level.Data;
@@ -59,29 +63,31 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
     public IEnumerator WhenUnitHasMoveCommand_ThenUnitShouldMoveToEndDestination()
     {
       // Arrange
-      ITimeService timeService = Container.Resolve<ITimeService>();
-
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
-      
-      Vector2 destinationPosition = new(2, 1);
-
-      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
-
       EditorSceneManager.LoadSceneInPlayMode(EmptyTestScenePath, new(LoadSceneMode.Single));
       yield return null;
+
+      BindNavMesh();
+      
+      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+
+      Vector2 destinationPosition = new(2, 1);
+      GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
+      
+      ITimeService timeService = Container.Resolve<ITimeService>();
 
       UnitBehaviourFeature unitBehaviourFeature = Container.Resolve<ISystemFactory>().Create<UnitBehaviourFeature>();
       unitBehaviourFeature.Initialize();
       unitBehaviourFeature.Execute();
       unitBehaviourFeature.Cleanup();
-      yield return null;
-      
+
       knight.ReplaceUserCommand(new() { CommandTypeId = CommandTypeId.Move, WorldPosition = destinationPosition });
+      unitBehaviourFeature.Execute();
+      unitBehaviourFeature.Cleanup();
 
       // Act
       float timer = 0;
 
-      while (timer <= 3)
+      while (knight.hasDestination && timer <= 3)
       {
         unitBehaviourFeature.Execute();
         unitBehaviourFeature.Cleanup();
@@ -90,7 +96,31 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       }
 
       // Assert
-      knight.WorldPosition.Should().Be(destinationPosition);
+      Vector2.Distance(knight.WorldPosition, destinationPosition).Should().BeLessThanOrEqualTo(MaxPositionDelta);
+    }
+
+    private void BindNavMesh()
+    {
+      SelfInitializedEntityView navMeshInitializer = AllGameObjects(SceneManager.GetActiveScene())
+        .Single(x => x.GetComponent<NavMeshRegistrar>())
+        .GetComponent<SelfInitializedEntityView>();
+
+      Container.Inject(navMeshInitializer);
+    }
+
+    private static IEnumerable<GameObject> AllGameObjects(Scene scene)
+    {
+      Queue<GameObject> gameObjectQueue = new(scene.GetRootGameObjects());
+
+      while (gameObjectQueue.Count > 0)
+      {
+        GameObject gameObject = gameObjectQueue.Dequeue();
+
+        yield return gameObject;
+
+        foreach (Transform child in gameObject.transform)
+          gameObjectQueue.Enqueue(child.gameObject);
+      }
     }
   }
 }
