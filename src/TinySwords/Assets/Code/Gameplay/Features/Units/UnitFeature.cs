@@ -7,6 +7,7 @@ namespace Code.Gameplay.Features.Units
   {
     public UnitsFeature(ISystemFactory systems)
     {
+      Add(systems.Create<RecruitNeutralUnitSystem>());
       Add(systems.Create<NotifyAlliesAboutTargetSystem>());
     }
   }

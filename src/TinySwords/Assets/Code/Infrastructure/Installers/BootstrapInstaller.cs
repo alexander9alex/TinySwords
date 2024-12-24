@@ -17,6 +17,7 @@ using Code.Gameplay.Features.ProcessCommand.Services;
 using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Features.Units.Services;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
@@ -104,6 +105,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ISoundService>().To<SoundService>().AsSingle();
       Container.Bind<IBattleFormationService>().To<BattleFormationService>().AsSingle();
       Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
+      Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
       
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();

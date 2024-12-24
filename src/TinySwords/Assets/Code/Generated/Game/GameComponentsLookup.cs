@@ -145,17 +145,18 @@ public static class GameComponentsLookup {
     public const int Dead = 134;
     public const int LegsPositionOffset = 135;
     public const int MaxHp = 136;
-    public const int NotifyAlliesAboutTarget = 137;
-    public const int OffsetPositionByLegs = 138;
-    public const int Speed = 139;
-    public const int TeamColor = 140;
-    public const int Unit = 141;
-    public const int UnitTypeId = 142;
-    public const int CurrentAvoidancePriority = 143;
-    public const int IdleAvoidancePriority = 144;
-    public const int MoveAvoidancePriority = 145;
+    public const int NeutralUnit = 137;
+    public const int NotifyAlliesAboutTarget = 138;
+    public const int OffsetPositionByLegs = 139;
+    public const int Speed = 140;
+    public const int TeamColor = 141;
+    public const int Unit = 142;
+    public const int UnitTypeId = 143;
+    public const int CurrentAvoidancePriority = 144;
+    public const int IdleAvoidancePriority = 145;
+    public const int MoveAvoidancePriority = 146;
 
-    public const int TotalComponents = 146;
+    public const int TotalComponents = 147;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -295,6 +296,7 @@ public static class GameComponentsLookup {
         "Dead",
         "LegsPositionOffset",
         "MaxHp",
+        "NeutralUnit",
         "NotifyAlliesAboutTarget",
         "OffsetPositionByLegs",
         "Speed",
@@ -444,6 +446,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.Dead),
         typeof(Code.Gameplay.Features.Units.LegsPositionOffset),
         typeof(Code.Gameplay.Features.Units.MaxHp),
+        typeof(Code.Gameplay.Features.Units.NeutralUnit),
         typeof(Code.Gameplay.Features.Units.NotifyAlliesAboutTarget),
         typeof(Code.Gameplay.Features.Units.OffsetPositionByLegs),
         typeof(Code.Gameplay.Features.Units.Speed),

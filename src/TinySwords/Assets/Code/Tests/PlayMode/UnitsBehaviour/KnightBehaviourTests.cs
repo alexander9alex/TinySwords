@@ -49,6 +49,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.AttackAnimationService(Container);
       Bind.LevelFactory(Container);
       Bind.SelectableCommandService(Container);
+      Bind.RecruitUnitService(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;

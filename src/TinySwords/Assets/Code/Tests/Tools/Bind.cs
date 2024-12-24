@@ -11,6 +11,7 @@ using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Features.Units.Services;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
@@ -108,5 +109,8 @@ namespace Code.Tests.Tools
 
     public static void SelectableCommandService(DiContainer diContainer) =>
       diContainer.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
+
+    public static void RecruitUnitService(DiContainer diContainer) =>
+      diContainer.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
   }
 }

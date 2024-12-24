@@ -42,26 +42,20 @@ namespace Code.Gameplay.Features.Units.Factory
           .AddMaxHp(config.Hp)
           .AddUnitAI(_unitUI)
           .AddUnitTypeId(type)
-          
           .AddAttackCooldown(0)
           .AddAttackInterval(config.AttackCooldown)
           .AddAttackReach(config.AttackReach)
-          
           .AddVisibleEntityBuffer(new())
           .AddVisionRadius(config.VisionRadius)
           .AddUpdateFieldOfVisionTimer(0)
           .AddUpdateFieldOfVisionInterval(config.UpdateFieldOfVisionInterval)
           .AddTimeSinceLastVisionUpdated(0)
-          
           .AddTargetBuffer(new List<int>())
           .AddCollectTargetsRadius(config.CollectTargetRadius)
-
           .AddReachedTargetBuffer(new List<int>())
           .AddCollectReachedTargetsRadius(config.AttackReach)
-
           .AddAllyBuffer(new List<int>())
           .AddCollectAlliesRadius(config.CollectAlliesRadius)
-          
           .With(x => x.isUnit = true)
           .With(x => x.isIdle = true)
           .With(x => x.isInitializationRequest = true)
@@ -72,7 +66,7 @@ namespace Code.Gameplay.Features.Units.Factory
           .With(x => x.isAlive = true)
           .With(x => x.isFocusing = true)
           .With(x => x.isUnfocused = true)
-          ;
+        ;
 
       switch (type, color)
       {
@@ -108,12 +102,12 @@ namespace Code.Gameplay.Features.Units.Factory
 
     private void CreateWhiteKnight(GameEntity unit)
     {
-      
+      unit
+        .With(x => x.isNeutralUnit = true);
     }
 
     private void CreateRedTorchGoblin(GameEntity unit)
     {
-      
     }
   }
 }

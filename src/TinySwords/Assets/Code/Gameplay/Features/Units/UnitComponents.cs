@@ -17,4 +17,5 @@ namespace Code.Gameplay.Features.Units
   [Game] public class LegsPositionOffset : IComponent { public Vector2 Value; }
   [Game] public class OffsetPositionByLegs : IComponent { }
   [Game] public class NotifyAlliesAboutTarget : IComponent { }
+  [Game] public class NeutralUnit : IComponent { }
 }

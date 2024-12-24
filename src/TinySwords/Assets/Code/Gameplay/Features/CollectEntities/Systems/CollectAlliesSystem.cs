@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using static Code.Gameplay.Constants.GameConstants;
 
 namespace Code.Gameplay.Features.CollectEntities.Systems
 {
@@ -45,16 +46,31 @@ namespace Code.Gameplay.Features.CollectEntities.Systems
 
     private bool AllyIsSuitable(GameEntity entity, GameEntity ally, float distanceToAlly)
     {
-      if (distanceToAlly > entity.CollectAlliesRadius)
+      if (EntityIsUnreachable(entity.CollectAlliesRadius, distanceToAlly))
         return false;
 
-      if (ally is not { isAlive: true, hasTeamColor: true, hasId: true })
+      if (AllyIsNotValid(ally))
         return false;
 
-      if (entity.TeamColor != ally.TeamColor)
-        return false;
+      if (SameTeamColor(entity, ally))
+        return true;
 
-      return true;
+      if (IsAlly(entity, ally))
+        return true;
+
+      return false;
     }
+
+    private static bool IsAlly(GameEntity entity, GameEntity ally) =>
+      AllyTeamColor[entity.TeamColor] == ally.TeamColor;
+
+    private static bool SameTeamColor(GameEntity entity, GameEntity ally) =>
+      entity.TeamColor == ally.TeamColor;
+
+    private static bool AllyIsNotValid(GameEntity ally) =>
+      ally is not { isAlive: true, hasTeamColor: true, hasId: true };
+
+    private static bool EntityIsUnreachable(float collectAllyRadius, float distanceToAlly) =>
+      distanceToAlly > collectAllyRadius;
   }
 }
