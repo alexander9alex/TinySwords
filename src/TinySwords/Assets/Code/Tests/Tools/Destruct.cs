@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Features.Destruct;
+using UnityEngine;
 
 namespace Code.Tests.Tools
 {
@@ -12,5 +13,8 @@ namespace Code.Tests.Tools
       processDestructedFeature.Execute();
       processDestructedFeature.Cleanup();
     }
+
+    public static void CoroutineRunner() =>
+      Object.Destroy(GameObject.Find(nameof(Infrastructure.Common.CoroutineRunner.CoroutineRunner)));
   }
 }

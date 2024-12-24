@@ -34,6 +34,7 @@ namespace Code.Tests.PlayMode
       Bind.StaticDataService(Container);
       Bind.IdentifierService(Container);
       Bind.EntityViewFactory(Container);
+      Bind.CoroutineRunner(Container);
 
       Bind.CollisionRegistryStub(Container);
       
@@ -46,6 +47,8 @@ namespace Code.Tests.PlayMode
       Destruct.AllEntities(
         Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(),
         Container.Resolve<GameContext>());
+      
+      Destruct.CoroutineRunner();
     }
 
     [UnityTest]

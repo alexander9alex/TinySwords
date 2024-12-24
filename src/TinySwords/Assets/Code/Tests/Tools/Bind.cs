@@ -17,9 +17,11 @@ using Code.Gameplay.Services;
 using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
+using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views.Factory;
 using NSubstitute;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Tests.Tools
@@ -112,5 +114,12 @@ namespace Code.Tests.Tools
 
     public static void RecruitUnitService(DiContainer diContainer) =>
       diContainer.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
+
+    public static void CoroutineRunner(DiContainer diContainer)
+    {
+      CoroutineRunner coroutineRunner = new GameObject("CoroutineRunner").AddComponent<CoroutineRunner>();
+      Object.DontDestroyOnLoad(coroutineRunner);
+      diContainer.Bind<ICoroutineRunner>().To<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
+    }
   }
 }

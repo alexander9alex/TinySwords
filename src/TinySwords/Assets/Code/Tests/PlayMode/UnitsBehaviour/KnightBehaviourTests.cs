@@ -50,6 +50,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.LevelFactory(Container);
       Bind.SelectableCommandService(Container);
       Bind.RecruitUnitService(Container);
+      Bind.CoroutineRunner(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;
@@ -61,6 +62,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Destruct.AllEntities(
         Container.Resolve<ISystemFactory>().Create<ProcessDestructedFeature>(),
         Container.Resolve<GameContext>());
+
+      Destruct.CoroutineRunner();
     }
 
     [UnityTest]

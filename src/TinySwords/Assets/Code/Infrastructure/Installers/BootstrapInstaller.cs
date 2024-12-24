@@ -32,11 +32,12 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Views.Factory;
 using Code.UI.Hud.Factory;
 using Code.UI.Hud.Service;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
 {
-  public class BootstrapInstaller : MonoInstaller, IInitializable, ICoroutineRunner
+  public class BootstrapInstaller : MonoInstaller, IInitializable
   {
     public Curtain Curtain;
 
@@ -44,6 +45,7 @@ namespace Code.Infrastructure.Installers
     {
       BindInfrastructureServices();
       BindInfrastructureFactories();
+      BindCoroutineRunner();
       BindCommonServices();
       BindContexts();
       BindUIServices();
@@ -66,6 +68,13 @@ namespace Code.Infrastructure.Installers
     private void BindInfrastructureFactories()
     {
       Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
+    }
+
+    private void BindCoroutineRunner()
+    {
+      CoroutineRunner coroutineRunner = new GameObject(nameof(CoroutineRunner)).AddComponent<CoroutineRunner>();
+      DontDestroyOnLoad(coroutineRunner);
+      Container.Bind<ICoroutineRunner>().To<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
     }
 
     private void BindCommonServices()
@@ -106,7 +115,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IBattleFormationService>().To<BattleFormationService>().AsSingle();
       Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
       Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
-      
+
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
@@ -127,7 +136,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<GetInput>().To<GetInput>().AsSingle();
       Container.Bind<Score>().To<Score>().AsSingle();
       Container.Bind<IBrainsComponents>().To<BrainsComponents>().AsSingle();
-      
+
       Container.Bind<UnitBrains>().To<UnitBrains>().AsSingle();
       Container.Bind<IUnitAI>().To<UnitAI>().AsSingle();
     }

@@ -18,25 +18,26 @@ namespace Code.Gameplay.Features.Units.Systems
       _game = game;
       _recruitUnitService = recruitUnitService;
       _units = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Unit, GameMatcher.NeutralUnit, GameMatcher.AllyBuffer, GameMatcher.Alive));
+        .AllOf(GameMatcher.Unit, GameMatcher.NeutralUnit, GameMatcher.AllyBuffer, GameMatcher.Alive, GameMatcher.View, GameMatcher.Id));
     }
 
     public void Execute()
     {
       foreach (GameEntity unit in _units.GetEntities(_buffer))
+      foreach (int allyId in unit.AllyBuffer)
       {
-        foreach (int allyId in unit.AllyBuffer)
+        if (!unit.isNeutralUnit)
+          return;
+
+        GameEntity ally = _game.GetEntityWithId(allyId);
+
+        if (ally is not { isAlive: true, hasTeamColor: true })
+          return;
+
+        if (ally.TeamColor == GameConstants.UserTeamColor)
         {
-          GameEntity ally = _game.GetEntityWithId(allyId);
-
-          if (ally is not { isAlive: true, hasTeamColor: true })
-            return;
-
-          if (ally.TeamColor == GameConstants.UserTeamColor)
-          {
-            _recruitUnitService.RecruitUnit(unit);
-            unit.isNeutralUnit = false;
-          }
+          _recruitUnitService.RecruitUnit(unit);
+          unit.isNeutralUnit = false;
         }
       }
     }
