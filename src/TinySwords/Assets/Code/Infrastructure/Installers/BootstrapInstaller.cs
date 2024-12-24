@@ -24,6 +24,7 @@ using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Common.CoroutineRunner;
+using Code.Infrastructure.Common.Services;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.Factory;
@@ -63,6 +64,7 @@ namespace Code.Infrastructure.Installers
     {
       Container.BindInterfacesAndSelfTo<BootstrapInstaller>().FromInstance(this).AsSingle();
       Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+      Container.Bind<IDelayService>().To<DelayService>().AsSingle();
     }
 
     private void BindInfrastructureFactories()

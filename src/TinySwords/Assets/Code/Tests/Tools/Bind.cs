@@ -18,6 +18,7 @@ using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
 using Code.Infrastructure.Common.CoroutineRunner;
+using Code.Infrastructure.Common.Services;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views.Factory;
 using NSubstitute;
@@ -121,5 +122,8 @@ namespace Code.Tests.Tools
       Object.DontDestroyOnLoad(coroutineRunner);
       diContainer.Bind<ICoroutineRunner>().To<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
     }
+
+    public static void DelayService(DiContainer diContainer) =>
+      diContainer.Bind<IDelayService>().To<DelayService>().AsSingle();
   }
 }

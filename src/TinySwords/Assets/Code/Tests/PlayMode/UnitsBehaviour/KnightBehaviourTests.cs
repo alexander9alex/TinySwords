@@ -51,6 +51,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.SelectableCommandService(Container);
       Bind.RecruitUnitService(Container);
       Bind.CoroutineRunner(Container);
+      Bind.DelayService(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;

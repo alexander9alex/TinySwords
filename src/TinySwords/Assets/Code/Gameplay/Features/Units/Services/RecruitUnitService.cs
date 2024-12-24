@@ -4,6 +4,7 @@ using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Data;
+using Code.Infrastructure.Common.Services;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Units.Services
@@ -14,11 +15,13 @@ namespace Code.Gameplay.Features.Units.Services
 
     private readonly IStaticDataService _staticData;
     private readonly IAttackAnimationService _attackAnimationService;
+    private readonly IDelayService _delayService;
 
-    public RecruitUnitService(IStaticDataService staticData, IAttackAnimationService attackAnimationService)
+    public RecruitUnitService(IStaticDataService staticData, IAttackAnimationService attackAnimationService, IDelayService delayService)
     {
       _staticData = staticData;
       _attackAnimationService = attackAnimationService;
+      _delayService = delayService;
     }
 
     public void RecruitUnit(GameEntity unit)
@@ -40,7 +43,7 @@ namespace Code.Gameplay.Features.Units.Services
     private void ChangeAnimator(GameEntity unit)
     {
       Animator animator = GetUnitAnimator(unit);
-      
+
       float animationPlaybackTime = AnimationPlaybackTime(animator);
       int animationNameHash = AnimationNameHash(animator);
       AnimationEvent[] animationEvents = AnimationEvents(animator);
@@ -68,13 +71,13 @@ namespace Code.Gameplay.Features.Units.Services
     private void ProcessMakeHitEvent(float eventTime, float animationPlaybackTime, int unitId)
     {
       if (animationPlaybackTime < eventTime)
-        _attackAnimationService.UnitMakeHitWithDelay(unitId, eventTime - animationPlaybackTime);
+        _delayService.MakeActionWithDelay(() => _attackAnimationService.UnitMakeHit(unitId), delay: eventTime - animationPlaybackTime);
     }
 
     private void ProcessFinishedAttack(float eventTime, float animationPlaybackTime, int unitId)
     {
       if (animationPlaybackTime < eventTime)
-        _attackAnimationService.UnitFinishedAttack(unitId, eventTime - animationPlaybackTime);
+        _delayService.MakeActionWithDelay(() => _attackAnimationService.UnitFinishedAttack(unitId), eventTime - animationPlaybackTime);
     }
 
     private static void ContinueAnimation(Animator animator, int animationNameHash, float animationPlaybackTime) =>
