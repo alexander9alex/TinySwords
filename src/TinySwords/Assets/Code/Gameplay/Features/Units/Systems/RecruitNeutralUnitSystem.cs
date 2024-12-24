@@ -31,7 +31,7 @@ namespace Code.Gameplay.Features.Units.Systems
 
         GameEntity ally = _game.GetEntityWithId(allyId);
 
-        if (ally is not { isAlive: true, hasTeamColor: true })
+        if (AllyIsNotValid(ally))
           return;
 
         if (ally.TeamColor == GameConstants.UserTeamColor)
@@ -40,6 +40,11 @@ namespace Code.Gameplay.Features.Units.Systems
           unit.isNeutralUnit = false;
         }
       }
+    }
+
+    private static bool AllyIsNotValid(GameEntity ally)
+    {
+      return ally is not { isAlive: true, hasTeamColor: true };
     }
   }
 }
