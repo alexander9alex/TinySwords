@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Battle.Systems
 {
@@ -23,8 +24,11 @@ namespace Code.Gameplay.Features.Battle.Systems
         GameEntity target = _game.GetEntityWithId(unit.TargetId);
 
         if (target is { hasWorldPosition: true })
-          unit.AttackAnimator.AnimateAttack((target.WorldPosition - unit.WorldPosition).normalized);
-
+        {
+          Vector3 attackDirection = (target.WorldPosition - unit.WorldPosition).normalized;
+          unit.AttackAnimator.AnimateAttack(attackDirection);
+          unit.ReplaceAttackDirection(attackDirection);
+        }
         unit.isAnimateAttackRequest = false;
       }
     }

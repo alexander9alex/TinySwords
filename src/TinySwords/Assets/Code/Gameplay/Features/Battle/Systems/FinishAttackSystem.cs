@@ -28,6 +28,9 @@ namespace Code.Gameplay.Features.Battle.Systems
         caster.isAttacking = false;
         caster.isNotAttacking = true;
 
+        if (caster.hasAttackDirection)
+          caster.RemoveAttackDirection();
+
         if (caster.hasAttackInterval)
           caster.ReplaceAttackCooldown(caster.AttackInterval);
 

@@ -70,7 +70,7 @@ namespace Code.Gameplay.Features.Battle.Systems
     private List<int> GetTargets(GameEntity unit)
     {
       return _physicsService.CircleCast(
-          unit.WorldPosition.ToVector2() + unit.LookDirection * unit.AttackReach,
+          unit.WorldPosition.ToVector2() + unit.AttackDirection * unit.AttackReach,
           unit.AttackReach / 2,
           GameConstants.UnitsAndBuildingsLayerMask)
         .Where(entity => entity.hasTeamColor && entity.TeamColor != unit.TeamColor)
@@ -82,6 +82,6 @@ namespace Code.Gameplay.Features.Battle.Systems
       !CasterIsValid(caster);
 
     private static bool CasterIsValid(GameEntity caster) =>
-      caster is { hasWorldPosition: true, hasLookDirection: true, hasAttackReach: true, hasDamage: true, hasTargetId: true, isAlive: true };
+      caster is { hasWorldPosition: true, hasAttackDirection: true, hasAttackReach: true, hasDamage: true, hasTargetId: true, isAlive: true };
   }
 }
