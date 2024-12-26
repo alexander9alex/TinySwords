@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Features.Build.Configs;
+using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
@@ -66,6 +67,9 @@ namespace Code.Gameplay.Common.Services
 
     public SoundConfig GetSoundConfig(SoundId soundId) =>
       _soundConfigById[soundId];
+
+    public CameraConfig GetCameraConfig() =>
+      Resources.Load<CameraConfig>("Configs/Camera/CameraConfig");
 
     private void LoadUnitConfigs()
     {

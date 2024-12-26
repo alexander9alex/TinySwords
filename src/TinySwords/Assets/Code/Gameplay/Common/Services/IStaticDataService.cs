@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.Features.Build.Configs;
+using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
@@ -27,5 +28,6 @@ namespace Code.Gameplay.Common.Services
     CommandUIConfig GetCommandUIConfig(CommandTypeId commandTypeId);
     UnitDeathConfig GetUnitDeathConfig();
     SoundConfig GetSoundConfig(SoundId soundId);
+    CameraConfig GetCameraConfig();
   }
 }
