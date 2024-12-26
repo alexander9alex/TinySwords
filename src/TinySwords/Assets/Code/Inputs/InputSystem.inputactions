@@ -556,6 +556,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CameraScaling",
+                    "type": "Value",
+                    "id": "80777b15-76b4-491a-adc1-909df754ecb7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -701,6 +710,17 @@
                     "action": "CameraMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "4271073d-0d29-4c6b-9c2d-5be36e3c14e0",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "CameraScaling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -743,6 +763,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CameraScaling",
+                    "type": "Value",
+                    "id": "7593f8c6-f1ac-4f20-ad36-a68487ecad18",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -754,6 +783,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "ApplyCommand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d10189bf-b34e-480d-bd45-fb527897acf5",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "CameraScaling",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

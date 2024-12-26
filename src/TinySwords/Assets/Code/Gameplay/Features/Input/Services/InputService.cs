@@ -52,8 +52,10 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.Game.CameraMovement.started += MoveCamera;
       _inputSystem.Game.CameraMovement.performed += MoveCamera;
       _inputSystem.Game.CameraMovement.canceled += MoveCamera;
-    }
 
+      _inputSystem.Game.CameraScaling.performed += ScaleCamera;
+    }
+    
     private void InitCommandInputMap()
     {
       _inputSystem.CommandIsActive.ApplyCommand.canceled += ApplyCommand;
@@ -67,6 +69,8 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.CommandIsActive.CameraMovement.started += MoveCamera;
       _inputSystem.CommandIsActive.CameraMovement.performed += MoveCamera;
       _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
+      
+      _inputSystem.CommandIsActive.CameraScaling.performed += ScaleCamera;
     }
 
     public void ChangeInputMap(InputMap inputMap)
@@ -103,7 +107,7 @@ namespace Code.Gameplay.Features.Input.Services
 
       if (_cameraMoveDir == Vector2.zero)
         return;
-      
+
       CreateEntity.Empty()
         .With(x => x.isMoveCamera = true)
         .AddMoveDirection(_cameraMoveDir);
@@ -126,14 +130,14 @@ namespace Code.Gameplay.Features.Input.Services
     {
       if (_actionStarted)
         return;
-      
+
       _actionStartedPos = _mousePos;
 
       if (!ClickInGameZone(_actionStartedPos))
         return;
 
       _actionStarted = true;
-      
+
       CreateEntity.Empty()
         .With(x => x.isActionStarted = true)
         .AddScreenPosition(_mousePos);
@@ -146,7 +150,7 @@ namespace Code.Gameplay.Features.Input.Services
 
       if (!ClickInGameZone(_actionStartedPos))
         return;
-      
+
       _actionStarted = false;
 
       CreateEntity.Empty()
@@ -156,6 +160,13 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void MoveCamera(InputAction.CallbackContext context) =>
       _cameraMoveDir = context.ReadValue<Vector2>();
+    
+    private void ScaleCamera(InputAction.CallbackContext context)
+    {
+      float scaling = context.ReadValue<float>();
+      Debug.Log(scaling);
+    }
+
 
     private void ApplyCommand(InputAction.CallbackContext context)
     {
