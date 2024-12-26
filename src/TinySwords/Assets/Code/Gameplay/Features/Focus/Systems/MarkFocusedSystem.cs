@@ -44,7 +44,7 @@ namespace Code.Gameplay.Features.Focus.Systems
     private List<GameEntity> GetFocusingEntitiesFromPosition(Vector2 mousePos)
     {
       return _physicsService.CircleCast(
-        _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
+        _cameraProvider.ScreenToWorldPoint(mousePos),
         GameConstants.FocusRadius,
         GameConstants.FocusLayerMask)
         .Where(x => x.isFocusing)

@@ -63,7 +63,7 @@ namespace Code.Gameplay.Features.Select.Systems
     private List<GameEntity> GetSelectableEntitiesFromPosition(Vector2 mousePos)
     {
       return _physicsService.CircleCast(
-          _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
+          _cameraProvider.ScreenToWorldPoint(mousePos),
           GameConstants.ClickRadius, GameConstants.SelectionLayerMask)
         .Where(entity => entity.isSelectable)
         .Where(entity => entity.hasTransform)

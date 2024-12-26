@@ -13,5 +13,8 @@ namespace Code.Gameplay.Common.Providers
 
     public void SetMainCamera(Camera camera) =>
       MainCamera = camera;
+
+    public Vector3 ScreenToWorldPoint(Vector2 pos) =>
+      MainCamera.ScreenToWorldPoint(pos);
   }
 }

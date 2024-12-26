@@ -57,7 +57,7 @@ namespace Code.Gameplay.Features.Select.Systems
     private IEnumerable<GameEntity> GetHighlightedSelectables(GameEntity highlight)
     {
       return _physicsService.BoxCast(
-        _cameraProvider.MainCamera.ScreenToWorldPoint(highlight.CenterPosition),
+        _cameraProvider.ScreenToWorldPoint(highlight.CenterPosition),
         highlight.Size / PixelsPerUnit,
         GameConstants.SelectionLayerMask)
         .Where(entity => entity.isSelectable);

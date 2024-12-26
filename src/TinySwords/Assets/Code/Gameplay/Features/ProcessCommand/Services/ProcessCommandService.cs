@@ -19,17 +19,14 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     private readonly IBattleFormationService _battleFormationService;
     private readonly ICameraProvider _cameraProvider;
     private readonly IPhysicsService _physicsService;
-    private readonly GameContext _gameContext;
 
     private readonly List<GameEntity> _selectedBuffer = new(32);
 
-    public ProcessCommandService(IBattleFormationService battleFormationService, ICameraProvider cameraProvider, IPhysicsService physicsService,
-      GameContext gameContext)
+    public ProcessCommandService(IBattleFormationService battleFormationService, ICameraProvider cameraProvider, IPhysicsService physicsService)
     {
       _battleFormationService = battleFormationService;
       _cameraProvider = cameraProvider;
       _physicsService = physicsService;
-      _gameContext = gameContext;
     }
 
     public void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected) =>
@@ -109,7 +106,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     private List<GameEntity> GetTargetsToAimedAttack(Vector2 mousePos)
     {
       return _physicsService.CircleCast(
-          _cameraProvider.MainCamera.ScreenToWorldPoint(mousePos),
+          _cameraProvider.ScreenToWorldPoint(mousePos),
           GameConstants.ClickRadius, GameConstants.UnitsAndBuildingsLayerMask)
         .OrderBy(entity => entity.Transform.position.y)
         .ToList();
@@ -143,7 +140,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     }
 
     private Vector3 WorldPosition(Vector2 screenPos) =>
-      _cameraProvider.MainCamera.ScreenToWorldPoint(screenPos);
+      _cameraProvider.ScreenToWorldPoint(screenPos);
 
     private static bool TargetIsNotSuitable(GameEntity possibleTarget) =>
       !TargetIsSuitable(possibleTarget);

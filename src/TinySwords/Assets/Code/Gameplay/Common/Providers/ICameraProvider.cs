@@ -7,5 +7,6 @@ namespace Code.Gameplay.Common.Providers
     Camera MainCamera { get; }
     float CameraScale { get; set; }
     void SetMainCamera(Camera camera);
+    Vector3 ScreenToWorldPoint(Vector2 pos);
   }
 }

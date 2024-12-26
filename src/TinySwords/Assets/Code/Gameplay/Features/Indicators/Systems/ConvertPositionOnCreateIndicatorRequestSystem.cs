@@ -21,7 +21,7 @@ namespace Code.Gameplay.Features.Indicators.Systems
     {
       foreach (GameEntity request in _changeEndDestinationRequests.GetEntities(_buffer))
       {
-        request.ReplaceWorldPosition(_cameraProvider.MainCamera.ScreenToWorldPoint(request.ScreenPosition));
+        request.ReplaceWorldPosition(_cameraProvider.ScreenToWorldPoint(request.ScreenPosition));
         request.RemoveScreenPosition();
       }
     }
