@@ -5,6 +5,7 @@ using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Loading;
+using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 using UnityEngine;
@@ -13,8 +14,6 @@ namespace Code.Infrastructure.States.GameStates
 {
   public class LoadingGameState : SimpleState
   {
-    private const string GameScene = "Game";
-
     private readonly ICurtain _curtain;
     private readonly ISceneLoader _sceneLoader;
     private readonly IGameStateMachine _gameStateMachine;
@@ -34,7 +33,7 @@ namespace Code.Infrastructure.States.GameStates
     }
 
     public override void Enter() =>
-      _curtain.Show(() => _sceneLoader.LoadScene(GameScene, OnLoaded));
+      _curtain.Show(() => _sceneLoader.LoadScene(SceneId.Game, OnLoaded));
 
     private void OnLoaded()
     {

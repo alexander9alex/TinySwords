@@ -13,6 +13,8 @@ using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
+using Code.Infrastructure.Scenes.Configs;
+using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
 
@@ -26,6 +28,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
     private Dictionary<SoundId, SoundConfig> _soundConfigById;
     private Dictionary<IndicatorTypeId, IndicatorConfig> _indicatorConfigByType;
+    private Dictionary<SceneId, SceneConfig> _sceneConfigById;
 
     public void LoadAll()
     {
@@ -35,6 +38,7 @@ namespace Code.Gameplay.Common.Services
       LoadCommandUIConfigs();
       LoadSoundConfigs();
       LoadIndicatorConfigs();
+      LoadSceneConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -70,6 +74,9 @@ namespace Code.Gameplay.Common.Services
 
     public CameraConfig GetCameraConfig() =>
       Resources.Load<CameraConfig>("Configs/Camera/CameraConfig");
+
+    public string GetSceneNameById(SceneId sceneId) =>
+      _sceneConfigById[sceneId].SceneName;
 
     private void LoadUnitConfigs()
     {
@@ -111,6 +118,13 @@ namespace Code.Gameplay.Common.Services
       _indicatorConfigByType = Resources
         .LoadAll<IndicatorConfig>("Configs/Indicators")
         .ToDictionary(x => x.IndicatorTypeId, x => x);
+    }
+
+    private void LoadSceneConfigs()
+    {
+      _sceneConfigById = Resources
+        .LoadAll<SceneConfig>("Configs/Scenes")
+        .ToDictionary(x => x.SceneId, x => x);
     }
   }
 }

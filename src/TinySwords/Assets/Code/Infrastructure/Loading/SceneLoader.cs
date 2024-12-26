@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Code.Gameplay.Common.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
+using Code.Infrastructure.Scenes.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,12 +11,16 @@ namespace Code.Infrastructure.Loading
   class SceneLoader : ISceneLoader
   {
     private readonly ICoroutineRunner _coroutineRunner;
+    private readonly IStaticDataService _staticData;
 
-    public SceneLoader(ICoroutineRunner coroutineRunner) =>
+    public SceneLoader(ICoroutineRunner coroutineRunner, IStaticDataService staticData)
+    {
       _coroutineRunner = coroutineRunner;
+      _staticData = staticData;
+    }
 
-    public void LoadScene(string scene, Action onLoaded = null) =>
-      _coroutineRunner.StartCoroutine(LoadSceneCoroutine(scene, onLoaded));
+    public void LoadScene(SceneId sceneId, Action onLoaded = null) =>
+      _coroutineRunner.StartCoroutine(LoadSceneCoroutine(_staticData.GetSceneNameById(sceneId), onLoaded));
 
     private IEnumerator LoadSceneCoroutine(string scene, Action onLoaded)
     {

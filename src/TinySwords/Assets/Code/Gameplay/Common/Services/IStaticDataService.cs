@@ -12,6 +12,7 @@ using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
+using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
 
 namespace Code.Gameplay.Common.Services
@@ -29,5 +30,6 @@ namespace Code.Gameplay.Common.Services
     UnitDeathConfig GetUnitDeathConfig();
     SoundConfig GetSoundConfig(SoundId soundId);
     CameraConfig GetCameraConfig();
+    string GetSceneNameById(SceneId sceneId);
   }
 }

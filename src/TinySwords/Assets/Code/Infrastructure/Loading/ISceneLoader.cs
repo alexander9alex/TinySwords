@@ -1,9 +1,10 @@
 using System;
+using Code.Infrastructure.Scenes.Data;
 
 namespace Code.Infrastructure.Loading
 {
   public interface ISceneLoader
   {
-    void LoadScene(string scene, Action onLoaded = null);
+    void LoadScene(SceneId sceneId, Action onLoaded = null);
   }
 }

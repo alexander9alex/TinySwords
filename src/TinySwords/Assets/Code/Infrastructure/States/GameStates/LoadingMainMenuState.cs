@@ -1,5 +1,6 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Infrastructure.Loading;
+using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 
@@ -7,8 +8,6 @@ namespace Code.Infrastructure.States.GameStates
 {
   public class LoadingMainMenuState : SimpleState
   {
-    private const string MainMenuScene = "MainMenu";
-    
     private readonly ICurtain _curtain;
     private readonly ISceneLoader _sceneLoader;
     private readonly IGameStateMachine _gameStateMachine;
@@ -21,7 +20,7 @@ namespace Code.Infrastructure.States.GameStates
     }
 
     public override void Enter() =>
-      _curtain.Show(() => _sceneLoader.LoadScene(MainMenuScene, OnLoaded));
+      _curtain.Show(() => _sceneLoader.LoadScene(SceneId.MainMenu, OnLoaded));
 
     private void OnLoaded() =>
       _gameStateMachine.Enter<MainMenuState>();
