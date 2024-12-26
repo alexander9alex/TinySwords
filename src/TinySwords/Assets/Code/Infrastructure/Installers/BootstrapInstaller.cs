@@ -120,11 +120,13 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
       Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
       Container.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
-      Container.Bind<IScaleCameraService>().To<ScaleCameraService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
+
+      Container.Bind<IScaleCameraService>().To<ScaleCameraService>().AsSingle();
+      Container.Bind<IMoveCameraService>().To<MoveCameraService>().AsSingle();
     }
 
     private void BindGameplayFactories()

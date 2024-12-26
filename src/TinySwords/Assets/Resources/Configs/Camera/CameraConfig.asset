@@ -17,3 +17,4 @@ MonoBehaviour:
   ScaleStep: 0.2
   SmoothScaleTolerance: 0.1
   ScaleSmoothness: 0.72
+  MovementSpeed: 0.05

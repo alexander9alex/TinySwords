@@ -24,9 +24,7 @@ namespace Code.Gameplay.Features.Move
       Add(systems.Create<UpdateLookDirectionSystem>());
 
       Add(systems.Create<UpdateAvoidanceFeature>());
-
-      Add(systems.Create<MoveCameraSystem>());
-
+      
       Add(systems.Create<CleanupDestinationSystem>());
     }
   }
