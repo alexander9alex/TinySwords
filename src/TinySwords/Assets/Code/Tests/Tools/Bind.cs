@@ -5,6 +5,7 @@ using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
+using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
 using Code.Gameplay.Features.Indicators.Factory;
@@ -125,5 +126,8 @@ namespace Code.Tests.Tools
 
     public static void DelayService(DiContainer diContainer) =>
       diContainer.Bind<IDelayService>().To<DelayService>().AsSingle();
+
+    public static void CollectEntityService(DiContainer diContainer) =>
+      diContainer.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
   }
 }

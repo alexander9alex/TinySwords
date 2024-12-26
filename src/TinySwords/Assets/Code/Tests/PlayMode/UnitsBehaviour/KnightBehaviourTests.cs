@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entities;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.NavMesh.Registrars;
@@ -52,6 +53,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.RecruitUnitService(Container);
       Bind.CoroutineRunner(Container);
       Bind.DelayService(Container);
+      Bind.CollectEntityService(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;

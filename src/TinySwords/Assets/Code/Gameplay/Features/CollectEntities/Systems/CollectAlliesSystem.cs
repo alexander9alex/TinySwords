@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.Features.CollectEntities.Services;
 using Entitas;
-using static Code.Gameplay.Constants.GameConstants;
 
 namespace Code.Gameplay.Features.CollectEntities.Systems
 {
   public class CollectAlliesSystem : IExecuteSystem
   {
     private readonly GameContext _game;
+    private readonly ICollectEntityService _collectEntityService;
 
     private readonly IGroup<GameEntity> _entities;
     private readonly List<GameEntity> _buffer = new(32);
 
-    public CollectAlliesSystem(GameContext game)
+    public CollectAlliesSystem(GameContext game, ICollectEntityService collectEntityService)
     {
       _game = game;
+      _collectEntityService = collectEntityService;
 
       _entities = game.GetGroup(GameMatcher
         .AllOf(
@@ -46,31 +48,19 @@ namespace Code.Gameplay.Features.CollectEntities.Systems
 
     private bool AllyIsSuitable(GameEntity entity, GameEntity ally, float distanceToAlly)
     {
-      if (EntityIsUnreachable(entity.CollectAlliesRadius, distanceToAlly))
+      if (_collectEntityService.EntityIsUnreachable(entity.CollectAlliesRadius, distanceToAlly))
         return false;
 
-      if (AllyIsNotValid(ally))
+      if (_collectEntityService.EntityIsNotValid(ally))
         return false;
 
-      if (SameTeamColor(entity, ally))
+      if (_collectEntityService.SameTeamColor(entity, ally))
         return true;
 
-      if (IsAlly(entity, ally))
+      if (_collectEntityService.IsAlly(entity, ally))
         return true;
 
       return false;
     }
-
-    private static bool IsAlly(GameEntity entity, GameEntity ally) =>
-      AllyTeamColor[entity.TeamColor] == ally.TeamColor;
-
-    private static bool SameTeamColor(GameEntity entity, GameEntity ally) =>
-      entity.TeamColor == ally.TeamColor;
-
-    private static bool AllyIsNotValid(GameEntity ally) =>
-      ally is not { isAlive: true, hasTeamColor: true, hasId: true };
-
-    private static bool EntityIsUnreachable(float collectAllyRadius, float distanceToAlly) =>
-      distanceToAlly > collectAllyRadius;
   }
 }

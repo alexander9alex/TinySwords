@@ -11,9 +11,9 @@ namespace Code.Gameplay.Features.CollectEntities
       Add(systems.Create<UpdateFieldOfVisionNowSystem>());
       Add(systems.Create<UpdateFieldOfVisionSystem>());
       
-      Add(systems.Create<CollectTargetsSystem>()); //todo: refactor
-      Add(systems.Create<CollectReachedTargetsSystem>()); //todo: refactor
-      Add(systems.Create<CollectAlliesSystem>()); //todo: refactor
+      Add(systems.Create<CollectTargetsSystem>());
+      Add(systems.Create<CollectReachedTargetsSystem>());
+      Add(systems.Create<CollectAlliesSystem>());
     }
   }
 }
