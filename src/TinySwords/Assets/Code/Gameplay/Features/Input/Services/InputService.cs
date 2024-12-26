@@ -164,7 +164,9 @@ namespace Code.Gameplay.Features.Input.Services
     private void ScaleCamera(InputAction.CallbackContext context)
     {
       float scaling = context.ReadValue<float>();
-      Debug.Log(scaling);
+
+      CreateEntity.Empty()
+        .AddScaleCamera(-scaling);
     }
 
 

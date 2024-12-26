@@ -7,6 +7,7 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
+using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
@@ -119,6 +120,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
       Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
       Container.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
+      Container.Bind<IScaleCameraService>().To<ScaleCameraService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();

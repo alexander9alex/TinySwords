@@ -1,6 +1,7 @@
 ﻿using Code.Gameplay.Features.AI;
 using Code.Gameplay.Features.Battle;
 using Code.Gameplay.Features.Build;
+using Code.Gameplay.Features.Cameras;
 using Code.Gameplay.Features.CollectEntities;
 using Code.Gameplay.Features.Command;
 using Code.Gameplay.Features.Death;
@@ -51,6 +52,8 @@ namespace Code.Gameplay
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());
       Add(systems.Create<HpBarFeature>());
+      
+      Add(systems.Create<CameraFeature>());
       
       Add(systems.Create<DeathFeature>());
       
