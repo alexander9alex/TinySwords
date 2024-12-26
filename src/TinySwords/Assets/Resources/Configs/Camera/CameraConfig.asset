@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea804bea16a6426685eb161cf55d8cbc, type: 3}
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
-  MinScaling: 3
+  MinScaling: 2
   MaxScaling: 10
-  ScaleSpeed: 0.6
+  ScaleStep: 0.2
+  SmoothScaleTolerance: 0.1
+  ScaleSmoothness: 0.72

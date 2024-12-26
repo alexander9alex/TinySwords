@@ -7,6 +7,10 @@ namespace Code.Gameplay.Features.Cameras.Configs
   {
     public float MinScaling = 3;
     public float MaxScaling = 10;
-    public float ScaleSpeed = 1;
+    public float ScaleStep = 1;
+    public float SmoothScaleTolerance = 0.05f;
+    
+    [Range(0, 1)]
+    public float ScaleSmoothness = .5f;
   }
 }
