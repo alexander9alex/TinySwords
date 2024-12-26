@@ -24,7 +24,7 @@ namespace Code.UI.Windows
     }
 
     private void StartGame() =>
-      _gameStateMachine.Enter<LoadingGameState>();
+      _gameStateMachine.Enter<LoadingCutSceneState>();
 
     private void ExitGame() =>
       Application.Quit();
