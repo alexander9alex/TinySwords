@@ -88,7 +88,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     private void ProcessMoveCommand(IGroup<GameEntity> selected, Vector2 screenPos, Func<Vector2, UserCommand> getUserCommand)
     {
       List<Vector2> battleFormationPositions = _battleFormationService
-        .GetSquareBattleFormation(WorldPosition(screenPos), selected.count)
+        .GetRectangleBattleFormation(WorldPosition(screenPos), selected.count)
         .ToList();
 
       foreach (GameEntity entity in selected.GetEntities(_selectedBuffer))
