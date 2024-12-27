@@ -1,11 +1,13 @@
 ﻿using Code.Gameplay.Common.Curtain;
-using Code.Gameplay.Features.Input.Data;
-using Code.Gameplay.Level.Data;
+using Code.Gameplay.CutScene;
+using Code.Gameplay.CutScene.Data;
+using Code.Gameplay.CutScene.Factory;
+using Code.Gameplay.CutScene.Windows;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using UnityEngine;
+using Code.UI.Windows;
 
 namespace Code.Infrastructure.States.GameStates
 {
@@ -14,18 +16,23 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ICurtain _curtain;
     private readonly ISceneLoader _sceneLoader;
     private readonly IGameStateMachine _gameStateMachine;
+    private readonly ICutSceneFactory _cutSceneFactory;
 
-    public LoadingCutSceneState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine)
+    public LoadingCutSceneState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICutSceneFactory cutSceneFactory)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
       _gameStateMachine = gameStateMachine;
+      _cutSceneFactory = cutSceneFactory;
     }
 
     public override void Enter() =>
       _curtain.Show(() => _sceneLoader.LoadScene(SceneId.CutScene, OnLoaded));
 
-    private void OnLoaded() =>
-      _gameStateMachine.Enter<CutSceneState>();
+    private void OnLoaded()
+    {
+      CutSceneWindow cutSceneWindow = _cutSceneFactory.CreateCutScene(CutSceneId.First);
+      _gameStateMachine.Enter<CutSceneState, CutSceneWindow>(cutSceneWindow);
+    }
   }
 }

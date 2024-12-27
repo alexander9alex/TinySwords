@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Code.Gameplay.CutScene.Configs;
+using Code.Gameplay.CutScene.Data;
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
@@ -31,5 +33,6 @@ namespace Code.Gameplay.Common.Services
     SoundConfig GetSoundConfig(SoundId soundId);
     CameraConfig GetCameraConfig();
     string GetSceneNameById(SceneId sceneId);
+    CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId);
   }
 }

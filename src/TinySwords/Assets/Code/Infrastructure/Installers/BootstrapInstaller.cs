@@ -4,6 +4,8 @@ using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.CutScene.Factory;
+using Code.Gameplay.CutScene.Services;
 using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
@@ -120,6 +122,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IDecisionService>().To<DecisionService>().AsSingle();
       Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
       Container.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
+      Container.Bind<ICutSceneService>().To<CutSceneService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
@@ -136,6 +139,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
       Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
       Container.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
+      Container.Bind<ICutSceneFactory>().To<CutSceneFactory>().AsSingle();
     }
 
     private void BindAI()

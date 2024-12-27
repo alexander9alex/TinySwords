@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.CutScene.Configs;
+using Code.Gameplay.CutScene.Data;
 using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
@@ -29,6 +31,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<SoundId, SoundConfig> _soundConfigById;
     private Dictionary<IndicatorTypeId, IndicatorConfig> _indicatorConfigByType;
     private Dictionary<SceneId, SceneConfig> _sceneConfigById;
+    private Dictionary<CutSceneId, CutSceneConfig> _cutSceneConfigById;
 
     public void LoadAll()
     {
@@ -39,6 +42,7 @@ namespace Code.Gameplay.Common.Services
       LoadSoundConfigs();
       LoadIndicatorConfigs();
       LoadSceneConfigs();
+      LoadCutSceneConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -77,6 +81,9 @@ namespace Code.Gameplay.Common.Services
 
     public string GetSceneNameById(SceneId sceneId) =>
       _sceneConfigById[sceneId].SceneName;
+
+    public CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId) =>
+      _cutSceneConfigById[cutSceneId];
 
     private void LoadUnitConfigs()
     {
@@ -125,6 +132,13 @@ namespace Code.Gameplay.Common.Services
       _sceneConfigById = Resources
         .LoadAll<SceneConfig>("Configs/Scenes")
         .ToDictionary(x => x.SceneId, x => x);
+    }
+
+    private void LoadCutSceneConfigs()
+    {
+      _cutSceneConfigById = Resources
+        .LoadAll<CutSceneConfig>("Configs/CutScenes")
+        .ToDictionary(x => x.CutSceneId, x => x);
     }
   }
 }

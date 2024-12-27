@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edcf4afa6afb468f82bd8c302ec33e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplaySpeedInSec: 0.5
+  DisplaySpeedInSec: 0.6
   CurtainImage: {fileID: 4040233935306129927}
 --- !u!1 &6901933744427832176
 GameObject:
