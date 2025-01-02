@@ -97,6 +97,7 @@ namespace Code.Gameplay.Features.Units.Factory
         })
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
+        .With(x => x.isGlowing = true)
         ;
     }
 

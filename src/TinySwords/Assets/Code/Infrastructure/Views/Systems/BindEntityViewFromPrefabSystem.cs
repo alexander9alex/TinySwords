@@ -13,7 +13,7 @@ namespace Code.Infrastructure.Views.Systems
     public BindEntityViewFromPrefabSystem(GameContext game, IEntityViewFactory entityViewFactory)
     {
       _entityViewFactory = entityViewFactory;
-      
+
       _entities = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ViewPrefab)
         .NoneOf(GameMatcher.View));

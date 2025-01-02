@@ -15,5 +15,8 @@ namespace Code.Common.Extensions
 
     public static Vector3 ToVector3(this Vector2 v) =>
       new(v.x, v.y, 0);
+
+    public static Vector4 ToVector4(this Vector2 v) =>
+      new(v.x, v.y, 0, 0);
   }
 }

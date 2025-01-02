@@ -9,6 +9,7 @@ using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
 using Code.Gameplay.Features.FastInteraction;
 using Code.Gameplay.Features.Focus;
+using Code.Gameplay.Features.FogOfWar;
 using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Indicators;
@@ -53,6 +54,8 @@ namespace Code.Gameplay
       Add(systems.Create<EffectFeature>());
       Add(systems.Create<HpBarFeature>());
       
+      Add(systems.Create<FogOfWarFeature>());
+
       Add(systems.Create<CameraFeature>());
       
       Add(systems.Create<DeathFeature>());

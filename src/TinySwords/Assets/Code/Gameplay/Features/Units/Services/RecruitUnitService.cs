@@ -35,7 +35,9 @@ namespace Code.Gameplay.Features.Units.Services
           CommandTypeId.AimedAttack,
         })
         .With(x => x.isSelectable = true)
-        .With(x => x.isUnselected = true);
+        .With(x => x.isUnselected = true)
+        .With(x => x.isGlowing = true)
+        ;
 
       ChangeAnimator(unit);
     }

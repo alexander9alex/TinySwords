@@ -85,6 +85,9 @@ namespace Code.Gameplay.Common.Services
     public CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId) =>
       _cutSceneConfigById[cutSceneId];
 
+    public Material GetFogOfWarMaterial() =>
+      Resources.Load<Material>("Materials/FogOfWar");
+
     private void LoadUnitConfigs()
     {
       _unitConfigByTypeAndColor = Resources

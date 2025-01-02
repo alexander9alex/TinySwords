@@ -13,6 +13,7 @@ using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
+using Code.Gameplay.Features.FogOfWar.Services;
 using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
@@ -123,6 +124,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IRecruitUnitService>().To<RecruitUnitService>().AsSingle();
       Container.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
       Container.Bind<ICutSceneService>().To<CutSceneService>().AsSingle();
+      Container.Bind<IFogOfWarService>().To<FogOfWarService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();

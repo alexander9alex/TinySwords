@@ -16,6 +16,7 @@ using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
+using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
 {
@@ -34,5 +35,6 @@ namespace Code.Gameplay.Common.Services
     CameraConfig GetCameraConfig();
     string GetSceneNameById(SceneId sceneId);
     CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId);
+    Material GetFogOfWarMaterial();
   }
 }
