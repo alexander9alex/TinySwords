@@ -22,4 +22,5 @@ MonoBehaviour:
   AttackCooldown: 0.6
   CollectTargetRadius: 3
   CollectAlliesRadius: 1
-  MakeDecisionInterval: 1
+  VisionRadius: 4
+  UpdateFieldOfVisionInterval: 0.5

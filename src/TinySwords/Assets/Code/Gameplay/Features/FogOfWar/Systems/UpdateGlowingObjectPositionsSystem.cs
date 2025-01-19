@@ -16,6 +16,7 @@ namespace Code.Gameplay.Features.FogOfWar.Systems
         .AllOf(
           GameMatcher.Glowing,
           GameMatcher.WorldPosition,
+          GameMatcher.VisionRadius,
           GameMatcher.Alive
         ));
     }
@@ -24,7 +25,7 @@ namespace Code.Gameplay.Features.FogOfWar.Systems
     {
       foreach (GameEntity entity in _glowingEntities)
       {
-        _fogOfWarService.UpdateGlowingObjectPosition(entity.WorldPosition);
+        _fogOfWarService.AddGlowingObject(entity.WorldPosition, entity.VisionRadius);
       }
     }
   }

@@ -3,7 +3,6 @@ Shader "Cutsom/FogOfWar"
     Properties
     {
         _FogIntensity ("Fog Intensity", Range(0, 1)) = 0.5
-        _VisibilityRadius ("Visibility Radius", Range(0, 10)) = 3
         _VisibilitySmoothness ("Visibility Smoothness", Range(0, 3)) = 0
     }
     SubShader
@@ -41,10 +40,9 @@ Shader "Cutsom/FogOfWar"
             sampler2D _MainTex;
 
             float     _FogIntensity;
-            float     _VisibilityRadius;
             float     _VisibilitySmoothness;
             
-            float2 _GlowingObjectPositions[MAX_GLOWING_OBJECT_POSITIONS];
+            float3 _GlowingObjects[MAX_GLOWING_OBJECT_POSITIONS];
             int    _GlowingObjectCount;
 
             Interpolators vert(MeshData meshData)
@@ -65,17 +63,20 @@ Shader "Cutsom/FogOfWar"
                     discard;
 
                 float distanceToNearestObject = MAX_DISTANCE_TO_GLOWING_OBJECT;
+                float objectVisibilityRadius = 0;
                 
                 for(int i = 0; i < _GlowingObjectCount; i++)
                 {
-                    float2 objectPos = _GlowingObjectPositions[i].xy;
+                    float2 objectPos = _GlowingObjects[i].xy;
+                    objectVisibilityRadius = _GlowingObjects[i].z;
+                    
                     float  distanceToObject = distance(interpolators.worldPos, objectPos);
 
                     if (distanceToObject < distanceToNearestObject)
                         distanceToNearestObject = distanceToObject;
                 }
                 
-                float fogMask = smoothstep(0, 1, (distanceToNearestObject - _VisibilityRadius) / _VisibilitySmoothness);
+                float fogMask = smoothstep(0, 1, (distanceToNearestObject - objectVisibilityRadius) / _VisibilitySmoothness);
                 
                 float4 fogIntensivity = float4((1 - _FogIntensity).xxx, fogMask);
                 

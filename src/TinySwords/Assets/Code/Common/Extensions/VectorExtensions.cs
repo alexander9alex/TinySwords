@@ -18,5 +18,8 @@ namespace Code.Common.Extensions
 
     public static Vector4 ToVector4(this Vector2 v) =>
       new(v.x, v.y, 0, 0);
+
+    public static Vector4 ReplaceZ(this Vector4 v, float z) =>
+      new(v.x, v.y, z, v.w);
   }
 }

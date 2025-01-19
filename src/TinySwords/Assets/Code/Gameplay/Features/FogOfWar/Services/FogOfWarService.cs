@@ -10,11 +10,11 @@ namespace Code.Gameplay.Features.FogOfWar.Services
   {
     // the value specified in the fog of war shader
     private const int MaxGlowingObjects = 1024;
-    
-    private static readonly int GlowingObjectPositionsId = Shader.PropertyToID("_GlowingObjectPositions");
+
+    private static readonly int GlowingObjectsId = Shader.PropertyToID("_GlowingObjects");
     private static readonly int GlowingObjectCountId = Shader.PropertyToID("_GlowingObjectCount");
 
-    private readonly List<Vector2> _glowingObjectPositions = new();
+    private readonly List<GlowingObject> _glowingObjects = new();
     private readonly Material _fogOfWarMaterial;
 
     public FogOfWarService(IStaticDataService staticData) =>
@@ -22,24 +22,27 @@ namespace Code.Gameplay.Features.FogOfWar.Services
 
     public void UpdateFogOfWar()
     {
-      _fogOfWarMaterial.SetVectorArray(GlowingObjectPositionsId, GlowingObjectPositions());
-      _fogOfWarMaterial.SetInt(GlowingObjectCountId, _glowingObjectPositions.Count);
+      _fogOfWarMaterial.SetVectorArray(GlowingObjectsId, PaddedGlowingObjects());
+      _fogOfWarMaterial.SetInt(GlowingObjectCountId, _glowingObjects.Count);
     }
 
-    public void UpdateGlowingObjectPosition(Vector2 position) =>
-      _glowingObjectPositions.Add(position);
+    public void AddGlowingObject(Vector2 position, float visionRadius) =>
+      _glowingObjects.Add(new(position, visionRadius));
 
     public void ClearGlowingObjects() =>
-      _glowingObjectPositions.Clear();
+      _glowingObjects.Clear();
 
-    private List<Vector4> GlowingObjectPositions()
+    private List<Vector4> PaddedGlowingObjects()
     {
-      List<Vector4> paddedPositions = new(_glowingObjectPositions.Select(x => x.ToVector4()).ToList());
+      List<Vector4> paddedGlowingObjects = GlowingObjects();
 
-      while (paddedPositions.Count < MaxGlowingObjects)
-        paddedPositions.Add(Vector4.zero);
+      while (paddedGlowingObjects.Count < MaxGlowingObjects)
+        paddedGlowingObjects.Add(Vector4.zero);
 
-      return paddedPositions;
+      return paddedGlowingObjects;
     }
+
+    private List<Vector4> GlowingObjects() =>
+      new(_glowingObjects.Select(x => x.Position.ToVector4().ReplaceZ(x.Radius)).ToList());
   }
 }

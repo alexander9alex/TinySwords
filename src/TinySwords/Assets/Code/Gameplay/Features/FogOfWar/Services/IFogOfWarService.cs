@@ -6,6 +6,6 @@ namespace Code.Gameplay.Features.FogOfWar.Services
   {
     void ClearGlowingObjects();
     void UpdateFogOfWar();
-    void UpdateGlowingObjectPosition(Vector2 position);
+    void AddGlowingObject(Vector2 position, float visionRadius);
   }
 }
