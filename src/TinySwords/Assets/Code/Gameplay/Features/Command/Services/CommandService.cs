@@ -1,7 +1,9 @@
 ﻿using System;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Features.Command.Data;
+using Code.Gameplay.Features.FogOfWar.Services;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Features.ProcessCommand.Services;
@@ -19,13 +21,18 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly ISoundService _soundService;
     private readonly SelectableCommandService _selectableCommandService;
     private readonly IProcessCommandService _processCommandService;
+    private readonly IFogOfWarService _fogOfWarService;
+    private readonly ICameraProvider _cameraProvider;
 
-    public CommandService(IHudService hudService, IInputService inputService, ISoundService soundService, IProcessCommandService processCommandService)
+    public CommandService(IHudService hudService, IInputService inputService, ISoundService soundService, IProcessCommandService processCommandService,
+      IFogOfWarService fogOfWarService, ICameraProvider cameraProvider)
     {
       _hudService = hudService;
       _inputService = inputService;
       _soundService = soundService;
       _processCommandService = processCommandService;
+      _fogOfWarService = fogOfWarService;
+      _cameraProvider = cameraProvider;
     }
 
     public void SelectCommand(CommandTypeId command)
@@ -85,8 +92,6 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
 
-    
-
     private static void SetCommandTypeId(GameEntity entity, CommandTypeId commandTypeId)
     {
       switch (commandTypeId)
@@ -104,8 +109,13 @@ namespace Code.Gameplay.Features.Command.Services
           throw new ArgumentOutOfRangeException();
       }
     }
-    
-    private bool CanApplyAimedAttackCommand(Vector2 screenPos) =>
-      _processCommandService.CanProcessAimedAttack(out _, screenPos);
+
+    private bool CanApplyAimedAttackCommand(Vector2 screenPos)
+    {
+      if (!_fogOfWarService.IsPositionVisible(_cameraProvider.ScreenToWorldPoint(screenPos)))
+        return false;
+
+      return _processCommandService.CanProcessAimedAttack(out _, screenPos);
+    }
   }
 }

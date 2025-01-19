@@ -7,6 +7,7 @@ using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Death.Configs;
+using Code.Gameplay.Features.FogOfWar.Configs;
 using Code.Gameplay.Features.Indicators.Configs;
 using Code.Gameplay.Features.Indicators.Data;
 using Code.Gameplay.Features.Sounds.Configs;
@@ -85,8 +86,8 @@ namespace Code.Gameplay.Common.Services
     public CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId) =>
       _cutSceneConfigById[cutSceneId];
 
-    public Material GetFogOfWarMaterial() =>
-      Resources.Load<Material>("Materials/FogOfWar");
+    public FogOfWarConfig GetFogOfWarConfig() =>
+      Resources.Load<FogOfWarConfig>("Configs/Shaders/FogOfWarConfig");
 
     private void LoadUnitConfigs()
     {

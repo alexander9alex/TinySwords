@@ -2,8 +2,7 @@ Shader "Cutsom/FogOfWar"
 {
     Properties
     {
-        _FogIntensity ("Fog Intensity", Range(0, 1)) = 0.5
-        _VisibilitySmoothness ("Visibility Smoothness", Range(0, 3)) = 0
+        
     }
     SubShader
     {
