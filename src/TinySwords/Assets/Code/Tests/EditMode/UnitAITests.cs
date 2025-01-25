@@ -1,5 +1,6 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Data;
@@ -20,6 +21,7 @@ namespace Code.Tests.EditMode
     {
       Bind.GameContext(Container);
       Bind.UnitAI(Container);
+      Bind.IdentifierService(Container);
     }
 
     [TearDown]
@@ -293,12 +295,12 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       GameEntity nearestTarget = CreateEntity.Empty()
-        .AddId(0)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right)
         .With(x => x.isAlive = true);
 
       GameEntity furtherTarget = CreateEntity.Empty()
-        .AddId(1)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right * 2)
         .With(x => x.isAlive = true);
 
@@ -324,12 +326,12 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       GameEntity reachableTarget = CreateEntity.Empty()
-        .AddId(0)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.up * 2)
         .With(x => x.isAlive = true);
 
       GameEntity unreachableTarget = CreateEntity.Empty()
-        .AddId(1)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.down * 4)
         .With(x => x.isAlive = true);
 
@@ -355,12 +357,12 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       GameEntity target = CreateEntity.Empty()
-        .AddId(0)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right * 4)
         .With(x => x.isAlive = true);
 
       GameEntity ally = CreateEntity.Empty()
-        .AddId(1)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right * 2)
         .AddTargetBuffer(new() { target.Id })
         .With(x => x.isAlive = true);
@@ -388,12 +390,12 @@ namespace Code.Tests.EditMode
       IUnitAI unitAI = Container.Resolve<IUnitAI>();
 
       GameEntity target = CreateEntity.Empty()
-        .AddId(0)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right * 4)
         .With(x => x.isAlive = true);
 
       GameEntity ally = CreateEntity.Empty()
-        .AddId(1)
+        .AddId(Container.Resolve<IIdentifierService>().Next())
         .AddWorldPosition(Vector2.right * 2)
         .AddTargetBuffer(new())
         .AddAllyTargetId(target.Id)

@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 7020675778033321952}
   - component: {fileID: 8952058152345566160}
   - component: {fileID: 3554898979761416836}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36154,7 +36154,7 @@ GameObject:
   - component: {fileID: 2639801911543331840}
   - component: {fileID: 7110155295779962682}
   - component: {fileID: 5325517140432184158}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BackRocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36624,7 +36624,9 @@ GameObject:
   - component: {fileID: 4020994216072787319}
   - component: {fileID: 6076392999968983835}
   - component: {fileID: 1928667804075675524}
-  m_Layer: 0
+  - component: {fileID: 8493021973228892266}
+  - component: {fileID: 7314328122264376888}
+  m_Layer: 12
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37928,6 +37930,56 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!19719996 &8493021973228892266
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791948909452926535}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
+--- !u!114 &7314328122264376888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791948909452926535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8cbac5a847417daa13d53286260d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1869234784486435836
 GameObject:
   m_ObjectHideFlags: 0
@@ -78748,7 +78800,7 @@ GameObject:
   - component: {fileID: 1180887719926002552}
   - component: {fileID: 4759874582696363215}
   - component: {fileID: 5131295232820833022}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}

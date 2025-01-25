@@ -16,6 +16,9 @@ namespace Code.Gameplay.Features.Command.Services
 {
   class CommandService : ICommandService
   {
+    private const float RaycastDistance = 1;
+    private readonly int _mapLayerMask = LayerMask.GetMask("Map");
+
     private readonly IHudService _hudService;
     private readonly IInputService _inputService;
     private readonly ISoundService _soundService;
@@ -60,7 +63,7 @@ namespace Code.Gameplay.Features.Command.Services
       {
         case CommandTypeId.Move:
         case CommandTypeId.MoveWithAttack:
-          return true;
+          return CanApplyMoveCommand(screenPos);
         case CommandTypeId.AimedAttack:
           return CanApplyAimedAttackCommand(screenPos);
         default:
@@ -108,6 +111,18 @@ namespace Code.Gameplay.Features.Command.Services
         default:
           throw new ArgumentOutOfRangeException();
       }
+    }
+
+    private bool CanApplyMoveCommand(Vector2 screenPos)
+    {
+      Vector3 worldPos = _cameraProvider.ScreenToWorldPoint(screenPos);
+
+      RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, RaycastDistance, _mapLayerMask);
+
+      if (hit.collider != null && hit.collider.GetComponent<MovablePlace>() != null)
+        return true;
+
+      return false;
     }
 
     private bool CanApplyAimedAttackCommand(Vector2 screenPos)
