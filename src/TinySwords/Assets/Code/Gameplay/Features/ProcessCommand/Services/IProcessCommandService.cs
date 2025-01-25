@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
     void ProcessMoveCommand(GameEntity request, IGroup<GameEntity> selected);
     void ProcessMoveWithAttackCommand(GameEntity request, IGroup<GameEntity> selected);
     void ProcessAimedAttack(GameEntity request, IGroup<GameEntity> selected);
-    void ProcessIncorrectAimedAttack(Vector2 screenPos);
-    bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos);
+    void ProcessIncorrectCommand(Vector2 screenPos);
+    bool CanProcessAimedAttack(Vector2 screenPos);
   }
 }

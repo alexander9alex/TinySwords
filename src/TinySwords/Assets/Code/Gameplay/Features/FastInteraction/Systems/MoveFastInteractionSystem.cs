@@ -29,10 +29,10 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
     {
       foreach (GameEntity request in _fastInteractionRequests.GetEntities(_buffer))
       {
-        if (CanNotMakeMove(request.ScreenPosition))
-          return;
-
-        _commandService.ApplyCommand(CommandTypeId.Move, request.ScreenPosition);
+        if (CanMakeMove(request.ScreenPosition))
+          _commandService.ApplyCommand(CommandTypeId.Move, request.ScreenPosition);
+        else
+          _commandService.ProcessIncorrectCommand(CommandTypeId.Move, request);
 
         request.isProcessed = true;
       }
@@ -49,8 +49,8 @@ namespace Code.Gameplay.Features.FastInteraction.Systems
       return true;
     }
 
-    private bool CanNotMakeMove(Vector2 screenPos) =>
-      !_commandService.CanApplyCommand(CommandTypeId.Move, screenPos) || !SelectedCanMove();
+    private bool CanMakeMove(Vector2 screenPos) =>
+      _commandService.CanApplyCommand(CommandTypeId.Move, screenPos) && SelectedCanMove();
 
     private bool SelectedCanMove() =>
       HasSelected() && AllSelectedCanMove();

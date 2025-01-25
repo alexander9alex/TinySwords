@@ -130,7 +130,7 @@ namespace Code.Gameplay.Features.Command.Services
       if (!_fogOfWarService.IsPositionVisible(_cameraProvider.ScreenToWorldPoint(screenPos)))
         return false;
 
-      return _processCommandService.CanProcessAimedAttack(out _, screenPos);
+      return _processCommandService.CanProcessAimedAttack(screenPos);
     }
   }
 }

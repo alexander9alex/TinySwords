@@ -53,7 +53,7 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
         .With(x => x.isCreateIndicator = true);
     }
 
-    public void ProcessIncorrectAimedAttack(Vector2 screenPos)
+    public void ProcessIncorrectCommand(Vector2 screenPos)
     {
       CreateEntity.Empty()
         .AddIndicatorTypeId(IndicatorTypeId.IncorrectCommand)
@@ -61,8 +61,8 @@ namespace Code.Gameplay.Features.ProcessCommand.Services
         .With(x => x.isCreateIndicator = true);
     }
 
-    public bool CanProcessAimedAttack(out GameEntity target, Vector2 screenPos) =>
-      HasHostileTargetInScreenPosition(out target, screenPos);
+    public bool CanProcessAimedAttack(Vector2 screenPos) =>
+      HasHostileTargetInScreenPosition(out _, screenPos);
 
     private bool HasHostileTargetInScreenPosition(out GameEntity target, Vector2 screenPos)
     {
