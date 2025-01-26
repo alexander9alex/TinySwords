@@ -6,14 +6,14 @@ namespace Code.Gameplay.Features.Cameras.Systems
 {
   public class MoveCameraSystem : IExecuteSystem
   {
-    private readonly IMoveCameraService _moveCameraService;
+    private readonly ICameraMovementService _cameraMovementService;
 
     private readonly IGroup<GameEntity> _moveCameraRequests;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public MoveCameraSystem(GameContext game, IMoveCameraService moveCameraService)
+    public MoveCameraSystem(GameContext game, ICameraMovementService cameraMovementService)
     {
-      _moveCameraService = moveCameraService;
+      _cameraMovementService = cameraMovementService;
       _moveCameraRequests = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.MoveCamera, GameMatcher.MoveDirection));
     }
@@ -22,7 +22,7 @@ namespace Code.Gameplay.Features.Cameras.Systems
     {
       foreach (GameEntity request in _moveCameraRequests.GetEntities(_buffer))
       {
-        _moveCameraService.MoveCamera(request.MoveDirection);
+        _cameraMovementService.MoveCamera(request.MoveDirection);
 
         request.isDestructed = true;
       }

@@ -1,6 +1,7 @@
 ﻿using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.Gameplay.Level.Configs
 {
@@ -9,8 +10,11 @@ namespace Code.Gameplay.Level.Configs
   {
     public LevelId LevelId;
 
-    [Header("Level Setup")]
+    [Header("Fill in for collect level setup")]
     public EntityBehaviour MapPrefab;
+    
+    [Header("Level Setup")]
     public LevelMap LevelMap;
+    public BorderInfo BorderInfo;
   }
 }

@@ -63,6 +63,6 @@ namespace Code.Gameplay.Features.Sounds.Factory
     }
 
     private Vector3 PositionRelativeCamera(Vector2 pos) =>
-      pos.SetZ(_cameraProvider.MainCamera.transform.position.z);
+      pos.SetZ(_cameraProvider.CameraPosition.z);
   }
 }

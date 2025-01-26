@@ -131,7 +131,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
 
       Container.Bind<IScaleCameraService>().To<ScaleCameraService>().AsSingle();
-      Container.Bind<IMoveCameraService>().To<MoveCameraService>().AsSingle();
+      Container.Bind<ICameraMovementService>().To<CameraMovementService>().AsSingle();
     }
 
     private void BindGameplayFactories()

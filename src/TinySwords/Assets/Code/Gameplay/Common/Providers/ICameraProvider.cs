@@ -4,8 +4,9 @@ namespace Code.Gameplay.Common.Providers
 {
   public interface ICameraProvider
   {
-    Camera MainCamera { get; }
+    Vector3 CameraPosition { get; set; }
     float CameraScale { get; set; }
+    Vector2 ScreenSize { get; }
     void SetMainCamera(Camera camera);
     Vector3 ScreenToWorldPoint(Vector2 pos);
   }

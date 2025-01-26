@@ -15,3 +15,4 @@ MonoBehaviour:
   LevelId: 200
   MapPrefab: {fileID: 2113220392298316763, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
   LevelMap: {fileID: 6746565119539317206, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
+  BorderInfo: {fileID: 6653738944670825084, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}

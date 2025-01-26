@@ -1,5 +1,6 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Level.Data;
@@ -20,9 +21,10 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ICameraProvider _cameraProvider;
     private readonly IInputService _inputService;
     private readonly ILevelFactory _levelFactory;
+    private readonly ICameraMovementService _cameraMovementService;
 
     public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
-      IInputService inputService, ILevelFactory levelFactory)
+      IInputService inputService, ILevelFactory levelFactory, ICameraMovementService cameraMovementService)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
@@ -30,6 +32,7 @@ namespace Code.Infrastructure.States.GameStates
       _cameraProvider = cameraProvider;
       _inputService = inputService;
       _levelFactory = levelFactory;
+      _cameraMovementService = cameraMovementService;
     }
 
     public override void Enter() =>
@@ -41,6 +44,7 @@ namespace Code.Infrastructure.States.GameStates
       _inputService.ChangeInputMap(InputMap.Game);
 
       _levelFactory.CreateLevel(LevelId.First);
+      _cameraMovementService.SetCameraBorders(LevelId.First);
 
       _gameStateMachine.Enter<GameLoopState>();
     }

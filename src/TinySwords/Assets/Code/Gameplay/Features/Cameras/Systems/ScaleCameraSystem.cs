@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.Cameras.Services;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Cameras.Systems
 {
@@ -22,6 +25,10 @@ namespace Code.Gameplay.Features.Cameras.Systems
       {
         _scaleCameraService.ScaleCamera(input.ScaleCamera);
 
+        CreateEntity.Empty()
+          .AddMoveDirection(Vector2.zero)
+          .With(x => x.isMoveCamera = true);
+        
         input.isDestructed = true;
       }
     }
