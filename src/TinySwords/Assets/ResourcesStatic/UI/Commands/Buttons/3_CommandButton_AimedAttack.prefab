@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 686018551302191256, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -7877740192154333229, guid: 9ad92b7ad95de9d4bbbafcda45e21e91, type: 3}
     - target: {fileID: 3239940680016526742, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
       value: Image
@@ -92,9 +96,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4240038557960471303, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7508587498880855371, guid: c390f3df123ced24b8afe58ea702d91f, type: 3}
     - target: {fileID: 5889625959999866638, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
-      value: ControlButton_MoveWithAttack
+      value: 3_CommandButton_AimedAttack
       objectReference: {fileID: 0}
     - target: {fileID: 6020763729596536561, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_SizeDelta.x

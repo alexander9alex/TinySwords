@@ -1,80 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4240033913152427827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3395215815117608202}
-  - component: {fileID: 1444806352263024837}
-  - component: {fileID: 3263742039423157105}
-  m_Layer: 5
-  m_Name: Circle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3395215815117608202
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240033913152427827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3562757195410586631}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 20}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1444806352263024837
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240033913152427827}
-  m_CullTransparentMesh: 1
---- !u!114 &3263742039423157105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240033913152427827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.34972307, g: 1, b: 0.28490567, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: 42771d0642e7914488513c8f6ea4f41d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &131129824080691629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 686018551302191256, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -7789867834911965070, guid: ff19e1991a5cc9e48b7baf4fa39f8742, type: 3}
     - target: {fileID: 3239940680016526742, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
       value: Arrow
@@ -167,9 +96,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4240038557960471303, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7195168948999636808, guid: 278b827b06a371848a6337a103113aab, type: 3}
     - target: {fileID: 5889625959999866638, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
-      value: ControlButton_Walk
+      value: 1_CommandButton_Move
       objectReference: {fileID: 0}
     - target: {fileID: 6020763729596536561, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_SizeDelta.x
@@ -205,14 +138,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3503986515105562026, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3395215815117608202}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
---- !u!224 &3562757195410586631 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3503986515105562026, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
-  m_PrefabInstance: {fileID: 131129824080691629}
-  m_PrefabAsset: {fileID: 0}
