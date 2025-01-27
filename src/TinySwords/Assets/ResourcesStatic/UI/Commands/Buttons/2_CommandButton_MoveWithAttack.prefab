@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 686018551302191256, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
-      objectReference: {fileID: 3331021165122078340, guid: f7a710e6a3e648e469d9ad724bfd1dc6, type: 3}
+      objectReference: {fileID: 360395550, guid: a063362d310fbdb47af0005b61e49daf, type: 3}
     - target: {fileID: 3239940680016526742, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
       value: Arrow
@@ -103,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 4240038557960471303, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6922135738972347032, guid: e63d1b65e65db3c409068aa73fe1a173, type: 3}
+      objectReference: {fileID: -147770037, guid: c1444259e316b3047968737f97b691b2, type: 3}
     - target: {fileID: 5889625959999866638, guid: 0b1063f9267972d4ca4d3a61b42dc784, type: 3}
       propertyPath: m_Name
       value: 2_CommandButton_MoveWithAttack
