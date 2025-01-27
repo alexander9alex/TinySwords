@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EmptyLevelConfig
   m_EditorClassIdentifier: 
   LevelId: 200
-  MapPrefab: {fileID: 2113220392298316763, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
-  LevelMap: {fileID: 6746565119539317206, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
-  BorderInfo: {fileID: 6653738944670825084, guid: 53ff388a61d6a2648aadc2e7ca58866d, type: 3}
+  MapPrefab: {fileID: 7257294543228142665, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
+  LevelMap: {fileID: 2613250055919734340, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
+  BorderInfo: {fileID: 2716348417801092590, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
