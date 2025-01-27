@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: FirstLevelConfig
   m_EditorClassIdentifier: 
   LevelId: 100
-  MapPrefab: {fileID: 2743693599093164253, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
-  LevelMap: {fileID: 7413128609060422352, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
+  LevelPrefab: {fileID: 2743693599093164253, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
   BorderInfo: {fileID: 7428388911244833146, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
+  LevelMarkersParent: {fileID: 5938196568080694632, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
+  FogOfWarMarkers:
+  - {fileID: 8833746829498536904, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}
+  - {fileID: 4038442090605492789, guid: 5f87a9719e32f174c81bf41d079470a0, type: 3}

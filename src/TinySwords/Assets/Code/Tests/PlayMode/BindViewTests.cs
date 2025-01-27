@@ -6,7 +6,6 @@ using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Animators;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
-using Code.Gameplay.Level;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Common.Services;
@@ -36,6 +35,7 @@ namespace Code.Tests.PlayMode
       Bind.IdentifierService(Container);
       Bind.EntityViewFactory(Container);
       Bind.CoroutineRunner(Container);
+      Bind.FogOfWarFactory(Container);
 
       Bind.CollisionRegistryStub(Container);
       
@@ -74,7 +74,7 @@ namespace Code.Tests.PlayMode
 
       // Assert
       AllGameObjects(SceneManager.GetActiveScene())
-        .Where(x => x.GetComponent<LevelMap>())
+        .Where(x => x.GetComponent<LevelMarkersParent>())
         .Should().HaveCount(1);
     }
 

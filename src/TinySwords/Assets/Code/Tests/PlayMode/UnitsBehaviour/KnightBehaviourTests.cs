@@ -54,6 +54,7 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       Bind.CoroutineRunner(Container);
       Bind.DelayService(Container);
       Bind.CollectEntityService(Container);
+      Bind.FogOfWarFactory(Container);
 
       Container.Resolve<IStaticDataService>().LoadAll();
       Container.Resolve<ITimeService>().TimeScale = 10;

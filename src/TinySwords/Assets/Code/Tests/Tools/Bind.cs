@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
+using Code.Gameplay.Features.FogOfWar.Factory;
 using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Features.Sounds.Services;
@@ -129,5 +130,8 @@ namespace Code.Tests.Tools
 
     public static void CollectEntityService(DiContainer diContainer) =>
       diContainer.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
+
+    public static void FogOfWarFactory(DiContainer diContainer) =>
+      diContainer.Bind<IFogOfWarFactory>().To<FogOfWarFactory>().AsSingle();
   }
 }

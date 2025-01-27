@@ -13,6 +13,7 @@ using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
 using Code.Gameplay.Features.Death.Factory;
+using Code.Gameplay.Features.FogOfWar.Factory;
 using Code.Gameplay.Features.FogOfWar.Services;
 using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Input.Factory;
@@ -142,6 +143,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
       Container.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
       Container.Bind<ICutSceneFactory>().To<CutSceneFactory>().AsSingle();
+      Container.Bind<IFogOfWarFactory>().To<FogOfWarFactory>().AsSingle();
     }
 
     private void BindAI()

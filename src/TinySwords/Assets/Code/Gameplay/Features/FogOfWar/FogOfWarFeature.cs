@@ -8,6 +8,7 @@ namespace Code.Gameplay.Features.FogOfWar
     public FogOfWarFeature(ISystemFactory systems)
     {
       Add(systems.Create<InitializeFogOfWarFeature>());
+      Add(systems.Create<CreateFogOfWarFeature>());
       
       Add(systems.Create<ClearGlowingObjectsSystem>());
       Add(systems.Create<SetGlowingObjectsSystem>());

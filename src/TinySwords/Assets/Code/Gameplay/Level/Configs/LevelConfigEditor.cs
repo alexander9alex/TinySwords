@@ -1,3 +1,5 @@
+using System.Linq;
+using Code.Gameplay.Features.FogOfWar.Data;
 using Code.Gameplay.Level.Data;
 using UnityEditor;
 using UnityEngine;
@@ -15,10 +17,11 @@ namespace Code.Gameplay.Level.Configs
 
       if (GUILayout.Button("Collect"))
       {
-        levelConfig.LevelMap = levelConfig.MapPrefab.GetComponent<LevelMap>();
-        levelConfig.BorderInfo = levelConfig.MapPrefab.GetComponent<BorderInfo>();
+        levelConfig.BorderInfo = levelConfig.LevelPrefab.GetComponent<BorderInfo>();
+        levelConfig.LevelMarkersParent = levelConfig.LevelPrefab.GetComponentInChildren<LevelMarkersParent>().transform;
+        levelConfig.FogOfWarMarkers = levelConfig.LevelPrefab.transform.GetComponentsInChildren<FogOfWarMarker>().ToList();
       }
-      
+
       EditorUtility.SetDirty(target);
     }
   }
