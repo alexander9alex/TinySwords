@@ -9,27 +9,23 @@ namespace Code.Gameplay.Features.Cameras.Systems
 {
   public class ScaleCameraSystem : IExecuteSystem
   {
-    private readonly IScaleCameraService _scaleCameraService;
-    private readonly IGroup<GameEntity> _scaleCameraInputs;
+    private readonly ICameraScalingService _cameraScalingService;
+    private readonly IGroup<GameEntity> _scaleCameraRequests;
     private readonly List<GameEntity> _buffer = new(4);
 
-    public ScaleCameraSystem(GameContext contextParameter, IScaleCameraService scaleCameraService)
+    public ScaleCameraSystem(GameContext contextParameter, ICameraScalingService cameraScalingService)
     {
-      _scaleCameraService = scaleCameraService;
-      _scaleCameraInputs = contextParameter.GetGroup(GameMatcher.ScaleCamera);
+      _cameraScalingService = cameraScalingService;
+      _scaleCameraRequests = contextParameter.GetGroup(GameMatcher.ScaleCamera);
     }
 
     public void Execute()
     {
-      foreach (GameEntity input in _scaleCameraInputs.GetEntities(_buffer))
+      foreach (GameEntity request in _scaleCameraRequests.GetEntities(_buffer))
       {
-        _scaleCameraService.ScaleCamera(input.ScaleCamera);
+        _cameraScalingService.ScaleCamera(request.ScaleCamera);
 
-        CreateEntity.Empty()
-          .AddMoveDirection(Vector2.zero)
-          .With(x => x.isMoveCamera = true);
-        
-        input.isDestructed = true;
+        request.isDestructed = true;
       }
     }
   }

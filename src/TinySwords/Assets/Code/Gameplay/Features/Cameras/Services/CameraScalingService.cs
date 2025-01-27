@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Cameras.Configs;
@@ -8,7 +10,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Cameras.Services
 {
-  class ScaleCameraService : IScaleCameraService
+  class CameraScalingService : ICameraScalingService
   {
     private readonly ICameraProvider _cameraProvider;
     private readonly CameraConfig _cameraConfig;
@@ -17,7 +19,7 @@ namespace Code.Gameplay.Features.Cameras.Services
     private float _endCameraScale;
     private bool _scalingNow;
 
-    public ScaleCameraService(ICameraProvider cameraProvider, IStaticDataService staticData, ICoroutineRunner coroutineRunner)
+    public CameraScalingService(ICameraProvider cameraProvider, IStaticDataService staticData, ICoroutineRunner coroutineRunner)
     {
       _cameraProvider = cameraProvider;
       _coroutineRunner = coroutineRunner;
@@ -42,10 +44,18 @@ namespace Code.Gameplay.Features.Cameras.Services
       while (ScalingNotCompleted(_cameraProvider.CameraScale, _endCameraScale))
       {
         _cameraProvider.CameraScale = NewCameraScale(_cameraProvider.CameraScale, _endCameraScale);
+        MoveCamera();
         yield return null;
       }
 
       _scalingNow = false;
+    }
+
+    private static void MoveCamera()
+    {
+      CreateEntity.Empty()
+        .AddMoveDirection(Vector2.zero)
+        .With(x => x.isMoveCamera = true);
     }
 
     private float NewCameraScale(float cameraScale, float endScale) =>

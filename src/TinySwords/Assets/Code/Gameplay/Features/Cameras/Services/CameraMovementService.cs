@@ -11,9 +11,9 @@ namespace Code.Gameplay.Features.Cameras.Services
   class CameraMovementService : ICameraMovementService
   {
     private readonly ICameraProvider _cameraProvider;
-    private readonly CameraConfig _cameraConfig;
     private readonly IStaticDataService _staticData;
-
+    private readonly CameraConfig _cameraConfig;
+    
     private float CameraScaleInfluenceCoefficient =>
       _cameraProvider.CameraScale / _cameraConfig.MaxScaling * _cameraConfig.CameraScaleOnMovementInfluenceCoefficient;
 
@@ -23,7 +23,7 @@ namespace Code.Gameplay.Features.Cameras.Services
     {
       _cameraProvider = cameraProvider;
       _staticData = staticData;
-      _cameraConfig = staticData.GetCameraConfig();
+      _cameraConfig = _staticData.GetCameraConfig();
     }
 
     public void SetCameraBorders(LevelId levelId)
@@ -35,11 +35,12 @@ namespace Code.Gameplay.Features.Cameras.Services
     public void MoveCamera(Vector2 moveDir)
     {
       Vector3 newCameraPos = _cameraProvider.CameraPosition + MoveVector(moveDir);
+
       _cameraProvider.CameraPosition = CameraClamp(
         newCameraPos,
         _borderInfo.LeftDownBorder.position,
         _borderInfo.RightUpBorder.position,
-        _cameraProvider.ScreenSize / 2);
+        _cameraProvider.ScreenSizeInWorldPoints / 2);
     }
 
     private Vector3 MoveVector(Vector2 moveDir) =>

@@ -130,7 +130,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
       Container.Bind<ISelectableCommandService>().To<SelectableCommandService>().AsSingle();
 
-      Container.Bind<IScaleCameraService>().To<ScaleCameraService>().AsSingle();
+      Container.Bind<ICameraScalingService>().To<CameraScalingService>().AsSingle();
       Container.Bind<ICameraMovementService>().To<CameraMovementService>().AsSingle();
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace Code.Gameplay.Features.Cameras.Services
 {
-  public interface IScaleCameraService
+  public interface ICameraScalingService
   {
     void ScaleCamera(float scale);
   }
