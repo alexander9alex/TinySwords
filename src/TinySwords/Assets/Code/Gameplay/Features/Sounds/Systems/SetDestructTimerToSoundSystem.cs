@@ -3,15 +3,15 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Sounds.Systems
 {
-  public class PlaySoundSystem : IExecuteSystem
+  public class SetDestructTimerToSoundSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _sounds;
     private readonly List<GameEntity> _buffer = new(16);
 
-    public PlaySoundSystem(GameContext game)
+    public SetDestructTimerToSoundSystem(GameContext game)
     {
       _sounds = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest)
+        .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest, GameMatcher.DestroyAfterPlayback)
         .NoneOf(GameMatcher.InitializeSound, GameMatcher.Delay));
     }
 
@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
     {
       foreach (GameEntity sound in _sounds.GetEntities(_buffer))
       {
-        sound.AudioSource.Play();
+        sound.AddSelfDestructTimer(sound.AudioSource.clip.length);
       }
     }
   }

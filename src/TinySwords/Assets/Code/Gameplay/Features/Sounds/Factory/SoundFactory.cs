@@ -25,27 +25,26 @@ namespace Code.Gameplay.Features.Sounds.Factory
       _instantiator = instantiator;
     }
 
-    public void CreateSound(SoundId soundId) =>
+    public GameEntity CreateSound(SoundId soundId) =>
       CreateSound(soundId, Vector2.zero);
 
-    public void CreateSound(SoundId soundId, Vector2 pos)
+    public GameEntity CreateSound(SoundId soundId, Vector2 pos)
     {
       SoundConfig config = _staticData.GetSoundConfig(soundId);
 
-      CreateEntity.Empty()
+      return CreateEntity.Empty()
         .AddId(_identifiers.Next())
         .AddViewPrefab(config.SoundPrefab)
         .AddWorldPosition(PositionRelativeCamera(pos))
         .AddAudioClip(config.Clip)
         .AddVolume(config.Volume)
-        
+        .AddDelay(config.Delay)
+
         .With(x => x.AddMinPitch(config.MinPitch), when: config.MinPitch != 0)
         .With(x => x.AddMaxPitch(config.MaxPitch), when: config.MaxPitch != 0)
-        
-        .With(x => x.AddDelay(config.Delay))
+
         .With(x => x.isInitializationRequest = true)
-        .With(x => x.isInitializeSound = true)
-        ;
+        .With(x => x.isInitializeSound = true);
     }
 
     public void CreateSoundDirectly(SoundId soundId)

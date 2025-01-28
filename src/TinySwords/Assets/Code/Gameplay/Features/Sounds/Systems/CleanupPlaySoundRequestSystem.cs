@@ -3,12 +3,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Sounds.Systems
 {
-  public class PlaySoundSystem : IExecuteSystem
+  public class CleanupPlaySoundRequestSystem : IExecuteSystem
   {
     private readonly IGroup<GameEntity> _sounds;
-    private readonly List<GameEntity> _buffer = new(16);
+    private readonly List<GameEntity> _buffer = new(32);
 
-    public PlaySoundSystem(GameContext game)
+    public CleanupPlaySoundRequestSystem(GameContext game)
     {
       _sounds = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.AudioSource, GameMatcher.PlaySoundRequest)
@@ -19,7 +19,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
     {
       foreach (GameEntity sound in _sounds.GetEntities(_buffer))
       {
-        sound.AudioSource.Play();
+        sound.isPlaySoundRequest = false;
       }
     }
   }

@@ -5,8 +5,8 @@ namespace Code.Gameplay.Features.Sounds.Factory
 {
   public interface ISoundFactory
   {
-    void CreateSound(SoundId soundId);
-    void CreateSound(SoundId soundId, Vector2 pos);
+    GameEntity CreateSound(SoundId soundId);
+    GameEntity CreateSound(SoundId soundId, Vector2 pos);
     void CreateSoundDirectly(SoundId soundId);
   }
 }

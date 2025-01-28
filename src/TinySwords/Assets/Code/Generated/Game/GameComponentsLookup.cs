@@ -138,31 +138,32 @@ public static class GameComponentsLookup {
     public const int AudioSource = 127;
     public const int CreateSound = 128;
     public const int Delay = 129;
-    public const int InitializeSound = 130;
-    public const int MaxPitch = 131;
-    public const int MinPitch = 132;
-    public const int PlaySoundRequest = 133;
-    public const int SoundId = 134;
-    public const int Volume = 135;
-    public const int Alive = 136;
-    public const int AttackReach = 137;
-    public const int CurrentHp = 138;
-    public const int Damage = 139;
-    public const int Dead = 140;
-    public const int LegsPositionOffset = 141;
-    public const int MaxHp = 142;
-    public const int NeutralUnit = 143;
-    public const int NotifyAlliesAboutTarget = 144;
-    public const int OffsetPositionByLegs = 145;
-    public const int Speed = 146;
-    public const int TeamColor = 147;
-    public const int Unit = 148;
-    public const int UnitTypeId = 149;
-    public const int CurrentAvoidancePriority = 150;
-    public const int IdleAvoidancePriority = 151;
-    public const int MoveAvoidancePriority = 152;
+    public const int DestroyAfterPlayback = 130;
+    public const int InitializeSound = 131;
+    public const int MaxPitch = 132;
+    public const int MinPitch = 133;
+    public const int PlaySoundRequest = 134;
+    public const int SoundId = 135;
+    public const int Volume = 136;
+    public const int Alive = 137;
+    public const int AttackReach = 138;
+    public const int CurrentHp = 139;
+    public const int Damage = 140;
+    public const int Dead = 141;
+    public const int LegsPositionOffset = 142;
+    public const int MaxHp = 143;
+    public const int NeutralUnit = 144;
+    public const int NotifyAlliesAboutTarget = 145;
+    public const int OffsetPositionByLegs = 146;
+    public const int Speed = 147;
+    public const int TeamColor = 148;
+    public const int Unit = 149;
+    public const int UnitTypeId = 150;
+    public const int CurrentAvoidancePriority = 151;
+    public const int IdleAvoidancePriority = 152;
+    public const int MoveAvoidancePriority = 153;
 
-    public const int TotalComponents = 153;
+    public const int TotalComponents = 154;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -295,6 +296,7 @@ public static class GameComponentsLookup {
         "AudioSource",
         "CreateSound",
         "Delay",
+        "DestroyAfterPlayback",
         "InitializeSound",
         "MaxPitch",
         "MinPitch",
@@ -451,6 +453,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Sounds.AudioSourceComponent),
         typeof(Code.Gameplay.Features.Sounds.CreateSound),
         typeof(Code.Gameplay.Features.Sounds.Delay),
+        typeof(Code.Gameplay.Features.Sounds.DestroyAfterPlayback),
         typeof(Code.Gameplay.Features.Sounds.InitializeSound),
         typeof(Code.Gameplay.Features.Sounds.MaxPitch),
         typeof(Code.Gameplay.Features.Sounds.MinPitch),

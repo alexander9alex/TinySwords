@@ -24,7 +24,9 @@ namespace Code.Gameplay.Features.Sounds.Systems
     {
       foreach (GameEntity request in _createSoundRequests.GetEntities(_buffer))
       {
-        _soundFactory.CreateSound(request.SoundId);
+        GameEntity sound = _soundFactory.CreateSound(request.SoundId);
+        sound.isDestroyAfterPlayback = true;
+        sound.isPlaySoundRequest = true;
 
         request.isDestructed = true;
       }

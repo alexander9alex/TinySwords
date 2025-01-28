@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
     {
       _time = time;
       _sounds = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.AudioSource, GameMatcher.Delay));
+        .AllOf(GameMatcher.AudioSource, GameMatcher.Delay, GameMatcher.PlaySoundRequest));
     }
 
     public void Execute()
@@ -24,10 +24,7 @@ namespace Code.Gameplay.Features.Sounds.Systems
         if (sound.Delay > 0)
           sound.ReplaceDelay(sound.Delay - _time.DeltaTime);
         else
-        {
           sound.RemoveDelay();
-          sound.isPlaySoundRequest = true;
-        }
       }
     }
   }

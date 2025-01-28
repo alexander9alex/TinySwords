@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Windows;
+using Code.Gameplay.Features.Sounds.Data;
+using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.States.GameStates;
@@ -19,14 +21,16 @@ namespace Code.Gameplay.CutScene.Services
     private readonly ICoroutineRunner _coroutineRunner;
     private readonly IGameStateMachine _gameStateMachine;
     private readonly ITimeService _time;
+    private readonly ISoundFactory _soundFactory;
 
     private bool _click;
 
-    public CutSceneService(ICoroutineRunner coroutineRunner, IGameStateMachine gameStateMachine, ITimeService time)
+    public CutSceneService(ICoroutineRunner coroutineRunner, IGameStateMachine gameStateMachine, ITimeService time, ISoundFactory soundFactory)
     {
       _coroutineRunner = coroutineRunner;
       _gameStateMachine = gameStateMachine;
       _time = time;
+      _soundFactory = soundFactory;
     }
 
     public void RunCutScene(CutSceneWindow cutSceneWindow) =>
@@ -36,6 +40,7 @@ namespace Code.Gameplay.CutScene.Services
     {
       cutSceneWindow.SetNextReplicaAction(NextReplica);
       CutSceneConfig config = cutSceneWindow.GetCutSceneConfig();
+      
 
       foreach (string replica in config.Replicas)
       {
