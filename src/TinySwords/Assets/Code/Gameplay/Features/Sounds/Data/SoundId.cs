@@ -4,7 +4,8 @@
   {
     Unknown = 0,
     Death = 1,
-    TextDisplay = 2,
+    ButtonClick = 2,
+    TextDisplay = 3,
 
     KnightTakeDamage = 200,
     KnightMakeHit = 201,

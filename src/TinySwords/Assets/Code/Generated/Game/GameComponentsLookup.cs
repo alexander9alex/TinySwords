@@ -142,28 +142,30 @@ public static class GameComponentsLookup {
     public const int InitializeSound = 131;
     public const int MaxPitch = 132;
     public const int MinPitch = 133;
-    public const int PlaySoundRequest = 134;
-    public const int SoundId = 135;
-    public const int Volume = 136;
-    public const int Alive = 137;
-    public const int AttackReach = 138;
-    public const int CurrentHp = 139;
-    public const int Damage = 140;
-    public const int Dead = 141;
-    public const int LegsPositionOffset = 142;
-    public const int MaxHp = 143;
-    public const int NeutralUnit = 144;
-    public const int NotifyAlliesAboutTarget = 145;
-    public const int OffsetPositionByLegs = 146;
-    public const int Speed = 147;
-    public const int TeamColor = 148;
-    public const int Unit = 149;
-    public const int UnitTypeId = 150;
-    public const int CurrentAvoidancePriority = 151;
-    public const int IdleAvoidancePriority = 152;
-    public const int MoveAvoidancePriority = 153;
+    public const int PauseSoundRequest = 134;
+    public const int PlaySoundRequest = 135;
+    public const int ResetSoundPlaybackTimeRequest = 136;
+    public const int SoundId = 137;
+    public const int Volume = 138;
+    public const int Alive = 139;
+    public const int AttackReach = 140;
+    public const int CurrentHp = 141;
+    public const int Damage = 142;
+    public const int Dead = 143;
+    public const int LegsPositionOffset = 144;
+    public const int MaxHp = 145;
+    public const int NeutralUnit = 146;
+    public const int NotifyAlliesAboutTarget = 147;
+    public const int OffsetPositionByLegs = 148;
+    public const int Speed = 149;
+    public const int TeamColor = 150;
+    public const int Unit = 151;
+    public const int UnitTypeId = 152;
+    public const int CurrentAvoidancePriority = 153;
+    public const int IdleAvoidancePriority = 154;
+    public const int MoveAvoidancePriority = 155;
 
-    public const int TotalComponents = 154;
+    public const int TotalComponents = 156;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -300,7 +302,9 @@ public static class GameComponentsLookup {
         "InitializeSound",
         "MaxPitch",
         "MinPitch",
+        "PauseSoundRequest",
         "PlaySoundRequest",
+        "ResetSoundPlaybackTimeRequest",
         "SoundId",
         "Volume",
         "Alive",
@@ -457,7 +461,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Sounds.InitializeSound),
         typeof(Code.Gameplay.Features.Sounds.MaxPitch),
         typeof(Code.Gameplay.Features.Sounds.MinPitch),
+        typeof(Code.Gameplay.Features.Sounds.PauseSoundRequest),
         typeof(Code.Gameplay.Features.Sounds.PlaySoundRequest),
+        typeof(Code.Gameplay.Features.Sounds.ResetSoundPlaybackTimeRequest),
         typeof(Code.Gameplay.Features.Sounds.SoundIdComponent),
         typeof(Code.Gameplay.Features.Sounds.Volume),
         typeof(Code.Gameplay.Features.Units.Alive),

@@ -17,6 +17,7 @@ namespace Code.Gameplay.CutScene.Services
   {
     private const int Space = ' ';
     private readonly List<char> _completeSentenceMarks = new() { '.', '!', '?' };
+    private readonly List<char> _marks = new() { '.', '!', '?', '-', ',', '\'', '"' };
 
     private readonly ICoroutineRunner _coroutineRunner;
     private readonly IGameStateMachine _gameStateMachine;
@@ -40,21 +41,24 @@ namespace Code.Gameplay.CutScene.Services
     {
       cutSceneWindow.SetNextReplicaAction(NextReplica);
       CutSceneConfig config = cutSceneWindow.GetCutSceneConfig();
-      
+      GameEntity textDisplaySound = _soundFactory.CreateSound(SoundId.TextDisplay);
 
       foreach (string replica in config.Replicas)
       {
         cutSceneWindow.ClearReplica();
-        yield return ShowReplica(cutSceneWindow, replica, config);
+        yield return ShowReplica(cutSceneWindow, replica, config, textDisplaySound);
         yield return WaitToClick();
         yield return HideReplica(cutSceneWindow, config);
       }
 
+      RemoveSound(textDisplaySound);
+
       _gameStateMachine.Enter<LoadingGameState>();
     }
 
-    private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config)
+    private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config, GameEntity textDisplaySound)
     {
+      ReplaySoundFirst(textDisplaySound);
       cutSceneWindow.SetReplicaFade(1);
 
       WaitForSeconds waitAfterSymbol = new(config.ReplicaSymbolDisplaySpeed);
@@ -68,16 +72,30 @@ namespace Code.Gameplay.CutScene.Services
         cutSceneWindow.SetReplica(displayReplicaPart.ToString());
 
         if (IsCompleteSentenceMark(replica, index: i))
+        {
+          PauseSound(textDisplaySound);
           yield return waitAfterEndSentence;
+          ReplaySoundFirst(textDisplaySound);
+        }
+
+        if (IsMark(replica, index: i))
+        {
+          PauseSound(textDisplaySound);
+          yield return waitAfterSymbol;
+          ContinueSound(textDisplaySound);
+        }
         else
           yield return waitAfterSymbol;
 
         if (_click)
         {
           cutSceneWindow.SetReplica(replica);
+          PauseSound(textDisplaySound);
           yield break;
         }
       }
+
+      PauseSound(textDisplaySound);
     }
 
     private IEnumerator HideReplica(CutSceneWindow cutSceneWindow, CutSceneConfig config)
@@ -132,10 +150,45 @@ namespace Code.Gameplay.CutScene.Services
       return true;
     }
 
+    private bool IsMark(string replica, int index)
+    {
+      if (_marks.Contains(replica[index]))
+        return true;
+
+      if (index > 0 && _marks.Contains(replica[index - 1]) && replica[index] == Space)
+        return true;
+
+      if (replica.Length > index + 1 && _marks.Contains(replica[index + 1]) && replica[index] == Space)
+        return true;
+
+      return false;
+    }
+
+    private static void ReplaySoundFirst(GameEntity textDisplaySound)
+    {
+      textDisplaySound.isResetSoundPlaybackTimeRequest = true;
+      ContinueSound(textDisplaySound);
+    }
+
+    private static void ContinueSound(GameEntity textDisplaySound)
+    {
+      textDisplaySound.isPlaySoundRequest = true;
+      textDisplaySound.isPauseSoundRequest = false;
+    }
+
+    private static void PauseSound(GameEntity textDisplaySound)
+    {
+      textDisplaySound.isPauseSoundRequest = true;
+      textDisplaySound.isPlaySoundRequest = false;
+    }
+
+    private void RemoveSound(GameEntity textDisplaySound) =>
+      textDisplaySound.isDestructed = true;
+
     private void NextReplica() =>
       _click = true;
 
-    private Coroutine ShowReplica(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config) =>
-      _coroutineRunner.StartCoroutine(ShowReplicaCoroutine(cutSceneWindow, replica, config));
+    private Coroutine ShowReplica(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config, GameEntity textDisplaySound) =>
+      _coroutineRunner.StartCoroutine(ShowReplicaCoroutine(cutSceneWindow, replica, config, textDisplaySound));
   }
 }
