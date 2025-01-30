@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Code.Common.Entities;
+using Code.Common.Extensions;
 using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Windows;
 using Code.Gameplay.Features.Sounds.Data;
@@ -78,7 +80,7 @@ namespace Code.Gameplay.CutScene.Services
           ReplaySoundFirst(textDisplaySound);
         }
 
-        if (IsMark(replica, index: i))
+        if (IsMarkOrSpace(replica[i]))
         {
           PauseSound(textDisplaySound);
           yield return waitAfterSymbol;
@@ -150,36 +152,39 @@ namespace Code.Gameplay.CutScene.Services
       return true;
     }
 
-    private bool IsMark(string replica, int index)
-    {
-      if (_marks.Contains(replica[index]))
-        return true;
-
-      if (index > 0 && _marks.Contains(replica[index - 1]) && replica[index] == Space)
-        return true;
-
-      if (replica.Length > index + 1 && _marks.Contains(replica[index + 1]) && replica[index] == Space)
-        return true;
-
-      return false;
-    }
+    private bool IsMarkOrSpace(char ch) =>
+      _marks.Contains(ch) || ch == Space;
 
     private static void ReplaySoundFirst(GameEntity textDisplaySound)
     {
-      textDisplaySound.isResetSoundPlaybackTimeRequest = true;
+      if (textDisplaySound is { hasId: true })
+
+        CreateEntity.Empty()
+          .AddTargetId(textDisplaySound.Id)
+          .With(x => x.isChangeSoundRequest = true)
+          .With(x => x.isResetSoundPlaybackTimeRequest = true);
+
       ContinueSound(textDisplaySound);
     }
 
     private static void ContinueSound(GameEntity textDisplaySound)
     {
-      textDisplaySound.isPlaySoundRequest = true;
-      textDisplaySound.isPauseSoundRequest = false;
+      if (textDisplaySound is { hasId: true })
+
+        CreateEntity.Empty()
+          .AddTargetId(textDisplaySound.Id)
+          .With(x => x.isChangeSoundRequest = true)
+          .With(x => x.isPlaySoundRequest = true);
     }
 
     private static void PauseSound(GameEntity textDisplaySound)
     {
-      textDisplaySound.isPauseSoundRequest = true;
-      textDisplaySound.isPlaySoundRequest = false;
+      if (textDisplaySound is { hasId: true })
+
+        CreateEntity.Empty()
+          .AddTargetId(textDisplaySound.Id)
+          .With(x => x.isChangeSoundRequest = true)
+          .With(x => x.isPauseSoundRequest = true);
     }
 
     private void RemoveSound(GameEntity textDisplaySound) =>

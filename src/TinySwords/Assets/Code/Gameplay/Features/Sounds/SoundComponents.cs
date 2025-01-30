@@ -14,6 +14,7 @@ namespace Code.Gameplay.Features.Sounds
   [Game] public class PlaySoundRequest : IComponent { }
   [Game] public class ResetSoundPlaybackTimeRequest : IComponent { }
   [Game] public class PauseSoundRequest : IComponent { }
+  [Game] public class ChangeSoundRequest : IComponent { }
   [Game] public class InitializeSound : IComponent { }
   [Game] public class DestroyAfterPlayback : IComponent { }
   [Game] public class Delay : IComponent { public float Value; }

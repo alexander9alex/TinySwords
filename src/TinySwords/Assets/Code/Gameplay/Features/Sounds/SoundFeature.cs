@@ -16,9 +16,13 @@ namespace Code.Gameplay.Features.Sounds
       Add(systems.Create<SetVolumeSystem>());
       Add(systems.Create<SetRandomPitchSystem>());
 
+      Add(systems.Create<ResetSoundPlaybackTimeByIdSystem>());
       Add(systems.Create<ResetSoundPlaybackTimeSystem>());
       
+      Add(systems.Create<PlaySoundByIdSystem>());
       Add(systems.Create<PlaySoundSystem>());
+      
+      Add(systems.Create<PauseSoundByIdSystem>());
       Add(systems.Create<PauseSoundSystem>());
       
       Add(systems.Create<SetDestructTimerToSoundSystem>());

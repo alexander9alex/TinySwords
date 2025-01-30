@@ -136,36 +136,37 @@ public static class GameComponentsLookup {
     public const int UpdateHudControlButtons = 125;
     public const int AudioClip = 126;
     public const int AudioSource = 127;
-    public const int CreateSound = 128;
-    public const int Delay = 129;
-    public const int DestroyAfterPlayback = 130;
-    public const int InitializeSound = 131;
-    public const int MaxPitch = 132;
-    public const int MinPitch = 133;
-    public const int PauseSoundRequest = 134;
-    public const int PlaySoundRequest = 135;
-    public const int ResetSoundPlaybackTimeRequest = 136;
-    public const int SoundId = 137;
-    public const int Volume = 138;
-    public const int Alive = 139;
-    public const int AttackReach = 140;
-    public const int CurrentHp = 141;
-    public const int Damage = 142;
-    public const int Dead = 143;
-    public const int LegsPositionOffset = 144;
-    public const int MaxHp = 145;
-    public const int NeutralUnit = 146;
-    public const int NotifyAlliesAboutTarget = 147;
-    public const int OffsetPositionByLegs = 148;
-    public const int Speed = 149;
-    public const int TeamColor = 150;
-    public const int Unit = 151;
-    public const int UnitTypeId = 152;
-    public const int CurrentAvoidancePriority = 153;
-    public const int IdleAvoidancePriority = 154;
-    public const int MoveAvoidancePriority = 155;
+    public const int ChangeSoundRequest = 128;
+    public const int CreateSound = 129;
+    public const int Delay = 130;
+    public const int DestroyAfterPlayback = 131;
+    public const int InitializeSound = 132;
+    public const int MaxPitch = 133;
+    public const int MinPitch = 134;
+    public const int PauseSoundRequest = 135;
+    public const int PlaySoundRequest = 136;
+    public const int ResetSoundPlaybackTimeRequest = 137;
+    public const int SoundId = 138;
+    public const int Volume = 139;
+    public const int Alive = 140;
+    public const int AttackReach = 141;
+    public const int CurrentHp = 142;
+    public const int Damage = 143;
+    public const int Dead = 144;
+    public const int LegsPositionOffset = 145;
+    public const int MaxHp = 146;
+    public const int NeutralUnit = 147;
+    public const int NotifyAlliesAboutTarget = 148;
+    public const int OffsetPositionByLegs = 149;
+    public const int Speed = 150;
+    public const int TeamColor = 151;
+    public const int Unit = 152;
+    public const int UnitTypeId = 153;
+    public const int CurrentAvoidancePriority = 154;
+    public const int IdleAvoidancePriority = 155;
+    public const int MoveAvoidancePriority = 156;
 
-    public const int TotalComponents = 156;
+    public const int TotalComponents = 157;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -296,6 +297,7 @@ public static class GameComponentsLookup {
         "UpdateHudControlButtons",
         "AudioClip",
         "AudioSource",
+        "ChangeSoundRequest",
         "CreateSound",
         "Delay",
         "DestroyAfterPlayback",
@@ -455,6 +457,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Select.UpdateHudControlButtons),
         typeof(Code.Gameplay.Features.Sounds.AudioClipComponent),
         typeof(Code.Gameplay.Features.Sounds.AudioSourceComponent),
+        typeof(Code.Gameplay.Features.Sounds.ChangeSoundRequest),
         typeof(Code.Gameplay.Features.Sounds.CreateSound),
         typeof(Code.Gameplay.Features.Sounds.Delay),
         typeof(Code.Gameplay.Features.Sounds.DestroyAfterPlayback),
