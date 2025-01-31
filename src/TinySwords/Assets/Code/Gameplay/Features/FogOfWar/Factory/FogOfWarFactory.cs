@@ -1,7 +1,6 @@
 ﻿using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.FogOfWar.Data;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Code.Gameplay.Features.FogOfWar.Factory
 {
@@ -14,15 +13,17 @@ namespace Code.Gameplay.Features.FogOfWar.Factory
 
     public void CreateFogOfWar(FogOfWarMarker fogOfWarMarker, Transform parent)
     {
-      GameObject placeGO = fogOfWarMarker.gameObject;
+      GameObject objectPrefab = fogOfWarMarker.gameObject;
 
-      GameObject placeFogOfWar = Object.Instantiate(placeGO, placeGO.transform.position, placeGO.transform.rotation);
-      placeFogOfWar.name += "_FogOfWar";
-      placeFogOfWar.transform.parent = parent;
+      GameObject fogOfWar = Object.Instantiate(objectPrefab, objectPrefab.transform.position, objectPrefab.transform.rotation);
+      fogOfWar.name += "_FogOfWar";
+      fogOfWar.transform.parent = parent;
 
-      TilemapRenderer placeFogOfWarTilemapRenderer = placeFogOfWar.GetComponent<TilemapRenderer>();
-      placeFogOfWarTilemapRenderer.material = _staticData.GetFogOfWarConfig().Material;
-      placeFogOfWarTilemapRenderer.sortingOrder = fogOfWarMarker.OrderInLayer;
+      foreach (Renderer renderer in fogOfWar.GetComponentsInChildren<Renderer>())
+      {
+        renderer.material = _staticData.GetFogOfWarConfig().Material;
+        renderer.sortingOrder = fogOfWarMarker.OrderInLayer;
+      }
     }
   }
 }

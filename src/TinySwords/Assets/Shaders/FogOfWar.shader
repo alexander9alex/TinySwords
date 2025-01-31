@@ -2,7 +2,7 @@ Shader "Cutsom/FogOfWar"
 {
     Properties
     {
-        
+        _MainTex ("Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -37,7 +37,8 @@ Shader "Cutsom/FogOfWar"
             #define MAX_DISTANCE_TO_GLOWING_OBJECT 1000
 
             sampler2D _MainTex;
-
+            float4 _MainTex_ST;
+            
             float     _FogIntensity;
             float     _VisibilitySmoothness;
             
@@ -48,7 +49,7 @@ Shader "Cutsom/FogOfWar"
             {
                 Interpolators interpolators;
                 interpolators.vertex = UnityObjectToClipPos(meshData.vertex);
-                interpolators.uv = meshData.uv;
+                interpolators.uv = TRANSFORM_TEX(meshData.uv, _MainTex);
                 interpolators.worldPos = mul(UNITY_MATRIX_M, meshData.vertex);
                 return interpolators;
             }
@@ -56,10 +57,6 @@ Shader "Cutsom/FogOfWar"
             fixed4 frag(Interpolators interpolators) : SV_Target
             {
                 fixed4 color = tex2D(_MainTex, interpolators.uv);
-                color.w = step(0.5, color.w);
-                
-                if(color.w == 0)
-                    discard;
 
                 float distanceToNearestObject = MAX_DISTANCE_TO_GLOWING_OBJECT;
                 float objectVisibilityRadius = 0;
