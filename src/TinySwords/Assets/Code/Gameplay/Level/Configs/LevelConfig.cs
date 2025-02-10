@@ -17,6 +17,5 @@ namespace Code.Gameplay.Level.Configs
     [Header("Level Setup")]
     public BorderInfo BorderInfo;
     public Transform LevelMarkersParent;
-    public List<FogOfWarMarker> FogOfWarMarkers;
   }
 }

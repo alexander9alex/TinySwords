@@ -10,7 +10,7 @@ namespace Code.Gameplay.Constants
     public const float SelectionClickDelta = 10;
     public const float ClickRadius = 0.01f;
     public static float FocusRadius => ClickRadius;
-    public const float UnitMinRadius = 0.7f;
+    public const float UnitMinRadius = 0.9f;
     public const float StoppingDistance = 0.01f;
     public const float MinLastTimeToUpdateFieldOfVision = 0.25f;
     public const TeamColor UserTeamColor = TeamColor.Blue;

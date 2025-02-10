@@ -19,7 +19,6 @@ namespace Code.Gameplay.Level.Configs
       {
         levelConfig.BorderInfo = levelConfig.LevelPrefab.GetComponent<BorderInfo>();
         levelConfig.LevelMarkersParent = levelConfig.LevelPrefab.GetComponentInChildren<LevelMarkersParent>().transform;
-        levelConfig.FogOfWarMarkers = levelConfig.LevelPrefab.transform.GetComponentsInChildren<FogOfWarMarker>().ToList();
       }
 
       EditorUtility.SetDirty(target);

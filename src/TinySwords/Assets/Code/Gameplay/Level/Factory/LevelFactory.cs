@@ -47,7 +47,7 @@ namespace Code.Gameplay.Level.Factory
 
     private static void CreateFogOfWar(LevelConfig config)
     {
-      foreach (FogOfWarMarker marker in config.FogOfWarMarkers)
+      foreach (FogOfWarMarker marker in config.LevelPrefab.GetComponentsInChildren<FogOfWarMarker>(includeInactive: false))
       {
         CreateEntity.Empty()
           .AddFogOfWarMarker(marker)
@@ -56,6 +56,6 @@ namespace Code.Gameplay.Level.Factory
     }
 
     private static UnitMarker[] UnitMarkers(LevelConfig config) =>
-      config.LevelMarkersParent.GetComponentsInChildren<UnitMarker>();
+      config.LevelMarkersParent.GetComponentsInChildren<UnitMarker>(includeInactive: false);
   }
 }

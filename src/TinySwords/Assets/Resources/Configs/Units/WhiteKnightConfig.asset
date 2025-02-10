@@ -15,11 +15,12 @@ MonoBehaviour:
   TypeId: 2
   Color: 3
   UnitPrefab: {fileID: 3841485622853786287, guid: 238af9d8b90fd7a41ab0ee053ac8e528, type: 3}
-  Hp: 25
+  Hp: 20
   Damage: 4
-  Speed: 2.1
+  Speed: 3.1
   AttackReach: 0.85
   AttackCooldown: 0.6
-  CollectTargetRadius: 3
-  CollectAlliesRadius: 1
-  MakeDecisionInterval: 1
+  CollectTargetRadius: 4.5
+  CollectAlliesRadius: 2
+  VisionRadius: 6
+  UpdateFieldOfVisionInterval: 0.5
