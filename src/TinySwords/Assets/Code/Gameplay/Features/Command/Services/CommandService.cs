@@ -29,8 +29,6 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly IFogOfWarService _fogOfWarService;
     private readonly ICameraProvider _cameraProvider;
     
-    private RaycastHit2D[] _hits;
-
     public CommandService(IHudService hudService, IInputService inputService, ISoundService soundService, IProcessCommandService processCommandService,
       IFogOfWarService fogOfWarService, ICameraProvider cameraProvider)
     {
@@ -119,32 +117,29 @@ namespace Code.Gameplay.Features.Command.Services
 
     private bool CanApplyMoveCommand(Vector2 screenPos)
     {
-      Vector3 worldPos = _cameraProvider.ScreenToWorldPoint(screenPos);
+      RaycastHit2D[] hits = GetHits(screenPos);
 
-      _hits = new RaycastHit2D[10];
-
-      ContactFilter2D contactFilter2D = new ContactFilter2D();
-      contactFilter2D.layerMask = _mapLayerMask;
-      
-      Physics2D.Raycast(worldPos, Vector2.zero, contactFilter2D, _hits, RaycastDistance);
-
-      if (CanNotMove(_hits))
+      if (CanNotMove(hits))
         return false;
 
-      if (CanMove(_hits))
+      if (CanMove(hits))
         return true;
 
       return false;
     }
 
-    private static bool CanMove(RaycastHit2D[] hits)
+    private RaycastHit2D[] GetHits(Vector2 screenPos)
     {
-      return hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<MovablePlace>());
-    }
+      Vector3 worldPos = _cameraProvider.ScreenToWorldPoint(screenPos);
 
-    private static bool CanNotMove(RaycastHit2D[] hits)
-    {
-      return hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<NotMovablePlace>());
+
+      ContactFilter2D contactFilter2D = new();
+      contactFilter2D.layerMask = _mapLayerMask;
+
+      RaycastHit2D[] hits = new RaycastHit2D[10];
+      Physics2D.Raycast(worldPos, Vector2.zero, contactFilter2D, hits, RaycastDistance);
+
+      return hits;
     }
 
     private bool CanApplyAimedAttackCommand(Vector2 screenPos)
@@ -154,5 +149,11 @@ namespace Code.Gameplay.Features.Command.Services
 
       return _processCommandService.CanProcessAimedAttack(screenPos);
     }
+
+    private static bool CanMove(RaycastHit2D[] hits) =>
+      hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<MovablePlace>());
+
+    private static bool CanNotMove(RaycastHit2D[] hits) =>
+      hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<NotMovablePlace>());
   }
 }
