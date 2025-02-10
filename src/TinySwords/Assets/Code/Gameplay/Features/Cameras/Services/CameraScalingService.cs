@@ -48,6 +48,9 @@ namespace Code.Gameplay.Features.Cameras.Services
         yield return null;
       }
 
+      _cameraProvider.CameraScale = _endCameraScale;
+      MoveCamera();
+
       _scalingNow = false;
     }
 

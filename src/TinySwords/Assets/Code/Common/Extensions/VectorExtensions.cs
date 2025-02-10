@@ -21,5 +21,11 @@ namespace Code.Common.Extensions
 
     public static Vector4 ReplaceZ(this Vector4 v, float z) =>
       new(v.x, v.y, z, v.w);
+    
+    public static Vector2 RemoveX(this Vector2 v) =>
+      new(0, v.y);
+
+    public static Vector2 RemoveY(this Vector2 v) =>
+      new(v.x, 0);
   }
 }

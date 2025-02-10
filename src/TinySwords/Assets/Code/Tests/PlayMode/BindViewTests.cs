@@ -6,6 +6,7 @@ using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Units.Animators;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Common.Services;
@@ -68,7 +69,8 @@ namespace Code.Tests.PlayMode
       ILevelFactory levelFactory = Container.Resolve<ILevelFactory>();
 
       // Act
-      levelFactory.CreateLevel(LevelId.Empty);
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      levelFactory.CreateLevel(config);
       bindViewFeature.Execute();
       yield return null;
 

@@ -26,11 +26,8 @@ namespace Code.Gameplay.Features.Cameras.Services
       _cameraConfig = _staticData.GetCameraConfig();
     }
 
-    public void SetCameraBorders(LevelId levelId)
-    {
-      LevelConfig levelConfig = _staticData.GetLevelConfig(levelId);
-      _borderInfo = levelConfig.BorderInfo;
-    }
+    public void SetCameraBorders(LevelConfig config) =>
+      _borderInfo = config.BorderInfo;
 
     public void MoveCamera(Vector2 moveDir)
     {

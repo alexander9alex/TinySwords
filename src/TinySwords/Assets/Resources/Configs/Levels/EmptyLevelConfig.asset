@@ -16,3 +16,4 @@ MonoBehaviour:
   LevelPrefab: {fileID: 7257294543228142665, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
   BorderInfo: {fileID: 2716348417801092590, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
   LevelMarkersParent: {fileID: 1210393475941151228, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}
+  CameraSpawnMarker: {fileID: 5903933874296551126, guid: 3191379f5c8227a4fbf17a1033dc84bc, type: 3}

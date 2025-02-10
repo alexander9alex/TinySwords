@@ -1,8 +1,11 @@
 using Code.Gameplay.Common.Curtain;
 using Code.Gameplay.Common.Providers;
+using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.Cameras.Factory;
 using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Infrastructure.Loading;
@@ -22,9 +25,12 @@ namespace Code.Infrastructure.States.GameStates
     private readonly IInputService _inputService;
     private readonly ILevelFactory _levelFactory;
     private readonly ICameraMovementService _cameraMovementService;
+    private readonly ICameraFactory _cameraFactory;
+    private readonly IStaticDataService _staticData;
 
     public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
-      IInputService inputService, ILevelFactory levelFactory, ICameraMovementService cameraMovementService)
+      IInputService inputService, ILevelFactory levelFactory, ICameraMovementService cameraMovementService, ICameraFactory cameraFactory,
+      IStaticDataService staticData)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
@@ -33,6 +39,8 @@ namespace Code.Infrastructure.States.GameStates
       _inputService = inputService;
       _levelFactory = levelFactory;
       _cameraMovementService = cameraMovementService;
+      _cameraFactory = cameraFactory;
+      _staticData = staticData;
     }
 
     public override void Enter() =>
@@ -40,11 +48,15 @@ namespace Code.Infrastructure.States.GameStates
 
     private void OnLoaded()
     {
-      _cameraProvider.SetMainCamera(Camera.main);
-      _inputService.ChangeInputMap(InputMap.Game);
+      LevelConfig config = _staticData.GetLevelConfig(LevelId.First);
 
-      _levelFactory.CreateLevel(LevelId.First);
-      _cameraMovementService.SetCameraBorders(LevelId.First);
+      _cameraFactory.CreateCamera(config);
+      _cameraProvider.SetMainCamera(Camera.main);
+      
+      _levelFactory.CreateLevel(config);
+      _cameraMovementService.SetCameraBorders(config);
+
+      _inputService.ChangeInputMap(InputMap.Game);
 
       _gameStateMachine.Enter<GameLoopState>();
     }

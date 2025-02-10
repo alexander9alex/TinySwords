@@ -21,10 +21,8 @@ namespace Code.Gameplay.Level.Factory
       _unitFactory = unitFactory;
     }
 
-    public void CreateLevel(LevelId levelId)
+    public void CreateLevel(LevelConfig config)
     {
-      LevelConfig config = _staticData.GetLevelConfig(levelId);
-
       CreateEntity.Empty()
         .AddViewPrefab(config.LevelPrefab)
         .AddWorldPosition(Vector3.zero)

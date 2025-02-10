@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.Gameplay.Features.FogOfWar.Data;
+﻿using Code.Gameplay.Features.Cameras.Data;
 using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Views;
 using UnityEngine;
@@ -13,9 +12,10 @@ namespace Code.Gameplay.Level.Configs
 
     [Header("Fill in for collect level setup")]
     public EntityBehaviour LevelPrefab;
-    
+
     [Header("Level Setup")]
     public BorderInfo BorderInfo;
     public Transform LevelMarkersParent;
+    public CameraSpawnMarker CameraSpawnMarker;
   }
 }

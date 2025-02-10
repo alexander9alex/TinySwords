@@ -9,6 +9,7 @@ using Code.Gameplay.CutScene.Services;
 using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
 using Code.Gameplay.Features.Build.Factory;
+using Code.Gameplay.Features.Cameras.Factory;
 using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Services;
@@ -144,6 +145,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
       Container.Bind<ICutSceneFactory>().To<CutSceneFactory>().AsSingle();
       Container.Bind<IFogOfWarFactory>().To<FogOfWarFactory>().AsSingle();
+      Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
     }
 
     private void BindAI()

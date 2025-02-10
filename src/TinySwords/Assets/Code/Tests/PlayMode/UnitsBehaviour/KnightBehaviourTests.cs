@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Entities;
 using Code.Gameplay.Common.Services;
-using Code.Gameplay.Features.CollectEntities.Services;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.NavMesh.Registrars;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
 using Code.Gameplay.Features.Units.Factory;
+using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
@@ -78,8 +78,9 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
       yield return null;
 
       BindNavMesh();
-
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+      
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      Container.Resolve<ILevelFactory>().CreateLevel(config);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 
@@ -115,7 +116,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       BindNavMesh();
 
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      Container.Resolve<ILevelFactory>().CreateLevel(config);
 
       GameEntity knight = Container.Resolve<IUnitFactory>().CreateUnit(UnitTypeId.Knight, TeamColor.Blue, Vector3.zero);
       knight.ReplaceWorldPosition(new Vector3(0, 0));
@@ -152,7 +154,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       BindNavMesh();
 
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      Container.Resolve<ILevelFactory>().CreateLevel(config);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 
@@ -194,7 +197,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       BindNavMesh();
 
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      Container.Resolve<ILevelFactory>().CreateLevel(config);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 
@@ -238,7 +242,8 @@ namespace Code.Tests.PlayMode.UnitsBehaviour
 
       BindNavMesh();
 
-      Container.Resolve<ILevelFactory>().CreateLevel(LevelId.Empty);
+      LevelConfig config = Container.Resolve<IStaticDataService>().GetLevelConfig(LevelId.Empty);
+      Container.Resolve<ILevelFactory>().CreateLevel(config);
 
       ITimeService timeService = Container.Resolve<ITimeService>();
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea804bea16a6426685eb161cf55d8cbc, type: 3}
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
+  CameraPrefab: {fileID: 4722457733488884885, guid: 9cf57ca7374601a4687b59d56a75e21a, type: 3}
   MinScaling: 3
   MaxScaling: 10
   ScaleStep: 0.3
