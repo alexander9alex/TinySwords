@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Gameplay.Features.Command.Services
+namespace Code.Gameplay.Features.Move.Behaviours
 {
   internal class MovablePlace : MonoBehaviour
   {

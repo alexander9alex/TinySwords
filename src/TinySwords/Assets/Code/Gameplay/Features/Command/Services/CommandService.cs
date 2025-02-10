@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Providers;
@@ -6,6 +7,7 @@ using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.FogOfWar.Services;
 using Code.Gameplay.Features.Input.Data;
 using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Features.Move.Behaviours;
 using Code.Gameplay.Features.ProcessCommand.Services;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Services;
@@ -26,6 +28,8 @@ namespace Code.Gameplay.Features.Command.Services
     private readonly IProcessCommandService _processCommandService;
     private readonly IFogOfWarService _fogOfWarService;
     private readonly ICameraProvider _cameraProvider;
+    
+    private RaycastHit2D[] _hits;
 
     public CommandService(IHudService hudService, IInputService inputService, ISoundService soundService, IProcessCommandService processCommandService,
       IFogOfWarService fogOfWarService, ICameraProvider cameraProvider)
@@ -117,12 +121,30 @@ namespace Code.Gameplay.Features.Command.Services
     {
       Vector3 worldPos = _cameraProvider.ScreenToWorldPoint(screenPos);
 
-      RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, RaycastDistance, _mapLayerMask);
+      _hits = new RaycastHit2D[10];
 
-      if (hit.collider != null && hit.collider.GetComponent<MovablePlace>() != null)
+      ContactFilter2D contactFilter2D = new ContactFilter2D();
+      contactFilter2D.layerMask = _mapLayerMask;
+      
+      Physics2D.Raycast(worldPos, Vector2.zero, contactFilter2D, _hits, RaycastDistance);
+
+      if (CanNotMove(_hits))
+        return false;
+
+      if (CanMove(_hits))
         return true;
 
       return false;
+    }
+
+    private static bool CanMove(RaycastHit2D[] hits)
+    {
+      return hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<MovablePlace>());
+    }
+
+    private static bool CanNotMove(RaycastHit2D[] hits)
+    {
+      return hits.Length > 0 && hits.Where(hit => hit.collider != null).Select(hit => hit.collider).Any(x => x.GetComponent<NotMovablePlace>());
     }
 
     private bool CanApplyAimedAttackCommand(Vector2 screenPos)
