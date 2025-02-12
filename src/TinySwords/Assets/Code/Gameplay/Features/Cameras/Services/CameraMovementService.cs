@@ -4,6 +4,7 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
+using Code.Gameplay.Services;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Cameras.Services
@@ -11,19 +12,19 @@ namespace Code.Gameplay.Features.Cameras.Services
   class CameraMovementService : ICameraMovementService
   {
     private readonly ICameraProvider _cameraProvider;
-    private readonly IStaticDataService _staticData;
     private readonly CameraConfig _cameraConfig;
-    
+    private readonly ITimeService _time;
+
     private float CameraScaleInfluenceCoefficient =>
       _cameraProvider.CameraScale / _cameraConfig.MaxScaling * _cameraConfig.CameraScaleOnMovementInfluenceCoefficient;
 
     private BorderInfo _borderInfo;
 
-    public CameraMovementService(ICameraProvider cameraProvider, IStaticDataService staticData)
+    public CameraMovementService(ICameraProvider cameraProvider, IStaticDataService staticData, ITimeService time)
     {
       _cameraProvider = cameraProvider;
-      _staticData = staticData;
-      _cameraConfig = _staticData.GetCameraConfig();
+      _time = time;
+      _cameraConfig = staticData.GetCameraConfig();
     }
 
     public void SetCameraBorders(LevelConfig config) =>
@@ -31,7 +32,7 @@ namespace Code.Gameplay.Features.Cameras.Services
 
     public void MoveCamera(Vector2 moveDir)
     {
-      Vector3 newCameraPos = _cameraProvider.CameraPosition + MoveVector(moveDir);
+      Vector3 newCameraPos = _cameraProvider.CameraPosition + MoveVector(moveDir) * _time.DeltaTime;
 
       _cameraProvider.CameraPosition = CameraClamp(
         newCameraPos,
