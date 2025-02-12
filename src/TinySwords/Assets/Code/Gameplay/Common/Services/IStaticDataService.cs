@@ -17,6 +17,8 @@ using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
+using Code.UI.Data;
+using Code.UI.Windows.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -37,5 +39,6 @@ namespace Code.Gameplay.Common.Services
     string GetSceneNameById(SceneId sceneId);
     CutSceneConfig GetCutSceneConfig(CutSceneId cutSceneId);
     FogOfWarConfig GetFogOfWarConfig();
+    GameObject GetWindowPrefab(WindowId windowId);
   }
 }

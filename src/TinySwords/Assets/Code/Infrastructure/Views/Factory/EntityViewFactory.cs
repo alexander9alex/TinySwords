@@ -7,24 +7,17 @@ namespace Code.Infrastructure.Views.Factory
   {
     private readonly IInstantiator _instantiator;
     private readonly Vector3 _farAway = new(9999, 9999, 9999);
-    private GameObject EntityViewParent
-    {
-      get
-      {
-        if (_entityViewParent == null) 
-          _entityViewParent = new GameObject("EntityViewParent");
-
-        return _entityViewParent;
-      }
-    }
-    private GameObject _entityViewParent;
+    private Transform _entityViewParent;
 
     public EntityViewFactory(IInstantiator instantiator) =>
       _instantiator = instantiator;
 
+    public void SetEntityViewParent(Transform entityViewParent) =>
+      _entityViewParent = entityViewParent;
+
     public EntityBehaviour CreateViewFromPrefab(GameEntity entity)
     {
-      EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(entity.ViewPrefab, _farAway, Quaternion.identity, EntityViewParent.transform);
+      EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(entity.ViewPrefab, _farAway, Quaternion.identity, _entityViewParent);
 
       view.SetEntity(entity);
 

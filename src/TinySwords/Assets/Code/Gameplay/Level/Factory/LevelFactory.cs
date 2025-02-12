@@ -1,6 +1,5 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
-using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.FogOfWar.Data;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Features.Units.Markers;
@@ -12,14 +11,10 @@ namespace Code.Gameplay.Level.Factory
 {
   public class LevelFactory : ILevelFactory
   {
-    private readonly IStaticDataService _staticData;
     private readonly IUnitFactory _unitFactory;
 
-    public LevelFactory(IStaticDataService staticData, IUnitFactory unitFactory)
-    {
-      _staticData = staticData;
+    public LevelFactory(IUnitFactory unitFactory) =>
       _unitFactory = unitFactory;
-    }
 
     public void CreateLevel(LevelConfig config)
     {

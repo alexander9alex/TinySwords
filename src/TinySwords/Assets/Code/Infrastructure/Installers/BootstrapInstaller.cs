@@ -27,6 +27,7 @@ using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Features.Units.Services;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
+using Code.Gameplay.Tutorials.Services;
 using Code.Gameplay.UtilityAI;
 using Code.Gameplay.UtilityAI.Brains;
 using Code.Gameplay.UtilityAI.Components;
@@ -40,6 +41,8 @@ using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.Views.Factory;
 using Code.UI.Hud.Factory;
 using Code.UI.Hud.Service;
+using Code.UI.Windows.Factory;
+using Code.UI.Windows.Services;
 using UnityEngine;
 using Zenject;
 
@@ -127,6 +130,8 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ICollectEntityService>().To<CollectEntityService>().AsSingle();
       Container.Bind<ICutSceneService>().To<CutSceneService>().AsSingle();
       Container.Bind<IFogOfWarService>().To<FogOfWarService>().AsSingle();
+      Container.Bind<IWindowService>().To<WindowService>().AsSingle();
+      Container.Bind<ITutorialService>().To<TutorialService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();
@@ -146,6 +151,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<ICutSceneFactory>().To<CutSceneFactory>().AsSingle();
       Container.Bind<IFogOfWarFactory>().To<FogOfWarFactory>().AsSingle();
       Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
+      Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
     }
 
     private void BindAI()

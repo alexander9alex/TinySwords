@@ -19,6 +19,8 @@ using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Scenes.Configs;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
+using Code.UI.Data;
+using Code.UI.Windows.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -33,6 +35,7 @@ namespace Code.Gameplay.Common.Services
     private Dictionary<IndicatorTypeId, IndicatorConfig> _indicatorConfigByType;
     private Dictionary<SceneId, SceneConfig> _sceneConfigById;
     private Dictionary<CutSceneId, CutSceneConfig> _cutSceneConfigById;
+    private Dictionary<WindowId, WindowConfig> _windowConfigById;
 
     public void LoadAll()
     {
@@ -44,6 +47,7 @@ namespace Code.Gameplay.Common.Services
       LoadIndicatorConfigs();
       LoadSceneConfigs();
       LoadCutSceneConfigs();
+      LoadWindowConfigs();
     }
 
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
@@ -88,6 +92,9 @@ namespace Code.Gameplay.Common.Services
 
     public FogOfWarConfig GetFogOfWarConfig() =>
       Resources.Load<FogOfWarConfig>("Configs/Shaders/FogOfWarConfig");
+
+    public GameObject GetWindowPrefab(WindowId windowId) =>
+      _windowConfigById[windowId].WindowPrefab;
 
     private void LoadUnitConfigs()
     {
@@ -143,6 +150,13 @@ namespace Code.Gameplay.Common.Services
       _cutSceneConfigById = Resources
         .LoadAll<CutSceneConfig>("Configs/CutScenes")
         .ToDictionary(x => x.CutSceneId, x => x);
+    }
+
+    private void LoadWindowConfigs()
+    {
+      _windowConfigById = Resources
+        .LoadAll<WindowConfig>("Configs/Windows")
+        .ToDictionary(x => x.WindowId, x => x);
     }
   }
 }
