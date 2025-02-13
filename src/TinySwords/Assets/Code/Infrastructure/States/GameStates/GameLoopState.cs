@@ -4,7 +4,6 @@ using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Services;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
-using Code.UI.Data;
 
 namespace Code.Infrastructure.States.GameStates
 {

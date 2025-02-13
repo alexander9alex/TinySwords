@@ -155,7 +155,7 @@ namespace Code.Gameplay.Common.Services
     private void LoadWindowConfigs()
     {
       _windowConfigById = Resources
-        .LoadAll<WindowConfig>("Configs/Windows")
+        .LoadAll<WindowConfig>("Configs/UI/Windows")
         .ToDictionary(x => x.WindowId, x => x);
     }
   }

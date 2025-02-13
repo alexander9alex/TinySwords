@@ -1,5 +1,4 @@
-﻿using System;
-using Code.UI.Data;
+﻿using Code.UI.Data;
 using UnityEngine;
 
 namespace Code.UI.Windows.Factory

@@ -13,9 +13,7 @@ namespace Code.Infrastructure.Initializers
     private void Construct(IEntityViewFactory entityViewFactory) =>
       _entityViewFactory = entityViewFactory;
 
-    public void Initialize()
-    {
+    public void Initialize() =>
       _entityViewFactory.SetEntityViewParent(EntityViewParent);
-    }
   }
 }

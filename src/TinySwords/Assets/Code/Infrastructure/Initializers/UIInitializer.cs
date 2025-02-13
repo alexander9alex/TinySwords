@@ -7,9 +7,10 @@ namespace Code.Infrastructure.Initializers
   public class UIInitializer : MonoBehaviour, IInitializable
   {
     public RectTransform UIParent;
-    private readonly IWindowFactory _windowFactory;
+    private IWindowFactory _windowFactory;
 
-    public UIInitializer(IWindowFactory windowFactory) =>
+    [Inject]
+    private void Construct(IWindowFactory windowFactory) =>
       _windowFactory = windowFactory;
 
     public void Initialize() =>

@@ -4,5 +4,7 @@
   {
     float DeltaTime { get; }
     int TimeScale { get; set; }
+    void FreezeTime();
+    void UnfreezeTime();
   }
 }
