@@ -12,12 +12,12 @@ namespace Code.Gameplay.Features.Win.Services
 {
   class WinService : IWinService
   {
-    private readonly ITimeService _timeService;
     private readonly IWindowService _windowService;
+    private readonly ITimeService _timeService;
     private readonly IInputService _inputService;
     private readonly ISoundService _soundService;
 
-    public WinService(ITimeService timeService, IWindowService windowService, IInputService inputService, ISoundService soundService)
+    public WinService(IWindowService windowService, ITimeService timeService, IInputService inputService, ISoundService soundService)
     {
       _timeService = timeService;
       _windowService = windowService;
@@ -32,14 +32,12 @@ namespace Code.Gameplay.Features.Win.Services
       _soundService.PlaySound(SoundId.ShowWindow);
 
       WinWindow window = _windowService.OpenWindow<WinWindow>(WindowId.WinWindow);
-      window.Construct();
       window.SetContinueGameAction(ContinueGame);
     }
 
     private void ContinueGame()
     {
       _soundService.PlaySound(SoundId.HideWindow);
-      _windowService.CloseWindow(WindowId.WinWindow);
       
       Debug.Log("Game continues!");
     }
