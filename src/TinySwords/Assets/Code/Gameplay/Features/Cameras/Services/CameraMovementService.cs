@@ -41,6 +41,15 @@ namespace Code.Gameplay.Features.Cameras.Services
         _cameraProvider.ScreenSizeInWorldPoints / 2);
     }
 
+    public void RecalculateCameraPosition()
+    {
+      _cameraProvider.CameraPosition = CameraClamp(
+        _cameraProvider.CameraPosition,
+        _borderInfo.LeftDownBorder.position,
+        _borderInfo.RightUpBorder.position,
+        _cameraProvider.ScreenSizeInWorldPoints / 2);
+    }
+
     private Vector3 MoveVector(Vector2 moveDir) =>
       moveDir.ToVector3() * _cameraConfig.MovementSpeed * CameraScaleInfluenceCoefficient;
 

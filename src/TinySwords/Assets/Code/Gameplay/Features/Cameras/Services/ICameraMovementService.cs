@@ -8,5 +8,6 @@ namespace Code.Gameplay.Features.Cameras.Services
   {
     void MoveCamera(Vector2 moveDir);
     void SetCameraBorders(LevelConfig config);
+    void RecalculateCameraPosition();
   }
 }

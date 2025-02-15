@@ -30,7 +30,7 @@ namespace Code.Gameplay.Common.Providers
     }
 
     private void CalculateScreenSize() =>
-      _screenSizeInWorldPoints = (_camera.ViewportToWorldPoint(Vector3.one) - CameraPosition) * 2;
+      _screenSizeInWorldPoints = (ViewportToWorldPoint(Vector3.one) - CameraPosition) * 2;
 
     public Vector3 ScreenToWorldPoint(Vector2 pos) =>
       _camera.ScreenToWorldPoint(pos);

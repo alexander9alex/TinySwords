@@ -18,11 +18,14 @@ namespace Code.Gameplay.Features.Cameras.Services
 
     private float _endCameraScale;
     private bool _scalingNow;
+    private readonly ICameraMovementService _cameraMovementService;
 
-    public CameraScalingService(ICameraProvider cameraProvider, IStaticDataService staticData, ICoroutineRunner coroutineRunner)
+    public CameraScalingService(ICameraProvider cameraProvider, IStaticDataService staticData, ICoroutineRunner coroutineRunner,
+      ICameraMovementService cameraMovementService)
     {
       _cameraProvider = cameraProvider;
       _coroutineRunner = coroutineRunner;
+      _cameraMovementService = cameraMovementService;
       _cameraConfig = staticData.GetCameraConfig();
     }
 
@@ -43,22 +46,19 @@ namespace Code.Gameplay.Features.Cameras.Services
 
       while (ScalingNotCompleted(_cameraProvider.CameraScale, _endCameraScale))
       {
-        _cameraProvider.CameraScale = NewCameraScale(_cameraProvider.CameraScale, _endCameraScale);
-        MoveCamera();
+        ChangeCameraScale(NewCameraScale(_cameraProvider.CameraScale, _endCameraScale));
         yield return null;
       }
 
-      _cameraProvider.CameraScale = _endCameraScale;
-      MoveCamera();
+      ChangeCameraScale(_endCameraScale);
 
       _scalingNow = false;
     }
 
-    private static void MoveCamera()
+    private void ChangeCameraScale(float scale)
     {
-      CreateEntity.Empty()
-        .AddMoveDirection(Vector2.zero)
-        .With(x => x.isMoveCamera = true);
+      _cameraProvider.CameraScale = scale;
+      _cameraMovementService.RecalculateCameraPosition();
     }
 
     private float NewCameraScale(float cameraScale, float endScale) =>

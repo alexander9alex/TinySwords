@@ -9,5 +9,6 @@ namespace Code.Gameplay.Common.Providers
     Vector2 ScreenSizeInWorldPoints { get; }
     void SetMainCamera(Camera camera);
     Vector3 ScreenToWorldPoint(Vector2 pos);
+    Vector3 ViewportToWorldPoint(Vector2 pos);
   }
 }
