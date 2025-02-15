@@ -19,6 +19,7 @@ using Code.Gameplay.Features.FogOfWar.Services;
 using Code.Gameplay.Features.Indicators.Factory;
 using Code.Gameplay.Features.Input.Factory;
 using Code.Gameplay.Features.Input.Services;
+using Code.Gameplay.Features.Lose.Services;
 using Code.Gameplay.Features.Move.Services;
 using Code.Gameplay.Features.ProcessCommand.Services;
 using Code.Gameplay.Features.Sounds.Factory;
@@ -134,6 +135,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IWindowService>().To<WindowService>().AsSingle();
       Container.Bind<ITutorialService>().To<TutorialService>().AsSingle();
       Container.Bind<IWinService>().To<WinService>().AsSingle();
+      Container.Bind<ILoseService>().To<LoseService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();

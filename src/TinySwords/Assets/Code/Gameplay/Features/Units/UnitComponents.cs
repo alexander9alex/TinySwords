@@ -12,7 +12,13 @@ namespace Code.Gameplay.Features.Units
   [Game] public class CurrentHp : IComponent { public float Value; }
   [Game] public class MaxHp : IComponent { public float Value; }
   [Game] public class AttackReach : IComponent { public float Value; }
+  
+  [Game] public class WhiteTeamColor : IComponent { }
+  [Game] public class RedTeamColor : IComponent { }
+  [Game] public class BlueTeamColor : IComponent { }
   [Game] public class TeamColorComponent : IComponent { public TeamColor Value; }
+  
+  
   [Game] public class UnitTypeIdComponent : IComponent { public UnitTypeId Value; }
   [Game] public class LegsPositionOffset : IComponent { public Vector2 Value; }
   [Game] public class OffsetPositionByLegs : IComponent { }

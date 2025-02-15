@@ -103,73 +103,77 @@ public static class GameComponentsLookup {
     public const int MouseScreenPosition = 92;
     public const int ScreenPosition = 93;
     public const int StartPosition = 94;
-    public const int ConvertWhenGroup = 95;
-    public const int Destination = 96;
-    public const int FollowToTarget = 97;
-    public const int Idle = 98;
-    public const int LookDirection = 99;
-    public const int Movable = 100;
-    public const int Move = 101;
-    public const int MoveAnimator = 102;
-    public const int MoveCamera = 103;
-    public const int MoveDirection = 104;
-    public const int AddToNavMeshCachedSources = 105;
-    public const int BuildNavMeshAtStart = 106;
-    public const int NavMesh = 107;
-    public const int NavMeshAgent = 108;
-    public const int NavMeshCollectSourcesCache = 109;
-    public const int NavMeshCollectSources = 110;
-    public const int NavMeshRootSources = 111;
-    public const int NavMeshSurface = 112;
-    public const int NotAddedNavMeshRootSource = 113;
-    public const int TurnOnNavMeshAgent = 114;
-    public const int UpdateNavMesh = 115;
-    public const int MultipleSelectionRequest = 116;
-    public const int Selectable = 117;
-    public const int Selected = 118;
-    public const int SelectedChanged = 119;
-    public const int SelectedNow = 120;
-    public const int SelectingAnimator = 121;
-    public const int SingleSelectionRequest = 122;
-    public const int Unselected = 123;
-    public const int UnselectPreviouslySelectedRequest = 124;
-    public const int UpdateHudControlButtons = 125;
-    public const int AudioClip = 126;
-    public const int AudioSource = 127;
-    public const int ChangeSoundRequest = 128;
-    public const int CreateSound = 129;
-    public const int Delay = 130;
-    public const int DestroyAfterPlayback = 131;
-    public const int InitializeSound = 132;
-    public const int MaxPitch = 133;
-    public const int MinPitch = 134;
-    public const int PauseSoundRequest = 135;
-    public const int PlaySoundRequest = 136;
-    public const int ResetSoundPlaybackTimeRequest = 137;
-    public const int SoundId = 138;
-    public const int Volume = 139;
-    public const int Alive = 140;
-    public const int AttackReach = 141;
-    public const int CurrentHp = 142;
-    public const int Damage = 143;
-    public const int Dead = 144;
-    public const int LegsPositionOffset = 145;
-    public const int MaxHp = 146;
-    public const int NeutralUnit = 147;
-    public const int NotifyAlliesAboutTarget = 148;
-    public const int OffsetPositionByLegs = 149;
-    public const int Speed = 150;
-    public const int TeamColor = 151;
-    public const int Unit = 152;
-    public const int UnitTypeId = 153;
-    public const int CurrentAvoidancePriority = 154;
-    public const int IdleAvoidancePriority = 155;
-    public const int MoveAvoidancePriority = 156;
-    public const int CreateWinCondition = 157;
-    public const int KillToWin = 158;
-    public const int KillToWinCondition = 159;
+    public const int Lose = 95;
+    public const int ConvertWhenGroup = 96;
+    public const int Destination = 97;
+    public const int FollowToTarget = 98;
+    public const int Idle = 99;
+    public const int LookDirection = 100;
+    public const int Movable = 101;
+    public const int Move = 102;
+    public const int MoveAnimator = 103;
+    public const int MoveCamera = 104;
+    public const int MoveDirection = 105;
+    public const int AddToNavMeshCachedSources = 106;
+    public const int BuildNavMeshAtStart = 107;
+    public const int NavMesh = 108;
+    public const int NavMeshAgent = 109;
+    public const int NavMeshCollectSourcesCache = 110;
+    public const int NavMeshCollectSources = 111;
+    public const int NavMeshRootSources = 112;
+    public const int NavMeshSurface = 113;
+    public const int NotAddedNavMeshRootSource = 114;
+    public const int TurnOnNavMeshAgent = 115;
+    public const int UpdateNavMesh = 116;
+    public const int MultipleSelectionRequest = 117;
+    public const int Selectable = 118;
+    public const int Selected = 119;
+    public const int SelectedChanged = 120;
+    public const int SelectedNow = 121;
+    public const int SelectingAnimator = 122;
+    public const int SingleSelectionRequest = 123;
+    public const int Unselected = 124;
+    public const int UnselectPreviouslySelectedRequest = 125;
+    public const int UpdateHudControlButtons = 126;
+    public const int AudioClip = 127;
+    public const int AudioSource = 128;
+    public const int ChangeSoundRequest = 129;
+    public const int CreateSound = 130;
+    public const int Delay = 131;
+    public const int DestroyAfterPlayback = 132;
+    public const int InitializeSound = 133;
+    public const int MaxPitch = 134;
+    public const int MinPitch = 135;
+    public const int PauseSoundRequest = 136;
+    public const int PlaySoundRequest = 137;
+    public const int ResetSoundPlaybackTimeRequest = 138;
+    public const int SoundId = 139;
+    public const int Volume = 140;
+    public const int Alive = 141;
+    public const int AttackReach = 142;
+    public const int BlueTeamColor = 143;
+    public const int CurrentHp = 144;
+    public const int Damage = 145;
+    public const int Dead = 146;
+    public const int LegsPositionOffset = 147;
+    public const int MaxHp = 148;
+    public const int NeutralUnit = 149;
+    public const int NotifyAlliesAboutTarget = 150;
+    public const int OffsetPositionByLegs = 151;
+    public const int RedTeamColor = 152;
+    public const int Speed = 153;
+    public const int TeamColor = 154;
+    public const int Unit = 155;
+    public const int UnitTypeId = 156;
+    public const int WhiteTeamColor = 157;
+    public const int CurrentAvoidancePriority = 158;
+    public const int IdleAvoidancePriority = 159;
+    public const int MoveAvoidancePriority = 160;
+    public const int CreateWinCondition = 161;
+    public const int KillToWin = 162;
+    public const int KillToWinCondition = 163;
 
-    public const int TotalComponents = 160;
+    public const int TotalComponents = 164;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -267,6 +271,7 @@ public static class GameComponentsLookup {
         "MouseScreenPosition",
         "ScreenPosition",
         "StartPosition",
+        "Lose",
         "ConvertWhenGroup",
         "Destination",
         "FollowToTarget",
@@ -314,6 +319,7 @@ public static class GameComponentsLookup {
         "Volume",
         "Alive",
         "AttackReach",
+        "BlueTeamColor",
         "CurrentHp",
         "Damage",
         "Dead",
@@ -322,10 +328,12 @@ public static class GameComponentsLookup {
         "NeutralUnit",
         "NotifyAlliesAboutTarget",
         "OffsetPositionByLegs",
+        "RedTeamColor",
         "Speed",
         "TeamColor",
         "Unit",
         "UnitTypeId",
+        "WhiteTeamColor",
         "CurrentAvoidancePriority",
         "IdleAvoidancePriority",
         "MoveAvoidancePriority",
@@ -430,6 +438,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Input.MouseScreenPosition),
         typeof(Code.Gameplay.Features.Input.ScreenPosition),
         typeof(Code.Gameplay.Features.Input.StartPosition),
+        typeof(Code.Gameplay.Features.Lose.Lose),
         typeof(Code.Gameplay.Features.Move.ConvertWhenGroup),
         typeof(Code.Gameplay.Features.Move.Destination),
         typeof(Code.Gameplay.Features.Move.FollowToTarget),
@@ -477,6 +486,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Sounds.Volume),
         typeof(Code.Gameplay.Features.Units.Alive),
         typeof(Code.Gameplay.Features.Units.AttackReach),
+        typeof(Code.Gameplay.Features.Units.BlueTeamColor),
         typeof(Code.Gameplay.Features.Units.CurrentHp),
         typeof(Code.Gameplay.Features.Units.Damage),
         typeof(Code.Gameplay.Features.Units.Dead),
@@ -485,10 +495,12 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.NeutralUnit),
         typeof(Code.Gameplay.Features.Units.NotifyAlliesAboutTarget),
         typeof(Code.Gameplay.Features.Units.OffsetPositionByLegs),
+        typeof(Code.Gameplay.Features.Units.RedTeamColor),
         typeof(Code.Gameplay.Features.Units.Speed),
         typeof(Code.Gameplay.Features.Units.TeamColorComponent),
         typeof(Code.Gameplay.Features.Units.Unit),
         typeof(Code.Gameplay.Features.Units.UnitTypeIdComponent),
+        typeof(Code.Gameplay.Features.Units.WhiteTeamColor),
         typeof(Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority),
         typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority),

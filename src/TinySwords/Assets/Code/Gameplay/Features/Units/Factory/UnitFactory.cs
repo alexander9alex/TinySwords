@@ -110,17 +110,22 @@ namespace Code.Gameplay.Features.Units.Factory
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
         .With(x => x.isGlowing = true)
+        .With(x => x.isBlueTeamColor = true)
         ;
     }
 
     private void CreateWhiteKnight(GameEntity unit)
     {
       unit
-        .With(x => x.isNeutralUnit = true);
+        .With(x => x.isNeutralUnit = true)
+        .With(x => x.isWhiteTeamColor = true)
+        ;
     }
 
     private void CreateRedTorchGoblin(GameEntity unit)
     {
+      unit
+        .With(x => x.isRedTeamColor = true);
     }
   }
 }

@@ -14,6 +14,7 @@ using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
+using Code.Gameplay.Features.Lose;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.ProcessCommand;
@@ -56,6 +57,7 @@ namespace Code.Gameplay
       Add(systems.Create<HpBarFeature>());
       
       Add(systems.Create<WinFeature>());
+      Add(systems.Create<LoseFeature>());
       
       Add(systems.Create<FogOfWarFeature>());
 
