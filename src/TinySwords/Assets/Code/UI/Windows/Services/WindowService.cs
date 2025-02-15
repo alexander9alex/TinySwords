@@ -13,9 +13,6 @@ namespace Code.UI.Windows.Services
     public WindowService(IWindowFactory windowFactory) =>
       _windowFactory = windowFactory;
 
-    public BaseWindow OpenWindow(WindowId windowId) =>
-      OpenWindow<BaseWindow>(windowId);
-
     public TWindow OpenWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow
     {
       TWindow window = _windowFactory.CreateWindow<TWindow>(windowId);

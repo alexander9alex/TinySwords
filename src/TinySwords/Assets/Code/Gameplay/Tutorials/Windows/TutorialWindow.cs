@@ -27,7 +27,7 @@ namespace Code.Gameplay.Tutorials.Windows
 
     private IWindowService _windowService;
     private ISoundService _soundService;
-    private Action _closeTutorial;
+    private Action _closeTutorialAction;
 
     [Inject]
     private void Construct(IWindowService windowService, ISoundService soundService)
@@ -45,7 +45,7 @@ namespace Code.Gameplay.Tutorials.Windows
     }
 
     public void SetCloseTutorialAction(Action action) =>
-      _closeTutorial = action;
+      _closeTutorialAction = action;
 
     private void InitializeButtons()
     {
@@ -86,7 +86,7 @@ namespace Code.Gameplay.Tutorials.Windows
 
     private void CloseTutorial()
     {
-      _closeTutorial?.Invoke();
+      _closeTutorialAction?.Invoke();
       _windowService.CloseWindow(WindowId);
     }
 

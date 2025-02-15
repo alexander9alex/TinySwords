@@ -13,8 +13,8 @@ namespace Code.Gameplay.Tutorials.Windows
     public Button NegativeAnswerButton;
     
     private IWindowService _windowService;
-    private Action _positiveAnswer;
-    private Action _negativeAnswer;
+    private Action _positiveAnswerAction;
+    private Action _negativeAnswerAction;
 
     [Inject]
     private void Construct(IWindowService windowService)
@@ -30,21 +30,21 @@ namespace Code.Gameplay.Tutorials.Windows
       NegativeAnswerButton.onClick.AddListener(NegativeAnswer);
     }
 
-    public void SetPositiveAction(Action action) =>
-      _positiveAnswer = action;
+    public void SetPositiveAnswerAction(Action action) =>
+      _positiveAnswerAction = action;
 
-    public void SetNegativeAction(Action action) =>
-      _negativeAnswer = action;
+    public void SetNegativeAnswerAction(Action action) =>
+      _negativeAnswerAction = action;
 
     private void PositiveAnswer()
     {
-      _positiveAnswer?.Invoke();
+      _positiveAnswerAction?.Invoke();
       _windowService.CloseWindow(WindowId);
     }
 
     private void NegativeAnswer()
     {
-      _negativeAnswer?.Invoke();
+      _negativeAnswerAction?.Invoke();
       _windowService.CloseWindow(WindowId);
     }
   }

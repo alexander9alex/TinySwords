@@ -39,8 +39,8 @@ namespace Code.Gameplay.Tutorials.Services
       _soundService.PlaySound(SoundId.ShowWindow);
 
       WantToCompleteTutorialBaseWindow window = _windowService.OpenWindow<WantToCompleteTutorialBaseWindow>(WindowId.WantToCompleteTutorial);
-      window.SetPositiveAction(() => CreateTutorialWindow(tutorialId));
-      window.SetNegativeAction(CloseWindow);
+      window.SetPositiveAnswerAction(() => CreateTutorialWindow(tutorialId));
+      window.SetNegativeAnswerAction(CloseWindow);
     }
 
     private void CreateTutorialWindow(TutorialId tutorialId)
