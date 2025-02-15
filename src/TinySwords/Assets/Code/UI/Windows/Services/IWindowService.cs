@@ -4,7 +4,7 @@ namespace Code.UI.Windows.Services
 {
   public interface IWindowService
   {
-    BaseWindow OpenWindow(WindowId windowId);
+    TWindow OpenWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow;
     void CloseWindow(WindowId windowId);
   }
 }

@@ -7,7 +7,6 @@ using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Extensions;
 using Code.Gameplay.Tutorials.Windows;
 using Code.UI.Data;
-using Code.UI.Windows;
 using Code.UI.Windows.Services;
 
 namespace Code.Gameplay.Tutorials.Services
@@ -32,24 +31,31 @@ namespace Code.Gameplay.Tutorials.Services
       _inputService.ChangeInputMap(InputMap.UI);
       _timeService.FreezeTime();
 
-      BaseWindow baseWindow = _windowService.OpenWindow(WindowId.WantToCompleteTutorial);
-      _soundService.PlaySound(SoundId.ShowWindow);
-
-      if (baseWindow is WantToCompleteTutorialBaseWindow wantToCompleteTutorialWindow)
-      {
-        wantToCompleteTutorialWindow.SetPositiveAction(() => CreateTutorialWindow(tutorialId));
-        wantToCompleteTutorialWindow.SetNegativeAction(CancelTutorial);
-      }
+      CreateWantToCompleteTutorialWindow(tutorialId);
     }
 
-    private void CancelTutorial()
+    private void CreateWantToCompleteTutorialWindow(TutorialId tutorialId)
+    {
+      _soundService.PlaySound(SoundId.ShowWindow);
+
+      WantToCompleteTutorialBaseWindow window = _windowService.OpenWindow<WantToCompleteTutorialBaseWindow>(WindowId.WantToCompleteTutorial);
+      window.SetPositiveAction(() => CreateTutorialWindow(tutorialId));
+      window.SetNegativeAction(CloseWindow);
+    }
+
+    private void CreateTutorialWindow(TutorialId tutorialId)
+    {
+      _soundService.PlaySound(SoundId.ShowWindow);
+
+      TutorialWindow window = _windowService.OpenWindow<TutorialWindow>(tutorialId.ToWindowId());
+      window.SetCloseTutorialAction(CloseWindow);
+    }
+
+    private void CloseWindow()
     {
       _soundService.PlaySound(SoundId.HideWindow);
       _inputService.ChangeInputMap(InputMap.Game);
       _timeService.UnfreezeTime();
     }
-
-    private void CreateTutorialWindow(TutorialId tutorialId) =>
-      _windowService.OpenWindow(tutorialId.ToWindowId());
   }
 }

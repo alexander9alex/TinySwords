@@ -13,21 +13,20 @@ namespace Code.UI.Windows.Services
     public WindowService(IWindowFactory windowFactory) =>
       _windowFactory = windowFactory;
 
-    public BaseWindow OpenWindow(WindowId windowId)
+    public BaseWindow OpenWindow(WindowId windowId) =>
+      OpenWindow<BaseWindow>(windowId);
+
+    public TWindow OpenWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow
     {
-      BaseWindow window = _windowFactory.CreateWindow(windowId);
-
+      TWindow window = _windowFactory.CreateWindow<TWindow>(windowId);
       _spawnedWindows.Add(window);
-
       return window;
     }
 
     public void CloseWindow(WindowId windowId)
     {
       BaseWindow window = _spawnedWindows.Find(x => x.WindowId == windowId);
-
       _spawnedWindows.Remove(window);
-
       Object.Destroy(window.gameObject);
     }
   }

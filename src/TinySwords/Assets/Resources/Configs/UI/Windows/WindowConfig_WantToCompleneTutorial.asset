@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WindowConfig_WantToCompleneTutorial
   m_EditorClassIdentifier: 
   WindowId: 100
-  WindowPrefab: {fileID: 1068314347036876927, guid: 1f202e454cb266c479bf4e8f0956dd1a, type: 3}
+  WindowPrefab: {fileID: 5844447082669138850, guid: 03803511568511c4192266de6bd8d321, type: 3}

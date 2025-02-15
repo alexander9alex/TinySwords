@@ -5,7 +5,7 @@ namespace Code.UI.Windows.Factory
 {
   public interface IWindowFactory
   {
-    BaseWindow CreateWindow(WindowId windowId);
+    TWindow CreateWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow;
     void SetUIParent(RectTransform uiParent);
   }
 }

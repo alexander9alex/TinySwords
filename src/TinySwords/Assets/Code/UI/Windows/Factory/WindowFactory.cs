@@ -20,8 +20,8 @@ namespace Code.UI.Windows.Factory
     public void SetUIParent(RectTransform uiParent) =>
       _uiParent = uiParent;
 
-    public BaseWindow CreateWindow(WindowId windowId) =>
-      _instantiator.InstantiatePrefabForComponent<BaseWindow>(PrefabFor(windowId), _uiParent);
+    public TWindow CreateWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow =>
+      _instantiator.InstantiatePrefabForComponent<TWindow>(PrefabFor(windowId), _uiParent);
 
     private GameObject PrefabFor(WindowId windowId) =>
       _staticData.GetWindowPrefab(windowId);

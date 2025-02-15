@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WindowConfig_FirstTutorial
   m_EditorClassIdentifier: 
   WindowId: 101
-  WindowPrefab: {fileID: 1068314347036876927, guid: cdceb6b51024a7143ab0753df4a9b1f0, type: 3}
+  WindowPrefab: {fileID: 9101807153733942916, guid: cdceb6b51024a7143ab0753df4a9b1f0, type: 3}
