@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Extensions;
 using Code.UI.Windows;
@@ -95,10 +94,12 @@ namespace Code.Gameplay.Tutorials.Windows
 
     private List<GameObject> GetPages()
     {
-      return PagesParent.GetComponentsInChildren<Transform>()
-        .Where(x => x != PagesParent)
-        .Select(x => x.gameObject)
-        .ToList();
+      List<GameObject> pages = new();
+      
+      for (int i = 0; i < PagesParent.childCount; i++)
+        pages.Add(PagesParent.GetChild(i).gameObject);
+      
+      return pages;
     }
 
     private void SetNextButtonActive(int pageId) =>
