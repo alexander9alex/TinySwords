@@ -18,5 +18,5 @@ MonoBehaviour:
   ScaleStep: 0.3
   SmoothScaleTolerance: 0.1
   ScaleSmoothness: 0.72
-  MovementSpeed: 0.6
-  CameraScaleOnMovementInfluenceCoefficient: 0.8
+  MovementSpeed: 30
+  CameraScaleOnMovementInfluenceCoefficient: 1
