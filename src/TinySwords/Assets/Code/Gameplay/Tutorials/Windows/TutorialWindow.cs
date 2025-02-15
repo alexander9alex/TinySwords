@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Code.Gameplay.Features.Sounds.Data;
+using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Extensions;
 using Code.UI.Windows;
@@ -24,14 +26,16 @@ namespace Code.Gameplay.Tutorials.Windows
     private int _pageId;
 
     private IWindowService _windowService;
+    private ISoundService _soundService;
     private Action _closeTutorial;
 
     [Inject]
-    private void Construct(IWindowService windowService)
+    private void Construct(IWindowService windowService, ISoundService soundService)
     {
       WindowId = TutorialId.ToWindowId();
 
       _windowService = windowService;
+      _soundService = soundService;
     }
 
     protected override void Initialize()
@@ -46,7 +50,11 @@ namespace Code.Gameplay.Tutorials.Windows
     private void InitializeButtons()
     {
       NextPageButton.onClick.AddListener(NextPage);
+      NextPageButton.onClick.AddListener(MakeClickSound);
+
       PreviousPageButton.onClick.AddListener(PreviousPage);
+      PreviousPageButton.onClick.AddListener(MakeClickSound);
+
       CloseTutorialButton.onClick.AddListener(CloseTutorial);
     }
 
@@ -95,10 +103,10 @@ namespace Code.Gameplay.Tutorials.Windows
     private List<GameObject> GetPages()
     {
       List<GameObject> pages = new();
-      
+
       for (int i = 0; i < PagesParent.childCount; i++)
         pages.Add(PagesParent.GetChild(i).gameObject);
-      
+
       return pages;
     }
 
@@ -110,5 +118,8 @@ namespace Code.Gameplay.Tutorials.Windows
 
     private void HidePage(int pageId) =>
       _pages[pageId].SetActive(false);
+
+    private void MakeClickSound() =>
+      _soundService.PlaySound(SoundId.ButtonClick);
   }
 }
