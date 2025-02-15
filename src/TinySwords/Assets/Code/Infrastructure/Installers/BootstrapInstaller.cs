@@ -25,6 +25,7 @@ using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Features.Sounds.Services;
 using Code.Gameplay.Features.Units.Factory;
 using Code.Gameplay.Features.Units.Services;
+using Code.Gameplay.Features.Win.Services;
 using Code.Gameplay.Level.Factory;
 using Code.Gameplay.Services;
 using Code.Gameplay.Tutorials.Services;
@@ -132,6 +133,7 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IFogOfWarService>().To<FogOfWarService>().AsSingle();
       Container.Bind<IWindowService>().To<WindowService>().AsSingle();
       Container.Bind<ITutorialService>().To<TutorialService>().AsSingle();
+      Container.Bind<IWinService>().To<WinService>().AsSingle();
 
       Container.Bind<ICommandService>().To<CommandService>().AsSingle();
       Container.Bind<IProcessCommandService>().To<ProcessCommandService>().AsSingle();

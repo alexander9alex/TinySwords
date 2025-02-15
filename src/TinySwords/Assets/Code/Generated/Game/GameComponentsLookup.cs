@@ -165,8 +165,11 @@ public static class GameComponentsLookup {
     public const int CurrentAvoidancePriority = 154;
     public const int IdleAvoidancePriority = 155;
     public const int MoveAvoidancePriority = 156;
+    public const int CreateWinCondition = 157;
+    public const int KillToWin = 158;
+    public const int KillToWinCondition = 159;
 
-    public const int TotalComponents = 157;
+    public const int TotalComponents = 160;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -325,7 +328,10 @@ public static class GameComponentsLookup {
         "UnitTypeId",
         "CurrentAvoidancePriority",
         "IdleAvoidancePriority",
-        "MoveAvoidancePriority"
+        "MoveAvoidancePriority",
+        "CreateWinCondition",
+        "KillToWin",
+        "KillToWinCondition"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -485,6 +491,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Units.UnitTypeIdComponent),
         typeof(Code.Gameplay.Features.UpdateAvoidance.CurrentAvoidancePriority),
         typeof(Code.Gameplay.Features.UpdateAvoidance.IdleAvoidancePriority),
-        typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority)
+        typeof(Code.Gameplay.Features.UpdateAvoidance.MoveAvoidancePriority),
+        typeof(Code.Gameplay.Features.Win.CreateWinCondition),
+        typeof(Code.Gameplay.Features.Win.KillToWin),
+        typeof(Code.Gameplay.Features.Win.KillToWinCondition)
     };
 }

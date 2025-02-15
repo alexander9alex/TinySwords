@@ -20,6 +20,7 @@ using Code.Gameplay.Features.ProcessCommand;
 using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
 using Code.Gameplay.Features.Units;
+using Code.Gameplay.Features.Win;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Views;
 
@@ -53,6 +54,8 @@ namespace Code.Gameplay
       Add(systems.Create<BattleFeature>());
       Add(systems.Create<EffectFeature>());
       Add(systems.Create<HpBarFeature>());
+      
+      Add(systems.Create<WinFeature>());
       
       Add(systems.Create<FogOfWarFeature>());
 

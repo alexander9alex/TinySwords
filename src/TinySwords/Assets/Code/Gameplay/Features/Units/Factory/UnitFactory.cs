@@ -7,6 +7,8 @@ using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Units.Configs;
 using Code.Gameplay.Features.Units.Data;
+using Code.Gameplay.Features.Units.Markers;
+using Code.Gameplay.Features.Win.Markers;
 using Code.Gameplay.UtilityAI;
 using UnityEngine;
 
@@ -82,6 +84,16 @@ namespace Code.Gameplay.Features.Units.Factory
         default:
           throw new ArgumentOutOfRangeException(nameof(type), type, null);
       }
+
+      return unit;
+    }
+
+    public GameEntity CreateUnit(UnitMarker unitMarker)
+    {
+      GameEntity unit = CreateUnit(unitMarker.UnitTypeId, unitMarker.Color, unitMarker.transform.position);
+
+      if (unitMarker.GetComponent<KillToWinMarker>())
+        unit.isKillToWin = true;
 
       return unit;
     }
