@@ -37,6 +37,8 @@ namespace Code.Gameplay.Features.Units.Services
         .With(x => x.isSelectable = true)
         .With(x => x.isUnselected = true)
         .With(x => x.isGlowing = true)
+        .With(x => x.isBlueTeamColor = true)
+        .With(x => x.isWhiteTeamColor = false)
         ;
 
       ChangeAnimator(unit);
