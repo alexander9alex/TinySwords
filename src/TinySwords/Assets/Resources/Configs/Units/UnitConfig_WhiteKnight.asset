@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa6d2f7de0884a50a340393ace8a2b73, type: 3}
-  m_Name: BlueKnightConfig
+  m_Name: UnitConfig_WhiteKnight
   m_EditorClassIdentifier: 
   TypeId: 2
-  Color: 1
-  UnitPrefab: {fileID: 3841485622853786287, guid: 1630d57fb4cc7c54ab5046182c148606, type: 3}
+  Color: 3
+  UnitPrefab: {fileID: 3841485622853786287, guid: 238af9d8b90fd7a41ab0ee053ac8e528, type: 3}
   Hp: 20
   Damage: 4
   Speed: 3.1

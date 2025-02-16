@@ -24,6 +24,7 @@ namespace Code.Gameplay.Features.Cameras.Services
     {
       _cameraProvider = cameraProvider;
       _time = time;
+      
       _cameraConfig = staticData.GetCameraConfig();
     }
 

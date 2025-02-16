@@ -1,7 +1,6 @@
 ﻿using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Common.Services;
-using Code.Gameplay.Services;
 using Code.Infrastructure.Views;
 using UnityEngine;
 
@@ -9,17 +8,15 @@ namespace Code.Gameplay.Features.Input.Factory
 {
   class HighlightFactory : IHighlightFactory
   {
-    private readonly IStaticDataService _staticData;
+    private readonly EntityBehaviour _highlightPrefab;
 
     public HighlightFactory(IStaticDataService staticData) =>
-      _staticData = staticData;
+      _highlightPrefab = staticData.GetHighlightPrefab();
 
     public GameEntity CreateHighlight()
     {
-      EntityBehaviour highlightViewPrefab = _staticData.GetHighlightViewPrefab();
-
       return CreateEntity.Empty()
-        .AddViewPrefab(highlightViewPrefab)
+        .AddViewPrefab(_highlightPrefab)
         .AddCenterPosition(Vector2.zero)
         .AddSize(Vector2.zero)
         .With(x => x.isHighlight = true);

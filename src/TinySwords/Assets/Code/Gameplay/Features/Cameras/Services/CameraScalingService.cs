@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
 using Code.Gameplay.Features.Cameras.Configs;
@@ -26,6 +24,7 @@ namespace Code.Gameplay.Features.Cameras.Services
       _cameraProvider = cameraProvider;
       _coroutineRunner = coroutineRunner;
       _cameraMovementService = cameraMovementService;
+      
       _cameraConfig = staticData.GetCameraConfig();
     }
 

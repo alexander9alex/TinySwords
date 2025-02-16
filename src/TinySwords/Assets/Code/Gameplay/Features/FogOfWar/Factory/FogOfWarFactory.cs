@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Common.Services;
+using Code.Gameplay.Features.FogOfWar.Configs;
 using Code.Gameplay.Features.FogOfWar.Data;
 using UnityEngine;
 
@@ -6,15 +7,14 @@ namespace Code.Gameplay.Features.FogOfWar.Factory
 {
   public class FogOfWarFactory : IFogOfWarFactory
   {
-    private readonly IStaticDataService _staticData;
+    private readonly FogOfWarConfig _fogOfWarConfig;
 
     public FogOfWarFactory(IStaticDataService staticData) =>
-      _staticData = staticData;
+      _fogOfWarConfig = staticData.GetFogOfWarConfig();
 
     public void CreateFogOfWar(FogOfWarMarker fogOfWarMarker, Transform parent)
     {
       GameObject prefab = fogOfWarMarker.gameObject;
-
       GameObject fogOfWar = Object.Instantiate(prefab, prefab.transform.position, prefab.transform.rotation);
 
       Object.Destroy(fogOfWar.GetComponent<FogOfWarMarker>());
@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.FogOfWar.Factory
 
     private void SetFogOfWarShader(Renderer renderer, FogOfWarMarker fogOfWarMarker)
     {
-      renderer.material = _staticData.GetFogOfWarConfig().Material;
+      renderer.material = _fogOfWarConfig.Material;
       renderer.sortingOrder = fogOfWarMarker.OrderInLayer;
       UpdateSpriteRenderer(renderer.gameObject);
     }

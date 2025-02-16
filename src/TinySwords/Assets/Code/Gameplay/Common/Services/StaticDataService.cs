@@ -50,7 +50,7 @@ namespace Code.Gameplay.Common.Services
     public UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color) =>
       _unitConfigByTypeAndColor[(type, color)];
 
-    public EntityBehaviour GetHighlightViewPrefab() =>
+    public EntityBehaviour GetHighlightPrefab() =>
       Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
 
     public IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId) =>
@@ -61,7 +61,8 @@ namespace Code.Gameplay.Common.Services
 
     public List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands)
     {
-      return _commandUIConfigByType.Values
+      return _commandUIConfigByType
+        .Values
         .Where(config => availableCommands.Any(actionTypeId => config.CommandTypeId == actionTypeId))
         .ToList();
     }
@@ -70,7 +71,7 @@ namespace Code.Gameplay.Common.Services
       _commandUIConfigByType[commandTypeId];
 
     public UnitDeathConfig GetUnitDeathConfig() =>
-      Resources.Load<UnitDeathConfig>("Configs/Units/UnitDeathConfig");
+      Resources.Load<UnitDeathConfig>("Configs/Death/UnitDeathConfig");
 
     public SoundConfig GetSoundConfig(SoundId soundId) =>
       _soundConfigById[soundId];

@@ -25,7 +25,7 @@ namespace Code.Gameplay.Common.Services
   {
     void LoadAll();
     UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color);
-    EntityBehaviour GetHighlightViewPrefab();
+    EntityBehaviour GetHighlightPrefab();
     IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId);
     LevelConfig GetLevelConfig(LevelId levelId);
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);

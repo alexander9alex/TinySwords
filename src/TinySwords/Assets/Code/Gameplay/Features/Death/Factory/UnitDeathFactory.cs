@@ -9,25 +9,24 @@ namespace Code.Gameplay.Features.Death.Factory
 {
   public class UnitDeathFactory : IUnitDeathFactory
   {
-    private readonly IStaticDataService _staticData;
     private readonly IIdentifierService _identifiers;
+    private readonly UnitDeathConfig _unitDeathConfig;
 
     public UnitDeathFactory(IStaticDataService staticData, IIdentifierService identifiers)
     {
-      _staticData = staticData;
       _identifiers = identifiers;
+      
+      _unitDeathConfig = staticData.GetUnitDeathConfig();
     }
 
     public void CreateDeathAnimation(Vector3 pos)
     {
-      UnitDeathConfig config = _staticData.GetUnitDeathConfig();
-
       CreateEntity.Empty()
         .AddId(_identifiers.Next())
-        .AddViewPrefab(config.UnitDeathAnimationPrefab)
+        .AddViewPrefab(_unitDeathConfig.UnitDeathAnimationPrefab)
         .AddWorldPosition(pos)
-        .AddDisplayTimer(config.DisplayTime)
-        .AddHideTimer(config.HideTime)
+        .AddDisplayTimer(_unitDeathConfig.DisplayTime)
+        .AddHideTimer(_unitDeathConfig.HideTime)
         .With(x => x.isInitializationRequest = true);
     }
   }
