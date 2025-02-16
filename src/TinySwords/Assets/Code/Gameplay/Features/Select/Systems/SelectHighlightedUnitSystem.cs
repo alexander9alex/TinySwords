@@ -6,13 +6,12 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Constants;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Select.Systems
 {
   public class SelectHighlightedUnitSystem : IExecuteSystem
   {
-    private const float PixelsPerUnit = 100;
-
     private readonly IPhysicsService _physicsService;
     private readonly ICameraProvider _cameraProvider;
 
@@ -26,9 +25,9 @@ namespace Code.Gameplay.Features.Select.Systems
       _cameraProvider = cameraProvider;
 
       _createMultipleSelectionRequests = game.GetGroup(GameMatcher.MultipleSelectionRequest);
-      
+
       _highlights = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Highlight, GameMatcher.CenterPosition, GameMatcher.Size));
+        .AllOf(GameMatcher.Highlight, GameMatcher.StartPosition, GameMatcher.EndPosition));
     }
 
     public void Execute()
@@ -46,7 +45,7 @@ namespace Code.Gameplay.Features.Select.Systems
 
         CreateEntity.Empty()
           .With(x => x.isUnselectPreviouslySelectedRequest = true);
-        
+
         CreateEntity.Empty()
           .With(x => x.isSelectedChanged = true);
 
@@ -57,10 +56,21 @@ namespace Code.Gameplay.Features.Select.Systems
     private IEnumerable<GameEntity> GetHighlightedSelectables(GameEntity highlight)
     {
       return _physicsService.BoxCast(
-        _cameraProvider.ScreenToWorldPoint(highlight.CenterPosition),
-        highlight.Size / PixelsPerUnit,
-        GameConstants.SelectionLayerMask)
+          HighlightPos(highlight),
+          HighlightSize(highlight),
+          GameConstants.SelectionLayerMask)
         .Where(entity => entity.isSelectable);
+    }
+
+    private Vector3 HighlightPos(GameEntity highlight) =>
+      _cameraProvider.ScreenToWorldPoint(highlight.CenterPosition);
+
+    private Vector3 HighlightSize(GameEntity highlight)
+    {
+      Vector2 min = Vector2.Min(highlight.StartPosition, highlight.EndPosition);
+      Vector2 max = Vector2.Max(highlight.StartPosition, highlight.EndPosition);
+
+      return _cameraProvider.ScreenToWorldPoint(max) - _cameraProvider.ScreenToWorldPoint(min);
     }
   }
 }
