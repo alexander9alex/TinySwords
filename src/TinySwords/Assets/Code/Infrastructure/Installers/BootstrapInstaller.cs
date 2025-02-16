@@ -8,7 +8,6 @@ using Code.Gameplay.CutScene.Factory;
 using Code.Gameplay.CutScene.Services;
 using Code.Gameplay.Features.AI.Services;
 using Code.Gameplay.Features.Battle.Services;
-using Code.Gameplay.Features.Build.Factory;
 using Code.Gameplay.Features.Cameras.Factory;
 using Code.Gameplay.Features.Cameras.Services;
 using Code.Gameplay.Features.CollectEntities.Services;
@@ -149,7 +148,6 @@ namespace Code.Infrastructure.Installers
     {
       Container.Bind<IUnitFactory>().To<UnitFactory>().AsSingle();
       Container.Bind<IIndicatorFactory>().To<IndicatorFactory>().AsSingle();
-      Container.Bind<IBuildingFactory>().To<BuildingFactory>().AsSingle();
       Container.Bind<IUnitDeathFactory>().To<UnitDeathFactory>().AsSingle();
       Container.Bind<ISoundFactory>().To<SoundFactory>().AsSingle();
       Container.Bind<ICutSceneFactory>().To<CutSceneFactory>().AsSingle();

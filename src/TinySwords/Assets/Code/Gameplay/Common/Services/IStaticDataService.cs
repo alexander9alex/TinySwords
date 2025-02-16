@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Data;
-using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
@@ -18,7 +17,6 @@ using Code.Gameplay.Level.Data;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.Views;
 using Code.UI.Data;
-using Code.UI.Windows.Data;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Services
@@ -29,7 +27,6 @@ namespace Code.Gameplay.Common.Services
     UnitConfig GetUnitConfig(UnitTypeId type, TeamColor color);
     EntityBehaviour GetHighlightViewPrefab();
     IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId);
-    CastleConfig GetCastleConfig(TeamColor color);
     LevelConfig GetLevelConfig(LevelId levelId);
     List<CommandUIConfig> GetUnitCommandUIConfigs(List<CommandTypeId> availableCommands);
     CommandUIConfig GetCommandUIConfig(CommandTypeId commandTypeId);

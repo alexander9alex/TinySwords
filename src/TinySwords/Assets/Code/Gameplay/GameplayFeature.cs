@@ -1,6 +1,5 @@
 ﻿using Code.Gameplay.Features.AI;
 using Code.Gameplay.Features.Battle;
-using Code.Gameplay.Features.Build;
 using Code.Gameplay.Features.Cameras;
 using Code.Gameplay.Features.CollectEntities;
 using Code.Gameplay.Features.Command;
@@ -42,8 +41,6 @@ namespace Code.Gameplay
       Add(systems.Create<SelectFeature>());
       Add(systems.Create<FocusFeature>());
       
-      Add(systems.Create<BuildFeature>());
-
       Add(systems.Create<CollectEntitiesFeature>());
       Add(systems.Create<AIFeature>());
       Add(systems.Create<UnitsFeature>());

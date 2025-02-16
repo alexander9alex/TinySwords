@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Data;
-using Code.Gameplay.Features.Build.Configs;
 using Code.Gameplay.Features.Cameras.Configs;
 using Code.Gameplay.Features.Command.Configs;
 using Code.Gameplay.Features.Command.Data;
@@ -28,7 +27,6 @@ namespace Code.Gameplay.Common.Services
   public class StaticDataService : IStaticDataService
   {
     private Dictionary<(UnitTypeId, TeamColor), UnitConfig> _unitConfigByTypeAndColor;
-    private Dictionary<TeamColor, CastleConfig> _castleConfigByColor;
     private Dictionary<LevelId, LevelConfig> _levelConfigById;
     private Dictionary<CommandTypeId, CommandUIConfig> _commandUIConfigByType;
     private Dictionary<SoundId, SoundConfig> _soundConfigById;
@@ -40,7 +38,6 @@ namespace Code.Gameplay.Common.Services
     public void LoadAll()
     {
       LoadUnitConfigs();
-      LoadCastleConfigs();
       LoadLevelConfigs();
       LoadCommandUIConfigs();
       LoadSoundConfigs();
@@ -58,9 +55,6 @@ namespace Code.Gameplay.Common.Services
 
     public IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId) =>
       _indicatorConfigByType[typeId];
-
-    public CastleConfig GetCastleConfig(TeamColor color) =>
-      _castleConfigByColor[color];
 
     public LevelConfig GetLevelConfig(LevelId levelId) =>
       _levelConfigById[levelId];
@@ -101,13 +95,6 @@ namespace Code.Gameplay.Common.Services
       _unitConfigByTypeAndColor = Resources
         .LoadAll<UnitConfig>("Configs/Units")
         .ToDictionary(x => (x.TypeId, x.Color), x => x);
-    }
-
-    private void LoadCastleConfigs()
-    {
-      _castleConfigByColor = Resources
-        .LoadAll<CastleConfig>("Configs/Castles")
-        .ToDictionary(x => x.Color, x => x);
     }
 
     private void LoadLevelConfigs()

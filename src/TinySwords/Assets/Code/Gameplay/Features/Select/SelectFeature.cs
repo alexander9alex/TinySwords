@@ -9,7 +9,6 @@ namespace Code.Gameplay.Features.Select
     {
       Add(systems.Create<ProcessSingleSelectionSystem>());
       Add(systems.Create<SelectHighlightedUnitSystem>());
-      Add(systems.Create<SelectHighlightedCastleSystem>());
       
       Add(systems.Create<UnselectPreviouslySelectedSystem>());
       Add(systems.Create<ProcessSelectedChangingSystem>());
