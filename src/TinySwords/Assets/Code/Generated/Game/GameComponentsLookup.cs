@@ -94,9 +94,9 @@ public static class GameComponentsLookup {
     public const int Indicator = 83;
     public const int IndicatorTypeId = 84;
     public const int TeleportationToTarget = 85;
-    public const int ActionEnded = 86;
-    public const int ActionStarted = 87;
-    public const int EndPosition = 88;
+    public const int EndPosition = 86;
+    public const int InteractionEnded = 87;
+    public const int InteractionStarted = 88;
     public const int MouseScreenPosition = 89;
     public const int ScreenPosition = 90;
     public const int StartPosition = 91;
@@ -259,9 +259,9 @@ public static class GameComponentsLookup {
         "Indicator",
         "IndicatorTypeId",
         "TeleportationToTarget",
-        "ActionEnded",
-        "ActionStarted",
         "EndPosition",
+        "InteractionEnded",
+        "InteractionStarted",
         "MouseScreenPosition",
         "ScreenPosition",
         "StartPosition",
@@ -423,9 +423,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Indicators.Indicator),
         typeof(Code.Gameplay.Features.Indicators.IndicatorTypeIdComponent),
         typeof(Code.Gameplay.Features.Indicators.TeleportationToTarget),
-        typeof(Code.Gameplay.Features.Input.ActionEnded),
-        typeof(Code.Gameplay.Features.Input.ActionStarted),
         typeof(Code.Gameplay.Features.Input.EndPosition),
+        typeof(Code.Gameplay.Features.Input.InteractionEnded),
+        typeof(Code.Gameplay.Features.Input.InteractionStarted),
         typeof(Code.Gameplay.Features.Input.MouseScreenPosition),
         typeof(Code.Gameplay.Features.Input.ScreenPosition),
         typeof(Code.Gameplay.Features.Input.StartPosition),

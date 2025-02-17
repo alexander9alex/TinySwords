@@ -522,7 +522,7 @@
             "id": "943e9d6d-9cfb-43a2-a30b-1b537a570f10",
             "actions": [
                 {
-                    "name": "Action",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "06f43887-3275-4080-811b-527c54fd0e9f",
                     "expectedControlType": "",
@@ -575,7 +575,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Action",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

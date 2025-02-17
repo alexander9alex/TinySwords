@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.Highlight.Systems
     public DestroyHighlightSystem(GameContext game)
     {
       _highlights = game.GetGroup(GameMatcher.AllOf(GameMatcher.Highlight));
-      _actionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.ActionEnded));
+      _actionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.InteractionEnded));
     }
 
     public void Cleanup()

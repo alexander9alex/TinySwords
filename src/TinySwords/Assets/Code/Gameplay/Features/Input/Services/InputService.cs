@@ -18,9 +18,9 @@ namespace Code.Gameplay.Features.Input.Services
 
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
-    private Vector2 _actionStartedPos;
+    private Vector2 _interactionStartedPos;
     private Vector2 _cameraMoveDir;
-    private bool _actionStarted;
+    private bool _interactionStarted;
 
     public InputService()
     {
@@ -40,8 +40,8 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void InitGameInputMap()
     {
-      _inputSystem.Game.Action.started += OnActionStarted;
-      _inputSystem.Game.Action.canceled += OnActionEnded;
+      _inputSystem.Game.Interaction.started += OnInteractionStarted;
+      _inputSystem.Game.Interaction.canceled += OnInteractionEnded;
 
       _inputSystem.Game.FastInteraction.canceled += OnFastInteracted;
 
@@ -102,7 +102,7 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void CreateCameraMoveInput()
     {
-      if (_actionStarted)
+      if (_interactionStarted)
         return;
 
       if (_cameraMoveDir == Vector2.zero)
@@ -115,7 +115,7 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void OnFastInteracted(InputAction.CallbackContext context)
     {
-      if (_actionStarted)
+      if (_interactionStarted)
         return;
 
       if (!ClickInGameZone(_mousePos))
@@ -126,35 +126,35 @@ namespace Code.Gameplay.Features.Input.Services
         .AddScreenPosition(_mousePos);
     }
 
-    private void OnActionStarted(InputAction.CallbackContext context)
+    private void OnInteractionStarted(InputAction.CallbackContext context)
     {
-      if (_actionStarted)
+      if (_interactionStarted)
         return;
 
-      _actionStartedPos = _mousePos;
+      _interactionStartedPos = _mousePos;
 
-      if (!ClickInGameZone(_actionStartedPos))
+      if (!ClickInGameZone(_interactionStartedPos))
         return;
 
-      _actionStarted = true;
+      _interactionStarted = true;
 
       CreateEntity.Empty()
-        .With(x => x.isActionStarted = true)
+        .With(x => x.isInteractionStarted = true)
         .AddScreenPosition(_mousePos);
     }
 
-    private void OnActionEnded(InputAction.CallbackContext context)
+    private void OnInteractionEnded(InputAction.CallbackContext context)
     {
-      if (!_actionStarted)
+      if (!_interactionStarted)
         return;
 
-      if (!ClickInGameZone(_actionStartedPos))
+      if (!ClickInGameZone(_interactionStartedPos))
         return;
 
-      _actionStarted = false;
+      _interactionStarted = false;
 
       CreateEntity.Empty()
-        .With(x => x.isActionEnded = true)
+        .With(x => x.isInteractionEnded = true)
         .AddScreenPosition(_mousePos);
     }
 

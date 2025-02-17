@@ -11,8 +11,8 @@ namespace Code.Gameplay.Features.Input.Systems
 
     public SetActionEndedProcessingSystem(GameContext game)
     {
-      _actionEnded = game.GetGroup(GameMatcher.ActionEnded);
-      _actionStarted = game.GetGroup(GameMatcher.ActionStarted);
+      _actionEnded = game.GetGroup(GameMatcher.InteractionEnded);
+      _actionStarted = game.GetGroup(GameMatcher.InteractionStarted);
     }
 
     public void Execute()

@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Input.Systems
     {
       _actionEnded = game.GetGroup(GameMatcher
         .AllOf(
-          GameMatcher.ActionEnded,
+          GameMatcher.InteractionEnded,
           GameMatcher.ScreenPosition)
         .NoneOf(GameMatcher.Processed));
     }

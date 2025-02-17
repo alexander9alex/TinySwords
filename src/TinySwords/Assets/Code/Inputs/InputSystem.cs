@@ -544,7 +544,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ""id"": ""943e9d6d-9cfb-43a2-a30b-1b537a570f10"",
             ""actions"": [
                 {
-                    ""name"": ""Action"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""06f43887-3275-4080-811b-527c54fd0e9f"",
                     ""expectedControlType"": """",
@@ -597,7 +597,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Action"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1031,7 +1031,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Action = m_Game.FindAction("Action", throwIfNotFound: true);
+        m_Game_Interaction = m_Game.FindAction("Interaction", throwIfNotFound: true);
         m_Game_FastInteraction = m_Game.FindAction("FastInteraction", throwIfNotFound: true);
         m_Game_MousePosition = m_Game.FindAction("MousePosition", throwIfNotFound: true);
         m_Game_CameraMovement = m_Game.FindAction("CameraMovement", throwIfNotFound: true);
@@ -1229,7 +1229,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_Action;
+    private readonly InputAction m_Game_Interaction;
     private readonly InputAction m_Game_FastInteraction;
     private readonly InputAction m_Game_MousePosition;
     private readonly InputAction m_Game_CameraMovement;
@@ -1238,7 +1238,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         private @InputSystem m_Wrapper;
         public GameActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Action => m_Wrapper.m_Game_Action;
+        public InputAction @Interaction => m_Wrapper.m_Game_Interaction;
         public InputAction @FastInteraction => m_Wrapper.m_Game_FastInteraction;
         public InputAction @MousePosition => m_Wrapper.m_Game_MousePosition;
         public InputAction @CameraMovement => m_Wrapper.m_Game_CameraMovement;
@@ -1252,9 +1252,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @Action.started += instance.OnAction;
-            @Action.performed += instance.OnAction;
-            @Action.canceled += instance.OnAction;
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
             @FastInteraction.started += instance.OnFastInteraction;
             @FastInteraction.performed += instance.OnFastInteraction;
             @FastInteraction.canceled += instance.OnFastInteraction;
@@ -1271,9 +1271,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @Action.started -= instance.OnAction;
-            @Action.performed -= instance.OnAction;
-            @Action.canceled -= instance.OnAction;
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
             @FastInteraction.started -= instance.OnFastInteraction;
             @FastInteraction.performed -= instance.OnFastInteraction;
             @FastInteraction.canceled -= instance.OnFastInteraction;
@@ -1441,7 +1441,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     }
     public interface IGameActions
     {
-        void OnAction(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
         void OnFastInteraction(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);

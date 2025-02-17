@@ -7,6 +7,6 @@ namespace Code.Gameplay.Features.Input
   [Game] public class MouseScreenPosition : IComponent { public Vector2 Value; }
   [Game] public class StartPosition : IComponent { public Vector2 Value; }
   [Game] public class EndPosition : IComponent { public Vector2 Value; }
-  [Game] public class ActionStarted : IComponent { }
-  [Game] public class ActionEnded : IComponent { }
+  [Game] public class InteractionStarted : IComponent { }
+  [Game] public class InteractionEnded : IComponent { }
 }

@@ -13,8 +13,8 @@ namespace Code.Gameplay.Features.Input.Systems
 
     public CleanupActionInputSystem(GameContext game)
     {
-      _selectionStarted = game.GetGroup(GameMatcher.AllOf(GameMatcher.ActionStarted));
-      _selectionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.ActionEnded));
+      _selectionStarted = game.GetGroup(GameMatcher.AllOf(GameMatcher.InteractionStarted));
+      _selectionEnded = game.GetGroup(GameMatcher.AllOf(GameMatcher.InteractionEnded));
     }
 
     public void Cleanup()
