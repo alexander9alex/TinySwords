@@ -4,24 +4,27 @@ using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Services;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
+using Code.UI.Windows.Services;
 
 namespace Code.Infrastructure.States.GameStates
 {
-  public class GameLoopState : EndOfFrameExitState
+  public class LevelState : EndOfFrameExitState
   {
     private readonly ICurtain _curtain;
     private readonly ISystemFactory _systemFactory;
     private readonly GameContext _gameContext;
     private readonly ITutorialService _tutorialService;
+    private readonly IWindowService _windowService;
 
     private GameplayFeature _gameplayFeature;
 
-    public GameLoopState(ICurtain curtain, ISystemFactory systemFactory, GameContext gameContext, ITutorialService tutorialService)
+    public LevelState(ICurtain curtain, ISystemFactory systemFactory, GameContext gameContext, ITutorialService tutorialService, IWindowService windowService)
     {
       _curtain = curtain;
       _systemFactory = systemFactory;
       _gameContext = gameContext;
       _tutorialService = tutorialService;
+      _windowService = windowService;
     }
 
     public override void Enter()
@@ -42,6 +45,12 @@ namespace Code.Infrastructure.States.GameStates
     }
 
     protected override void ExitOnEndOfFrame()
+    {
+      CleanupGameplayFeature();
+      _windowService.Cleanup();
+    }
+
+    private void CleanupGameplayFeature()
     {
       _gameplayFeature.ClearReactiveSystems();
       _gameplayFeature.DeactivateReactiveSystems();

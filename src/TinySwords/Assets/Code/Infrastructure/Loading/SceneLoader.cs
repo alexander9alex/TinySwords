@@ -19,22 +19,26 @@ namespace Code.Infrastructure.Loading
       _staticData = staticData;
     }
 
-    public void LoadScene(SceneId sceneId, Action onLoaded = null) =>
+    public void LoadScene(SceneId sceneId, Action onLoaded = null)
+    {
+      string scene = _staticData.GetSceneNameById(sceneId);
+
+      if (SceneManager.GetActiveScene().name == scene)
+        onLoaded?.Invoke();
+      else
+        _coroutineRunner.StartCoroutine(LoadSceneCoroutine(_staticData.GetSceneNameById(sceneId), onLoaded));
+    }
+
+    public void ReloadScene(SceneId sceneId, Action onLoaded = null) =>
       _coroutineRunner.StartCoroutine(LoadSceneCoroutine(_staticData.GetSceneNameById(sceneId), onLoaded));
 
-    private IEnumerator LoadSceneCoroutine(string scene, Action onLoaded)
+    private static IEnumerator LoadSceneCoroutine(string scene, Action onLoaded)
     {
-      if (SceneManager.GetActiveScene().name == scene)
-      {
-        onLoaded?.Invoke();
-        yield break;
-      }
-
       AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(scene);
 
       while (!waitNextScene.isDone)
         yield return null;
-      
+
       onLoaded?.Invoke();
     }
   }

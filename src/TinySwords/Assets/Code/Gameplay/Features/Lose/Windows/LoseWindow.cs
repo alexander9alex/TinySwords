@@ -2,6 +2,7 @@
 using Code.UI.Data;
 using Code.UI.Windows;
 using Code.UI.Windows.Services;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -9,10 +10,10 @@ namespace Code.Gameplay.Features.Lose.Windows
 {
   public class LoseWindow : BaseWindow
   {
-    public Button RestartGameButton;
+    public Button RestartLevelButton;
 
     private IWindowService _windowService;
-    private Action _restartGameAction;
+    private Action _restartLevelAction;
 
     [Inject]
     private void Construct(IWindowService windowService)
@@ -23,14 +24,14 @@ namespace Code.Gameplay.Features.Lose.Windows
     }
 
     protected override void Initialize() =>
-      RestartGameButton.onClick.AddListener(RestartGame);
+      RestartLevelButton.onClick.AddListener(RestartGame);
 
-    public void SetRestartAction(Action action) =>
-      _restartGameAction = action;
+    public void SetRestartLevelAction(Action action) =>
+      _restartLevelAction = action;
 
     private void RestartGame()
     {
-      _restartGameAction?.Invoke();
+      _restartLevelAction?.Invoke();
       _windowService.CloseWindow(WindowId);
     }
   }

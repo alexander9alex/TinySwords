@@ -6,5 +6,6 @@ namespace Code.UI.Windows.Services
   {
     TWindow OpenWindow<TWindow>(WindowId windowId) where TWindow : BaseWindow;
     void CloseWindow(WindowId windowId);
+    void Cleanup();
   }
 }

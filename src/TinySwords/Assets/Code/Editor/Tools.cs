@@ -1,3 +1,4 @@
+using Code.Gameplay.Level.Data;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using UnityEditor;
@@ -10,6 +11,6 @@ namespace Code.Editor
   {
     [MenuItem("Tools/Start Game Without Cutscene")]
     public static void StartGameWithoutCutscene() =>
-      Object.FindFirstObjectByType<ProjectContext>().Container.Resolve<IGameStateMachine>().Enter<LoadingGameState>();
+      Object.FindFirstObjectByType<ProjectContext>().Container.Resolve<IGameStateMachine>().Enter<LoadingLevelState, LevelId>(LevelId.First);
   }
 }

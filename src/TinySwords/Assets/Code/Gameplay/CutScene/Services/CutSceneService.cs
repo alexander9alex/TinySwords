@@ -7,6 +7,7 @@ using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Windows;
 using Code.Gameplay.Features.Sounds.Data;
 using Code.Gameplay.Features.Sounds.Factory;
+using Code.Gameplay.Level.Data;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
 using Code.Infrastructure.States.GameStates;
@@ -55,7 +56,7 @@ namespace Code.Gameplay.CutScene.Services
 
       RemoveSound(textDisplaySound);
 
-      _gameStateMachine.Enter<LoadingGameState>();
+      _gameStateMachine.Enter<LoadingLevelState, LevelId>(LevelId.First);
     }
 
     private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config, GameEntity textDisplaySound)

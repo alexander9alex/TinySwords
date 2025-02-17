@@ -175,8 +175,8 @@ namespace Code.Infrastructure.Installers
       Container.BindInterfacesAndSelfTo<MainMenuState>().AsSingle();
       Container.BindInterfacesAndSelfTo<LoadingCutSceneState>().AsSingle();
       Container.BindInterfacesAndSelfTo<CutSceneState>().AsSingle();
-      Container.BindInterfacesAndSelfTo<LoadingGameState>().AsSingle();
-      Container.BindInterfacesAndSelfTo<GameLoopState>().AsSingle();
+      Container.BindInterfacesAndSelfTo<LoadingLevelState>().AsSingle();
+      Container.BindInterfacesAndSelfTo<LevelState>().AsSingle();
     }
 
     private void BindSystemFactory() =>

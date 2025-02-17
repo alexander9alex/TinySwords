@@ -26,5 +26,13 @@ namespace Code.UI.Windows.Services
       _spawnedWindows.Remove(window);
       Object.Destroy(window.gameObject);
     }
+
+    public void Cleanup()
+    {
+      foreach (BaseWindow window in _spawnedWindows)
+        CloseWindow(window.WindowId);
+
+      _spawnedWindows.Clear();
+    }
   }
 }

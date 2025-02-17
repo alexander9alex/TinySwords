@@ -8,6 +8,7 @@ using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Level.Configs;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Level.Factory;
+using Code.Gameplay.Services;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.Scenes.Data;
 using Code.Infrastructure.States.StateInfrastructure;
@@ -16,7 +17,7 @@ using UnityEngine;
 
 namespace Code.Infrastructure.States.GameStates
 {
-  public class LoadingGameState : SimpleState
+  public class LoadingLevelState : SimplePayloadedState<LevelId>
   {
     private readonly ICurtain _curtain;
     private readonly ISceneLoader _sceneLoader;
@@ -27,10 +28,11 @@ namespace Code.Infrastructure.States.GameStates
     private readonly ICameraMovementService _cameraMovementService;
     private readonly ICameraFactory _cameraFactory;
     private readonly IStaticDataService _staticData;
+    private readonly ITimeService _timeService;
 
-    public LoadingGameState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
+    public LoadingLevelState(ICurtain curtain, ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, ICameraProvider cameraProvider,
       IInputService inputService, ILevelFactory levelFactory, ICameraMovementService cameraMovementService, ICameraFactory cameraFactory,
-      IStaticDataService staticData)
+      IStaticDataService staticData, ITimeService timeService)
     {
       _curtain = curtain;
       _sceneLoader = sceneLoader;
@@ -41,24 +43,26 @@ namespace Code.Infrastructure.States.GameStates
       _cameraMovementService = cameraMovementService;
       _cameraFactory = cameraFactory;
       _staticData = staticData;
+      _timeService = timeService;
     }
 
-    public override void Enter() =>
-      _curtain.Show(() => _sceneLoader.LoadScene(SceneId.Game, OnLoaded));
+    public override void Enter(LevelId levelId) =>
+      _curtain.Show(() => _sceneLoader.ReloadScene(SceneId.Game, () => OnLoaded(levelId)));
 
-    private void OnLoaded()
+    private void OnLoaded(LevelId levelId)
     {
-      LevelConfig config = _staticData.GetLevelConfig(LevelId.First);
+      LevelConfig config = _staticData.GetLevelConfig(levelId);
 
       _cameraFactory.CreateCamera(config);
       _cameraProvider.SetMainCamera(Camera.main);
-      
+
       _levelFactory.CreateLevel(config);
       _cameraMovementService.SetCameraBorders(config);
 
       _inputService.ChangeInputMap(InputMap.Game);
+      _timeService.UnfreezeTime();
 
-      _gameStateMachine.Enter<GameLoopState>();
+      _gameStateMachine.Enter<LevelState>();
     }
   }
 }
