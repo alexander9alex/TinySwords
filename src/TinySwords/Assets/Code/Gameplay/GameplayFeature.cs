@@ -31,8 +31,8 @@ namespace Code.Gameplay
     public GameplayFeature(ISystemFactory systems)
     {
       Add(systems.Create<BindViewFeature>());
-      
       Add(systems.Create<InputFeature>());
+
       Add(systems.Create<FastInteractionFeature>());
       Add(systems.Create<CommandFeature>());
       Add(systems.Create<ProcessCommandFeature>());

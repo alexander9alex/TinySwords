@@ -38,41 +38,6 @@ namespace Code.Gameplay.Features.Input.Services
       CreateCameraMoveInput();
     }
 
-    private void InitGameInputMap()
-    {
-      _inputSystem.Game.Interaction.started += OnInteractionStarted;
-      _inputSystem.Game.Interaction.canceled += OnInteractionEnded;
-
-      _inputSystem.Game.FastInteraction.canceled += OnFastInteracted;
-
-      _inputSystem.Game.MousePosition.started += ChangeMousePosition;
-      _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
-      _inputSystem.Game.MousePosition.canceled += ChangeMousePosition;
-
-      _inputSystem.Game.CameraMovement.started += MoveCamera;
-      _inputSystem.Game.CameraMovement.performed += MoveCamera;
-      _inputSystem.Game.CameraMovement.canceled += MoveCamera;
-
-      _inputSystem.Game.CameraScaling.performed += ScaleCamera;
-    }
-    
-    private void InitCommandInputMap()
-    {
-      _inputSystem.CommandIsActive.ApplyCommand.canceled += ApplyCommand;
-
-      _inputSystem.CommandIsActive.CancelCommand.canceled += CancelCommand;
-
-      _inputSystem.CommandIsActive.MousePosition.started += ChangeMousePosition;
-      _inputSystem.CommandIsActive.MousePosition.performed += ChangeMousePosition;
-      _inputSystem.CommandIsActive.MousePosition.canceled += ChangeMousePosition;
-
-      _inputSystem.CommandIsActive.CameraMovement.started += MoveCamera;
-      _inputSystem.CommandIsActive.CameraMovement.performed += MoveCamera;
-      _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
-      
-      _inputSystem.CommandIsActive.CameraScaling.performed += ScaleCamera;
-    }
-
     public void ChangeInputMap(InputMap inputMap)
     {
       switch (inputMap)
@@ -92,6 +57,41 @@ namespace Code.Gameplay.Features.Input.Services
         default:
           throw new ArgumentOutOfRangeException(nameof(inputMap), inputMap, null);
       }
+    }
+
+    private void InitGameInputMap()
+    {
+      _inputSystem.Game.Interaction.started += OnInteractionStarted;
+      _inputSystem.Game.Interaction.canceled += OnInteractionEnded;
+
+      _inputSystem.Game.FastInteraction.canceled += OnFastInteracted;
+
+      _inputSystem.Game.MousePosition.started += ChangeMousePosition;
+      _inputSystem.Game.MousePosition.performed += ChangeMousePosition;
+      _inputSystem.Game.MousePosition.canceled += ChangeMousePosition;
+
+      _inputSystem.Game.CameraMovement.started += MoveCamera;
+      _inputSystem.Game.CameraMovement.performed += MoveCamera;
+      _inputSystem.Game.CameraMovement.canceled += MoveCamera;
+
+      _inputSystem.Game.CameraScaling.performed += ScaleCamera;
+    }
+
+    private void InitCommandInputMap()
+    {
+      _inputSystem.CommandIsActive.ApplyCommand.canceled += ApplyCommand;
+
+      _inputSystem.CommandIsActive.CancelCommand.canceled += CancelCommand;
+
+      _inputSystem.CommandIsActive.MousePosition.started += ChangeMousePosition;
+      _inputSystem.CommandIsActive.MousePosition.performed += ChangeMousePosition;
+      _inputSystem.CommandIsActive.MousePosition.canceled += ChangeMousePosition;
+
+      _inputSystem.CommandIsActive.CameraMovement.started += MoveCamera;
+      _inputSystem.CommandIsActive.CameraMovement.performed += MoveCamera;
+      _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
+      
+      _inputSystem.CommandIsActive.CameraScaling.performed += ScaleCamera;
     }
 
     private void CreateMousePositionInput()
