@@ -38,7 +38,7 @@ namespace Code.Gameplay.Features.Interactions.Highlight.Systems
       {
         if (Vector2.Distance(interaction.StartPosition, input.MousePosition) >= GameConstants.SelectionClickDelta)
         {
-          _highlightFactory.CreateHighlight();
+          _highlightFactory.CreateHighlight(interaction.StartPosition, input.MousePosition);
           
           interaction.isProcessed = true;
         }

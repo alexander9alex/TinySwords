@@ -109,9 +109,6 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void SetCameraMoveInput()
     {
-      if (_interactionStarted)
-        return;
-
       if (_cameraMoveDir == Vector2.zero)
         return;
 

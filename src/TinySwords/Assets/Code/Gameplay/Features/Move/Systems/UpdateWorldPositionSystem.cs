@@ -9,8 +9,10 @@ namespace Code.Gameplay.Features.Move.Systems
     public UpdateWorldPositionSystem(GameContext game)
     {
       _entity = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.WorldPosition, GameMatcher.Transform)
-        .NoneOf(GameMatcher.InitializationRequest));
+        .AllOf(
+          GameMatcher.WorldPosition,
+          GameMatcher.Transform
+        ).NoneOf(GameMatcher.InitializationRequest));
     }
 
     public void Execute()

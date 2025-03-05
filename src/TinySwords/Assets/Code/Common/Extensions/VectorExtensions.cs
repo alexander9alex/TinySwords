@@ -27,5 +27,10 @@ namespace Code.Common.Extensions
 
     public static Vector2 RemoveY(this Vector2 v) =>
       new(v.x, 0);
+    
+    public static Vector2 Abs(this Vector2 v) =>
+      new(Mathf.Abs(v.x), Mathf.Abs(v.y));
+    public static Vector3 Abs(this Vector3 v) =>
+      new(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
   }
 }

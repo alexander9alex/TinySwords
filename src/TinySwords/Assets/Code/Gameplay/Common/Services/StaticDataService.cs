@@ -51,7 +51,7 @@ namespace Code.Gameplay.Common.Services
       _unitConfigByTypeAndColor[(type, color)];
 
     public EntityBehaviour GetHighlightPrefab() =>
-      Resources.Load<EntityBehaviour>("UI/Highlight/Highlight");
+      Resources.Load<EntityBehaviour>("Highlight/Highlight");
 
     public IndicatorConfig GetIndicatorConfig(IndicatorTypeId typeId) =>
       _indicatorConfigByType[typeId];

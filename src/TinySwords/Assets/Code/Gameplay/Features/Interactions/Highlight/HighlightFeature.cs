@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Interactions.Highlight
     {
       Add(systems.Create<CreateHighlightSystem>());
       
-      Add(systems.Create<CalculateHighlightLocationSystem>());
+      Add(systems.Create<UpdateHighlightEndPositionSystem>());
       Add(systems.Create<UpdateHighlightLocationSystem>());
       
       Add(systems.Create<DestroyHighlightSystem>());
