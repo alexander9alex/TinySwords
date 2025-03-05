@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Highlight;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherSize;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Highlight.Size size { get { return (Code.Gameplay.Features.Highlight.Size)GetComponent(GameComponentsLookup.Size); } }
+    public Size size { get { return (Size)GetComponent(GameComponentsLookup.Size); } }
     public UnityEngine.Vector2 Size { get { return size.Value; } }
     public bool hasSize { get { return HasComponent(GameComponentsLookup.Size); } }
 
     public GameEntity AddSize(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.Size;
-        var component = (Code.Gameplay.Features.Highlight.Size)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.Size));
+        var component = (Size)CreateComponent(index, typeof(Size));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceSize(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.Size;
-        var component = (Code.Gameplay.Features.Highlight.Size)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.Size));
+        var component = (Size)CreateComponent(index, typeof(Size));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

@@ -13,7 +13,6 @@ namespace Code.Gameplay.Features.Command
       Add(systems.Create<ApplyCommandSystem>());
       Add(systems.Create<CancelCommandSystem>());
       
-      Add(systems.Create<CleanupApplyCommandRequestSystem>());
       Add(systems.Create<CleanupProcessCommandRequestSystem>());
       Add(systems.Create<CleanupProcessIncorrectCommandSystem>());
     }

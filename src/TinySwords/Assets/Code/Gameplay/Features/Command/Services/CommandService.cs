@@ -85,14 +85,14 @@ namespace Code.Gameplay.Features.Command.Services
       _soundService.PlaySound(SoundId.ApplyCommand);
     }
 
-    public void ProcessIncorrectCommand(CommandTypeId command, GameEntity request)
+    public void ProcessIncorrectCommand(CommandTypeId commandTypeId, Vector2 screenPos)
     {
       GameEntity entity = CreateEntity.Empty()
-        .AddCommandTypeId(command)
-        .AddScreenPosition(request.ScreenPosition)
+        .AddCommandTypeId(commandTypeId)
+        .AddScreenPosition(screenPos)
         .With(x => x.isProcessIncorrectCommandRequest = true);
 
-      SetCommandTypeId(entity, command);
+      SetCommandTypeId(entity, commandTypeId);
 
       _soundService.PlaySound(SoundId.IncorrectCommand);
     }
@@ -118,7 +118,7 @@ namespace Code.Gameplay.Features.Command.Services
     private bool CanApplyMoveCommand(Vector2 screenPos)
     {
       RaycastHit2D[] hits = GetHits(screenPos);
-
+      
       if (CanNotMove(hits))
         return false;
 
@@ -131,7 +131,6 @@ namespace Code.Gameplay.Features.Command.Services
     private RaycastHit2D[] GetHits(Vector2 screenPos)
     {
       Vector3 worldPos = _cameraProvider.ScreenToWorldPoint(screenPos);
-
 
       ContactFilter2D contactFilter2D = new();
       contactFilter2D.layerMask = _mapLayerMask;

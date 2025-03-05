@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Highlight;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherHighlightEnded;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Highlight.HighlightEnded highlightEndedComponent = new Code.Gameplay.Features.Highlight.HighlightEnded();
+    static readonly HighlightEnded highlightEndedComponent = new HighlightEnded();
 
     public bool isHighlightEnded {
         get { return HasComponent(GameComponentsLookup.HighlightEnded); }

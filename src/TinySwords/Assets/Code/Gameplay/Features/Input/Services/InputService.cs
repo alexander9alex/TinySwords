@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Common.Entities;
 using Code.Common.Extensions;
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Input.Data;
@@ -18,9 +17,10 @@ namespace Code.Gameplay.Features.Input.Services
 
     private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
-    private Vector2 _interactionStartedPos;
     private Vector2 _cameraMoveDir;
+    private GameEntity _inputEntity;
     private bool _interactionStarted;
+    private bool _inputStarted;
 
     public InputService()
     {
@@ -32,11 +32,18 @@ namespace Code.Gameplay.Features.Input.Services
 
     public void Tick()
     {
-      if (GameInputMapEnabled)
-        CreateMousePositionInput();
+      if (!_inputStarted)
+        return;
 
-      CreateCameraMoveInput();
+      SetMousePositionInput();
+      SetCameraMoveInput();
     }
+
+    public void SetInputEntity(GameEntity input) =>
+      _inputEntity = input;
+
+    public void StartInput() =>
+      _inputStarted = true;
 
     public void ChangeInputMap(InputMap inputMap)
     {
@@ -90,17 +97,17 @@ namespace Code.Gameplay.Features.Input.Services
       _inputSystem.CommandIsActive.CameraMovement.started += MoveCamera;
       _inputSystem.CommandIsActive.CameraMovement.performed += MoveCamera;
       _inputSystem.CommandIsActive.CameraMovement.canceled += MoveCamera;
-      
+
       _inputSystem.CommandIsActive.CameraScaling.performed += ScaleCamera;
     }
 
-    private void CreateMousePositionInput()
+    private void SetMousePositionInput()
     {
-      CreateEntity.Empty()
-        .AddMouseScreenPosition(_mousePos);
+      _inputEntity
+        .ReplaceMousePosition(_mousePos);
     }
 
-    private void CreateCameraMoveInput()
+    private void SetCameraMoveInput()
     {
       if (_interactionStarted)
         return;
@@ -108,9 +115,8 @@ namespace Code.Gameplay.Features.Input.Services
       if (_cameraMoveDir == Vector2.zero)
         return;
 
-      CreateEntity.Empty()
-        .With(x => x.isMoveCamera = true)
-        .AddMoveDirection(_cameraMoveDir);
+      _inputEntity
+        .ReplaceMoveCameraDirection(_cameraMoveDir);
     }
 
     private void OnFastInteracted(InputAction.CallbackContext context)
@@ -118,12 +124,11 @@ namespace Code.Gameplay.Features.Input.Services
       if (_interactionStarted)
         return;
 
-      if (!ClickInGameZone(_mousePos))
+      if (!IsPosInGameZone(_mousePos))
         return;
 
-      CreateEntity.Empty()
-        .With(x => x.isFastInteraction = true)
-        .AddScreenPosition(_mousePos);
+      _inputEntity
+        .With(x => x.isFastInteractionInput = true);
     }
 
     private void OnInteractionStarted(InputAction.CallbackContext context)
@@ -131,16 +136,13 @@ namespace Code.Gameplay.Features.Input.Services
       if (_interactionStarted)
         return;
 
-      _interactionStartedPos = _mousePos;
-
-      if (!ClickInGameZone(_interactionStartedPos))
+      if (!IsPosInGameZone(_mousePos))
         return;
 
       _interactionStarted = true;
 
-      CreateEntity.Empty()
-        .With(x => x.isInteractionStarted = true)
-        .AddScreenPosition(_mousePos);
+      _inputEntity
+        .With(x => x.isInteractionStartInput = true);
     }
 
     private void OnInteractionEnded(InputAction.CallbackContext context)
@@ -148,49 +150,42 @@ namespace Code.Gameplay.Features.Input.Services
       if (!_interactionStarted)
         return;
 
-      if (!ClickInGameZone(_interactionStartedPos))
-        return;
-
       _interactionStarted = false;
 
-      CreateEntity.Empty()
-        .With(x => x.isInteractionEnded = true)
-        .AddScreenPosition(_mousePos);
+      _inputEntity
+        .With(x => x.isInteractionEndInput = true);
     }
 
     private void MoveCamera(InputAction.CallbackContext context) =>
       _cameraMoveDir = context.ReadValue<Vector2>();
-    
+
     private void ScaleCamera(InputAction.CallbackContext context)
     {
       float scaling = context.ReadValue<float>();
 
-      CreateEntity.Empty()
-        .AddScaleCamera(-scaling);
+      _inputEntity
+        .ReplaceScaleCamera(-scaling);
     }
-
 
     private void ApplyCommand(InputAction.CallbackContext context)
     {
-      if (!ClickInGameZone(_mousePos))
+      if (!IsPosInGameZone(_mousePos))
         return;
 
-      CreateEntity.Empty()
-        .With(x => x.isApplyCommand = true)
-        .AddScreenPosition(_mousePos);
+      _inputEntity
+        .With(x => x.isApplyCommandInput = true);
     }
 
     private void CancelCommand(InputAction.CallbackContext context)
     {
-      CreateEntity.Empty()
-        .With(x => x.isCancelCommand = true)
-        .AddScreenPosition(_mousePos);
+      _inputEntity
+        .With(x => x.isCancelCommandInput = true);
     }
 
     private void ChangeMousePosition(InputAction.CallbackContext context) =>
       _mousePos = context.ReadValue<Vector2>();
 
-    private bool ClickInGameZone(Vector2 mousePos)
+    private bool IsPosInGameZone(Vector2 mousePos)
     {
       PointerEventData eventData = new(EventSystem.current);
       eventData.position = mousePos;

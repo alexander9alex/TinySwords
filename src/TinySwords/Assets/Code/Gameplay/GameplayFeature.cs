@@ -6,18 +6,17 @@ using Code.Gameplay.Features.Command;
 using Code.Gameplay.Features.Death;
 using Code.Gameplay.Features.Destruct;
 using Code.Gameplay.Features.Effects;
-using Code.Gameplay.Features.FastInteraction;
+using Code.Gameplay.Features.FastInteractions;
 using Code.Gameplay.Features.Focus;
 using Code.Gameplay.Features.FogOfWar;
-using Code.Gameplay.Features.Highlight;
 using Code.Gameplay.Features.HpBars;
 using Code.Gameplay.Features.Indicators;
 using Code.Gameplay.Features.Input;
+using Code.Gameplay.Features.Interactions;
 using Code.Gameplay.Features.Lose;
 using Code.Gameplay.Features.Move;
 using Code.Gameplay.Features.NavMesh;
 using Code.Gameplay.Features.ProcessCommand;
-using Code.Gameplay.Features.Select;
 using Code.Gameplay.Features.Sounds;
 using Code.Gameplay.Features.Units;
 using Code.Gameplay.Features.Win;
@@ -33,12 +32,12 @@ namespace Code.Gameplay
       Add(systems.Create<BindViewFeature>());
       Add(systems.Create<InputFeature>());
 
+      Add(systems.Create<InteractionFeature>());
       Add(systems.Create<FastInteractionFeature>());
+      
       Add(systems.Create<CommandFeature>());
       Add(systems.Create<ProcessCommandFeature>());
-
-      Add(systems.Create<HighlightFeature>());
-      Add(systems.Create<SelectFeature>());
+      
       Add(systems.Create<FocusFeature>());
       
       Add(systems.Create<CollectEntitiesFeature>());

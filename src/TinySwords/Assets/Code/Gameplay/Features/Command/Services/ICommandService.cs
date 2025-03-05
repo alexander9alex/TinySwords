@@ -9,6 +9,6 @@ namespace Code.Gameplay.Features.Command.Services
     void CancelCommand(bool isCommandProcessed);
     bool CanApplyCommand(CommandTypeId command, Vector2 screenPos);
     void ApplyCommand(CommandTypeId command, Vector2 screenPos);
-    void ProcessIncorrectCommand(CommandTypeId command, GameEntity request);
+    void ProcessIncorrectCommand(CommandTypeId commandTypeId, Vector2 screenPos);
   }
 }

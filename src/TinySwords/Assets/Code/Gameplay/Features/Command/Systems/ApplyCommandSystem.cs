@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Code.Common.Entities;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Command.Data;
 using Code.Gameplay.Features.Command.Services;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.Command.Systems
 {
@@ -10,7 +12,7 @@ namespace Code.Gameplay.Features.Command.Systems
   {
     private readonly ICommandService _commandService;
 
-    private readonly IGroup<GameEntity> _applyCommandRequests;
+    private readonly IGroup<GameEntity> _inputs;
     private readonly IGroup<GameEntity> _selectedCommands;
     private readonly List<GameEntity> _buffer = new(1);
 
@@ -18,32 +20,42 @@ namespace Code.Gameplay.Features.Command.Systems
     {
       _commandService = commandService;
 
-      _applyCommandRequests = game.GetGroup(GameMatcher.AllOf(GameMatcher.ApplyCommand, GameMatcher.ScreenPosition));
-      _selectedCommands = game.GetGroup(GameMatcher.AllOf(GameMatcher.Command, GameMatcher.SelectedCommand, GameMatcher.CommandTypeId));
+      _inputs = game.GetGroup(GameMatcher
+        .AllOf(
+          GameMatcher.Input,
+          GameMatcher.ApplyCommandInput,
+          GameMatcher.MousePosition
+        ));
+
+      _selectedCommands = game.GetGroup(GameMatcher
+        .AllOf(
+          GameMatcher.Command,
+          GameMatcher.SelectedCommand,
+          GameMatcher.CommandTypeId
+        ));
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _applyCommandRequests)
+      foreach (GameEntity input in _inputs)
       foreach (GameEntity command in _selectedCommands.GetEntities(_buffer))
       {
-        if (_commandService.CanApplyCommand(command.CommandTypeId, request.ScreenPosition))
-          ApplyCommand(command, request);
+        if (_commandService.CanApplyCommand(command.CommandTypeId, input.MousePosition))
+          ApplyCommand(input, command, input.MousePosition);
         else
-          ProcessIncorrectCommand(command, request);
+          ProcessIncorrectCommand(input.MousePosition, command.CommandTypeId);
       }
     }
 
-    private void ApplyCommand(GameEntity command, GameEntity request)
+    private void ApplyCommand(GameEntity input, GameEntity command, Vector2 screenPos)
     {
-      _commandService.ApplyCommand(command.CommandTypeId, request.ScreenPosition);
+      _commandService.ApplyCommand(command.CommandTypeId, screenPos);
+
       command.isProcessed = true;
-          
-      CreateEntity.Empty()
-        .With(x => x.isCancelCommand = true);
+      input.With(x => x.isCancelCommandInput = true);
     }
 
-    private void ProcessIncorrectCommand(GameEntity command, GameEntity request) =>
-      _commandService.ProcessIncorrectCommand(command.CommandTypeId, request);
+    private void ProcessIncorrectCommand(Vector2 screenPos, CommandTypeId commandTypeId) =>
+      _commandService.ProcessIncorrectCommand(commandTypeId, screenPos);
   }
 }

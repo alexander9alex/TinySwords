@@ -16,8 +16,10 @@ namespace Code.Gameplay.Features.Command.Systems
       _commandService = commandService;
 
       _commands = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.Command, GameMatcher.CommandTypeId)
-        .NoneOf(GameMatcher.SelectedCommand));
+        .AllOf(
+          GameMatcher.Command,
+          GameMatcher.CommandTypeId
+        ).NoneOf(GameMatcher.SelectedCommand));
     }
 
     public void Execute()

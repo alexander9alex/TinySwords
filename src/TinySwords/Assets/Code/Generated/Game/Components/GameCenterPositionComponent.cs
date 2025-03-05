@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Highlight;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherCenterPosition;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Highlight.CenterPosition centerPosition { get { return (Code.Gameplay.Features.Highlight.CenterPosition)GetComponent(GameComponentsLookup.CenterPosition); } }
+    public CenterPosition centerPosition { get { return (CenterPosition)GetComponent(GameComponentsLookup.CenterPosition); } }
     public UnityEngine.Vector2 CenterPosition { get { return centerPosition.Value; } }
     public bool hasCenterPosition { get { return HasComponent(GameComponentsLookup.CenterPosition); } }
 
     public GameEntity AddCenterPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.CenterPosition;
-        var component = (Code.Gameplay.Features.Highlight.CenterPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.CenterPosition));
+        var component = (CenterPosition)CreateComponent(index, typeof(CenterPosition));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceCenterPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.CenterPosition;
-        var component = (Code.Gameplay.Features.Highlight.CenterPosition)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.CenterPosition));
+        var component = (CenterPosition)CreateComponent(index, typeof(CenterPosition));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

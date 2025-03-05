@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Highlight;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherRectTransform;
@@ -33,13 +36,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Highlight.RectTransformComponent rectTransform { get { return (Code.Gameplay.Features.Highlight.RectTransformComponent)GetComponent(GameComponentsLookup.RectTransform); } }
+    public RectTransformComponent rectTransform { get { return (RectTransformComponent)GetComponent(GameComponentsLookup.RectTransform); } }
     public UnityEngine.RectTransform RectTransform { get { return rectTransform.Value; } }
     public bool hasRectTransform { get { return HasComponent(GameComponentsLookup.RectTransform); } }
 
     public GameEntity AddRectTransform(UnityEngine.RectTransform newValue) {
         var index = GameComponentsLookup.RectTransform;
-        var component = (Code.Gameplay.Features.Highlight.RectTransformComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.RectTransformComponent));
+        var component = (RectTransformComponent)CreateComponent(index, typeof(RectTransformComponent));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +50,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceRectTransform(UnityEngine.RectTransform newValue) {
         var index = GameComponentsLookup.RectTransform;
-        var component = (Code.Gameplay.Features.Highlight.RectTransformComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Highlight.RectTransformComponent));
+        var component = (RectTransformComponent)CreateComponent(index, typeof(RectTransformComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

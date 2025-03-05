@@ -1,31 +1,34 @@
 ﻿using System.Collections.Generic;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Code.Gameplay.Features.Cameras.Services;
 using Entitas;
-using UnityEngine;
 
 namespace Code.Gameplay.Features.Cameras.Systems
 {
   public class ScaleCameraSystem : IExecuteSystem
   {
     private readonly ICameraScalingService _cameraScalingService;
-    private readonly IGroup<GameEntity> _scaleCameraRequests;
-    private readonly List<GameEntity> _buffer = new(4);
 
-    public ScaleCameraSystem(GameContext contextParameter, ICameraScalingService cameraScalingService)
+    private readonly List<GameEntity> _buffer = new(1);
+    private readonly IGroup<GameEntity> _inputs;
+
+    public ScaleCameraSystem(GameContext game, ICameraScalingService cameraScalingService)
     {
       _cameraScalingService = cameraScalingService;
-      _scaleCameraRequests = contextParameter.GetGroup(GameMatcher.ScaleCamera);
+
+      _inputs = game.GetGroup(GameMatcher
+        .AllOf(
+          GameMatcher.Input,
+          GameMatcher.ScaleCamera
+        ));
     }
 
     public void Execute()
     {
-      foreach (GameEntity request in _scaleCameraRequests.GetEntities(_buffer))
+      foreach (GameEntity input in _inputs.GetEntities(_buffer))
       {
-        _cameraScalingService.ScaleCamera(request.ScaleCamera);
+        _cameraScalingService.ScaleCamera(input.ScaleCamera);
 
-        request.isDestructed = true;
+        input.RemoveScaleCamera();
       }
     }
   }

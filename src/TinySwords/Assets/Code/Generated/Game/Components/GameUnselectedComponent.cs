@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Select;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherUnselected;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Select.Unselected unselectedComponent = new Code.Gameplay.Features.Select.Unselected();
+    static readonly Unselected unselectedComponent = new Unselected();
 
     public bool isUnselected {
         get { return HasComponent(GameComponentsLookup.Unselected); }

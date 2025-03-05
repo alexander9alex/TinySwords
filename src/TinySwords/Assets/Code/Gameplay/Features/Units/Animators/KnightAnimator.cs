@@ -2,8 +2,8 @@
 using Code.Gameplay.Constants;
 using Code.Gameplay.Features.Battle.Animators;
 using Code.Gameplay.Features.Battle.Services;
+using Code.Gameplay.Features.Interactions.Select.Animators;
 using Code.Gameplay.Features.Move.Animators;
-using Code.Gameplay.Features.Select.Animators;
 using UnityEngine;
 using Zenject;
 

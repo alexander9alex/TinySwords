@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Select;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherUpdateHudControlButtons;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Select.UpdateHudControlButtons updateHudControlButtonsComponent = new Code.Gameplay.Features.Select.UpdateHudControlButtons();
+    static readonly UpdateHudControlButtons updateHudControlButtonsComponent = new UpdateHudControlButtons();
 
     public bool isUpdateHudControlButtons {
         get { return HasComponent(GameComponentsLookup.UpdateHudControlButtons); }

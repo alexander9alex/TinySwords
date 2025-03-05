@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Select;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherSelectedNow;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Select.SelectedNow selectedNowComponent = new Code.Gameplay.Features.Select.SelectedNow();
+    static readonly SelectedNow selectedNowComponent = new SelectedNow();
 
     public bool isSelectedNow {
         get { return HasComponent(GameComponentsLookup.SelectedNow); }

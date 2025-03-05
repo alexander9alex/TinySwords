@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Highlight;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherHighlight;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Highlight.Highlight highlightComponent = new Code.Gameplay.Features.Highlight.Highlight();
+    static readonly Highlight highlightComponent = new Highlight();
 
     public bool isHighlight {
         get { return HasComponent(GameComponentsLookup.Highlight); }

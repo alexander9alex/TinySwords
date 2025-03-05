@@ -7,8 +7,9 @@ namespace Code.Gameplay.Features.Focus
   {
     public FocusFeature(ISystemFactory systems)
     {
-      Add(systems.Create<MarkUnfocusedSystem>());
-      Add(systems.Create<MarkFocusedSystem>());
+      Add(systems.Create<UnfocusEntitiesSystem>());
+      
+      Add(systems.Create<FocusEntitiesSystem>());
     }
   }
 }

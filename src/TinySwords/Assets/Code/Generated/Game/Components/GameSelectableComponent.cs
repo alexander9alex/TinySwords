@@ -6,6 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Code.Gameplay.Features.Interactions.Select;
+
 public sealed partial class GameMatcher {
 
     static Entitas.IMatcher<GameEntity> _matcherSelectable;
@@ -33,7 +36,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Select.Selectable selectableComponent = new Code.Gameplay.Features.Select.Selectable();
+    static readonly Selectable selectableComponent = new Selectable();
 
     public bool isSelectable {
         get { return HasComponent(GameComponentsLookup.Selectable); }

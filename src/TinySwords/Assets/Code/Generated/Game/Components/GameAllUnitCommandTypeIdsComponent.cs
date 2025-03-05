@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds allUnitCommandTypeIds { get { return (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)GetComponent(GameComponentsLookup.AllUnitCommandTypeIds); } }
+    public Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds allUnitCommandTypeIds { get { return (Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds)GetComponent(GameComponentsLookup.AllUnitCommandTypeIds); } }
     public System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> AllUnitCommandTypeIds { get { return allUnitCommandTypeIds.Value; } }
     public bool hasAllUnitCommandTypeIds { get { return HasComponent(GameComponentsLookup.AllUnitCommandTypeIds); } }
 
     public GameEntity AddAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> newValue) {
         var index = GameComponentsLookup.AllUnitCommandTypeIds;
-        var component = (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds));
+        var component = (Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceAllUnitCommandTypeIds(System.Collections.Generic.List<Code.Gameplay.Features.Command.Data.CommandTypeId> newValue) {
         var index = GameComponentsLookup.AllUnitCommandTypeIds;
-        var component = (Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteraction.AllUnitCommandTypeIds));
+        var component = (Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds)CreateComponent(index, typeof(Code.Gameplay.Features.FastInteractions.AllUnitCommandTypeIds));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

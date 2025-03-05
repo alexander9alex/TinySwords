@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.FastInteraction.FastInteraction fastInteractionComponent = new Code.Gameplay.Features.FastInteraction.FastInteraction();
+    static readonly Code.Gameplay.Features.FastInteractions.FastInteraction fastInteractionComponent = new Code.Gameplay.Features.FastInteractions.FastInteraction();
 
     public bool isFastInteraction {
         get { return HasComponent(GameComponentsLookup.FastInteraction); }
