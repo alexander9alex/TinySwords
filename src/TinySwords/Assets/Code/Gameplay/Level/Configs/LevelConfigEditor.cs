@@ -1,6 +1,5 @@
-using System.Linq;
+#if UNITY_EDITOR
 using Code.Gameplay.Features.Cameras.Data;
-using Code.Gameplay.Features.FogOfWar.Data;
 using Code.Gameplay.Level.Data;
 using UnityEditor;
 using UnityEngine;
@@ -27,3 +26,4 @@ namespace Code.Gameplay.Level.Configs
     }
   }
 }
+#endif
