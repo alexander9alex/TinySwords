@@ -60,7 +60,7 @@ namespace Code.Infrastructure.States.GameStates
       _cameraMovementService.SetCameraBorders(config);
 
       _inputService.ChangeInputMap(InputMap.Game);
-      _timeService.UnfreezeTime();
+      _timeService.StartTime();
 
       _gameStateMachine.Enter<LevelState>();
     }

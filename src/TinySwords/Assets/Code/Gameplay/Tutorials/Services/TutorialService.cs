@@ -29,7 +29,7 @@ namespace Code.Gameplay.Tutorials.Services
     public void ShowTutorial(TutorialId tutorialId)
     {
       _inputService.ChangeInputMap(InputMap.UI);
-      _timeService.FreezeTime();
+      _timeService.StopTime();
 
       CreateWantToCompleteTutorialWindow(tutorialId);
     }
@@ -55,7 +55,7 @@ namespace Code.Gameplay.Tutorials.Services
     {
       _soundService.PlaySound(SoundId.HideWindow);
       _inputService.ChangeInputMap(InputMap.Game);
-      _timeService.UnfreezeTime();
+      _timeService.StartTime();
     }
   }
 }

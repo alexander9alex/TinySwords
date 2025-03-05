@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Code.Gameplay.CutScene.Configs;
+using Code.Gameplay.CutScene.Data;
 using Code.Gameplay.CutScene.Windows;
-using Code.Gameplay.Level.Data;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
-using Code.Infrastructure.States.GameStates;
-using Code.Infrastructure.States.StateMachine;
 using UnityEngine;
 
 namespace Code.Gameplay.CutScene.Services
@@ -18,16 +16,16 @@ namespace Code.Gameplay.CutScene.Services
     private readonly List<char> _completeSentenceMarks = new() { '.', '!', '?' };
 
     private readonly ICoroutineRunner _coroutineRunner;
-    private readonly IGameStateMachine _gameStateMachine;
     private readonly ITimeService _time;
+    private readonly CutSceneActions _cutSceneActions;
 
     private bool _click;
 
-    public CutSceneService(ICoroutineRunner coroutineRunner, IGameStateMachine gameStateMachine, ITimeService time)
+    public CutSceneService(ICoroutineRunner coroutineRunner, ITimeService time, CutSceneActions cutSceneActions)
     {
       _coroutineRunner = coroutineRunner;
-      _gameStateMachine = gameStateMachine;
       _time = time;
+      _cutSceneActions = cutSceneActions;
     }
 
     public void RunCutScene(CutSceneWindow cutSceneWindow) =>
@@ -46,7 +44,7 @@ namespace Code.Gameplay.CutScene.Services
         yield return HideReplica(cutSceneWindow, config);
       }
 
-      _gameStateMachine.Enter<LoadingLevelState, LevelId>(LevelId.First);
+      MakeEndAction(config.CutSceneId);
     }
 
     private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config)
@@ -130,6 +128,9 @@ namespace Code.Gameplay.CutScene.Services
 
     private void NextReplica() =>
       _click = true;
+
+    private void MakeEndAction(CutSceneId cutSceneId) =>
+      _cutSceneActions.EndActions[cutSceneId]?.Invoke();
 
     private Coroutine ShowReplica(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config) =>
       _coroutineRunner.StartCoroutine(ShowReplicaCoroutine(cutSceneWindow, replica, config));

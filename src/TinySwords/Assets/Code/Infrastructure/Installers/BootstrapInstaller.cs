@@ -4,6 +4,8 @@ using Code.Gameplay.Common.Identifiers;
 using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Providers;
 using Code.Gameplay.Common.Services;
+using Code.Gameplay.CutScene;
+using Code.Gameplay.CutScene.Data;
 using Code.Gameplay.CutScene.Factory;
 using Code.Gameplay.CutScene.Services;
 using Code.Gameplay.Features.AI.Services;
@@ -142,6 +144,8 @@ namespace Code.Infrastructure.Installers
 
       Container.Bind<ICameraScalingService>().To<CameraScalingService>().AsSingle();
       Container.Bind<ICameraMovementService>().To<CameraMovementService>().AsSingle();
+
+      Container.BindInterfacesAndSelfTo<CutSceneActions>().AsSingle();
     }
 
     private void BindGameplayFactories()

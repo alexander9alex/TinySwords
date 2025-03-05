@@ -48,10 +48,14 @@ namespace Code.Infrastructure.States.GameStates
       _gameplayFeature.Cleanup();
     }
 
-    protected override void ExitOnEndOfFrame()
+    protected override void ExitOnEndOfFrame() =>
+      _curtain.Show(CleanupLevel);
+
+    private void CleanupLevel()
     {
       CleanupGameplayFeature();
       _windowService.Cleanup();
+      _inputService.Cleanup();
     }
 
     private void CleanupGameplayFeature()
@@ -64,8 +68,6 @@ namespace Code.Infrastructure.States.GameStates
       _gameplayFeature.Cleanup();
       _gameplayFeature.TearDown();
       _gameplayFeature = null;
-
-      _inputService.Cleanup();
     }
 
     private void DestructEntities()

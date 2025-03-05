@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.States.GameStates;
+﻿using Code.Gameplay.CutScene.Data;
+using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ namespace Code.UI.Windows
     }
 
     private void StartGame() =>
-      _gameStateMachine.Enter<LoadingCutSceneState>();
+      _gameStateMachine.Enter<LoadingCutSceneState, CutSceneId>(CutSceneId.First);
 
     private void ExitGame() =>
       Application.Quit();

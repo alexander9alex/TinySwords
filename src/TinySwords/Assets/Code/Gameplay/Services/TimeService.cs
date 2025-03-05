@@ -14,10 +14,10 @@ namespace Code.Gameplay.Services
 
     private bool _isTimeFreeze;
     
-    public void FreezeTime() =>
+    public void StopTime() =>
       _isTimeFreeze = true;
 
-    public void UnfreezeTime() =>
+    public void StartTime() =>
       _isTimeFreeze = false;
   }
 }

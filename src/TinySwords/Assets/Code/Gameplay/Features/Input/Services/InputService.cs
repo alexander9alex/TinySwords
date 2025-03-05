@@ -38,8 +38,11 @@ namespace Code.Gameplay.Features.Input.Services
       SetCameraMoveInput();
     }
 
-    public void Cleanup() =>
+    public void Cleanup()
+    {
       _inputEntity = null;
+      _inputStarted = false;
+    }
 
     public void SetInputEntity(GameEntity input) =>
       _inputEntity = input;

@@ -35,7 +35,7 @@ namespace Code.Gameplay.Features.Lose.Services
 
     public void Lose()
     {
-      _timeService.FreezeTime();
+      _timeService.StopTime();
       _inputService.ChangeInputMap(InputMap.UI);
       _soundService.PlaySound(SoundId.ShowWindow);
 
