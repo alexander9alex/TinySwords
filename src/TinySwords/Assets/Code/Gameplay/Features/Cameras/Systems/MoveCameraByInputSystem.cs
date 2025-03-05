@@ -4,14 +4,14 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Cameras.Systems
 {
-  public class MoveCameraSystem : IExecuteSystem
+  public class MoveCameraByInputSystem : IExecuteSystem
   {
     private readonly ICameraMovementService _cameraMovementService;
 
     private readonly IGroup<GameEntity> _inputs;
     private readonly List<GameEntity> _buffer = new(1);
 
-    public MoveCameraSystem(GameContext game, ICameraMovementService cameraMovementService)
+    public MoveCameraByInputSystem(GameContext game, ICameraMovementService cameraMovementService)
     {
       _cameraMovementService = cameraMovementService;
 

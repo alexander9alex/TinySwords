@@ -1,5 +1,6 @@
 using Code.Gameplay;
 using Code.Gameplay.Common.Curtain;
+using Code.Gameplay.Features.Input.Services;
 using Code.Gameplay.Tutorials.Data;
 using Code.Gameplay.Tutorials.Services;
 using Code.Infrastructure.Factory;
@@ -17,14 +18,17 @@ namespace Code.Infrastructure.States.GameStates
     private readonly IWindowService _windowService;
 
     private GameplayFeature _gameplayFeature;
+    private readonly IInputService _inputService;
 
-    public LevelState(ICurtain curtain, ISystemFactory systemFactory, GameContext gameContext, ITutorialService tutorialService, IWindowService windowService)
+    public LevelState(ICurtain curtain, ISystemFactory systemFactory, GameContext gameContext, ITutorialService tutorialService, IWindowService windowService,
+      IInputService inputService)
     {
       _curtain = curtain;
       _systemFactory = systemFactory;
       _gameContext = gameContext;
       _tutorialService = tutorialService;
       _windowService = windowService;
+      _inputService = inputService;
     }
 
     public override void Enter()
@@ -60,6 +64,8 @@ namespace Code.Infrastructure.States.GameStates
       _gameplayFeature.Cleanup();
       _gameplayFeature.TearDown();
       _gameplayFeature = null;
+
+      _inputService.Cleanup();
     }
 
     private void DestructEntities()

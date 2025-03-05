@@ -15,7 +15,6 @@ namespace Code.Gameplay.Features.Input.Services
   {
     private readonly InputSystem _inputSystem = new();
 
-    private bool GameInputMapEnabled => _inputSystem.Game.enabled;
     private Vector2 _mousePos;
     private Vector2 _cameraMoveDir;
     private GameEntity _inputEntity;
@@ -38,6 +37,9 @@ namespace Code.Gameplay.Features.Input.Services
       SetMousePositionInput();
       SetCameraMoveInput();
     }
+
+    public void Cleanup() =>
+      _inputEntity = null;
 
     public void SetInputEntity(GameEntity input) =>
       _inputEntity = input;
@@ -64,6 +66,22 @@ namespace Code.Gameplay.Features.Input.Services
         default:
           throw new ArgumentOutOfRangeException(nameof(inputMap), inputMap, null);
       }
+    }
+
+    public bool PositionInGameZone(Vector2 pos)
+    {
+      PointerEventData eventData = new(EventSystem.current);
+      eventData.position = pos;
+      List<RaycastResult> results = new();
+      EventSystem.current.RaycastAll(eventData, results);
+
+      foreach (RaycastResult result in results)
+      {
+        if (result.gameObject.layer == GameConstants.UILayer)
+          return result.gameObject.GetComponent<GameZoneLayout>() != null;
+      }
+
+      return false;
     }
 
     private void InitGameInputMap()
@@ -121,7 +139,7 @@ namespace Code.Gameplay.Features.Input.Services
       if (_interactionStarted)
         return;
 
-      if (!IsPosInGameZone(_mousePos))
+      if (!PositionInGameZone(_mousePos))
         return;
 
       _inputEntity
@@ -133,7 +151,7 @@ namespace Code.Gameplay.Features.Input.Services
       if (_interactionStarted)
         return;
 
-      if (!IsPosInGameZone(_mousePos))
+      if (!PositionInGameZone(_mousePos))
         return;
 
       _interactionStarted = true;
@@ -166,7 +184,7 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void ApplyCommand(InputAction.CallbackContext context)
     {
-      if (!IsPosInGameZone(_mousePos))
+      if (!PositionInGameZone(_mousePos))
         return;
 
       _inputEntity
@@ -181,21 +199,5 @@ namespace Code.Gameplay.Features.Input.Services
 
     private void ChangeMousePosition(InputAction.CallbackContext context) =>
       _mousePos = context.ReadValue<Vector2>();
-
-    private bool IsPosInGameZone(Vector2 mousePos)
-    {
-      PointerEventData eventData = new(EventSystem.current);
-      eventData.position = mousePos;
-      List<RaycastResult> results = new();
-      EventSystem.current.RaycastAll(eventData, results);
-
-      foreach (RaycastResult result in results)
-      {
-        if (result.gameObject.layer == GameConstants.UILayer)
-          return result.gameObject.GetComponent<GameZoneLayout>() != null;
-      }
-
-      return false;
-    }
   }
 }
