@@ -5,7 +5,6 @@
     Unknown = 0,
     Death = 1,
     ButtonClick = 2,
-    TextDisplay = 3,
     ShowWindow = 4,
     HideWindow = 5,
 

@@ -1,12 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Code.Common.Entities;
-using Code.Common.Extensions;
 using Code.Gameplay.CutScene.Configs;
 using Code.Gameplay.CutScene.Windows;
-using Code.Gameplay.Features.Sounds.Data;
-using Code.Gameplay.Features.Sounds.Factory;
 using Code.Gameplay.Level.Data;
 using Code.Gameplay.Services;
 using Code.Infrastructure.Common.CoroutineRunner;
@@ -20,21 +16,18 @@ namespace Code.Gameplay.CutScene.Services
   {
     private const int Space = ' ';
     private readonly List<char> _completeSentenceMarks = new() { '.', '!', '?' };
-    private readonly List<char> _marks = new() { '.', '!', '?', '-', ',', '\'', '"' };
 
     private readonly ICoroutineRunner _coroutineRunner;
     private readonly IGameStateMachine _gameStateMachine;
     private readonly ITimeService _time;
-    private readonly ISoundFactory _soundFactory;
 
     private bool _click;
 
-    public CutSceneService(ICoroutineRunner coroutineRunner, IGameStateMachine gameStateMachine, ITimeService time, ISoundFactory soundFactory)
+    public CutSceneService(ICoroutineRunner coroutineRunner, IGameStateMachine gameStateMachine, ITimeService time)
     {
       _coroutineRunner = coroutineRunner;
       _gameStateMachine = gameStateMachine;
       _time = time;
-      _soundFactory = soundFactory;
     }
 
     public void RunCutScene(CutSceneWindow cutSceneWindow) =>
@@ -44,24 +37,20 @@ namespace Code.Gameplay.CutScene.Services
     {
       cutSceneWindow.SetNextReplicaAction(NextReplica);
       CutSceneConfig config = cutSceneWindow.GetCutSceneConfig();
-      GameEntity textDisplaySound = _soundFactory.CreateSound(SoundId.TextDisplay);
 
       foreach (string replica in config.Replicas)
       {
         cutSceneWindow.ClearReplica();
-        yield return ShowReplica(cutSceneWindow, replica, config, textDisplaySound);
+        yield return ShowReplica(cutSceneWindow, replica, config);
         yield return WaitToClick();
         yield return HideReplica(cutSceneWindow, config);
       }
 
-      RemoveSound(textDisplaySound);
-
       _gameStateMachine.Enter<LoadingLevelState, LevelId>(LevelId.First);
     }
 
-    private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config, GameEntity textDisplaySound)
+    private IEnumerator ShowReplicaCoroutine(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config)
     {
-      ReplaySoundFirst(textDisplaySound);
       cutSceneWindow.SetReplicaFade(1);
 
       WaitForSeconds waitAfterSymbol = new(config.ReplicaSymbolDisplaySpeed);
@@ -75,30 +64,16 @@ namespace Code.Gameplay.CutScene.Services
         cutSceneWindow.SetReplica(displayReplicaPart.ToString());
 
         if (IsCompleteSentenceMark(replica, index: i))
-        {
-          PauseSound(textDisplaySound);
           yield return waitAfterEndSentence;
-          ReplaySoundFirst(textDisplaySound);
-        }
-
-        if (IsMarkOrSpace(replica[i]))
-        {
-          PauseSound(textDisplaySound);
-          yield return waitAfterSymbol;
-          ContinueSound(textDisplaySound);
-        }
         else
           yield return waitAfterSymbol;
 
         if (_click)
         {
           cutSceneWindow.SetReplica(replica);
-          PauseSound(textDisplaySound);
           yield break;
         }
       }
-
-      PauseSound(textDisplaySound);
     }
 
     private IEnumerator HideReplica(CutSceneWindow cutSceneWindow, CutSceneConfig config)
@@ -153,48 +128,10 @@ namespace Code.Gameplay.CutScene.Services
       return true;
     }
 
-    private bool IsMarkOrSpace(char ch) =>
-      _marks.Contains(ch) || ch == Space;
-
-    private static void ReplaySoundFirst(GameEntity textDisplaySound)
-    {
-      if (textDisplaySound is { hasId: true })
-
-        CreateEntity.Empty()
-          .AddTargetId(textDisplaySound.Id)
-          .With(x => x.isChangeSoundRequest = true)
-          .With(x => x.isResetSoundPlaybackTimeRequest = true);
-
-      ContinueSound(textDisplaySound);
-    }
-
-    private static void ContinueSound(GameEntity textDisplaySound)
-    {
-      if (textDisplaySound is { hasId: true })
-
-        CreateEntity.Empty()
-          .AddTargetId(textDisplaySound.Id)
-          .With(x => x.isChangeSoundRequest = true)
-          .With(x => x.isPlaySoundRequest = true);
-    }
-
-    private static void PauseSound(GameEntity textDisplaySound)
-    {
-      if (textDisplaySound is { hasId: true })
-
-        CreateEntity.Empty()
-          .AddTargetId(textDisplaySound.Id)
-          .With(x => x.isChangeSoundRequest = true)
-          .With(x => x.isPauseSoundRequest = true);
-    }
-
-    private void RemoveSound(GameEntity textDisplaySound) =>
-      textDisplaySound.isDestructed = true;
-
     private void NextReplica() =>
       _click = true;
 
-    private Coroutine ShowReplica(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config, GameEntity textDisplaySound) =>
-      _coroutineRunner.StartCoroutine(ShowReplicaCoroutine(cutSceneWindow, replica, config, textDisplaySound));
+    private Coroutine ShowReplica(CutSceneWindow cutSceneWindow, string replica, CutSceneConfig config) =>
+      _coroutineRunner.StartCoroutine(ShowReplicaCoroutine(cutSceneWindow, replica, config));
   }
 }

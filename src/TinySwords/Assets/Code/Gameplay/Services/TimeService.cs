@@ -13,7 +13,7 @@ namespace Code.Gameplay.Services
     private int _timeScale = 1;
 
     private bool _isTimeFreeze;
-
+    
     public void FreezeTime() =>
       _isTimeFreeze = true;
 
